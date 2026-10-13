@@ -12,17 +12,17 @@ assets/models/                 ← nơi chép file .glb để web dùng
 
 Làm 3D cho toàn bộ **235 món nội thất** (sofa, ghế, bàn, tủ, kệ, giường, đôn). Đồ trang trí (thảm, tranh, gối, rèm, bình, cây) không làm: dạng phẳng hoặc trong suốt, AI dựng ra không đẹp và không thêm gì so với ảnh.
 
-| Phong cách | Người phụ trách | Số món cần làm | Thời gian Kaggle (ước tính) |
+| Phong cách | Người phụ trách | Số món cần làm |
 |---|---|---|---|
-| Farmhouse | Quỳnh Kha | 46 (đã có 4) | ~2 giờ |
-| Bohemian | Bảo Duy | 39 | ~1,7 giờ |
-| Scandinavian, Mid-century Modern | Nguyên Khôi | 59 | ~2,5 giờ |
-| Glam, Coastal | Phương Anh | 55 | ~2,4 giờ |
-| Traditional | Như Huyền | 32 | ~1,4 giờ |
+| Farmhouse | Quỳnh Kha | 46 |
+| Bohemian | Bảo Duy | 39 |
+| Scandinavian, Mid-century Modern | Nguyên Khôi | 59 |
+| Glam, Coastal | Phương Anh | 55 |
+| Traditional | Như Huyền | 32 |
 
 ## Các bước
 
-**Chuẩn bị (Kha làm 1 lần):** tạo Kaggle Dataset riêng tư `roomcraft-products` từ thư mục `assets/products`, vào *Settings → Collaborators* thêm 4 bạn.
+**Chuẩn bị (Kha):** tạo Kaggle Dataset riêng tư `roomcraft-products` từ thư mục `assets/products`, vào *Settings → Collaborators* thêm 4 bạn.
 
 1. Kaggle → *New Notebook* → *File → Import Notebook* → chọn `tools/3d/RoomCraft3D_Kaggle.ipynb`.
 2. *Settings*: **Accelerator = GPU T4 x2**, **Internet = On**. *Add Input* → `roomcraft-products`.
