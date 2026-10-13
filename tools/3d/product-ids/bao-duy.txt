@@ -1,0 +1,44 @@
+# Bảo Duy – phong cách: bohemian – 39 sản phẩm
+# Dán đoạn dưới vào ô CẤU HÌNH của notebook. Giữ MY_SHARE = "1/1", PRESET = "best", MAX_FACES = 40000.
+# Muốn chia làm 2 lần chạy: lần 1 để MY_SHARE = "1/2", lần 2 để MY_SHARE = "2/2".
+PRODUCT_IDS = [
+    "product-bohemian-outdoor-wooden-loveseat-with-cushions-02",   # Ghế đôi gỗ ngoài trời kèm nệm
+    "product-bohemian-lukas-3-seat-sofa-04",   # Sofa 3 chỗ Lukas
+    "product-bohemian-james-sleeper-sofa-04",   # Sofa giường James
+    "product-bohemian-scarlett-sleeper-sofa-03",   # Sofa giường Scarlett
+    "product-bohemian-sloan-4-piece-corner-sectional-sofa-with-chaise-03",   # Sofa góc 4 mảnh Sloan kèm ghế dài
+    "product-bohemian-tatum-modular-5-seat-wedge-corner-sectional-04",   # Sofa góc module 5 chỗ Tatum
+    "product-bohemian-tatum-modular-right-arm-sofa-06",   # Sofa module tay phải Tatum
+    "product-bohemian-tatum-modular-right-arm-sofa-11",   # Sofa module tay phải Tatum
+    "product-bohemian-tatum-modular-left-arm-sofa-05",   # Sofa module tay trái Tatum
+    "product-bohemian-tatum-modular-left-arm-sofa-12",   # Sofa module tay trái Tatum
+    "product-bohemian-george-oliver-arm-chair-accent-chair-07",   # Ghế bành George Oliver
+    "product-bohemian-ines-bench-01",   # Ghế băng Ines
+    "product-bohemian-miller-storage-bench-01",   # Ghế băng có ngăn chứa Miller
+    "product-bohemian-brionna-faux-leather-flip-top-storage-bench-03",   # Ghế băng da giả nắp lật có ngăn chứa Brionna
+    "product-bohemian-charlie-stone-tan-velvet-corduroy-kids-lounge-chair-06",   # Ghế thư giãn nhung tăm màu nâu đá Charlie cho bé
+    "product-bohemian-blake-accent-chair-05",   # Ghế đơn Blake
+    "product-bohemian-henning-wood-and-leather-accent-chair-01",   # Ghế đơn gỗ và da Henning
+    "product-bohemian-velvet-tanya-petite-accent-chair-08",   # Ghế đơn nhung cỡ nhỏ Tanya
+    "product-bohemian-asta-ottoman-beige-06",   # Đôn Asta màu be
+    "product-bohemian-drum-ottoman-rust-classic-velvet-01",   # Đôn tròn nhung màu gỉ sét
+    "product-bohemian-gemina-rectangle-cocktail-table-no-longer-available-02",   # Bàn cocktail chữ nhật Gemina
+    "product-bohemian-outdoor-rattan-side-table-02",   # Bàn phụ mây ngoài trời
+    "product-bohemian-zora-gold-powder-side-table-03",   # Bàn phụ sơn tĩnh điện vàng Zora
+    "product-bohemian-patio-side-table-round-end-table-04",   # Bàn phụ tròn sân vườn
+    "product-bohemian-quantum-marble-metal-side-table-10",   # Bàn phụ đá cẩm thạch và kim loại Quantum
+    "product-bohemian-belmin-stone-concrete-side-table-01",   # Bàn phụ đá/bê tông Belmin
+    "product-bohemian-clench-brass-side-table-09",   # Bàn phụ đồng thau Clench
+    "product-bohemian-patrizia-concrete-round-coffee-table-02",   # Bàn trà tròn bê tông Patrizia
+    "product-bohemian-annabel-round-mango-wood-coffee-table-03",   # Bàn trà tròn gỗ xoài Annabel
+    "product-bohemian-palma-reclaimed-wood-sculptural-coffee-table-01",   # Bàn trà điêu khắc gỗ tái chế Palma
+    "product-bohemian-baize-end-table-black-safavieh-01",   # Bàn đầu giường Baize màu đen
+    "product-bohemian-daukas-47-dining-table-01",   # Bàn ăn Daukas 119 cm
+    "product-bohemian-bontang-72-h-x-24-w-steel-ladder-bookcase-01",   # Kệ sách thang thép Bontang 183 x 61 cm
+    "product-bohemian-hampshire-27-natural-brown-wood-2-tier-kids-wall-shelf-01",   # Kệ treo tường 2 tầng gỗ nâu Hampshire 69 cm cho bé
+    "product-bohemian-caprice-black-natural-cane-narrow-cabinet-09",   # Tủ hẹp mây tự nhiên đen Caprice
+    "product-bohemian-modern-3-shelf-open-arched-bookcase-cabinet-black-02",   # Tủ sách mở 3 tầng vòm hiện đại - màu đen
+    "product-bohemian-modern-reeded-70-tv-stand-with-open-storage-mocha-06",   # Kệ tivi gân dọc hiện đại 178 cm có ngăn mở - màu mocha
+    "product-bohemian-sasha-58-rattan-sideboard-tv-stand-05",   # Tủ buffet / kệ tivi mây Sasha 147 cm
+    "product-bohemian-seabeck-58-5-wide-3-drawer-sideboard-02",   # Tủ buffet 3 ngăn kéo Seabeck rộng 149 cm
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Giao hàng tiêu chuẩn",
+    "fee": 50000,
+    "estimated_time": "3–5 ngày",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "name": "Giao hàng nhanh",
+    "fee": 120000,
+    "estimated_time": "1–2 ngày",
+    "is_active": true
+  }
+]

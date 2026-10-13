@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "parent_id": null,
+    "name": "Nội thất",
+    "name_en": "Furniture"
+  },
+  {
+    "id": 2,
+    "parent_id": null,
+    "name": "Trang trí & Chiếu sáng",
+    "name_en": "Decor & Lighting"
+  },
+  {
+    "id": 3,
+    "parent_id": null,
+    "name": "Chăn ga & Phòng tắm",
+    "name_en": "Bedding & Bath"
+  },
+  {
+    "id": 4,
+    "parent_id": null,
+    "name": "Khác",
+    "name_en": "Other"
+  },
+  {
+    "id": 5,
+    "parent_id": 1,
+    "name": "Ghế đơn & Ghế thư giãn",
+    "name_en": "Accent Chairs"
+  },
+  {
+    "id": 6,
+    "parent_id": 1,
+    "name": "Bàn trà & Bàn phụ",
+    "name_en": "Coffee & Accent Tables"
+  },
+  {
+    "id": 7,
+    "parent_id": 1,
+    "name": "Bàn ghế ăn",
+    "name_en": "Dining Tables & Chairs"
+  },
+  {
+    "id": 8,
+    "parent_id": 1,
+    "name": "Sofa & Sofa góc",
+    "name_en": "Sofas & Sectionals"
+  },
+  {
+    "id": 9,
+    "parent_id": 1,
+    "name": "Giường & Tủ phòng ngủ",
+    "name_en": "Beds & Headboards"
+  },
+  {
+    "id": 10,
+    "parent_id": 1,
+    "name": "Tủ & Kệ lưu trữ",
+    "name_en": "Storage & Shelving"
+  },
+  {
+    "id": 11,
+    "parent_id": 1,
+    "name": "Kệ tivi",
+    "name_en": "Media Consoles"
+  },
+  {
+    "id": 12,
+    "parent_id": 1,
+    "name": "Bàn làm việc",
+    "name_en": "Desks"
+  },
+  {
+    "id": 13,
+    "parent_id": 1,
+    "name": "Nội thất khác",
+    "name_en": "Other"
+  },
+  {
+    "id": 14,
+    "parent_id": 2,
+    "name": "Đồ trang trí khác",
+    "name_en": "Other Decor"
+  },
+  {
+    "id": 15,
+    "parent_id": 2,
+    "name": "Bình hoa & Cây trang trí",
+    "name_en": "Vases & Botanicals"
+  },
+  {
+    "id": 16,
+    "parent_id": 2,
+    "name": "Tranh & Gương",
+    "name_en": "Wall Art & Mirrors"
+  },
+  {
+    "id": 17,
+    "parent_id": 2,
+    "name": "Gối tựa",
+    "name_en": "Throw Pillows"
+  },
+  {
+    "id": 18,
+    "parent_id": 2,
+    "name": "Đèn trang trí",
+    "name_en": "Table & Floor Lamps"
+  },
+  {
+    "id": 19,
+    "parent_id": 2,
+    "name": "Thảm",
+    "name_en": "Rugs"
+  },
+  {
+    "id": 20,
+    "parent_id": 2,
+    "name": "Trang trí & Chiếu sáng khác",
+    "name_en": "Other"
+  },
+  {
+    "id": 21,
+    "parent_id": 3,
+    "name": "Chăn & Chăn phủ",
+    "name_en": "Blanket & Throw"
+  },
+  {
+    "id": 22,
+    "parent_id": 3,
+    "name": "Vỏ chăn",
+    "name_en": "Duvet Cover"
+  },
+  {
+    "id": 23,
+    "parent_id": 3,
+    "name": "Bộ ga giường",
+    "name_en": "Sheet Set"
+  },
+  {
+    "id": 24,
+    "parent_id": 3,
+    "name": "Chăn chần bông",
+    "name_en": "Quilt"
+  },
+  {
+    "id": 25,
+    "parent_id": 3,
+    "name": "Khăn tắm",
+    "name_en": "Towel"
+  },
+  {
+    "id": 26,
+    "parent_id": 3,
+    "name": "Vỏ gối",
+    "name_en": "Sham"
+  },
+  {
+    "id": 27,
+    "parent_id": 4,
+    "name": "Sản phẩm khác",
+    "name_en": "Other"
+  }
+]

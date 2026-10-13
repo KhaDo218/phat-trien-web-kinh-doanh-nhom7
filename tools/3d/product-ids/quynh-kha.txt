@@ -1,0 +1,51 @@
+# Quỳnh Kha – phong cách: farmhouse – 46 sản phẩm
+# Dán đoạn dưới vào ô CẤU HÌNH của notebook. Giữ MY_SHARE = "1/1", PRESET = "best", MAX_FACES = 40000.
+# Muốn chia làm 2 lần chạy: lần 1 để MY_SHARE = "1/2", lần 2 để MY_SHARE = "2/2".
+PRODUCT_IDS = [
+    "product-farmhouse-nomad-leather-sofa-camel-top-grain-leather-oak-wood-arch-06",   # Sofa da Nomad màu bò, chân gỗ sồi
+    "product-farmhouse-maxwell-fabric-3-seat-sofa-by-apartment-therapy-05",   # Sofa vải 3 chỗ Maxwell
+    "product-farmhouse-halston-chair-heirloom-black-02",   # Ghế Halston màu đen
+    "product-farmhouse-lawson-swivel-chair-04",   # Ghế xoay Lawson
+    "product-farmhouse-tegan-swivel-chair-06",   # Ghế xoay Tegan
+    "product-farmhouse-bun-foot-accent-chair-charcoal-fritz-03",   # Ghế đơn chân tròn vải màu than
+    "product-farmhouse-halston-ottoman-heirloom-black-07",   # Đôn Halston màu đen
+    "product-farmhouse-ruched-dark-beige-velvet-pouf-01",   # Đôn nhung xếp nếp màu be đậm
+    "product-farmhouse-kelvin-woven-ottoman-01",   # Đôn đan Kelvin
+    "product-farmhouse-matthes-console-table-weathered-wheat-03",   # Bàn console Matthes màu lúa mì
+    "product-farmhouse-theory-console-table-05",   # Bàn console Theory
+    "product-farmhouse-sasha-wood-accent-table-black-02",   # Bàn phụ gỗ Sasha màu đen
+    "product-farmhouse-47-25-coffee-table-cocktail-table-03",   # Bàn trà 120 cm
+    "product-farmhouse-bethan-coffee-table-02",   # Bàn trà Bethan
+    "product-farmhouse-brooklyn-coffee-table-blonde-yukas-02",   # Bàn trà Brooklyn màu gỗ sáng
+    "product-farmhouse-colten-round-storage-coffee-table-ottoman-01",   # Bàn trà kiêm đôn tròn có ngăn chứa Colten
+    "product-farmhouse-nina-round-coffee-table-white-wash-36-smooth-finish-wood-bas-03",   # Bàn trà tròn Nina 91 cm màu gỗ phủ trắng
+    "product-farmhouse-douglas-end-table-antique-rust-02",   # Bàn đầu giường Douglas màu gỉ cổ
+    "product-farmhouse-douglas-end-table-aged-bronze-05",   # Bàn đầu giường Douglas màu đồng cổ
+    "product-farmhouse-gino-end-table-raw-black-03",   # Bàn đầu giường Gino màu đen thô
+    "product-farmhouse-boone-drink-table-01",   # Bàn đặt đồ uống Boone
+    "product-farmhouse-ana-charcoal-dining-chair-with-brown-wood-legs-07",   # Ghế ăn Ana màu than chân gỗ nâu
+    "product-farmhouse-baron-side-chair-07",   # Ghế ăn Baron
+    "product-farmhouse-toril-dining-chair-black-safavieh-04",   # Ghế ăn Toril màu đen
+    "product-farmhouse-toril-dining-chair-black-safavieh-09",   # Ghế ăn Toril màu đen
+    "product-farmhouse-arnoldsville-baronet-upholstered-dining-chair-12",   # Ghế ăn bọc nệm Arnoldsville
+    "product-farmhouse-celentano-upholstered-dining-chair-11",   # Ghế ăn bọc nệm Celentano
+    "product-farmhouse-petrie-black-ash-upholstered-dining-chair-with-performance-f-10",   # Ghế ăn bọc nệm Petrie gỗ tần bì đen
+    "product-farmhouse-lowe-smoke-grey-leather-dining-chair-with-ebony-wood-legs-08",   # Ghế ăn da xám khói Lowe chân gỗ mun
+    "product-farmhouse-modern-simple-dining-chair-06",   # Ghế ăn hiện đại tối giản
+    "product-farmhouse-authement-button-tufted-wingback-hostess-upholstered-dining--12",   # Ghế ăn lưng cánh chần nút Authement
+    "product-farmhouse-alten-leather-wood-framed-upholstered-seat-counter-stool-03",   # Ghế đẩu quầy khung gỗ bọc da Alten
+    "product-farmhouse-montego-nightstand-06",   # Tủ đầu giường Montego
+    "product-farmhouse-the-citizenry-manai-woven-nightstand-06",   # Tủ đầu giường đan Manai
+    "product-farmhouse-natural-elm-wood-floating-shelf-48-04",   # Kệ nổi gỗ du tự nhiên 122 cm
+    "product-farmhouse-natural-elm-wood-floating-shelf-66-05",   # Kệ nổi gỗ du tự nhiên 168 cm
+    "product-farmhouse-charlotte-tall-cabinet-black-03",   # Tủ cao Charlotte màu đen
+    "product-farmhouse-modern-5-shelf-arched-tall-bookcase-with-glass-doors-coastal-01",   # Tủ sách cao 5 tầng vòm cửa kính - màu sồi
+    "product-farmhouse-abigail-58-farmhouse-4-door-tv-stand-rustic-oak-06",   # Kệ tivi 4 cánh Abigail 147 cm màu sồi mộc
+    "product-farmhouse-abigail-58-farmhouse-4-door-tv-stand-grey-wash-02",   # Kệ tivi 4 cánh Abigail 147 cm màu xám
+    "product-farmhouse-sion-61-white-washed-teak-wood-credenza-04",   # Tủ thấp gỗ teak phủ trắng Sion 155 cm
+    "product-farmhouse-portofino-87-cerused-white-oak-wood-desk-by-gianfranco-fratt-04",   # Bàn làm việc gỗ sồi trắng Portofino 221 cm
+    "product-farmhouse-humphrey-desk-chair-sonoma-black-03",   # Ghế bàn làm việc Humphrey màu đen
+    "product-farmhouse-discontinued-04",   # Bàn trà gỗ 2 ngăn kéo màu cider
+    "product-farmhouse-jasper-chaise-lounge-05",   # Ghế nằm thư giãn Jasper
+    "product-farmhouse-nigel-2-door-1-drawer-chest-white-safavieh-01",   # Tủ 2 cánh 1 ngăn kéo Nigel màu trắng
+]

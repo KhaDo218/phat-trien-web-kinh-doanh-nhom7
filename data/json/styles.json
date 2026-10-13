@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "slug": "bohemian",
+    "name": "Bohemian",
+    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh."
+  },
+  {
+    "id": 2,
+    "slug": "coastal",
+    "name": "Coastal",
+    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu."
+  },
+  {
+    "id": 3,
+    "slug": "farmhouse",
+    "name": "Farmhouse",
+    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi."
+  },
+  {
+    "id": 4,
+    "slug": "glam",
+    "name": "Glam",
+    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch."
+  },
+  {
+    "id": 5,
+    "slug": "mid-century-modern",
+    "name": "Mid-century Modern",
+    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn."
+  },
+  {
+    "id": 6,
+    "slug": "scandinavian",
+    "name": "Scandinavian",
+    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng."
+  },
+  {
+    "id": 7,
+    "slug": "traditional",
+    "name": "Traditional",
+    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc."
+  }
+]

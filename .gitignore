@@ -1,9 +1,26 @@
+# Python / Node
 .venv/
 venv/
 __pycache__/
 *.pyc
 .env
+node_modules/
+
+# Editor / hệ điều hành
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# File nén tải từ Kaggle (chỉ chép .glb vào assets/models)
+*.zip
+
+# Tài liệu cá nhân, báo cáo (để trên máy, không đẩy lên GitHub)
+_tai-lieu-ca-nhan/
+data/export/
+*.docx
+~$*
+
+# File tải về từ Claude
+Claude outputs/

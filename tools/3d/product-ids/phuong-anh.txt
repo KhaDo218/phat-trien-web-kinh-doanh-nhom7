@@ -1,0 +1,60 @@
+# Phương Anh – phong cách: glam, coastal – 55 sản phẩm
+# Dán đoạn dưới vào ô CẤU HÌNH của notebook. Giữ MY_SHARE = "1/1", PRESET = "best", MAX_FACES = 40000.
+# Muốn chia làm 2 lần chạy: lần 1 để MY_SHARE = "1/2", lần 2 để MY_SHARE = "2/2".
+PRODUCT_IDS = [
+    "product-glam-riva-outdoor-3-seat-sofa-04",   # Sofa 3 chỗ ngoài trời Riva
+    "product-glam-x-bench-rose-peacock-park-01",   # Ghế băng chân chữ X màu hồng
+    "product-glam-savona-swivel-chair-03",   # Ghế xoay Savona
+    "product-glam-riva-outdoor-accent-chair-03",   # Ghế đơn ngoài trời Riva
+    "product-glam-osaka-side-table-black-02",   # Bàn phụ Osaka màu đen
+    "product-glam-caine-outdoor-side-table-04",   # Bàn phụ ngoài trời Caine
+    "product-glam-assana-coffee-table-03",   # Bàn trà Assana
+    "product-glam-pebble-charcoal-concrete-59-oval-indoor-outdoor-coffee-table-08",   # Bàn trà oval bê tông màu than Pebble 150 cm
+    "product-glam-suri-44-square-coffee-table-white-oak-02",   # Bàn trà vuông Suri 112 cm gỗ sồi trắng
+    "product-glam-hooker-furniture-laureng-glass-end-table-04",   # Bàn đầu giường kính Laureng
+    "product-glam-kingston-outdoor-dining-table-03",   # Bàn ăn ngoài trời Kingston
+    "product-glam-ferris-bar-counter-stool-thames-cream-09",   # Ghế bar / ghế quầy Ferris màu kem
+    "product-glam-juniper-cream-velvet-barstool-11",   # Ghế bar nhung kem Juniper
+    "product-glam-clarence-polished-gold-bar-stool-08",   # Ghế bar vàng bóng Clarence
+    "product-glam-natalya-polished-gold-bar-stool-07",   # Ghế bar vàng bóng Natalya
+    "product-glam-cason-dining-chair-black-safavieh-01",   # Ghế ăn Cason màu đen
+    "product-glam-tapestry-outdoor-dining-chair-01",   # Ghế ăn ngoài trời Tapestry
+    "product-glam-rue-counter-stool-04",   # Ghế đẩu quầy Rue
+    "product-glam-juniper-white-performance-vegan-leather-counter-stool-10",   # Ghế đẩu quầy da thuần chay trắng Juniper
+    "product-glam-ivanna-modern-counter-stool-12",   # Ghế đẩu quầy hiện đại Ivanna
+    "product-glam-hollis-metal-framed-upholstered-counter-stool-05",   # Ghế đẩu quầy khung kim loại bọc nệm Hollis
+    "product-glam-jordan-polished-gold-counter-stool-06",   # Ghế đẩu quầy vàng bóng Jordan
+    "product-glam-klismos-off-white-fabric-counter-stool-11",   # Ghế đẩu quầy vải trắng ngà Klismos
+    "product-glam-crawford-modern-solid-wood-bed-with-black-woven-cane-headboa-02",   # Giường gỗ nguyên khối Crawford đầu giường mây đan màu đen cỡ Queen
+    "product-glam-paris-modern-scandinavian-reeded-dresser-02",   # Tủ ngăn kéo gân dọc Paris phong cách Bắc Âu
+    "product-glam-odetta-nightstand-01",   # Tủ đầu giường Odetta
+    "product-glam-raffael-39-grey-wash-wood-bar-cabinet-with-storage-07",   # Tủ rượu gỗ xám Raffael 99 cm có ngăn chứa
+    "product-glam-emielia-floating-tv-stand-with-electric-fireplace-for-tvs-01",   # Kệ tivi treo tường Emielia kèm lò sưởi điện
+    "product-glam-cindy-console-with-storage-drawers-black-safavieh-01",   # Bàn console có ngăn kéo Cindy màu đen
+    "product-glam-lubek-69-25-outdoor-low-left-chaise-lounge-slate-gray-01",   # Ghế nằm thấp ngoài trời Lubek 176 cm màu xám đá
+    "product-coastal-fiona-loveseat-01",   # Ghế sofa đôi Fiona
+    "product-coastal-kearney-35-43-wide-barrel-chair-02",   # Ghế bành tròn Kearney rộng 90 cm
+    "product-coastal-natalie-24-barrel-chair-04",   # Ghế bành tròn Natalie 61 cm
+    "product-coastal-classic-storage-bench-heron-luxe-velvet-06",   # Ghế băng có ngăn chứa nhung Heron
+    "product-coastal-classic-storage-bench-ocean-classic-velvet-07",   # Ghế băng có ngăn chứa nhung xanh Ocean
+    "product-coastal-modern-bench-sky-fritz-brass-05",   # Ghế băng hiện đại vải xanh da trời chân đồng thau
+    "product-coastal-daphne-upholstered-chair-04",   # Ghế bọc nệm Daphne
+    "product-coastal-caterina-natural-upholstered-office-chair-with-brass-base-03",   # Ghế văn phòng bọc nệm Caterina chân đồng thau
+    "product-coastal-blake-accent-chair-01",   # Ghế đơn Blake
+    "product-coastal-tana-outdoor-stool-natural-teak-01",   # Ghế đẩu ngoài trời Tana gỗ teak tự nhiên
+    "product-coastal-fae-small-round-ottoman-02",   # Đôn tròn nhỏ Fae
+    "product-coastal-morriston-126-inch-extension-dining-table-rustic-honey-01",   # Bàn ăn mở rộng Morriston 320 cm màu mật ong mộc
+    "product-coastal-otago-oval-dining-table-walnut-01",   # Bàn ăn oval Otago gỗ óc chó
+    "product-coastal-burrow-alto-dining-chair-metal-03",   # Ghế ăn kim loại Alto
+    "product-coastal-bodine-cane-back-dining-chair-06",   # Ghế ăn lưng mây Bodine
+    "product-coastal-tojo-cane-dining-chair-with-cushion-white-gray-safavieh-04",   # Ghế ăn mây Tojo kèm nệm trắng / xám
+    "product-coastal-foley-grey-velvet-dining-chair-02",   # Ghế ăn nhung xám Foley
+    "product-coastal-encompass-white-fabric-dining-chair-02",   # Ghế ăn vải trắng Encompass
+    "product-coastal-encore-counter-stool-natural-03",   # Ghế đẩu quầy Encore màu tự nhiên
+    "product-coastal-lowen-upholstered-bed-with-tufting-option-04",   # Giường bọc nệm Lowen có tùy chọn chần nút
+    "product-coastal-jaylessa-wood-dresser-natural-04",   # Tủ ngăn kéo gỗ Jaylessa màu tự nhiên
+    "product-coastal-jaylessa-wood-nightstand-02",   # Tủ đầu giường gỗ Jaylessa
+    "product-coastal-chantelle-modern-arched-bookshelf-with-glass-doors-02",   # Tủ sách vòm hiện đại cửa kính Chantelle
+    "product-coastal-caprice-96-sideboard-natural-mango-03",   # Tủ buffet Caprice 244 cm gỗ xoài tự nhiên
+    "product-coastal-merriton-desk-pre-order-for-12-2-24-back-in-stock-01",   # Bàn làm việc Merriton
+]

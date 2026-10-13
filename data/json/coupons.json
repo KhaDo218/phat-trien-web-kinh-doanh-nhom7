@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "code": "ROOMCRAFT10",
+    "discount_type": "PERCENT",
+    "discount_value": 10,
+    "min_order_value": 2000000,
+    "expires_at": "2026-12-31T23:59:59",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "code": "GIAM200K",
+    "discount_type": "FIXED",
+    "discount_value": 200000,
+    "min_order_value": 5000000,
+    "expires_at": "2026-12-31T23:59:59",
+    "is_active": true
+  }
+]
