@@ -12,13 +12,13 @@ assets/models/                 ← nơi chép file .glb để web dùng
 
 Làm 3D cho toàn bộ **235 món nội thất** (sofa, ghế, bàn, tủ, kệ, giường, đôn). Đồ trang trí (thảm, tranh, gối, rèm, bình, cây) không làm: dạng phẳng hoặc trong suốt, AI dựng ra không đẹp và không thêm gì so với ảnh.
 
-| Phong cách | Người phụ trách | Số món cần làm |
-|---|---|---|---|
-| Farmhouse | Quỳnh Kha | 46 |
-| Bohemian | Bảo Duy | 39 |
-| Scandinavian, Mid-century Modern | Nguyên Khôi | 59 |
-| Glam, Coastal | Phương Anh | 55 |
-| Traditional | Như Huyền | 32 |
+| Phong cách | Người phụ trách |
+|---|---|---|
+| Farmhouse | Quỳnh Kha |
+| Bohemian, Mid-century Modern  | Bảo Duy |
+| Scandinavian| Nguyên Khôi |
+| Glam, Traditional | Phương Anh |
+| Coastal | Như Huyền |
 
 ## Các bước
 
