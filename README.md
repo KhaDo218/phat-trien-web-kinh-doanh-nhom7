@@ -10,7 +10,7 @@ Web tĩnh: **HTML/CSS/JavaScript thuần**, dữ liệu đọc từ `data/json/*
 ## 1. Cấu trúc thư mục
 
 ```
-WBD_NHOM7/
+phat-trien-web-kinh-doanh-nhom7/
 ├── index.html                  ← chỉ chuyển hướng vào scripts/index.html (để deploy), không sửa
 ├── scripts/                    ← TOÀN BỘ SOURCE CODE WEB
 │   ├── index.html, rooms.html, products.html ...   ← các trang khách hàng
@@ -45,9 +45,9 @@ WBD_NHOM7/
 1. Cài **VS Code** + extension **Live Server**.
 2. Clone repo (có ~500 MB ảnh, lần đầu tải hơi lâu):
    ```bash
-   git clone https://github.com/KhaDo218/WBD_NHOM7.git
+   git clone https://github.com/KhaDo218/phat-trien-web-kinh-doanh-nhom7.git
    ```
-3. Mở **cả thư mục WBD_NHOM7** trong VS Code → chuột phải `index.html` ở thư mục gốc → *Open with Live Server*.
+3. Mở **cả thư mục phat-trien-web-kinh-doanh-nhom7** trong VS Code → chuột phải `index.html` ở thư mục gốc → *Open with Live Server*.
    Phải mở qua Live Server (http://127.0.0.1:5500). Mở thẳng file (`file://`) thì trình duyệt chặn đọc JSON và model 3D.
 
 Tài khoản demo (trong `data/json/users.json`): **admin@roomcraft.vn / Admin@123**, **user@roomcraft.vn / User@123**.
