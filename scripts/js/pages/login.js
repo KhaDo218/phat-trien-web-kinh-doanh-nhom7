@@ -7,6 +7,7 @@ function initPage(){
     renderHeader("");
     renderFooter();
     renderChatbot();
+    renderGoogleButton();
     document.getElementById("txtEmail").focus();
 }
 
@@ -42,7 +43,12 @@ function doLogin(){
         document.getElementById("msgError").innerHTML = loi;
         return false;
     }
-    // Đăng nhập thành công: quay lại trang trước (nếu có), Admin vào trang quản trị
+    goAfterLogin();
+    return false;
+}
+
+// Đăng nhập thành công: quay lại trang trước (nếu có), Admin vào trang quản trị
+function goAfterLogin(){
     var trangCu = getParam("redirect");
     if(trangCu != "")
         window.location.href = trangCu;
@@ -50,7 +56,6 @@ function doLogin(){
         window.location.href = "admin/index.html";
     else
         window.location.href = "index.html";
-    return false;
 }
 
 function showPassword(){
@@ -61,6 +66,43 @@ function showPassword(){
         o.type = "password";
 }
 
-function loginGoogle(){
-    alert("Chức năng đăng nhập Google sẽ được gắn khi có Google Client ID.");
+// ----- Đăng nhập bằng Google -----
+// Thư viện Google tải không đồng bộ (async) nên có thể chưa sẵn sàng: chờ 0,3 giây rồi thử lại
+var soLanChoGoogle = 0;
+function renderGoogleButton(){
+    if(typeof google == "undefined"){
+        soLanChoGoogle = soLanChoGoogle + 1;
+        if(soLanChoGoogle > 20){      // chờ quá 6 giây: không có mạng hoặc bị chặn
+            document.getElementById("googleButton").innerHTML = "<p class='error-text'>Không tải được đăng nhập Google, kiểm tra kết nối mạng.</p>";
+            return;
+        }
+        setTimeout(renderGoogleButton, 300);
+        return;
+    }
+    var khung = document.getElementById("googleButton");
+    var rong = khung.offsetWidth;     // nút Google rộng bằng khung (tối đa 400px)
+    if(rong > 400)
+        rong = 400;
+    google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleLogin
+    });
+    google.accounts.id.renderButton(khung, {
+        theme: "outline",
+        size: "large",
+        shape: "rectangular",
+        text: "signin_with",
+        locale: "vi",
+        width: rong
+    });
+}
+
+// Google gọi hàm này sau khi người dùng chọn tài khoản
+function handleGoogleLogin(response){
+    var loi = loginWithGoogle(response.credential);
+    if(loi != ""){
+        document.getElementById("msgError").innerHTML = loi;
+        return;
+    }
+    goAfterLogin();
 }

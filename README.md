@@ -107,7 +107,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `scripts/js/core/auth.js`: đăng nhập, đăng xuất, kiểm tra quyền (trang admin chỉ cho Admin), tài khoản bị khóa không đăng nhập được.
 - 3D **Farmhouse** (46 món). Duyệt Pull Request, merge vào `main`.
 
-**Ghi chú:** tạo Google Client ID (Google Cloud Console), thêm `http://127.0.0.1:5500` vào Authorized JavaScript origins.
+**Ghi chú:** Google Client ID đã tạo (project RoomCraft trên Google Cloud, đặt trong `auth.js`). Đăng nhập Google chỉ chạy khi mở bằng Live Server ở `http://127.0.0.1:5500` hoặc `http://localhost:5500`, và Gmail phải nằm trong danh sách Test users (nhắn Kha thêm).
 
 ### Bảo Duy — Trang chủ & Khám phá phòng
 
