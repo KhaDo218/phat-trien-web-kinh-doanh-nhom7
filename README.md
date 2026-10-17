@@ -109,7 +109,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 
 **Ghi chú:** Google Client ID đã tạo (project RoomCraft trên Google Cloud, đặt trong `auth.js`). Đăng nhập Google chỉ chạy khi mở bằng Live Server ở `http://127.0.0.1:5500` hoặc `http://localhost:5500`, và Gmail phải nằm trong danh sách Test users (nhắn Kha thêm).
 
-### Bảo Duy — Trang chủ & Khám phá phòng (22/10)
+### Bảo Duy — Trang chủ & Khám phá phòng 
 
 **Input:** `rooms.json`, `styles.json`, `products.json`, ảnh `assets/rooms/`
 **Việc làm:**
