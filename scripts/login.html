@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>Đăng nhập - RoomCraft</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            @import url(css/base.css);
+            @import url(css/pages/login.css);
+        </style>
+        <script src="js/core/utils.js"></script>
+        <script src="js/core/store.js"></script>
+        <script src="js/core/auth.js"></script>
+        <script src="components/header.js"></script>
+        <script src="components/footer.js"></script>
+        <script src="components/chatbot.js"></script>
+        <script src="js/pages/login.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+
+        <main class="container">
+            <div class="auth-box card">
+                <p class="overline">Chào mừng trở lại</p>
+                <h1 class="headline-section">Đăng nhập</h1>
+
+                <form name="frmLogin" onsubmit="return doLogin()">
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input class="input" type="text" id="txtEmail" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPassword">Mật khẩu</label>
+                        <input class="input" type="password" id="txtPassword" placeholder="Nhập mật khẩu">
+                    </div>
+                    <div class="auth-row">
+                        <label><input type="checkbox" id="chkShow" onclick="showPassword()"> Hiện mật khẩu</label>
+                        <a href="forgot-password.html">Quên mật khẩu?</a>
+                    </div>
+                    <p class="error-text" id="msgError"></p>
+                    <input class="btn btn-full" type="submit" value="Đăng nhập">
+                </form>
+
+                <div class="auth-or"><span>hoặc</span></div>
+                <!-- Nút Google: Kha gắn Google Identity Services sau khi có Client ID -->
+                <input class="btn btn-outline btn-full" type="button" value="Đăng nhập bằng Google" onclick="loginGoogle()">
+
+                <p class="auth-note">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+            </div>
+        </main>
+
+        <div id="footer"></div>
+
+        <script>
+            loadData(initPage);
+        </script>
+    </body>
+</html>

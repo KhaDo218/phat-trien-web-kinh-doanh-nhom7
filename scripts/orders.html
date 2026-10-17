@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>Đơn hàng của tôi - RoomCraft</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            @import url(css/base.css);
+            @import url(css/pages/orders.css);
+        </style>
+        <script src="js/core/utils.js"></script>
+        <script src="js/core/store.js"></script>
+        <script src="js/core/auth.js"></script>
+        <script src="components/header.js"></script>
+        <script src="components/footer.js"></script>
+        <script src="components/chatbot.js"></script>
+        <script src="js/services/orders.js"></script>
+        <script src="js/pages/orders.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+
+        <main class="container">
+            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><a href="account.html">Tài khoản</a><span>/</span>Đơn hàng của tôi</div>
+            <h1 class="headline-page">Đơn hàng của tôi</h1>
+
+            <!-- TODO (Phương Anh): Danh sách đơn của người đang đăng nhập. -->
+
+        </main>
+
+        <div id="footer"></div>
+
+        <script>
+            loadData(initPage);
+        </script>
+    </body>
+</html>

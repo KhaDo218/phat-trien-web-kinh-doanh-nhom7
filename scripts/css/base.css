@@ -1,0 +1,541 @@
+/* =====================================================================
+   ROOMCRAFT - base.css (CSS dùng chung cho mọi trang)
+   Phong cách: "Atelier Gallery" theo mockup Stitch của nhóm
+   Người phụ trách: Quỳnh Kha. Cần sửa file này thì nhắn Kha.
+
+   BẢNG MÀU (chỉ dùng các mã màu dưới đây, không tự đặt màu mới)
+     #F7F7F5  nền trang (canvas)
+     #FFFFFF  nền thẻ, ô nhập
+     #EEEEEC  nền phụ (khung ảnh sản phẩm, section xám)
+     #202020  chữ chính, nút chính        #383838  nút chính khi hover
+     #686868  chữ phụ                     #DADAD7  đường kẻ mảnh 1px
+     #8C3B2D  báo lỗi                     #485238  thành công
+     #2C6B3F / #E8F3EB  nhãn "Còn hàng"
+
+   FONT
+     EB Garamond: logo, tiêu đề, tên sản phẩm
+     Inter: chữ giao diện (menu, nút, nội dung)
+
+   QUY TẮC
+     - Không bo góc (border-radius: 0), trừ chấm hotspot và nhãn tròn.
+     - Không đổ bóng, dùng đường kẻ 1px #DADAD7.
+     - Lề trang: 64px máy tính, 40px tablet, 20px điện thoại.
+   ===================================================================== */
+
+@import url(https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=swap);
+
+/* ---------- 1. Đặt lại mặc định ---------- */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #F7F7F5;
+    color: #202020;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 24px;
+}
+a{
+    color: #202020;
+    text-decoration: none;
+}
+img{
+    display: block;
+    max-width: 100%;
+}
+ul{
+    list-style: none;
+}
+input, select, textarea, button{
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 15px;
+    color: #202020;
+}
+/* Icon: <span class="material-symbols-outlined">favorite</span> (tra tên icon ở fonts.google.com/icons) */
+.material-symbols-outlined{
+    display: inline-block;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: 20px;
+    vertical-align: middle;
+    font-variation-settings: "FILL" 0, "wght" 300;
+}
+
+/* ---------- 2. Khung trang ---------- */
+.container{
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 64px;
+}
+.section{
+    padding: 96px 0;
+}
+.section-grey{
+    background: #EEEEEC;
+}
+.row{
+    display: flex;
+    gap: 24px;
+}
+.grid-3{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.grid-4{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.hidden{
+    display: none;
+}
+
+/* ---------- 3. Chữ ---------- */
+.display{
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 80px;
+    line-height: 88px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+.headline-page{
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 52px;
+    line-height: 60px;
+    font-weight: 400;
+}
+.headline-section{
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 34px;
+    line-height: 42px;
+    font-weight: 400;
+}
+.title-product{
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 400;
+}
+.lead{
+    font-size: 18px;
+    line-height: 28px;
+    color: #686868;
+}
+.overline{
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #686868;
+}
+.text-secondary{
+    color: #686868;
+}
+.price{
+    font-size: 15px;
+    font-weight: 500;
+}
+.price-old{
+    margin-left: 8px;
+    font-size: 13px;
+    color: #686868;
+    text-decoration: line-through;
+}
+.section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+.section-head .overline{
+    margin-bottom: 8px;
+}
+
+/* ---------- 4. Nút ---------- */
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 24px;
+    background: #202020;
+    color: #FFFFFF;
+    border: 1px solid #202020;
+    border-radius: 0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.btn:hover{
+    background: #383838;
+}
+.btn-outline{
+    background: transparent;
+    color: #202020;
+}
+.btn-outline:hover{
+    background: #202020;
+    color: #FFFFFF;
+}
+.btn-light{
+    background: #EEEEEC;
+    color: #202020;
+    border-color: #EEEEEC;
+}
+.btn-light:hover{
+    background: #DADAD7;
+}
+.btn-full{
+    width: 100%;
+}
+.btn-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+}
+.btn-link:hover{
+    border-bottom-color: #202020;
+}
+.btn-icon{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* ---------- 5. Form ---------- */
+.form-group{
+    margin-bottom: 20px;
+}
+.form-group label{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.input, select.input, textarea.input{
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    border-radius: 0;
+    outline: none;
+}
+textarea.input{
+    height: 120px;
+    padding: 12px 16px;
+    resize: vertical;
+}
+.input:focus{
+    border-color: #202020;
+}
+.error-text{
+    margin-top: 6px;
+    font-size: 13px;
+    color: #8C3B2D;
+}
+.success-text{
+    margin-top: 6px;
+    font-size: 13px;
+    color: #485238;
+}
+
+/* ---------- 6. Thẻ, nhãn, chip ---------- */
+.card{
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+}
+.badge{
+    display: inline-block;
+    padding: 2px 8px;
+    background: #FFFFFF;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.badge-stock{
+    background: #E8F3EB;
+    color: #2C6B3F;
+}
+.badge-out{
+    background: #EEEEEC;
+    color: #8C3B2D;
+}
+.chip{
+    display: inline-block;
+    height: 36px;
+    padding: 0 18px;
+    line-height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    font-size: 13px;
+    cursor: pointer;
+}
+.chip:hover, .chip.active{
+    background: #202020;
+    border-color: #202020;
+    color: #FFFFFF;
+}
+.breadcrumb{
+    padding: 24px 0;
+    font-size: 12px;
+    color: #686868;
+}
+.breadcrumb a{
+    color: #686868;
+}
+.breadcrumb a:hover{
+    color: #202020;
+}
+.breadcrumb span{
+    margin: 0 8px;
+}
+.empty{
+    padding: 64px 0;
+    text-align: center;
+    color: #686868;
+}
+
+/* ---------- 7. Header (do components/header.js tạo ra) ---------- */
+#header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #F7F7F5;
+    border-bottom: 1px solid #DADAD7;
+}
+#header .header-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    height: 64px;
+}
+#header .logo, #footer .logo{
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+}
+#header .search{
+    position: relative;
+    flex: 1;
+    max-width: 520px;
+}
+#header .search span{
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    color: #686868;
+    font-size: 18px;
+}
+#header .search input{
+    width: 100%;
+    height: 40px;
+    padding: 0 16px 0 40px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    font-size: 13px;
+    outline: none;
+}
+#header .search input:focus{
+    border-color: #202020;
+}
+#header .icons{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#header .icons a{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+#header .cart-count{
+    position: absolute;
+    top: 2px;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: #202020;
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-size: 9px;
+    line-height: 16px;
+    text-align: center;
+}
+#header .user-name{
+    max-width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}
+#header .menu{
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding-bottom: 12px;
+}
+#header .menu a{
+    padding: 4px 0;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #686868;
+    border-bottom: 1px solid transparent;
+}
+#header .menu a:hover, #header .menu a.active{
+    color: #202020;
+    border-bottom-color: #202020;
+}
+
+/* ---------- 8. Footer (do components/footer.js tạo ra) ---------- */
+#footer{
+    background: #EEEEEC;
+    border-top: 1px solid #DADAD7;
+    padding-top: 64px;
+}
+#footer .footer-top{
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+#footer .about{
+    max-width: 360px;
+}
+#footer .about p{
+    margin-top: 16px;
+    color: #686868;
+}
+#footer .about .overline{
+    margin-top: 24px;
+}
+#footer .columns{
+    display: flex;
+    gap: 96px;
+}
+#footer h4{
+    margin-bottom: 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+#footer .columns li{
+    margin-bottom: 10px;
+}
+#footer .columns a{
+    color: #686868;
+    font-size: 14px;
+}
+#footer .columns a:hover{
+    color: #202020;
+}
+#footer .footer-bottom{
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+    border-top: 1px solid #DADAD7;
+    font-size: 12px;
+    color: #686868;
+}
+
+/* ---------- 9. Màn hình nhỏ ---------- */
+@media (max-width: 1024px){
+    .container{
+        padding: 0 40px;
+    }
+    .grid-4{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .display{
+        font-size: 56px;
+        line-height: 64px;
+    }
+    #header .menu{
+        gap: 28px;
+    }
+    #footer .columns{
+        gap: 48px;
+    }
+}
+@media (max-width: 768px){
+    .container{
+        padding: 0 20px;
+    }
+    .section{
+        padding: 64px 0;
+    }
+    .grid-3, .grid-4{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .display{
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .headline-page{
+        font-size: 36px;
+        line-height: 44px;
+    }
+    .headline-section{
+        font-size: 28px;
+        line-height: 36px;
+    }
+    .section-head{
+        display: block;
+    }
+    #header .search, #header .user-name{
+        display: none;
+    }
+    #header .logo{
+        font-size: 24px;
+    }
+    #header .menu{
+        gap: 20px;
+        overflow-x: auto;
+    }
+    #header .menu a{
+        font-size: 11px;
+        white-space: nowrap;
+    }
+    #footer .footer-top, #footer .columns, #footer .footer-bottom{
+        display: block;
+    }
+    #footer .columns > div{
+        margin-top: 32px;
+    }
+}
+@media (max-width: 480px){
+    .grid-3{
+        grid-template-columns: 1fr;
+    }
+}

@@ -16,13 +16,14 @@ phat-trien-web-kinh-doanh-nhom7/
 │   ├── index.html, rooms.html, products.html ...   ← các trang khách hàng
 │   ├── admin/                  ← các trang quản trị (admin/index.html = Dashboard)
 │   ├── css/
-│   │   ├── base.css            ← màu, font, nút, form dùng chung (Kha)
-│   │   └── pages/<trang>.css   ← CSS riêng của từng trang
+│   │   ├── base.css            ← màu, font, nút, form, header, footer dùng chung (Kha)
+│   │   ├── admin.css           ← khung trang quản trị: sidebar, bảng, thẻ số liệu (Kha)
+│   │   └── pages/<trang>.css   ← CSS riêng từng trang (trang admin: pages/admin-<trang>.css)
 │   ├── js/
-│   │   ├── core/               ← store.js, auth.js, utils.js dùng chung (Kha)
-│   │   ├── services/           ← products.js, cart.js, orders.js ... đọc/ghi dữ liệu theo nghiệp vụ
-│   │   └── pages/<trang>.js    ← code riêng của từng trang
-│   └── components/             ← header.js, footer.js (Kha), product-card.js (Khôi), chatbot.js (Huyền)
+│   │   ├── core/               ← utils.js, store.js, auth.js dùng chung (Kha)
+│   │   ├── services/           ← products.js (Khôi), cart.js, orders.js (Phương Anh)
+│   │   └── pages/<trang>.js    ← JS riêng từng trang (trang admin: pages/admin-<trang>.js)
+│   └── components/             ← header.js, footer.js, admin-sidebar.js (Kha), product-card.js (Khôi), chatbot.js (Huyền)
 ├── data/
 │   ├── json/                   ← DỮ LIỆU WEB ĐỌC (đã dịch tiếng Việt, giá VND)
 │   ├── masterdata_vi.csv       ← cùng dữ liệu, dạng bảng để xem bằng Excel / làm mockup
@@ -70,11 +71,11 @@ Tài khoản demo (trong `data/json/users.json`): **admin@roomcraft.vn / Admin@1
 | `users.json`, `roles.json`, `shipping_methods.json`, `coupons.json` | dữ liệu khởi tạo; `password_hash` = SHA-256 của mật khẩu | Kha |
 
 Quy ước:
-- Giá đã là **VND** (số nguyên). Hiển thị bằng `utils.formatVND(gia)` → `4.160.000 ₫`.
+- Giá đã là **VND** (số nguyên). Hiển thị bằng `formatVND(gia)` → `4.160.000 ₫`.
 - `stock_quantity = 0` → hiện "Hết hàng" và **khóa nút Thêm vào giỏ**. Đồ cũ có `stock_quantity = 1`, bán xong về 0 và hiện "Đã bán".
 - `model_3d_url` khác `null` → hiện khung **Xem 3D** (mục 5).
 - `is_active = false` → không hiển thị cho khách.
-- Đường dẫn ảnh/model trong JSON tính từ **thư mục gốc repo** (vd. `assets/products/...`). Trang trong `scripts/` phải thêm `../`, trang trong `scripts/admin/` thêm `../../` → luôn dùng `utils.asset(duongDan)`, không tự ghép.
+- Đường dẫn ảnh/model trong JSON tính từ **thư mục gốc repo** (vd. `assets/products/...`). Trang trong `scripts/` phải thêm `../`, trang trong `scripts/admin/` thêm `../../` → luôn dùng `asset(duongDan)`, không tự ghép.
 - Trạng thái đơn hàng chỉ có: `Confirmed` → `Packing` → `Shipping` → `Delivered`, hoặc `Cancelled` (hủy thì **hoàn lại tồn kho**). Không có Pending.
 
 Dữ liệu sinh ra khi dùng web nằm trong **localStorage**, khóa bắt đầu bằng `rc_` (Kha định nghĩa trong `scripts/js/core/store.js`; mọi người gọi hàm của store, không tự đọc/ghi localStorage):
@@ -174,7 +175,7 @@ Hiển thị trên trang chi tiết sản phẩm (Khôi làm) chỉ cần thẻ 
               camera-controls auto-rotate shadow-intensity="1" ar
               style="width:100%; height:480px; background:#f6f4f1"></model-viewer>
 ```
-(`src` lấy từ `utils.asset(product.model_3d_url)`; chỉ hiện khi `model_3d_url` khác `null`.)
+(`src` lấy từ `asset(product.model_3d_url)`; chỉ hiện khi `model_3d_url` khác `null`.)
 
 ---
 
@@ -244,17 +245,37 @@ git push -u origin duy/rooms                  # rồi lên GitHub tạo Pull Req
 
 - Tên file và thư mục: chữ thường, nối bằng gạch ngang (`room-detail.html`). Biến/hàm JS: camelCase. Tên trường dữ liệu: snake_case như JSON.
 - Giao diện tiếng Việt. Màu, font, khoảng cách lấy từ `base.css`, không tự đặt mã màu mới.
-- Mỗi trang có 3 file: `scripts/<trang>.html`, `scripts/css/pages/<trang>.css`, `scripts/js/pages/<trang>.js`. Script dùng chung nạp trước script của trang:
+- Mỗi trang có 3 file: `scripts/<trang>.html`, `scripts/css/pages/<trang>.css`, `scripts/js/pages/<trang>.js`. **Khung các trang đã tạo sẵn**: mở đúng file tên mình, tìm dòng `TODO (tên bạn)` để làm tiếp, không đổi tên/di chuyển file.
+- Viết theo cách thầy dạy: nạp CSS bằng `@import` trong thẻ `<style>`, JS dùng `var` + `function`, lấy phần tử bằng `document.getElementById`, tạo phần tử bằng `createElement` / `appendChild` hoặc `innerHTML`, sự kiện bằng `onclick="tenHam()"`, kiểm tra form bằng `alert` + `focus()` + `return false`. Id ô nhập đặt `txtXxx`, id `<tbody>` đặt `tbXxx`.
+- Khung một trang (xem mẫu đầy đủ ở `scripts/index.html`, `scripts/login.html`):
   ```html
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/pages/rooms.css">
-  ...
+  <style type="text/css">
+      @import url(css/base.css);
+      @import url(css/pages/rooms.css);
+  </style>
   <script src="js/core/utils.js"></script>
   <script src="js/core/store.js"></script>
   <script src="js/core/auth.js"></script>
   <script src="components/header.js"></script>
   <script src="components/footer.js"></script>
+  <script src="components/chatbot.js"></script>
   <script src="js/pages/rooms.js"></script>
+  ...
+  <body>
+      <div id="header"></div>
+      <main class="container"> ... </main>
+      <div id="footer"></div>
+      <script>
+          loadData(initPage);     // nạp dữ liệu xong mới gọi initPage() trong js/pages/rooms.js
+      </script>
+  </body>
   ```
-  (Trang trong `scripts/admin/` thì thêm `../` trước các đường dẫn trên.)
+  `initPage()` của trang luôn gọi `renderHeader("muc-menu")`, `renderFooter()`, `renderChatbot()` rồi mới tới phần riêng. Trang cần đăng nhập gọi `requireLogin()` đầu tiên; trang admin gọi `requireAdmin()` + `renderAdminSidebar("muc")` (trang admin thêm `../` trước các đường dẫn, xem `scripts/admin/products.html`).
+- Hàm dùng chung có sẵn (đọc chú thích đầu mỗi file để biết cách gọi):
+  - `utils.js`: `asset()`, `formatVND()`, `getParam()`, `formatDate()`, `checkEmail()`, `checkPhone()`, `sha256()`
+  - `store.js`: `getTable()`, `saveTable()`, `findById()`, `getNextId()`, `getObject()`, `saveObject()`, `resetData()`
+  - `auth.js`: `login()`, `logout()`, `getCurrentUser()`, `isLoggedIn()`, `isAdmin()`, `requireLogin()`, `requireAdmin()`
+  - `header.js`: `updateCartCount()` (gọi sau khi sửa giỏ hàng)
+- Class giao diện có sẵn trong `base.css`: `.container`, `.section`, `.grid-3`, `.grid-4`, `.headline-page`, `.headline-section`, `.title-product`, `.overline`, `.lead`, `.price`, `.price-old`, `.btn`, `.btn-outline`, `.btn-light`, `.btn-link`, `.input`, `.form-group`, `.card`, `.chip`, `.badge`, `.badge-stock`, `.breadcrumb`, `.error-text`. Trang admin thêm `.table`, `.toolbar`, `.stat-card` trong `admin.css`.
+- Phải mở trang bằng **Live Server** (mở thẳng file thì không đọc được `data/json`). Sửa file JSON xong muốn web nạp lại: mở Console gõ `resetData()`.
 - Không dùng framework (React, Vue…). Thư viện ngoài chỉ dùng: model-viewer (3D), Chart.js (Dashboard), Google Identity Services (đăng nhập Google).

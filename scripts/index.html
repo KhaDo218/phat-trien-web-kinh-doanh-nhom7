@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>RoomCraft - Nội thất cho không gian của bạn</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            @import url(css/base.css);
+            @import url(css/pages/index.css);
+        </style>
+        <!-- JS dùng chung: luôn nạp theo đúng thứ tự này -->
+        <script src="js/core/utils.js"></script>
+        <script src="js/core/store.js"></script>
+        <script src="js/core/auth.js"></script>
+        <script src="components/header.js"></script>
+        <script src="components/footer.js"></script>
+        <script src="components/chatbot.js"></script>
+        <!-- JS riêng của trang -->
+        <script src="js/pages/index.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+
+        <!-- ===== 1. Banner ===== -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="overline">● Tuyển tập không gian 2026</p>
+                    <h1 class="display">Bắt đầu từ không gian của bạn</h1>
+                    <p class="lead">Khám phá nội thất tinh tuyển được phối hợp hài hòa trong từng không gian sống thực tế.</p>
+                    <div class="hero-buttons">
+                        <a class="btn" href="rooms.html">Khám phá không gian</a>
+                        <a class="btn btn-outline" href="products.html">Xem sản phẩm</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. Không gian được tuyển chọn (JS đổ dữ liệu từ rc_rooms) ===== -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">Bộ sưu tập không gian</p>
+                        <h2 class="headline-section">Không gian được tuyển chọn</h2>
+                    </div>
+                    <a class="btn-link" href="rooms.html">Xem tất cả không gian <span class="material-symbols-outlined">arrow_forward</span></a>
+                </div>
+                <div class="grid-3" id="roomList"></div>
+            </div>
+        </section>
+
+        <!-- ===== 3. Phong cách (JS đổ dữ liệu từ rc_styles) ===== -->
+        <section class="section section-grey">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">7 phong cách tuyển chọn</p>
+                        <h2 class="headline-section">Mua sắm theo phong cách</h2>
+                    </div>
+                </div>
+                <div id="styleList"></div>
+            </div>
+        </section>
+
+        <!-- ===== 4. Về RoomCraft ===== -->
+        <section class="section" id="ve-roomcraft">
+            <div class="container about">
+                <p class="overline">Triết lý thiết kế</p>
+                <h2 class="headline-section">Nghệ thuật sắp đặt không gian</h2>
+                <p class="lead">RoomCraft giới thiệu nội thất qua những căn phòng hoàn chỉnh. Bạn chọn một không gian mình thích,
+                    bấm vào từng món đồ trong ảnh để xem chi tiết, xoay mô hình 3D và thêm vào giỏ hàng.</p>
+            </div>
+        </section>
+
+        <div id="footer"></div>
+
+        <script>
+            loadData(initPage);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+/* =====================================================================
+   ROOMCRAFT - admin.css (khung chung các trang quản trị: sidebar + bảng + form)
+   Người phụ trách: Quỳnh Kha
+   Nạp sau base.css. CSS riêng từng trang admin: css/pages/admin-<trang>.css
+   ===================================================================== */
+
+#admin{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ----- Sidebar ----- */
+#sidebar{
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    padding: 32px 0;
+    background: #FFFFFF;
+    border-right: 1px solid #DADAD7;
+}
+#sidebar .logo{
+    padding: 0 28px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+#sidebar .overline{
+    padding: 4px 28px 24px;
+}
+#sidebar ul li a{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    font-size: 14px;
+    color: #686868;
+    border-left: 2px solid transparent;
+}
+#sidebar ul li a:hover{
+    background: #F7F7F5;
+    color: #202020;
+}
+#sidebar ul li a.active{
+    background: #F7F7F5;
+    color: #202020;
+    border-left-color: #202020;
+    font-weight: 500;
+}
+#sidebar .sidebar-bottom{
+    margin-top: auto;
+    padding: 24px 28px 0;
+    border-top: 1px solid #DADAD7;
+    font-size: 13px;
+}
+#sidebar .sidebar-bottom p{
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+#sidebar .sidebar-bottom a{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    color: #686868;
+}
+#sidebar .sidebar-bottom a:hover{
+    color: #202020;
+}
+
+/* ----- Nội dung ----- */
+.admin-main{
+    flex: 1;
+    padding: 40px 48px;
+    min-width: 0;
+}
+.admin-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.admin-head .overline{
+    width: 100%;
+    margin-bottom: -12px;
+}
+.toolbar{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.toolbar .input{
+    max-width: 320px;
+    height: 40px;
+}
+.toolbar .btn{
+    height: 40px;
+}
+
+/* ----- Bảng dữ liệu: <table class="table"><thead>...</thead><tbody id="tbXxx"></tbody></table> ----- */
+.table{
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.table th{
+    padding: 12px 16px;
+    background: #EEEEEC;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #686868;
+}
+.table td{
+    padding: 12px 16px;
+    border-top: 1px solid #DADAD7;
+    vertical-align: middle;
+}
+.table tr:hover td{
+    background: #F7F7F5;
+}
+.table img{
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    background: #EEEEEC;
+}
+
+/* ----- Thẻ số liệu (Dashboard) ----- */
+.stat-card{
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+}
+.stat-card .value{
+    margin-top: 8px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 34px;
+    line-height: 42px;
+}
+
+@media (max-width: 1024px){
+    #sidebar{
+        width: 72px;
+    }
+    #sidebar .logo, #sidebar .overline, #sidebar .sidebar-bottom p{
+        display: none;
+    }
+    #sidebar ul li a, #sidebar .sidebar-bottom a{
+        justify-content: center;
+        padding: 12px 0;
+        font-size: 0;
+    }
+    #sidebar .sidebar-bottom{
+        padding: 16px 0 0;
+    }
+    .admin-main{
+        padding: 32px 20px;
+    }
+}

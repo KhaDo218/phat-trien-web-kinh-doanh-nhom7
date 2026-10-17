@@ -1,0 +1,61 @@
+/* =====================================================================
+   ROOMCRAFT - CSS riêng của trang login.html
+   Người phụ trách: Quỳnh Kha
+   (register.html, forgot-password.html dùng lại các class .auth-* này)
+   ===================================================================== */
+
+.auth-box{
+    max-width: 480px;
+    margin: 64px auto 96px;
+    padding: 48px;
+}
+.auth-box .overline{
+    margin-bottom: 8px;
+}
+.auth-box h1{
+    margin-bottom: 32px;
+}
+.auth-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+.auth-row a{
+    text-decoration: underline;
+}
+.auth-box .error-text{
+    min-height: 20px;
+    margin-bottom: 12px;
+}
+.auth-or{
+    margin: 24px 0;
+    border-top: 1px solid #DADAD7;
+    text-align: center;
+}
+.auth-or span{
+    position: relative;
+    top: -12px;
+    padding: 0 12px;
+    background: #FFFFFF;
+    font-size: 12px;
+    color: #686868;
+}
+.auth-note{
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #686868;
+}
+.auth-note a{
+    color: #202020;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px){
+    .auth-box{
+        margin: 32px auto 64px;
+        padding: 32px 20px;
+    }
+}
