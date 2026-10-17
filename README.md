@@ -31,7 +31,8 @@ phat-trien-web-kinh-doanh-nhom7/
 ├── assets/
 │   ├── products/<phong-cách>/board-xxx/*.jpg   ← ảnh sản phẩm (không đổi tên, không di chuyển)
 │   ├── rooms/<phong-cách>/*.jpg                ← ảnh phòng
-│   └── models/<product-id>.glb                 ← model 3D (mỗi người tự chép vào và commit)
+│   ├── models/<product-id>.glb                 ← model 3D (mỗi người tự chép vào và commit)
+│   └── marketplace/used-xxx-NN.jpg             ← ảnh đồ cũ (Huyền)
 ├── tools/3d/                   ← notebook Kaggle tạo 3D + danh sách 3D của từng người
 ├── database/                   ← script MySQL (mục 3.4 báo cáo)
 └── docs/                       ← tài liệu cho báo cáo (để trống, bổ sung sau)
@@ -143,7 +144,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 
 **Input:** ảnh đồ cũ đã chọn, `products.json`
 **Việc làm:**
-- Dữ liệu: điền `data/json/used_products.json` gồm **15–20 món đồ cũ** (mẫu ở mục 6), ảnh đặt trong `assets/marketplace/`.
+- Dữ liệu: điền `data/json/used_products.json` gồm **15–20 món đồ cũ** (mẫu ở mục 6). Ảnh đồ cũ đã chọn ở bước xử lý ảnh chép vào `assets/marketplace/`, đặt tên `used-001-01.jpg`, `used-001-02.jpg`… (số món 3 chữ số, số ảnh 2 chữ số, trùng với `id` và `images` trong JSON); ảnh `.jpg`, cạnh dài khoảng 1200 px, mỗi ảnh dưới 500 KB.
 - `marketplace.html`: danh sách đồ cũ, lọc tình trạng (Like New / Good / Fair), giá, thương hiệu, danh mục. Phần hiển thị tình trạng + thời gian sử dụng trong `product-detail.html` (phối hợp Khôi).
 - `scripts/components/chatbot.js` + `data/json/chatbot_faqs.json` (hỏi về sản phẩm, phong cách, chính sách, vận chuyển, đổi trả).
 - `admin/marketplace.html`, `admin/users.html` (khóa/mở tài khoản), `admin/reviews.html` (ẩn/xóa đánh giá).
