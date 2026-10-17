@@ -109,7 +109,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 
 **Ghi chú:** Google Client ID đã tạo (project RoomCraft trên Google Cloud, đặt trong `auth.js`). Đăng nhập Google chỉ chạy khi mở bằng Live Server ở `http://127.0.0.1:5500` hoặc `http://localhost:5500`, và Gmail phải nằm trong danh sách Test users (nhắn Kha thêm).
 
-### Bảo Duy — Trang chủ & Khám phá phòng
+### Bảo Duy — Trang chủ & Khám phá phòng (22/10)
 
 **Input:** `rooms.json`, `styles.json`, `products.json`, ảnh `assets/rooms/`
 **Việc làm:**
@@ -118,7 +118,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - Dữ liệu: điền `data/json/room_hotspots.json` cho **2–3 phòng mỗi phong cách** (sản phẩm lấy trong `product_ids` của phòng).
 - 3D **Bohemian + Mid-century Modern** (69 món).
 
-### Nguyên Khôi — Sản phẩm
+### Nguyên Khôi — Sản phẩm (22/10)
 
 **Input:** `products.json`, `categories.json`, `styles.json`
 **Việc làm:**
@@ -130,7 +130,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 
 **Ghi chú:** `product-card.js` cần xong **trước Thứ 5 (22/10)** vì Duy, Huyền, Phương Anh đều dùng.
 
-### Phương Anh — Giỏ hàng, thanh toán, đơn hàng, Dashboard
+### Phương Anh — Giỏ hàng, thanh toán, đơn hàng, Dashboard (22/10)
 
 **Input:** `products.json`, `shipping_methods.json`, `coupons.json`
 **Việc làm:**
@@ -140,7 +140,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `admin/orders.html` (đổi trạng thái đơn), `admin/index.html` (Dashboard: doanh thu, số đơn, sản phẩm bán chạy, số người dùng — biểu đồ bằng Chart.js).
 - 3D **Glam + Traditional** (62 món).
 
-### Như Huyền — Đồ cũ, Chatbot, quản lý người dùng & đánh giá
+### Như Huyền — Đồ cũ, Chatbot, quản lý người dùng & đánh giá (22/10)
 
 **Input:** ảnh đồ cũ đã chọn, `products.json`
 **Việc làm:**
@@ -150,14 +150,9 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `admin/marketplace.html`, `admin/users.html` (khóa/mở tài khoản), `admin/reviews.html` (ẩn/xóa đánh giá).
 - 3D **Coastal** (25 món).
 
-### Người làm mockup
-
-**Input:** `data/masterdata_vi.csv` (tên, danh mục, giá VND, màu, chất liệu đã dịch)
-**Việc làm:** thay tên/giá tiếng Anh trong mockup Stitch bằng dữ liệu tiếng Việt; xuất ảnh các màn hình chính để đưa vào báo cáo mục 3.6.
-
 ---
 
-## 5. Làm model 3D và đưa lên web
+## 5. Làm model 3D và đưa lên web (Trước 19/10)
 
 Làm 3D cho **toàn bộ 235 món nội thất** (sofa, ghế, bàn, tủ, kệ, giường, đôn), chia theo phong cách; danh sách ở `tools/3d/danh-sach-3d.csv`. Đồ trang trí (thảm, tranh, gối, đèn…) không làm 3D. Mỗi người mở `tools/3d/product-ids/<tên-bạn>.txt`, copy đoạn `PRODUCT_IDS = [...]`, làm theo **hướng dẫn từng bước trong `tools/3d/README.md`** (có cả cách tạo tài khoản Kaggle, xác minh số điện thoại, tự tải ảnh phong cách của mình lên Kaggle). Tóm tắt:
 
@@ -222,9 +217,10 @@ Sửa JSON xong, mở bằng https://jsonlint.com (hoặc VS Code báo đỏ) đ
 
 1. **Thứ 2–3 (19–20/10):** Kha xong khung chung (`base.css`, header/footer, `store.js`, `utils.js`, trang mẫu). Cùng lúc mọi người chạy Kaggle 3D (chạy nền) và làm dữ liệu nhập tay.
 2. **Thứ 3–CN (20–25/10):** mọi người dựng HTML/CSS tĩnh các trang của mình theo mockup. Khôi xong `product-card.js` trước Thứ 5 (22/10).
-3. **CN (25/10):** mỗi người tạo Pull Request phần HTML/CSS + model 3D. Kha duyệt, merge.
-4. **Tuần 2 (26/10–1/11):** gắn JavaScript + dữ liệu cho các trang khách hàng.
-5. **Tuần 3 (2–8/11):** trang admin, kiểm thử chéo (mỗi người test trang của người khác), sửa lỗi, deploy, chụp màn hình cho Chương 5.
+3. **CN (25/10):** mỗi người tạo Pull Request phần HTML/CSS. Kha duyệt, merge.
+4. **Tuần 2 (26/10–29/10):** gắn JavaScript + dữ liệu cho các trang khách hàng.
+5. (29/10–1/11):** trang admin, kiểm thử chéo (mỗi người test trang của người khác), sửa lỗi, deploy, chụp màn hình cho Chương 5.
+6. (2/11-8/11): Hoàn thành báo cáo
 
 ---
 
