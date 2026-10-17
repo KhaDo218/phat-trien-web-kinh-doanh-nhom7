@@ -22,8 +22,6 @@ Làm 3D cho toàn bộ **235 món nội thất** (sofa, ghế, bàn, tủ, kệ,
 
 ## Các bước
 
-**Chuẩn bị (Kha):** tạo Kaggle Dataset riêng tư `roomcraft-products` từ thư mục `assets/products`, vào *Settings → Collaborators* thêm 4 bạn.
-
 1. Kaggle → *New Notebook* → *File → Import Notebook* → chọn `tools/3d/RoomCraft3D_Kaggle.ipynb`.
 2. *Settings*: **Accelerator = GPU T4 x2**, **Internet = On**. *Add Input* → `roomcraft-products`.
 3. Mở `tools/3d/product-ids/<tên-bạn>.txt`, copy đoạn `PRODUCT_IDS = [...]` dán đè vào ô ⚙️ CẤU HÌNH. Giữ `MY_SHARE = "1/1"`, đặt `PRESET = "best"`, giữ `MAX_FACES = 40000` (file nhẹ ~1,5–2 MB).
