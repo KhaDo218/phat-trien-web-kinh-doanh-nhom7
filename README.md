@@ -114,7 +114,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `index.html` (trang chủ, sau khi Kha có trang mẫu), `rooms.html` (danh sách phòng, lọc theo phong cách), `room-detail.html?id=...` (ảnh phòng + hotspot, bấm hotspot hiện thẻ sản phẩm, nút Thêm vào giỏ).
 - `admin/rooms.html`: thêm/sửa phòng, **gắn sản phẩm vào phòng bằng cách bấm lên ảnh** (lấy toạ độ %).
 - Dữ liệu: điền `data/json/room_hotspots.json` cho **2–3 phòng mỗi phong cách** (sản phẩm lấy trong `product_ids` của phòng).
-- 3D **Bohemian** (39 món).
+- 3D **Bohemian + Mid-century Modern** (69 món).
 
 ### Nguyên Khôi — Sản phẩm
 
@@ -124,7 +124,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `product-detail.html?id=...`: ảnh nhiều góc, giá, tồn kho, thông số, **Xem 3D** (nếu có), **Complete Your Room** (cùng phong cách / cùng tông màu / khác danh mục để bổ trợ), đánh giá, sản phẩm tương tự. Trang dùng chung cho đồ cũ (phần thông tin đồ cũ do Huyền làm).
 - `wishlist.html`, `scripts/components/product-card.js`, `scripts/js/services/products.js`.
 - `admin/products.html` (thêm/sửa/ẩn sản phẩm, tồn kho, khai báo đường dẫn ảnh và model 3D), `admin/categories.html`.
-- 3D **Scandinavian + Mid-century Modern** (59 món).
+- 3D **Scandinavian** (29 món).
 
 **Ghi chú:** `product-card.js` cần xong **trước Thứ 5 (22/10)** vì Duy, Huyền, Phương Anh đều dùng.
 
@@ -136,7 +136,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `orders.html` (đơn hàng của tôi) + `order-detail.html?id=...` (theo dõi trạng thái, hủy đơn, viết đánh giá khi đơn Delivered).
 - `scripts/js/services/cart.js`, `orders.js` (tạo đơn Confirmed → trừ tồn kho; hủy → hoàn tồn kho).
 - `admin/orders.html` (đổi trạng thái đơn), `admin/index.html` (Dashboard: doanh thu, số đơn, sản phẩm bán chạy, số người dùng — biểu đồ bằng Chart.js).
-- 3D **Glam + Coastal** (55 món).
+- 3D **Glam + Traditional** (62 món).
 
 ### Như Huyền — Đồ cũ, Chatbot, quản lý người dùng & đánh giá
 
@@ -146,7 +146,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `marketplace.html`: danh sách đồ cũ, lọc tình trạng (Like New / Good / Fair), giá, thương hiệu, danh mục. Phần hiển thị tình trạng + thời gian sử dụng trong `product-detail.html` (phối hợp Khôi).
 - `scripts/components/chatbot.js` + `data/json/chatbot_faqs.json` (hỏi về sản phẩm, phong cách, chính sách, vận chuyển, đổi trả).
 - `admin/marketplace.html`, `admin/users.html` (khóa/mở tài khoản), `admin/reviews.html` (ẩn/xóa đánh giá).
-- 3D **Traditional** (32 món).
+- 3D **Coastal** (25 món).
 
 ### Người làm mockup
 
@@ -157,13 +157,14 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 
 ## 5. Làm model 3D và đưa lên web
 
-Làm 3D cho **toàn bộ 235 món nội thất** (sofa, ghế, bàn, tủ, kệ, giường, đôn), chia theo phong cách; danh sách ở `tools/3d/danh-sach-3d.csv`. Đồ trang trí (thảm, tranh, gối, đèn…) không làm 3D. Mỗi người mở `tools/3d/product-ids/<tên-bạn>.txt`, copy đoạn `PRODUCT_IDS = [...]`, làm theo `tools/3d/README.md`. Tóm tắt:
+Làm 3D cho **toàn bộ 235 món nội thất** (sofa, ghế, bàn, tủ, kệ, giường, đôn), chia theo phong cách; danh sách ở `tools/3d/danh-sach-3d.csv`. Đồ trang trí (thảm, tranh, gối, đèn…) không làm 3D. Mỗi người mở `tools/3d/product-ids/<tên-bạn>.txt`, copy đoạn `PRODUCT_IDS = [...]`, làm theo **hướng dẫn từng bước trong `tools/3d/README.md`** (có cả cách tạo tài khoản Kaggle, xác minh số điện thoại, tự tải ảnh phong cách của mình lên Kaggle). Tóm tắt:
 
-1. Kaggle chạy notebook `tools/3d/RoomCraft3D_Kaggle.ipynb` → tải `roomcraft3d_models.zip`.
-2. Kiểm tra từng `.glb` (kéo vào https://gltf-viewer.donmccurdy.com), hỏng thì chạy lại.
-3. Chép các file `.glb` (giữ nguyên tên = product-id) vào **`assets/models/`**.
-4. Mở `data/json/products.json`, Ctrl+F theo product-id, sửa `"model_3d_url": null` thành `"model_3d_url": "assets/models/<product-id>.glb"`.
-5. Commit cả file `.glb` và `products.json` lên nhánh của mình, tạo Pull Request.
+1. Tạo tài khoản Kaggle, xác minh số điện thoại, nén thư mục ảnh phong cách của mình tải lên thành Dataset riêng.
+2. Kaggle chạy notebook `tools/3d/RoomCraft3D_Kaggle.ipynb` → tải `roomcraft3d_models.zip`.
+3. Kiểm tra từng `.glb` (kéo vào https://gltf-viewer.donmccurdy.com), hỏng thì chạy lại.
+4. Chép các file `.glb` (giữ nguyên tên = product-id) vào **`assets/models/`**.
+5. Mở `data/json/products.json`, Ctrl+F theo product-id, sửa `"model_3d_url": null` thành `"model_3d_url": "assets/models/<product-id>.glb"`.
+6. Commit cả file `.glb` và `products.json` lên nhánh của mình, tạo Pull Request.
 
 Hiển thị trên trang chi tiết sản phẩm (Khôi làm) chỉ cần thẻ `<model-viewer>` của Google, kéo chuột để xoay, cuộn để phóng to:
 ```html

@@ -1,4 +1,4 @@
-# Bảo Duy – phong cách: bohemian – 39 sản phẩm
+# Bảo Duy – phong cách: bohemian, mid-century-modern – 69 sản phẩm
 # Dán đoạn dưới vào ô CẤU HÌNH của notebook. Giữ MY_SHARE = "1/1", PRESET = "best", MAX_FACES = 40000.
 # Muốn chia làm 2 lần chạy: lần 1 để MY_SHARE = "1/2", lần 2 để MY_SHARE = "2/2".
 PRODUCT_IDS = [
@@ -41,4 +41,34 @@ PRODUCT_IDS = [
     "product-bohemian-modern-reeded-70-tv-stand-with-open-storage-mocha-06",   # Kệ tivi gân dọc hiện đại 178 cm có ngăn mở - màu mocha
     "product-bohemian-sasha-58-rattan-sideboard-tv-stand-05",   # Tủ buffet / kệ tivi mây Sasha 147 cm
     "product-bohemian-seabeck-58-5-wide-3-drawer-sideboard-02",   # Tủ buffet 3 ngăn kéo Seabeck rộng 149 cm
+    "product-mid-century-modern-james-sleeper-sofa-09",   # Sofa giường James
+    "product-mid-century-modern-katherline-upholstered-swivel-armchair-03",   # Ghế bành xoay bọc nệm Katherline
+    "product-mid-century-modern-pottsgrove-26-4-w-polyester-swivel-barrel-chair-07",   # Ghế bành xoay tròn Pottsgrove 67 cm
+    "product-mid-century-modern-swivel-accent-chair-upholstered-armchair-round-barrel-chair--04",   # Ghế bành xoay tròn bọc nệm cho phòng khách, phòng ngủ
+    "product-mid-century-modern-finsbury-25-2-wide-tufted-velvet-swivel-barrel-chair-05",   # Ghế bành xoay tròn nhung chần nút Finsbury 64 cm
+    "product-mid-century-modern-socca-55-bello-black-leather-bench-05",   # Ghế băng da đen Socca 140 cm
+    "product-mid-century-modern-pratt-fully-upholstered-chair-01",   # Ghế bọc nệm toàn phần Pratt
+    "product-mid-century-modern-dowdle-29-5-wide-tufted-velvet-wingback-chair-05",   # Ghế lưng cánh nhung chần nút Dowdle 75 cm
+    "product-mid-century-modern-vesper-leather-lounge-chair-slate-leather-walnut-03",   # Ghế thư giãn da Vesper màu xám đá / gỗ óc chó
+    "product-mid-century-modern-killian-mid-century-accent-chair-cream-arlo-home-01",   # Ghế đơn phong cách Mid-century Killian màu kem
+    "product-mid-century-modern-minimore-wool-swivel-accent-chair-sherpa-wool-surfece-barrel-06",   # Ghế đơn xoay len lông cừu Minimore
+    "product-mid-century-modern-parsons-ottoman-antelope-06",   # Đôn Parsons màu da linh dương
+    "product-mid-century-modern-vesper-leather-ottoman-slate-leather-black-ash-08",   # Đôn da Vesper màu xám đá / gỗ tần bì đen
+    "product-mid-century-modern-jeppa-side-table-walnut-02",   # Bàn phụ Jeppa gỗ óc chó
+    "product-mid-century-modern-flyte-oval-coffee-table-02",   # Bàn trà oval Flyte
+    "product-mid-century-modern-jennibelle-marble-and-mirror-drink-table-10",   # Bàn đặt đồ uống đá cẩm thạch và gương Jennibelle
+    "product-mid-century-modern-hollis-metal-framed-upholstered-bar-stool-01",   # Ghế bar khung kim loại bọc nệm Hollis
+    "product-mid-century-modern-spara-black-performance-boucle-dining-chair-04",   # Ghế ăn bouclé đen Spara
+    "product-mid-century-modern-hoopes-upholstered-side-chair-01",   # Ghế ăn bọc nệm Hoopes
+    "product-mid-century-modern-albertha-solid-wood-wardrobe-rattan-doors-04",   # Tủ quần áo gỗ nguyên khối cửa mây Albertha
+    "product-mid-century-modern-heist-nightstand-walnut-wood-07",   # Tủ đầu giường Heist gỗ óc chó
+    "product-mid-century-modern-sierra-noir-nightstand-02",   # Tủ đầu giường Sierra Noir
+    "product-mid-century-modern-contemporary-2-door-accent-cabinet-with-framed-top-dark-waln-02",   # Tủ 2 cánh hiện đại Contemporary gỗ óc chó đậm / vàng
+    "product-mid-century-modern-zafiro-27-087-wide-3-shelf-storage-cabinet-03",   # Tủ chứa đồ 3 tầng Zafiro rộng 69 cm
+    "product-mid-century-modern-edge-large-black-rounded-rectangle-medicine-cabinet-25-5-x36-01",   # Tủ thuốc gương bo góc đen Edge 65 x 91 cm
+    "product-mid-century-modern-bryani-100-solid-wood-32-wide-kitchen-pantry-cabinet-with-so-04",   # Tủ đựng đồ bếp gỗ nguyên khối Bryani 81 cm
+    "product-mid-century-modern-suspend-57-charcoal-wood-media-console-with-black-marble-top-03",   # Kệ tivi gỗ màu than Suspend 145 cm mặt đá cẩm thạch đen
+    "product-mid-century-modern-reema-scandinavian-sideboard-tv-stand-05",   # Tủ buffet / kệ tivi Reema phong cách Bắc Âu
+    "product-mid-century-modern-etro-sideboard-black-wash-poplar-02",   # Tủ buffet Etro gỗ dương phủ đen
+    "product-mid-century-modern-culla-55-desk-walnut-01",   # Bàn làm việc Culla 140 cm gỗ óc chó
 ]

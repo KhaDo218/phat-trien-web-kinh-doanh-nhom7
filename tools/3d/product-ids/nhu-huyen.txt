@@ -1,37 +1,30 @@
-# Như Huyền – phong cách: traditional – 32 sản phẩm
+# Như Huyền – phong cách: coastal – 25 sản phẩm
 # Dán đoạn dưới vào ô CẤU HÌNH của notebook. Giữ MY_SHARE = "1/1", PRESET = "best", MAX_FACES = 40000.
 # Muốn chia làm 2 lần chạy: lần 1 để MY_SHARE = "1/2", lần 2 để MY_SHARE = "2/2".
 PRODUCT_IDS = [
-    "product-traditional-james-3-seat-sofa-03",   # Sofa 3 chỗ James
-    "product-traditional-james-3-seat-sofa-07",   # Sofa 3 chỗ James
-    "product-traditional-berger-98-upholstered-sofa-03",   # Sofa bọc nệm Berger 249 cm
-    "product-traditional-james-3-seat-right-chaise-sleeper-sectional-05",   # Sofa giường góc 3 chỗ James kèm ghế dài bên phải
-    "product-traditional-james-4-seat-left-chaise-sectional-04",   # Sofa góc 4 chỗ James kèm ghế dài bên trái
-    "product-traditional-sloan-6-seat-leather-corner-sectional-sofa-02",   # Sofa góc da 6 chỗ Sloan
-    "product-traditional-harris-accent-bench-knoll-domino-01",   # Ghế băng Harris
-    "product-traditional-nelsen-3-drawer-cushion-storage-bench-02",   # Ghế băng có 3 ngăn kéo / nệm Nelsen
-    "product-traditional-collette-swivel-chair-03",   # Ghế xoay Collette
-    "product-traditional-tegan-swivel-chair-04",   # Ghế xoay Tegan
-    "product-traditional-lawson-leather-swivel-chair-01",   # Ghế xoay da Lawson
-    "product-traditional-tub-swivel-chair-rust-classic-velvet-03",   # Ghế xoay dáng bồn nhung màu gỉ sét
-    "product-traditional-daphanie-accent-chair-grey-04",   # Ghế đơn Daphanie màu xám
-    "product-traditional-laylette-accent-chair-light-grey-05",   # Ghế đơn Laylette màu xám nhạt
-    "product-traditional-caitlin-petite-chair-by-the-everygirl-05",   # Ghế đơn cỡ nhỏ Caitlin
-    "product-traditional-dyer-storage-ottoman-01",   # Đôn có ngăn chứa Dyer
-    "product-traditional-dixon-slipcovered-round-ottoman-02",   # Đôn tròn bọc vải rời Dixon
-    "product-traditional-drum-ottoman-black-bamboo-garden-02",   # Đôn tròn họa tiết vườn tre đen
-    "product-traditional-braided-natural-jute-pouf-small-19-01",   # Đôn đay bện tự nhiên cỡ nhỏ 48 cm
-    "product-traditional-sadie-console-table-01",   # Bàn console Sadie
-    "product-traditional-bjorn-espresso-side-table-03",   # Bàn phụ Bjorn màu espresso
-    "product-traditional-murray-side-table-06",   # Bàn phụ Murray
-    "product-traditional-alessandra-black-marble-side-table-01",   # Bàn phụ đá cẩm thạch đen Alessandra
-    "product-traditional-northbank-15-h-x-55-w-x-28-d-coffee-table-01",   # Bàn trà Northbank 38 x 140 x 71 cm
-    "product-traditional-colten-round-storage-coffee-table-ottoman-03",   # Bàn trà kiêm đôn tròn có ngăn chứa Colten
-    "product-traditional-daysi-marble-coffee-table-black-04",   # Bàn trà đá cẩm thạch Daysi màu đen
-    "product-traditional-sigwarth-end-table-with-storage-04",   # Bàn đầu giường có ngăn chứa Sigwarth
-    "product-traditional-anderson-canopy-bed-knoll-natural-king-02",   # Giường có màn Anderson màu tự nhiên cỡ King
-    "product-traditional-belmont-12-drawer-dresser-black-03",   # Tủ 12 ngăn kéo Belmont màu đen
-    "product-traditional-freddie-nightstand-brown-04",   # Tủ đầu giường Freddie màu nâu
-    "product-traditional-black-elm-wood-floating-shelf-36-07",   # Kệ nổi gỗ du đen 91 cm
-    "product-traditional-sierra-buttermilk-media-console-02",   # Kệ tivi Sierra màu kem bơ sữa
+    "product-coastal-fiona-loveseat-01",   # Ghế sofa đôi Fiona
+    "product-coastal-kearney-35-43-wide-barrel-chair-02",   # Ghế bành tròn Kearney rộng 90 cm
+    "product-coastal-natalie-24-barrel-chair-04",   # Ghế bành tròn Natalie 61 cm
+    "product-coastal-classic-storage-bench-heron-luxe-velvet-06",   # Ghế băng có ngăn chứa nhung Heron
+    "product-coastal-classic-storage-bench-ocean-classic-velvet-07",   # Ghế băng có ngăn chứa nhung xanh Ocean
+    "product-coastal-modern-bench-sky-fritz-brass-05",   # Ghế băng hiện đại vải xanh da trời chân đồng thau
+    "product-coastal-daphne-upholstered-chair-04",   # Ghế bọc nệm Daphne
+    "product-coastal-caterina-natural-upholstered-office-chair-with-brass-base-03",   # Ghế văn phòng bọc nệm Caterina chân đồng thau
+    "product-coastal-blake-accent-chair-01",   # Ghế đơn Blake
+    "product-coastal-tana-outdoor-stool-natural-teak-01",   # Ghế đẩu ngoài trời Tana gỗ teak tự nhiên
+    "product-coastal-fae-small-round-ottoman-02",   # Đôn tròn nhỏ Fae
+    "product-coastal-morriston-126-inch-extension-dining-table-rustic-honey-01",   # Bàn ăn mở rộng Morriston 320 cm màu mật ong mộc
+    "product-coastal-otago-oval-dining-table-walnut-01",   # Bàn ăn oval Otago gỗ óc chó
+    "product-coastal-burrow-alto-dining-chair-metal-03",   # Ghế ăn kim loại Alto
+    "product-coastal-bodine-cane-back-dining-chair-06",   # Ghế ăn lưng mây Bodine
+    "product-coastal-tojo-cane-dining-chair-with-cushion-white-gray-safavieh-04",   # Ghế ăn mây Tojo kèm nệm trắng / xám
+    "product-coastal-foley-grey-velvet-dining-chair-02",   # Ghế ăn nhung xám Foley
+    "product-coastal-encompass-white-fabric-dining-chair-02",   # Ghế ăn vải trắng Encompass
+    "product-coastal-encore-counter-stool-natural-03",   # Ghế đẩu quầy Encore màu tự nhiên
+    "product-coastal-lowen-upholstered-bed-with-tufting-option-04",   # Giường bọc nệm Lowen có tùy chọn chần nút
+    "product-coastal-jaylessa-wood-dresser-natural-04",   # Tủ ngăn kéo gỗ Jaylessa màu tự nhiên
+    "product-coastal-jaylessa-wood-nightstand-02",   # Tủ đầu giường gỗ Jaylessa
+    "product-coastal-chantelle-modern-arched-bookshelf-with-glass-doors-02",   # Tủ sách vòm hiện đại cửa kính Chantelle
+    "product-coastal-caprice-96-sideboard-natural-mango-03",   # Tủ buffet Caprice 244 cm gỗ xoài tự nhiên
+    "product-coastal-merriton-desk-pre-order-for-12-2-24-back-in-stock-01",   # Bàn làm việc Merriton
 ]
