@@ -118,7 +118,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - Dữ liệu: điền `data/json/room_hotspots.json` cho **2–3 phòng mỗi phong cách** (sản phẩm lấy trong `product_ids` của phòng).
 - 3D **Bohemian + Mid-century Modern** (69 món).
 
-### Nguyên Khôi — Sản phẩm (22/10)
+### Nguyên Khôi — Sản phẩm 
 
 **Input:** `products.json`, `categories.json`, `styles.json`
 **Việc làm:**
@@ -130,7 +130,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 
 **Ghi chú:** `product-card.js` cần xong **trước Thứ 5 (22/10)** vì Duy, Huyền, Phương Anh đều dùng.
 
-### Phương Anh — Giỏ hàng, thanh toán, đơn hàng, Dashboard (22/10)
+### Phương Anh — Giỏ hàng, thanh toán, đơn hàng, Dashboard 
 
 **Input:** `products.json`, `shipping_methods.json`, `coupons.json`
 **Việc làm:**
@@ -140,7 +140,7 @@ Tuần 1 làm **HTML + CSS tĩnh theo mockup** và phần dữ liệu; tuần 2 
 - `admin/orders.html` (đổi trạng thái đơn), `admin/index.html` (Dashboard: doanh thu, số đơn, sản phẩm bán chạy, số người dùng — biểu đồ bằng Chart.js).
 - 3D **Glam + Traditional** (62 món).
 
-### Như Huyền — Đồ cũ, Chatbot, quản lý người dùng & đánh giá (22/10)
+### Như Huyền — Đồ cũ, Chatbot, quản lý người dùng & đánh giá 
 
 **Input:** ảnh đồ cũ đã chọn, `products.json`
 **Việc làm:**
