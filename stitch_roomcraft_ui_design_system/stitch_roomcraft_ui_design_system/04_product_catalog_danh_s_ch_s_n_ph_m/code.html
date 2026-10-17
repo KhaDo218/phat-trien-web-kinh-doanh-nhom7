@@ -1,0 +1,822 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-fixed": "#1a1c1a",
+          "surface-container-lowest": "#ffffff",
+          "on-background": "#1a1c1b",
+          "outline-variant": "#c4c7c7",
+          "secondary-fixed": "#e4e2e2",
+          "primary-fixed-dim": "#c8c6c5",
+          "on-surface": "#1a1c1b",
+          "on-error": "#ffffff",
+          "on-surface-variant": "#444748",
+          "inverse-primary": "#c8c6c5",
+          "surface-tint": "#5f5e5e",
+          "on-tertiary-fixed-variant": "#464745",
+          "secondary-container": "#e1dfdf",
+          "on-tertiary-container": "#878886",
+          "on-secondary-fixed": "#1b1c1c",
+          "on-error-container": "#93000a",
+          "tertiary-fixed": "#e3e3df",
+          "surface": "#f9f9f7",
+          "surface-container": "#eeeeec",
+          "tertiary-container": "#1f211f",
+          "background": "#f9f9f7",
+          "error-container": "#ffdad6",
+          "on-secondary": "#ffffff",
+          "on-primary-fixed": "#1b1c1c",
+          "tertiary-fixed-dim": "#c6c7c4",
+          "surface-dim": "#dadad8",
+          "on-primary": "#ffffff",
+          "secondary-fixed-dim": "#c7c6c6",
+          "on-secondary-container": "#626262",
+          "outline": "#747878",
+          "on-primary-container": "#898787",
+          "error": "#ba1a1a",
+          "tertiary": "#080908",
+          "inverse-surface": "#2f3130",
+          "surface-container-high": "#e8e8e6",
+          "primary-fixed": "#e5e2e1",
+          "surface-variant": "#e2e3e1",
+          "primary": "#080808",
+          "surface-container-highest": "#e2e3e1",
+          "secondary": "#5e5e5e",
+          "surface-bright": "#f9f9f7",
+          "on-tertiary": "#ffffff",
+          "on-primary-fixed-variant": "#474746",
+          "surface-container-low": "#f4f4f2",
+          "on-secondary-fixed-variant": "#464747",
+          "primary-container": "#202020",
+          "inverse-on-surface": "#f1f1ef"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-2xl": "4rem",
+          "margin-tablet": "2.5rem",
+          "space-md": "1.5rem",
+          "space-xl": "3rem",
+          "space-sm": "1rem",
+          "margin": "4rem",
+          "space-2xs": "0.5rem",
+          "space-3xl": "6rem",
+          "gutter-desktop": "1.5rem",
+          "space-lg": "2rem",
+          "space-xs": "0.75rem",
+          "gutter-mobile": "1rem",
+          "margin-mobile": "1.25rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-section-mobile": [
+            "EB Garamond"
+          ],
+          "label-navigation": [
+            "Inter"
+          ],
+          "label-price": [
+            "Inter"
+          ],
+          "display-hero-mobile": [
+            "EB Garamond"
+          ],
+          "display-hero": [
+            "EB Garamond"
+          ],
+          "headline-page-mobile": [
+            "EB Garamond"
+          ],
+          "label-caption": [
+            "Inter"
+          ],
+          "headline-page": [
+            "EB Garamond"
+          ],
+          "body-default": [
+            "Inter"
+          ],
+          "label-overline": [
+            "Inter"
+          ],
+          "brand-logo": [
+            "EB Garamond"
+          ],
+          "headline-section": [
+            "EB Garamond"
+          ],
+          "body-mono-spec": [
+            "Inter"
+          ],
+          "title-product": [
+            "EB Garamond"
+          ],
+          "body-lead": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "headline-section-mobile": [
+            "26px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "500"
+            }
+          ],
+          "label-navigation": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.06em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-price": [
+            "15px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "500"
+            }
+          ],
+          "display-hero-mobile": [
+            "44px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-hero": [
+            "80px",
+            {
+              "lineHeight": "88px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-page-mobile": [
+            "36px",
+            {
+              "lineHeight": "42px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-caption": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-page": [
+            "52px",
+            {
+              "lineHeight": "60px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-default": [
+            "15px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-overline": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.12em",
+              "fontWeight": "500"
+            }
+          ],
+          "brand-logo": [
+            "40px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "0.08em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-section": [
+            "34px",
+            {
+              "lineHeight": "42px",
+              "fontWeight": "500"
+            }
+          ],
+          "body-mono-spec": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "title-product": [
+            "20px",
+            {
+              "lineHeight": "26px",
+              "fontWeight": "500"
+            }
+          ],
+          "body-lead": [
+            "18px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    }
+  }</script></head><body class="bg-surface font-body-default text-body-default text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-surface-dim"><div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin h-20 flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md min-w-[240px]"><a class="flex items-center gap-space-xs" data-path="home" href="#"><img alt="ROOMCRAFT Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XQC5QI8kmOIFvmfE1uNeQ9RZFi3RpEtlZ6beBAtXFMxQkVG4M1DaEpabYsiQYRjQUi8zZNSKTkTm8DGWIE9zUol93HUBYeOGhrLUAl-GBA_zkj8QAY4WyeLfTlvJD--O_2p9iOnYA8JWaes5A1k90Nw0tcOwDwmYuzVlU9ktyN4fY8EPImZaavO8UNc-uAaGtxWAAWThD5Ik0tD3DSfn3NLU-WDTEP4gfeV2qOn_Ah"><span class="font-brand-logo text-brand-logo tracking-wider text-primary uppercase hidden sm:inline-block leading-none">ROOMCRAFT</span></a></div><div class="flex-1 max-w-md hidden md:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-secondary text-[18px] pointer-events-none">search</span><input class="w-full h-10 pl-9 pr-4 bg-surface-container-lowest border border-surface-dim text-on-surface font-body-default text-body-default placeholder:text-secondary placeholder:text-sm focus:outline-none focus:border-primary transition-colors rounded-none" placeholder="Tìm kiếm sản phẩm, phong cách..." type="text"></div></div><div class="flex items-center justify-end gap-space-sm min-w-[240px]"><a aria-label="Danh sách yêu thích" class="relative p-2 text-on-surface hover:text-secondary transition-colors" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span><span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary font-body-mono-spec text-[10px] flex items-center justify-center rounded-none leading-none">0</span></a><a aria-label="Giỏ hàng" class="relative p-2 text-on-surface hover:text-secondary transition-colors" data-path="cart" href="#"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary font-body-mono-spec text-[10px] flex items-center justify-center rounded-none leading-none">0</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-2"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="border-t border-surface-dim bg-surface/95"><div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin"><nav class="flex items-center justify-center gap-space-xl py-space-xs overflow-x-auto" data-active-classes="text-primary border-b border-primary font-semibold"><a aria-current="page" class="uppercase py-2 transition-colors whitespace-nowrap text-primary border-b border-primary font-semibold" data-path="catalog" href="#">Sản phẩm</a><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="styles" href="#">Phong cách</a><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="shop-the-room" href="#">Không gian mẫu</a><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="about" href="#">Về ROOMCRAFT</a></nav></div></div></header><main class="w-full pt-[124px] bg-surface min-h-[calc(100vh-124px)]"><div class="flex flex-col w-full">
+<!-- Architectural Header & Breadcrumb Surface -->
+<div class="w-full bg-surface-container-low/70 py-space-xl">
+<div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 mb-space-sm">
+<a class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary transition-colors tracking-widest" data-path="home" href="#">Trang chủ</a>
+<span class="text-secondary font-label-navigation text-xs">/</span>
+<span class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest font-semibold">Sản phẩm</span>
+</nav>
+<!-- Page Title -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-[0.2em] block mb-2">BỘ SƯU TẬP TUYỂN CHỌN NĂM 2025</span>
+<h1 class="font-headline-page text-headline-page text-primary tracking-tight">Nội thất cho không gian của bạn</h1>
+</div>
+<p class="font-body-default text-body-default text-secondary max-w-md pb-1 leading-relaxed">
+          Được chọn lọc khắt khe dựa trên tỷ lệ chuẩn mực, phẩm chất vật liệu hữu cơ và tính tĩnh lặng trường tồn theo triết lý kiến trúc tối giản.
+        </p>
+</div>
+<!-- Horizontal Style Navigation Filter Bar -->
+<div class="mt-space-xl overflow-x-auto scrollbar-none">
+<div class="flex items-center gap-space-lg pb-1 min-w-max">
+<button class="font-label-navigation text-label-navigation uppercase text-primary pb-3 font-semibold relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary transition-all" type="button">
+            Tất cả
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Bohemian
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Coastal
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Farmhouse
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Glam
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Mid-century modern
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Scandinavian
+          </button>
+<button class="font-label-navigation text-label-navigation uppercase text-secondary hover:text-primary pb-3 transition-colors" type="button">
+            Traditional
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Catalog Architectural Canvas (Two Columns) -->
+<div class="w-full py-space-2xl">
+<div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin flex flex-col lg:flex-row items-start gap-space-xl">
+<!-- Fixed Left Sidebar Filter (Exact 250px) -->
+<aside class="w-full lg:w-[250px] shrink-0 flex flex-col gap-space-lg bg-surface-container-lowest p-space-md shadow-sm">
+<!-- Filter Header / Active Indicator -->
+<div class="flex items-center justify-between pb-space-xs bg-surface-container-low/50 -mx-space-md -mt-space-md px-space-md pt-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+<span class="font-label-navigation text-label-navigation uppercase font-semibold text-primary tracking-wider">Bộ lọc tinh tuyển</span>
+</div>
+<button class="font-label-overline text-label-overline uppercase text-secondary hover:text-primary underline transition-colors" type="button">
+            Thiết lập lại
+          </button>
+</div>
+<!-- 1. Danh mục Accordion -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Danh mục</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="flex flex-col gap-2 pt-1 pl-1">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-body-default text-body-default text-on-surface group-hover:text-primary transition-colors">Bàn ăn &amp; Bàn trà</span>
+<span class="font-body-mono-spec text-label-caption text-secondary">142</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-body-default text-body-default text-on-surface group-hover:text-primary transition-colors">Ghế sofa &amp; Ghế bành</span>
+<span class="font-body-mono-spec text-label-caption text-secondary">98</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-body-default text-body-default text-on-surface group-hover:text-primary transition-colors">Hệ lưu trữ &amp; Tủ kệ</span>
+<span class="font-body-mono-spec text-label-caption text-secondary">86</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-body-default text-body-default text-on-surface group-hover:text-primary transition-colors">Gối tựa &amp; Thảm dệt</span>
+<span class="font-body-mono-spec text-label-caption text-secondary">215</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-body-default text-body-default text-on-surface group-hover:text-primary transition-colors">Hệ đèn &amp; Chiếu sáng</span>
+<span class="font-body-mono-spec text-label-caption text-secondary">114</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-body-default text-body-default text-secondary group-hover:text-primary transition-colors">Vật phẩm điêu khắc</span>
+<span class="font-body-mono-spec text-label-caption text-secondary">298</span>
+</label>
+</div>
+</div>
+<!-- 2. Phong cách Checkbox -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Phong cách</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="flex flex-col gap-2.5 pt-1">
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Scandinavian</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Mid-century modern</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Farmhouse</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Bohemian</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Coastal</span>
+</label>
+</div>
+</div>
+<!-- 3. Khoảng giá (USD) Range Slider -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Khoảng giá (USD)</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="flex flex-col gap-3 pt-1">
+<div class="flex items-center justify-between gap-2">
+<div class="flex-1 bg-surface-container px-2 py-1.5 flex flex-col">
+<span class="font-label-overline text-[10px] text-secondary leading-none mb-1">TỐI THIỂU</span>
+<span class="font-body-mono-spec text-sm text-primary font-medium">$50</span>
+</div>
+<span class="text-secondary font-label-navigation">-</span>
+<div class="flex-1 bg-surface-container px-2 py-1.5 flex flex-col">
+<span class="font-label-overline text-[10px] text-secondary leading-none mb-1">TỐI ĐA</span>
+<span class="font-body-mono-spec text-sm text-primary font-medium">$500</span>
+</div>
+</div>
+<!-- Range Slider Simulation Track -->
+<div class="relative w-full py-2">
+<div class="w-full h-1 bg-surface-container rounded-none relative">
+<div class="absolute left-1/6 right-1/4 h-full bg-primary"></div>
+<div class="absolute left-1/6 -top-1.5 w-4 h-4 bg-primary rounded-none shadow cursor-pointer"></div>
+<div class="absolute right-1/4 -top-1.5 w-4 h-4 bg-primary rounded-none shadow cursor-pointer"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Thương hiệu Checkbox -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Thương hiệu</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="flex flex-col gap-2.5 pt-1">
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Wayfair</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Surya</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Fritz Hansen</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Menu Space</span>
+</label>
+</div>
+</div>
+<!-- 5. Chất liệu Checkbox -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Chất liệu</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="flex flex-col gap-2.5 pt-1">
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Gỗ tự nhiên</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Vải lanh (Linen)</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Mây tre đan</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 rounded-none accent-primary cursor-pointer bg-surface" type="checkbox">
+<span class="font-body-default text-body-default text-on-surface">Kim loại / Thép đúc</span>
+</label>
+</div>
+</div>
+<!-- 6. Màu sắc Swatches -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Màu sắc</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="grid grid-cols-5 gap-2 pt-1">
+<div class="flex flex-col items-center gap-1 cursor-pointer group" title="Beige">
+<span class="w-7 h-7 bg-[#E8E2D5] shadow-sm flex items-center justify-center"></span>
+<span class="font-label-overline text-[9px] text-secondary group-hover:text-primary">Beige</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer group" title="Đen">
+<span class="w-7 h-7 bg-[#1A1A1A] shadow-sm flex items-center justify-center"></span>
+<span class="font-label-overline text-[9px] text-secondary group-hover:text-primary">Đen</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer group" title="Nâu gỗ">
+<span class="w-7 h-7 bg-[#8C6D53] shadow-sm flex items-center justify-center"></span>
+<span class="font-label-overline text-[9px] text-secondary group-hover:text-primary">Nâu</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer group" title="Trắng">
+<span class="w-7 h-7 bg-[#FFFFFF] shadow-sm flex items-center justify-center"></span>
+<span class="font-label-overline text-[9px] text-secondary group-hover:text-primary">Trắng</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer group" title="Olive">
+<span class="w-7 h-7 bg-[#656D4A] shadow-sm flex items-center justify-center"></span>
+<span class="font-label-overline text-[9px] text-secondary group-hover:text-primary">Olive</span>
+</div>
+</div>
+</div>
+<!-- 7. Tình trạng -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between cursor-pointer py-1 text-primary">
+<span class="font-label-navigation text-label-navigation uppercase tracking-wider font-semibold">Tình trạng</span>
+<span class="material-symbols-outlined text-sm text-secondary">expand_less</span>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary cursor-pointer" name="availability" type="radio">
+<span class="font-body-default text-body-default text-on-surface">Còn hàng sẵn sàng</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer">
+<input class="w-4 h-4 accent-primary cursor-pointer" name="availability" type="radio">
+<span class="font-body-default text-body-default text-on-surface">Đặt trước (Pre-order)</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Right Column: Product Grid Area -->
+<main class="flex-1 min-w-0 flex flex-col w-full">
+<!-- Grid Toolbar Header -->
+<div class="w-full flex items-center justify-between pb-space-md mb-space-md bg-surface-container-low/30 px-space-md py-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-body-mono-spec text-body-mono-spec font-medium text-primary">953</span>
+<span class="font-body-default text-body-default text-secondary">sản phẩm tuyển chọn</span>
+</div>
+<!-- Sort Select Dropdown -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-navigation text-label-navigation uppercase text-secondary hidden sm:inline-block">Sắp xếp:</span>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest px-4 py-2 pr-9 font-label-navigation text-label-navigation uppercase text-primary tracking-wider cursor-pointer rounded-none focus:outline-none focus:bg-surface-container-high transition-colors shadow-sm">
+<option value="default">Mặc định</option>
+<option value="price-asc">Giá tăng dần</option>
+<option value="price-desc">Giá giảm dần</option>
+<option value="newest">Mới nhất</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-primary pointer-events-none text-base">expand_more</span>
+</div>
+</div>
+</div>
+<!-- 4-Column Product Grid (Strict 24px Gaps) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[24px] w-full">
+<!-- SP0001: Wayfair - Daukas 47'' Dining Table -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<!-- Image Container: Square aspect ratio, object-fit contain on #EEEEEC -->
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Daukas 47 inch modern Scandinavian solid natural wood round dining table with clean minimalist tapered legs in a sunlit warm stone architectural interior studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDslc_3ZI6ZKotaOc5eHIYsZFVYN6OpIrJTcpFUtQH13aXtCPMdK2jAJue9gaI0TtXhGUDrjEhM22hGUdf2yMEq5yZFXg0idhRIw3dSU3FT59dblPoaLGwCc1eitKP0QuEWP_lKcV68OovatHMqKzdxQZ27PI_Cchm9gV9rZkVXAUYyLfIetOMWLFn9jFFo0ch5FcREBaXBHh5Fp5X-hsF5EotNKQjdlbwm6cb8N1k">
+<!-- Subtle subtle provenance tag or wishlist -->
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<!-- Content Stack: Strict Editorial Hierarchy -->
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Wayfair</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Daukas 47'' Dining Table
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Dining Tables &amp; Chairs
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$159.99</span>
+<span class="font-body-mono-spec text-label-caption text-secondary line-through">$169.99</span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- SP0002: Wayfair - Outdoor Wooden Loveseat With Cushions -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Outdoor architectural wooden loveseat with soft cream woven linen weather-resistant cushions in a tranquil minimal stone courtyard setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1hcM5R8zMwj90GE82a3wM105u4gpseEGRGeoPn2o6V8hOwFLyHo8yEUbKL4TTV72juKWJ1z2iCGbWUfrankYDH2nkWcEABwdhhcsej7zRwcYYPHG98d-tuBAfgrawF9G6Ck66wY5RZhYBSgDWeUrdwG4iXulxCrTRLM_LUIDSj5JKaXzxr5KJzejqXLj9uuoNNxd_GQ-osJYF5fHinH9Me2dBVh6deYo0hPWKNt4">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Wayfair</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Outdoor Wooden Loveseat With Cushions
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Sofas &amp; Sectionals
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$286.99</span>
+<span class="font-body-mono-spec text-label-caption text-secondary line-through">$335.99</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- SP0003: Wayfair - Woven Storage Bin -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Handcrafted artisanal woven natural jute storage bin basket with organic textural fiber details on clean chalky architectural backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_3_2-RIJ-1qj2lu1riCT1U_OMAh6ajeIBusg8ZbYc7U6LaI28_anxG2UkG7j6p8-GjfvpviIcx1fXdharES06PniDX9hKTdnTqG5qhiGP0sT3m0KZ4myacu4VpZM0ir_X7YiiangKRVLjaPIFb_4JuqflAA95fYMXYx5_KA2UjrhdxpNyO6-ADrOe9xd0jy-WiERXnCJzw41EHuJJpg65AD570Xv1_oBDyo4aVwc">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Wayfair</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Woven Storage Bin
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Other
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$59.00</span>
+<span class="font-body-mono-spec text-label-caption text-secondary opacity-0">-</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- SP0004: Surya - Safflower SAFF-7194 18"L x 18"W Pillow Cover -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Earthy textured organic woven cotton throw pillow cover in soft saffron cream tones with tactile slub fabric structure on muted neutral surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_pRSmiPqPdz0CwXcwBkDmEHTp6prOkA8xMSSnIylJder5K9FbdziZvOPMxA7THtL-oT0hAJ7opCSv79NIokUiNGV6e4Iz5_wr8kTB6XMzi9gLCHyfhCHuSMP2LYDp6z_p8VqX6YEnVluZllO7OdsFGyMwzOzzwNFFTgN7dXlAjypUfQSh_j-V3QLIF4SaRzN_i7SQwLvbnI-zT3xhosUC2iHXcsI4iJgjHeAydoM">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Surya</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Safflower SAFF-7194 18"L x 18"W Pillow Cover
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Throw Pillows
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$65.00</span>
+<span class="font-body-mono-spec text-label-caption text-secondary opacity-0">-</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- Secondary Row of Complementary Objects (Architectural continuity) -->
+<!-- SP0005: Menu Space - Column Pendant Lamp -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Minimalist brass cylinder pendant light fixture emitting gentle warm illumination against a raw textured limestone wall in a disciplined architectural studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6clXBG47ZJEj27a1A4M4L1V3zGogn18A6EReHRAjM0BHcXllh1oPzpSgIU2caDhj6DrfBeGT96bvYEA3mUufUYi6ybxMST3FA_ql54XwRKV_n28ZsfG7C1Y3s030FWFqXNq0zR1e5hWo8eVXVDnEdqpMj-LeSojKSrzAfzT81cB14XiLW59VZI3lmcdm3FfoUsfAHGwpCmFNiIEhchs_j9VJt3rHbHaAnNr741Ig">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Menu Space</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Column Pendant Minimalist Lamp
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Lighting &amp; Lamps
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$210.00</span>
+<span class="font-body-mono-spec text-label-caption text-secondary opacity-0">-</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- SP0006: Wayfair - Travertine Geometric Plinth -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Honest monolithic honed travertine stone low coffee table plinth displaying porous natural textures in soft ambient daylight gallery interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbnG_3vMVirVnL69QE8nA_p_pgHdQNFSYfoqkTgzh54wyuzVoWwlbQJ4Aur0oShWN9nVtrxPKfGj1zxxD674FDLMyOiIWfNHg0Jl15p0HQpc468OFAwJX7mmA6iXctz7UxYzXPWNrEvD7P4iWksr5v7fUyEAdK5iUTqw16lpKGwxg-YT5T9v5ohQjvGpz6gla2Yc-1IBcSTgiG7CJGoUnMBSBLQjaKOUXWWhZOxxE">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Wayfair</span>
+<span class="font-label-overline text-[10px] text-secondary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Đặt trước</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Archaic Travertine Low Plinth
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Accent Tables
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$490.00</span>
+<span class="font-body-mono-spec text-label-caption text-secondary line-through">$540.00</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- SP0007: Surya - Wabi Hand-Knotted Wool Rug -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Hand-knotted raw ivory wool area rug with understated organic geometric linear etching photographed top-down in soft gallery lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC-pxkvGUHfpLvvpq-UCcINCPtf_H9XU1JPO_6Gs-gOiZGVviRt9Z6gqExB5OkTEs9ucs9Vupv0jWg2unHn7G3ctdO3_UXzfbs-CR2E6S29tnToee-X1dcVBwtt5JJBGWZ2Y5DIGELFfl8fBAbKil2jhWd5fDd0WvVeVtmhfur4K1iFbov7r6S3ugiYJeNLjeJ-a9O0lKKVcMm9kcC7TLKIZsFdRblZoeUsnBwkhw">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Surya</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Wabi Hand-Knotted Wool Rug 8x10
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Area Rugs
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$420.00</span>
+<span class="font-body-mono-spec text-label-caption text-secondary opacity-0">-</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+<!-- SP0008: Fritz Hansen - PK22 Lounge Chair -->
+<div class="group flex flex-col justify-between bg-surface-container-lowest p-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="relative w-full aspect-square bg-[#EEEEEC] overflow-hidden flex items-center justify-center p-4">
+<img class="w-full h-full object-contain group-hover:scale-[1.015] transition-transform duration-500 ease-out" data-alt="Iconic PK22 minimalist lounge chair with brushed steel frame and patinated natural saddle leather seat in quiet museum gallery environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVQu3ehIkMNU9JrhJpIyPhK2y_1UkNi4PZOT-hnDyQGIQmVNxZvhjeSszkFUPDgDMV_HW1YSp1od7Lb1Z78jozJfoXKMiNFZb8YFukiKdGCTbPfPEXqhyMq2NFogP9A3_LPsqQd2aK72yI5TMIdNYLx6SH3zvyik2667tZrdx1QOqHRQ0ftuHYUZ1noAcxGKtcoDltqYobOLJtrO_-aahxUe9kem1RlYjMdc8I7co">
+<button aria-label="Yêu thích" class="absolute top-3 right-3 w-8 h-8 bg-surface-container-lowest/90 backdrop-blur-sm text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-sm flex flex-col">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline uppercase text-[#686868] tracking-widest">Fritz Hansen</span>
+<span class="font-label-overline text-[10px] text-primary bg-surface-container px-1.5 py-0.5 uppercase tracking-wider">Còn hàng</span>
+</div>
+<h3 class="font-title-product text-title-product text-primary leading-snug line-clamp-1 mb-1">
+                  Architectural Saddle Lounge Chair
+                </h3>
+<span class="font-body-mono-spec text-label-caption text-secondary mb-3 block">
+                  Lounge Seating
+                </span>
+<div class="flex items-baseline gap-2 mb-space-md">
+<span class="font-label-price text-label-price font-semibold text-primary">$475.00</span>
+<span class="font-body-mono-spec text-label-caption text-secondary line-through">$510.00</span>
+</div>
+</div>
+</div>
+<a class="w-full h-11 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider flex items-center justify-center hover:bg-primary-container transition-colors rounded-none mt-auto" href="#">
+              Xem chi tiết
+            </a>
+</div>
+</div>
+<!-- Architectural Minimalist Pagination -->
+<div class="w-full flex items-center justify-between pt-space-2xl mt-space-xl">
+<div class="hidden sm:block">
+<span class="font-body-mono-spec text-label-caption text-secondary">
+              Hiển thị 1 – 8 trong số 953 kết quả
+            </span>
+</div>
+<div class="flex items-center gap-1 mx-auto sm:mx-0">
+<button class="w-10 h-10 flex items-center justify-center text-secondary opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center font-body-mono-spec text-sm bg-primary text-on-primary font-medium" type="button">
+              1
+            </button>
+<button class="w-10 h-10 flex items-center justify-center font-body-mono-spec text-sm text-secondary hover:text-primary hover:bg-surface-container transition-colors" type="button">
+              2
+            </button>
+<button class="w-10 h-10 flex items-center justify-center font-body-mono-spec text-sm text-secondary hover:text-primary hover:bg-surface-container transition-colors" type="button">
+              3
+            </button>
+<span class="w-8 h-10 flex items-center justify-center font-body-mono-spec text-sm text-secondary">...</span>
+<button class="w-10 h-10 flex items-center justify-center font-body-mono-spec text-sm text-secondary hover:text-primary hover:bg-surface-container transition-colors" type="button">
+              120
+            </button>
+<button class="h-10 px-3 flex items-center gap-1 font-label-navigation text-label-navigation uppercase text-primary hover:bg-surface-container transition-colors ml-2" type="button">
+<span>Tiếp theo</span>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+<!-- Editorial Material Quality Assurance Banner -->
+<div class="w-full bg-surface-container py-space-xl">
+<div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-2xl text-primary mt-1">verified</span>
+<div>
+<h4 class="font-label-navigation text-label-navigation uppercase font-semibold text-primary mb-1">Nguồn gốc vật liệu minh bạch</h4>
+<p class="font-body-default text-body-default text-secondary leading-relaxed">Mọi khối gỗ, phiến đá và thớ vải đều có chứng chỉ nguồn gốc khai thác bền vững.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-2xl text-primary mt-1">architecture</span>
+<div>
+<h4 class="font-label-navigation text-label-navigation uppercase font-semibold text-primary mb-1">Giám định kiến trúc tiêu chuẩn</h4>
+<p class="font-body-default text-body-default text-secondary leading-relaxed">Đội ngũ giám tuyển đánh giá tỷ lệ và độ bền vật lý trước khi xuất xưởng.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-2xl text-primary mt-1">local_shipping</span>
+<div>
+<h4 class="font-label-navigation text-label-navigation uppercase font-semibold text-primary mb-1">Vận chuyển chuyên biệt găng tay trắng</h4>
+<p class="font-body-default text-body-default text-secondary leading-relaxed">Lắp đặt tận nơi theo bản vẽ không gian bởi chuyên viên nội thất ROOMCRAFT.</p>
+</div>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container border-t border-surface-dim pt-space-3xl pb-space-2xl"><div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><img alt="ROOMCRAFT Logo" class="h-7 w-auto object-contain" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4="><span class="font-brand-logo text-brand-logo tracking-wider text-primary uppercase">ROOMCRAFT</span></div><p class="font-body-default text-body-default text-secondary max-w-sm leading-relaxed">Kiến tạo trật tự không gian sống tĩnh lặng qua chất liệu nguyên bản và ngôn ngữ tối giản kỷ luật.</p><span class="font-label-overline text-label-overline text-secondary uppercase tracking-widest mt-auto">© 2025 ROOMCRAFT ARCHITECTURE</span></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest mb-space-xs">Điều hướng không gian</h3><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="home" href="#">Trang chủ</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="styles" href="#">Khám phá phong cách</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="catalog" href="#">Danh mục sản phẩm</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="shop-the-room" href="#">Không gian mẫu (Shop the Room)</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="about" href="#">Về ROOMCRAFT</a></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest mb-space-xs">Hỗ trợ &amp; Pháp lý</h3><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="terms-conditions" href="#">Điều khoản mua sắm</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="privacy-policy" href="#">Chính sách bảo mật</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="shipping-returns" href="#">Chính sách giao nhận &amp; Giám định</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="material-care" href="#">Bảo tồn chất liệu</a></div><div class="flex flex-col gap-space-md"><h3 class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest">Tuyển chọn nội thất</h3><p class="font-body-default text-body-default text-secondary leading-relaxed">Nhận thông báo về các ấn phẩm bộ sưu tập giới hạn và tiểu luận kiến trúc không gian.</p><div class="flex flex-col gap-space-xs"><div class="flex w-full"><input class="flex-1 h-12 px-4 bg-surface-container-lowest border border-surface-dim font-body-default text-body-default text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary rounded-none" placeholder="Địa chỉ email của bạn" type="email"><button class="h-12 px-space-md bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider hover:bg-tertiary-container hover:text-on-tertiary-container transition-colors rounded-none" type="button">Đăng ký</button></div><span class="font-label-overline text-label-overline text-secondary uppercase">Bản quyền tuyển tập phát hành định kỳ</span></div></div></div></footer></body></html>

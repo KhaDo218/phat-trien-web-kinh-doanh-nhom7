@@ -1,0 +1,806 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-fixed": "#1a1c1a",
+          "surface-container-lowest": "#ffffff",
+          "on-background": "#1a1c1b",
+          "outline-variant": "#c4c7c7",
+          "secondary-fixed": "#e4e2e2",
+          "primary-fixed-dim": "#c8c6c5",
+          "on-surface": "#1a1c1b",
+          "on-error": "#ffffff",
+          "on-surface-variant": "#444748",
+          "inverse-primary": "#c8c6c5",
+          "surface-tint": "#5f5e5e",
+          "on-tertiary-fixed-variant": "#464745",
+          "secondary-container": "#e1dfdf",
+          "on-tertiary-container": "#878886",
+          "on-secondary-fixed": "#1b1c1c",
+          "on-error-container": "#93000a",
+          "tertiary-fixed": "#e3e3df",
+          "surface": "#f9f9f7",
+          "surface-container": "#eeeeec",
+          "tertiary-container": "#1f211f",
+          "background": "#f9f9f7",
+          "error-container": "#ffdad6",
+          "on-secondary": "#ffffff",
+          "on-primary-fixed": "#1b1c1c",
+          "tertiary-fixed-dim": "#c6c7c4",
+          "surface-dim": "#dadad8",
+          "on-primary": "#ffffff",
+          "secondary-fixed-dim": "#c7c6c6",
+          "on-secondary-container": "#626262",
+          "outline": "#747878",
+          "on-primary-container": "#898787",
+          "error": "#ba1a1a",
+          "tertiary": "#080908",
+          "inverse-surface": "#2f3130",
+          "surface-container-high": "#e8e8e6",
+          "primary-fixed": "#e5e2e1",
+          "surface-variant": "#e2e3e1",
+          "primary": "#080808",
+          "surface-container-highest": "#e2e3e1",
+          "secondary": "#5e5e5e",
+          "surface-bright": "#f9f9f7",
+          "on-tertiary": "#ffffff",
+          "on-primary-fixed-variant": "#474746",
+          "surface-container-low": "#f4f4f2",
+          "on-secondary-fixed-variant": "#464747",
+          "primary-container": "#202020",
+          "inverse-on-surface": "#f1f1ef"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-2xl": "4rem",
+          "margin-tablet": "2.5rem",
+          "space-md": "1.5rem",
+          "space-xl": "3rem",
+          "space-sm": "1rem",
+          "margin": "4rem",
+          "space-2xs": "0.5rem",
+          "space-3xl": "6rem",
+          "gutter-desktop": "1.5rem",
+          "space-lg": "2rem",
+          "space-xs": "0.75rem",
+          "gutter-mobile": "1rem",
+          "margin-mobile": "1.25rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-section-mobile": [
+            "EB Garamond"
+          ],
+          "label-navigation": [
+            "Inter"
+          ],
+          "label-price": [
+            "Inter"
+          ],
+          "display-hero-mobile": [
+            "EB Garamond"
+          ],
+          "display-hero": [
+            "EB Garamond"
+          ],
+          "headline-page-mobile": [
+            "EB Garamond"
+          ],
+          "label-caption": [
+            "Inter"
+          ],
+          "headline-page": [
+            "EB Garamond"
+          ],
+          "body-default": [
+            "Inter"
+          ],
+          "label-overline": [
+            "Inter"
+          ],
+          "brand-logo": [
+            "EB Garamond"
+          ],
+          "headline-section": [
+            "EB Garamond"
+          ],
+          "body-mono-spec": [
+            "Inter"
+          ],
+          "title-product": [
+            "EB Garamond"
+          ],
+          "body-lead": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "headline-section-mobile": [
+            "26px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "500"
+            }
+          ],
+          "label-navigation": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.06em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-price": [
+            "15px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "500"
+            }
+          ],
+          "display-hero-mobile": [
+            "44px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-hero": [
+            "80px",
+            {
+              "lineHeight": "88px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-page-mobile": [
+            "36px",
+            {
+              "lineHeight": "42px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-caption": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-page": [
+            "52px",
+            {
+              "lineHeight": "60px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-default": [
+            "15px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-overline": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.12em",
+              "fontWeight": "500"
+            }
+          ],
+          "brand-logo": [
+            "40px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "0.08em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-section": [
+            "34px",
+            {
+              "lineHeight": "42px",
+              "fontWeight": "500"
+            }
+          ],
+          "body-mono-spec": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "title-product": [
+            "20px",
+            {
+              "lineHeight": "26px",
+              "fontWeight": "500"
+            }
+          ],
+          "body-lead": [
+            "18px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    }
+  }</script></head><body class="bg-surface font-body-default text-body-default text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-surface-dim"><div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin h-20 flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md min-w-[240px]"><a class="flex items-center gap-space-xs" data-path="home" href="#"><img alt="ROOMCRAFT Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XQC5QI8kmOIFvmfE1uNeQ9RZFi3RpEtlZ6beBAtXFMxQkVG4M1DaEpabYsiQYRjQUi8zZNSKTkTm8DGWIE9zUol93HUBYeOGhrLUAl-GBA_zkj8QAY4WyeLfTlvJD--O_2p9iOnYA8JWaes5A1k90Nw0tcOwDwmYuzVlU9ktyN4fY8EPImZaavO8UNc-uAaGtxWAAWThD5Ik0tD3DSfn3NLU-WDTEP4gfeV2qOn_Ah"><span class="font-brand-logo text-brand-logo tracking-wider text-primary uppercase hidden sm:inline-block leading-none">ROOMCRAFT</span></a></div><div class="flex-1 max-w-md hidden md:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-secondary text-[18px] pointer-events-none">search</span><input class="w-full h-10 pl-9 pr-4 bg-surface-container-lowest border border-surface-dim text-on-surface font-body-default text-body-default placeholder:text-secondary placeholder:text-sm focus:outline-none focus:border-primary transition-colors rounded-none" placeholder="Tìm kiếm sản phẩm, phong cách..." type="text"></div></div><div class="flex items-center justify-end gap-space-sm min-w-[240px]"><a aria-label="Danh sách yêu thích" class="relative p-2 text-on-surface hover:text-secondary transition-colors" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span><span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary font-body-mono-spec text-[10px] flex items-center justify-center rounded-none leading-none">0</span></a><a aria-label="Giỏ hàng" class="relative p-2 text-on-surface hover:text-secondary transition-colors" data-path="cart" href="#"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary font-body-mono-spec text-[10px] flex items-center justify-center rounded-none leading-none">0</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-2"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="border-t border-surface-dim bg-surface/95"><div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin"><nav class="flex items-center justify-center gap-space-xl py-space-xs overflow-x-auto" data-active-classes="text-primary border-b border-primary font-semibold"><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="catalog" href="#">Sản phẩm</a><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="styles" href="#">Phong cách</a><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="shop-the-room" href="#">Không gian mẫu</a><a class="font-label-navigation text-label-navigation uppercase text-on-surface-variant hover:text-on-surface py-2 border-b border-transparent transition-colors whitespace-nowrap" data-path="about" href="#">Về ROOMCRAFT</a></nav></div></div></header><main class="w-full pt-[124px] bg-surface min-h-[calc(100vh-124px)]"><div class="flex flex-col w-full">
+<!-- SECTION 1: HERO (Editorial Living Space Narrative) -->
+<section class="relative w-full max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin pt-space-xl pb-space-3xl overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Left Column: Editorial Headline & Narrative Anchor -->
+<div class="lg:col-span-5 flex flex-col justify-center z-10 pr-0 lg:pr-space-md order-2 lg:order-1">
+<div class="flex items-center gap-space-2xs mb-space-sm">
+<span class="w-8 h-[1px] bg-primary"></span>
+<span class="font-label-overline text-label-overline uppercase tracking-[0.2em] text-secondary">Tuyển tập không gian sống 2025</span>
+</div>
+<h1 class="font-display-hero text-headline-page lg:text-display-hero text-primary font-normal leading-[1.05] tracking-tight mb-space-md">
+          Bắt đầu từ không gian của bạn
+        </h1>
+<p class="font-body-lead text-body-lead text-on-surface-variant max-w-xl leading-relaxed mb-space-xl font-light">
+          Khám phá các không gian sống được tuyển chọn, tương tác trực tiếp với từng món đồ nội thất và trải nghiệm mô hình 3D đa chiều.
+        </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm">
+<a class="inline-flex items-center justify-center px-9 py-4 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider transition-colors hover:bg-surface-tint rounded-[2px] text-center" data-path="shop-the-room" href="#">
+            Khám phá không gian
+          </a>
+<a class="inline-flex items-center justify-center px-9 py-4 bg-surface-container-lowest text-primary font-label-navigation text-label-navigation uppercase tracking-wider transition-colors hover:bg-surface-container rounded-[2px] text-center shadow-sm" data-path="catalog" href="#">
+            Xem sản phẩm
+          </a>
+</div>
+<div class="mt-space-2xl pt-space-md grid grid-cols-3 gap-space-md">
+<div>
+<span class="block font-headline-section text-headline-section text-primary font-light">100%</span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-wider">Chất liệu tự nhiên</span>
+</div>
+<div>
+<span class="block font-headline-section text-headline-section text-primary font-light">360°</span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-wider">Mô hình thực tế 3D</span>
+</div>
+<div>
+<span class="block font-headline-section text-headline-section text-primary font-light">08+</span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-wider">Phòng mẫu kiến trúc</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Asymmetric Architectural Visual with Live Hotspots -->
+<div class="lg:col-span-7 relative order-1 lg:order-2 mb-space-lg lg:mb-0">
+<div class="relative w-full aspect-[4/3] lg:aspect-[16/11] bg-surface-container overflow-hidden rounded-[2px] shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-[1.015]" data-alt="Photorealistic Scandinavian warm minimalist living room architecture, large limestone wall, oiled smoked oak low bench, beige bouclé sofa, floor-to-ceiling soft window light, ceramic vase on textured stone plinth, high-end architectural editorial publication aesthetic, serene muted tones of chalk, sand, and charcoal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNlu314votEl22yGC7ysRGWp49vUDhWm5etcQO5f0HJP-qDz1Ec0vRmuCCH9zOza9-nDkYoJwSHL1IhJ1huwFi5wotlAcreUwPKevjdwqZYUtDtTZmJ7uVglvdeb0aOaUvhj_kBXfbi0GE9kJIjawF0pW-tHmDG9CgcRE7uplK24Tn7gjIdxgc8M-6Gg60_xOolvK3lnlaRVIdT72SC30FosntZsRYzZIhzIr91sQ">
+<!-- Spatial Hotspot 01: Low Bench / Table -->
+<div class="group absolute top-[68%] left-[46%] z-20 cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="absolute w-7 h-7 rounded-full bg-surface-container-lowest/80 animate-ping opacity-75"></span>
+<span class="relative w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center shadow-md">
+<span class="w-1 h-1 rounded-full bg-on-primary"></span>
+</span>
+</div>
+<!-- Hotspot Popover -->
+<div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-surface-container-lowest p-space-sm rounded-[2px] shadow-xl pointer-events-none group-hover:pointer-events-auto">
+<div class="flex items-start gap-space-xs">
+<div class="w-14 h-14 bg-surface-container shrink-0 overflow-hidden rounded-[2px]">
+<img class="w-full h-full object-cover" data-alt="Smoked solid oak low coffee table with clean joinery details, warm architectural studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Q0XnT1d_vAd6XrdnW5taGsC7v3cpnLjWcNiyDxuZGQn9iEWQXPesB7FJVRDTjy9XqxFjo1544zhmllrBwfoSnDbMk6TDPMhEvoE6KIVXhghive_qRlCY5ebuJFpXINdkLKPpDT2aR2MRKqr5yC-0xp1UPcYXoamrdOBMAfekBXDJ5oITLYMdG7cHJLR5XidqD3Hc31eF3sBCkPFomLz7-R1EhXNoeEYMu_3no-Q">
+</div>
+<div class="flex-1 min-w-0">
+<span class="font-label-overline text-label-overline text-secondary uppercase block">Gỗ sồi Hun khói</span>
+<p class="font-title-product text-title-product text-primary leading-tight truncate">Bàn Trà Daukas 47''</p>
+<span class="font-label-price text-label-price text-primary font-medium mt-1 block">$159.99</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Spatial Hotspot 02: Sculptural Floor Lighting -->
+<div class="group absolute top-[32%] right-[24%] z-20 cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="absolute w-7 h-7 rounded-full bg-surface-container-lowest/80 animate-ping opacity-75"></span>
+<span class="relative w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center shadow-md">
+<span class="w-1 h-1 rounded-full bg-on-primary"></span>
+</span>
+</div>
+<!-- Hotspot Popover -->
+<div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 absolute top-full left-1/2 -translate-x-1/2 mt-3 w-60 bg-surface-container-lowest p-space-sm rounded-[2px] shadow-xl pointer-events-none group-hover:pointer-events-auto">
+<span class="font-label-overline text-label-overline text-secondary uppercase block">Đèn sàn Kiến trúc</span>
+<p class="font-title-product text-title-product text-primary leading-tight">Đèn Cột Washi Nought</p>
+<span class="font-label-price text-label-price text-primary font-medium mt-1 block">$220.00</span>
+</div>
+</div>
+<!-- Editorial Watermark Tag -->
+<div class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/90 px-space-sm py-space-2xs backdrop-blur-sm rounded-[2px]">
+<span class="font-label-overline text-label-overline uppercase tracking-widest text-primary">Không gian #01 — Tĩnh lặng Kỷ luật</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: CURATED LIVING SPACES (Shop the Room Horizontal Gallery) -->
+<section class="w-full bg-surface-container-low py-space-3xl">
+<div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
+<div>
+<span class="font-label-overline text-label-overline uppercase tracking-[0.2em] text-secondary block mb-space-2xs">Bộ sưu tập không gian mẫu</span>
+<h2 class="font-headline-section text-headline-section text-primary font-normal">
+            Không gian được tuyển chọn
+          </h2>
+<p class="font-body-default text-body-default text-on-surface-variant max-w-xl mt-space-2xs">
+            Những bố cục thẩm mỹ dung hòa giữa ánh sáng, vật liệu tự nhiên và công năng.
+          </p>
+</div>
+<a class="group inline-flex items-center gap-space-2xs font-label-navigation text-label-navigation uppercase tracking-wider text-primary hover:text-secondary transition-colors pb-1" data-path="shop-the-room" href="#">
+<span>Xem tất cả không gian</span>
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+<!-- 3 Room Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop">
+<!-- Room Card 1 -->
+<article class="group bg-surface-container-lowest flex flex-col rounded-[2px] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative aspect-[16/10] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]" data-alt="Modern Bohemian curated living space with low-profile raw linen sofa, hand-woven jute area rug, potted olive tree, plaster walls and warm terracotta accessories, editorial interior photography in soft morning sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUdR2LFcBMfWJhSwthK6lBrkJjykUJGK_KcLX42f6xoGOE2SlaC4qs6ZezX8-NAcjj2SoQbrs3SJ5E9oYn8JEuDfrgTFKBy8wyylZfay3GP60pwkda6uQP_d9ejFACJXXP-m1B2TOmmZycQcrHN6t3vcWHt3Z0mKBJnYDxtgg0IY7IBFvSnlKGbK5eK_ZvRZDjFccEM2I8sq99q8-nIpIGhB-R_Re5inyBBLFFbxQ">
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-space-xs py-1 bg-surface-container-lowest font-label-overline text-label-overline uppercase text-primary tracking-widest rounded-[2px] shadow-sm">
+                Bohemian
+              </span>
+</div>
+<div class="absolute bottom-space-sm right-space-sm bg-primary/80 text-on-primary px-space-xs py-1 rounded-[2px] font-body-mono-spec text-[12px] backdrop-blur-xs">
+              04 Món đồ liên kết
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-widest block mb-1">Living Room · Kỷ nguyên thứ 3</span>
+<h3 class="font-title-product text-[24px] text-primary leading-snug mb-space-2xs">
+                Phòng khách Bohemian Hiện Đại
+              </h3>
+<p class="font-body-default text-body-default text-on-surface-variant line-clamp-2 mb-space-md">
+                Sự hòa trộn tinh giản giữa mây tre đan thủ công, vải thô mộc và đường nét hình học sắc sảo, tôn vinh chiều sâu tự nhiên.
+              </p>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<a class="font-label-navigation text-label-navigation uppercase tracking-wider text-primary group-hover:text-secondary inline-flex items-center gap-1" data-path="shop-the-room" href="#">
+                Khám phá căn phòng <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+<span class="font-label-price text-label-price text-secondary">Từ $570.00</span>
+</div>
+</div>
+</article>
+<!-- Room Card 2 -->
+<article class="group bg-surface-container-lowest flex flex-col rounded-[2px] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative aspect-[16/10] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]" data-alt="Minimalist Scandinavian dining room, light ash wood dining table, curved minimalist dining chairs, paper pendant lamp hanging low, large picture window with diffused daylight, clean white surfaces and quiet discipline." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC33kRkUWSd41oSEGqPEBE8Co5oq93fksRnqT0oD53YD1Z8pJzhsN1CtBsidadrMXWHpdpBIq_2qgsaRBmn0QaLD6oyIREekqBQPgByiJiqhzhrRTemhCGOrT09jCR5Yjq8YyNbnpCd2_rFRMx_a9Vzbc04uhxJGmfpfTJexBK7gNFTy5CTtmzGiaGGDcDi-pyw0OKTGr7-7S02nZOFRAtTogQTSdLqBOWRZNeyZKU">
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-space-xs py-1 bg-surface-container-lowest font-label-overline text-label-overline uppercase text-primary tracking-widest rounded-[2px] shadow-sm">
+                Scandinavian
+              </span>
+</div>
+<div class="absolute bottom-space-sm right-space-sm bg-primary/80 text-on-primary px-space-xs py-1 rounded-[2px] font-body-mono-spec text-[12px] backdrop-blur-xs">
+              06 Món đồ liên kết
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-widest block mb-1">Dining Space · Cân bằng tĩnh học</span>
+<h3 class="font-title-product text-[24px] text-primary leading-snug mb-space-2xs">
+                Phòng ăn Scandinavian Tối Giản
+              </h3>
+<p class="font-body-default text-body-default text-on-surface-variant line-clamp-2 mb-space-md">
+                Gỗ sồi tự nhiên kết hợp cùng ánh sáng tán xạ mềm, mang lại bầu không khí ấm cúng nhưng tuyệt đối trật tự và ngăn nắp.
+              </p>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<a class="font-label-navigation text-label-navigation uppercase tracking-wider text-primary group-hover:text-secondary inline-flex items-center gap-1" data-path="shop-the-room" href="#">
+                Khám phá căn phòng <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+<span class="font-label-price text-label-price text-secondary">Từ $840.00</span>
+</div>
+</div>
+</article>
+<!-- Room Card 3 -->
+<article class="group bg-surface-container-lowest flex flex-col rounded-[2px] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative aspect-[16/10] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]" data-alt="Mid-century modern master bedroom interior, rich walnut bed frame with brass accents, washed neutral linen bedding, low walnut nightstand with brutalist ceramic lamp, muted olive and warm timber tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9C1HBYTOLbA8AR4leKbpUAdugWBNMxbbW6MBzpTAVNaghQQMgbGkTw7g8GQW40k71qKT7v-hx5l5UeNVgKDjxN6mUFbbJa804iBSozDAd8tek7rMhgzY8kHGsjRVpD989GazlEjOpicef4ImZ-2hUyc0solcbj3kJe_3uUxYdZxPzXIt-pYCHQ8LQ_p8jaX8d2-947xFfXsRMpeToa7VZ-uBtssY2SLumQPcxgvs">
+<div class="absolute top-space-sm left-space-sm">
+<span class="px-space-xs py-1 bg-surface-container-lowest font-label-overline text-label-overline uppercase text-primary tracking-widest rounded-[2px] shadow-sm">
+                Mid-century Modern
+              </span>
+</div>
+<div class="absolute bottom-space-sm right-space-sm bg-primary/80 text-on-primary px-space-xs py-1 rounded-[2px] font-body-mono-spec text-[12px] backdrop-blur-xs">
+              05 Món đồ liên kết
+            </div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-widest block mb-1">Bedroom · Chiều sâu xúc cảm</span>
+<h3 class="font-title-product text-[24px] text-primary leading-snug mb-space-2xs">
+                Phòng ngủ Mid-century Tĩnh Tại
+              </h3>
+<p class="font-body-default text-body-default text-on-surface-variant line-clamp-2 mb-space-md">
+                Sự trầm mặc của gỗ óc chó nguyên khối hòa nhịp với chất liệu linen mộc mạc, tạo nên một chốn an trú riêng tư trọn vẹn.
+              </p>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<a class="font-label-navigation text-label-navigation uppercase tracking-wider text-primary group-hover:text-secondary inline-flex items-center gap-1" data-path="shop-the-room" href="#">
+                Khám phá căn phòng <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+<span class="font-label-price text-label-price text-secondary">Từ $1,120.00</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- SECTION 3: HOW SHOP THE ROOM WORKS (Spatial Narrative Step Flow) -->
+<section class="w-full max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin py-space-3xl">
+<div class="max-w-3xl mb-space-2xl">
+<span class="font-label-overline text-label-overline uppercase tracking-[0.2em] text-secondary block mb-space-2xs">Phương thức tương tác</span>
+<h2 class="font-headline-section text-headline-section text-primary font-normal leading-tight">
+        Trải nghiệm Shop the Room hoạt động như thế nào
+      </h2>
+<p class="font-body-default text-body-default text-on-surface-variant mt-space-2xs">
+        Quy trình số hóa giúp thu hẹp khoảng cách giữa ý niệm kiến trúc và vật thể thực tế trong căn nhà của bạn.
+      </p>
+</div>
+<!-- 3 Step Columns with Asymmetrical Details -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<!-- Step 01 -->
+<div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-[2px] shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-xl">
+<span class="font-headline-page text-headline-page text-surface-container-highest group-hover:text-primary transition-colors duration-300 font-light select-none">
+            01
+          </span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">ads_click</span>
+</div>
+</div>
+<div>
+<h3 class="font-title-product text-title-product text-primary mb-space-xs font-medium">
+            Tương tác Hotspot
+          </h3>
+<p class="font-body-default text-body-default text-on-surface-variant leading-relaxed">
+            Chạm vào điểm ghim trên ảnh thực tế để mở thông tin sản phẩm tức thì, bao gồm kích thước tỷ lệ, nhà chế tác và báo giá chi tiết.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-wider">Định vị vật thể chuẩn xác</span>
+</div>
+</div>
+<!-- Step 02 -->
+<div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-[2px] shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-xl">
+<span class="font-headline-page text-headline-page text-surface-container-highest group-hover:text-primary transition-colors duration-300 font-light select-none">
+            02
+          </span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">view_in_ar</span>
+</div>
+</div>
+<div>
+<h3 class="font-title-product text-title-product text-primary mb-space-xs font-medium">
+            Trải nghiệm 3D Viewer
+          </h3>
+<p class="font-body-default text-body-default text-on-surface-variant leading-relaxed">
+            Xoay 360 độ và phóng to chi tiết vân gỗ, độ nhám bề mặt đá hay thớ dệt sợi tự nhiên trước khi đưa ra quyết định đặt mua.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-wider">Mô phỏng quang phổ thực</span>
+</div>
+</div>
+<!-- Step 03 -->
+<div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-[2px] shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-xl">
+<span class="font-headline-page text-headline-page text-surface-container-highest group-hover:text-primary transition-colors duration-300 font-light select-none">
+            03
+          </span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">auto_awesome_mosaic</span>
+</div>
+</div>
+<div>
+<h3 class="font-title-product text-title-product text-primary mb-space-xs font-medium">
+            Hoàn thiện không gian
+          </h3>
+<p class="font-body-default text-body-default text-on-surface-variant leading-relaxed">
+            Nhận gợi ý những mảnh ghép nội thất đồng điệu để kiến tạo căn phòng hoàn hảo với bảng phối màu và tỷ lệ tương hỗ nhau.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-wider">Đồng bộ phối cảnh trọn gói</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: CURATED PRODUCTS (4 Canonical Project Products) -->
+<section class="w-full bg-surface-container-low py-space-3xl">
+<div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin">
+<!-- Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-space-2xl gap-space-md">
+<div>
+<span class="font-label-overline text-label-overline uppercase tracking-[0.2em] text-secondary block mb-space-2xs">Bảo chứng nguồn gốc</span>
+<h2 class="font-headline-section text-headline-section text-primary font-normal">
+            Tuyển chọn nội thất mới nhất
+          </h2>
+<p class="font-body-default text-body-default text-on-surface-variant mt-space-2xs">
+            Những hiện vật thủ công được chế tác theo tiêu chuẩn thẩm mỹ nguyên bản.
+          </p>
+</div>
+<a class="font-label-navigation text-label-navigation uppercase tracking-wider text-primary hover:text-secondary transition-colors inline-flex items-center gap-1" data-path="catalog" href="#">
+<span>Toàn bộ danh mục</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- 4-Column Grid with the 4 Exact Project Items -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+<!-- Product 01: Daukas 47'' Dining Table -->
+<div class="flex flex-col bg-surface-container-lowest rounded-[2px] p-space-sm shadow-sm hover:shadow-md transition-all duration-300 group">
+<!-- Image Inset Container (#EEEEEC) with Wishlist Button Outside Image Boundary -->
+<div class="relative w-full aspect-square bg-surface-container rounded-[2px] overflow-hidden flex items-center justify-center p-space-md mb-space-md">
+<img class="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" data-alt="Daukas 47 inch wooden dining table minimal rounded rectangular silhouette solid light oak grain architectural furniture isolated shot studio lighting warm neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw7NKHjSRFj-fe9V1vjGZJI8K0uWLE9Nbgler1tsiMROsoedlaVANCayWH1ym8UxwX2gDzlXJUuvQU1S1iqfKEIU63-wuP34G34WKALY_rb8BE9TtfwSjEzQy3AY58CWNhR5So38OK44RnLx0Sy-teyHAYonggSxfSeW90f4J3zzznMkhBaGamNWtu-ZxiaVVyllVJrplIkxe6hmaHXqxKzBM4FVjJKHUccgrPTrw">
+<div class="absolute top-3 left-3">
+<span class="font-label-overline text-label-overline uppercase text-primary bg-surface-container-lowest px-2 py-0.5 rounded-[2px]">
+                Dining Tables &amp; Chairs
+              </span>
+</div>
+<!-- Interactive 3D quick badge -->
+<div class="absolute bottom-3 right-3 bg-primary text-on-primary text-[10px] uppercase font-label-navigation px-2 py-0.5 rounded-[2px] flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">3d_rotation</span> 3D
+            </div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-wider">Wayfair</span>
+<span class="font-body-mono-spec text-[12px] text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Còn hàng
+                </span>
+</div>
+<h3 class="font-title-product text-title-product text-primary font-medium leading-snug mb-space-xs">
+                Daukas 47'' Dining Table
+              </h3>
+</div>
+<div class="pt-space-sm mt-auto">
+<div class="flex items-baseline gap-space-xs mb-space-sm">
+<span class="font-label-price text-label-price text-primary font-semibold">$159.99</span>
+<span class="font-body-mono-spec text-secondary text-sm line-through">$169.99</span>
+</div>
+<!-- Action Bar with Favorite Outside Media -->
+<div class="flex items-center gap-2">
+<a class="flex-1 py-3 text-center bg-primary text-on-primary font-label-navigation text-[12px] uppercase tracking-wider hover:bg-surface-tint transition-colors rounded-[2px]" data-path="catalog" href="#">
+                  Xem chi tiết
+                </a>
+<button aria-label="Yêu thích sản phẩm" class="p-2.5 bg-surface-container hover:bg-surface-container-high text-primary transition-colors rounded-[2px] flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 02: Outdoor Wooden Loveseat With Cushions -->
+<div class="flex flex-col bg-surface-container-lowest rounded-[2px] p-space-sm shadow-sm hover:shadow-md transition-all duration-300 group">
+<!-- Image Inset Container -->
+<div class="relative w-full aspect-square bg-surface-container rounded-[2px] overflow-hidden flex items-center justify-center p-space-md mb-space-md">
+<img class="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" data-alt="Outdoor wooden loveseat bench with deep oatmeal woven cushions teak wood frame clean architectural lines warm Scandinavian terrace setting isolated furniture photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTYVya0cYaWa50FT0TcqgVVcKFh25sTjEKMkx86ICJ5W_8IRATRjisqxQkRi9HLeysv_V0h6a6MEZmf9DPRiD8-6t44Hsj3m3_9tQhJWn9SaErJhf3MVeUyE2GC4lPfe4LM8hyajejLyHQZHErKOxC6EYPrcrKSz2fV-vFDPBxwMFhLVD4XlBGg0HlM5i_NccWyup7nBOlUPOXV2-q2oSkGGNRjelIey1t-4mh53k">
+<div class="absolute top-3 left-3">
+<span class="font-label-overline text-label-overline uppercase text-primary bg-surface-container-lowest px-2 py-0.5 rounded-[2px]">
+                Sofas &amp; Sectionals
+              </span>
+</div>
+<div class="absolute bottom-3 right-3 bg-primary text-on-primary text-[10px] uppercase font-label-navigation px-2 py-0.5 rounded-[2px] flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">3d_rotation</span> 3D
+            </div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-wider">Wayfair</span>
+<span class="font-body-mono-spec text-[12px] text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Còn hàng
+                </span>
+</div>
+<h3 class="font-title-product text-title-product text-primary font-medium leading-snug mb-space-xs">
+                Outdoor Wooden Loveseat With Cushions
+              </h3>
+</div>
+<div class="pt-space-sm mt-auto">
+<div class="flex items-baseline gap-space-xs mb-space-sm">
+<span class="font-label-price text-label-price text-primary font-semibold">$286.99</span>
+<span class="font-body-mono-spec text-secondary text-sm line-through">$335.99</span>
+</div>
+<!-- Action Bar -->
+<div class="flex items-center gap-2">
+<a class="flex-1 py-3 text-center bg-primary text-on-primary font-label-navigation text-[12px] uppercase tracking-wider hover:bg-surface-tint transition-colors rounded-[2px]" data-path="catalog" href="#">
+                  Xem chi tiết
+                </a>
+<button aria-label="Yêu thích sản phẩm" class="p-2.5 bg-surface-container hover:bg-surface-container-high text-primary transition-colors rounded-[2px] flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 03: Woven Storage Bin -->
+<div class="flex flex-col bg-surface-container-lowest rounded-[2px] p-space-sm shadow-sm hover:shadow-md transition-all duration-300 group">
+<!-- Image Inset Container -->
+<div class="relative w-full aspect-square bg-surface-container rounded-[2px] overflow-hidden flex items-center justify-center p-space-md mb-space-md">
+<img class="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" data-alt="Handcrafted cylindrical woven storage bin natural organic seagrass and rattan fibers textured tactile minimalist craft product on chalky stone plinth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbJxJqaFXZizbwMuguRIoGMWId7F0PJoLZTUxfR-y3wDhv7hRyrQH-uazt6JGlmcEcqV0aqSS5J-uH2fU2szxKhJKE3e5IAdaO3J9y4Y76oTIPpMQXpta58jERy7FHIw1o-l-WsHOCIIUvu01VnaML893eX0xNrPOx84FRZSAyyHt-512n98zim-fMj33ohd5aXuA4qWjYccSdcGNR_ce1RvunMnfdd5gY61UDUj0">
+<div class="absolute top-3 left-3">
+<span class="font-label-overline text-label-overline uppercase text-primary bg-surface-container-lowest px-2 py-0.5 rounded-[2px]">
+                Other
+              </span>
+</div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-wider">Wayfair</span>
+<span class="font-body-mono-spec text-[12px] text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Còn hàng
+                </span>
+</div>
+<h3 class="font-title-product text-title-product text-primary font-medium leading-snug mb-space-xs">
+                Woven Storage Bin
+              </h3>
+</div>
+<div class="pt-space-sm mt-auto">
+<div class="flex items-baseline gap-space-xs mb-space-sm">
+<span class="font-label-price text-label-price text-primary font-semibold">$59.00</span>
+</div>
+<!-- Action Bar -->
+<div class="flex items-center gap-2">
+<a class="flex-1 py-3 text-center bg-primary text-on-primary font-label-navigation text-[12px] uppercase tracking-wider hover:bg-surface-tint transition-colors rounded-[2px]" data-path="catalog" href="#">
+                  Xem chi tiết
+                </a>
+<button aria-label="Yêu thích sản phẩm" class="p-2.5 bg-surface-container hover:bg-surface-container-high text-primary transition-colors rounded-[2px] flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 04: Surya Pillow Cover -->
+<div class="flex flex-col bg-surface-container-lowest rounded-[2px] p-space-sm shadow-sm hover:shadow-md transition-all duration-300 group">
+<!-- Image Inset Container -->
+<div class="relative w-full aspect-square bg-surface-container rounded-[2px] overflow-hidden flex items-center justify-center p-space-md mb-space-md">
+<img class="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" data-alt="Surya textured artisanal 18x18 throw pillow cover tactile woven linen cotton blend neutral beige oatmeal subtle geometric threads editorial styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClB8NivcM-4x-FdoEL_eEelhanfSO7Tsq1HQLDmAa9xQ8ey41zuCvQpBBvsm6Ky2khCbC_mBHSBVFJ5JMhyDI0st1ohEiF-OaaH5vJ-1AgKZRI34ku9yMw90KP0mY9TqYrSo2u3zw6fNOYf5IUSWJRfd68ybWSon5KcStSmM_T5_wHw39kD0d0jM6JX3WWObJ-bo7FONS5dwefcNTFElFz_F7VvP3OtaFWuQy0i5A">
+<div class="absolute top-3 left-3">
+<span class="font-label-overline text-label-overline uppercase text-primary bg-surface-container-lowest px-2 py-0.5 rounded-[2px]">
+                Throw Pillows
+              </span>
+</div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-overline text-label-overline text-secondary uppercase tracking-wider">Surya</span>
+<span class="font-body-mono-spec text-[12px] text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Còn hàng
+                </span>
+</div>
+<h3 class="font-title-product text-title-product text-primary font-medium leading-snug mb-space-xs">
+                Safflower SAFF-7194 18"L x 18"W Pillow Cover
+              </h3>
+</div>
+<div class="pt-space-sm mt-auto">
+<div class="flex items-baseline gap-space-xs mb-space-sm">
+<span class="font-label-price text-label-price text-primary font-semibold">$65.00</span>
+</div>
+<!-- Action Bar -->
+<div class="flex items-center gap-2">
+<a class="flex-1 py-3 text-center bg-primary text-on-primary font-label-navigation text-[12px] uppercase tracking-wider hover:bg-surface-tint transition-colors rounded-[2px]" data-path="catalog" href="#">
+                  Xem chi tiết
+                </a>
+<button aria-label="Yêu thích sản phẩm" class="p-2.5 bg-surface-container hover:bg-surface-container-high text-primary transition-colors rounded-[2px] flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: ABOUT ROOMCRAFT (Architectural Manifesto Spread) -->
+<section class="w-full max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin py-space-3xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Left Column: Photographic Provenance & Materiality -->
+<div class="lg:col-span-6 relative">
+<div class="relative w-full aspect-[5/4] bg-surface-container overflow-hidden rounded-[2px] shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Sculptural travertine stone pedestal with a raw turned timber vessel, hand-troweled limestone plaster wall background, warm ambient gallery lighting, serene aesthetic inspired by Norm Architects studio portfolio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkzsfrJdhQ955dRRC6F3v-RWyZdWj7d6B8gEv29hzrc1fADzie3Tg1QijMCW9rR5Ta3NGnya6zGtQlZjI7UmPWwVLLqFYq0TTv89SeRRHUoVc64Oryz2gHSadUAlazSLP5SzWAEks8qBns8JBRJFqkE8nvRkVSS4FrmUL9iCrj92Swnh8EGWUAacH4tQczOKIEcqvKV5hooXvTSc5-Ih-AIOu_rbXIUIuLEq91sa8">
+</div>
+<!-- Inset Micro Accent Block -->
+<div class="absolute -bottom-8 -right-8 w-48 h-48 bg-surface-container-lowest p-space-md hidden sm:flex flex-col justify-between rounded-[2px] shadow-lg">
+<span class="font-label-overline text-label-overline uppercase text-secondary tracking-widest">Triết lý cốt lõi</span>
+<p class="font-title-product text-sm text-primary italic leading-relaxed">
+            "Vật liệu chân thật không cần lớp vỏ trang trí hào nhoáng."
+          </p>
+<span class="font-body-mono-spec text-[11px] text-secondary">Hà Nội &amp; Sài Gòn</span>
+</div>
+</div>
+<!-- Right Column: Design Philosophy Statement -->
+<div class="lg:col-span-6 lg:pl-space-xl flex flex-col justify-center mt-space-xl lg:mt-0">
+<span class="font-label-overline text-label-overline uppercase tracking-[0.2em] text-secondary block mb-space-sm">Về ROOMCRAFT</span>
+<h2 class="font-headline-section text-[32px] lg:text-[40px] text-primary font-normal leading-[1.25] mb-space-md">
+          “Chúng tôi tin rằng ngôi nhà không phải nơi để lấp đầy bằng đồ đạc, mà là không gian nuôi dưỡng cảm xúc từ những tỉ lệ và chất liệu tự nhiên thuần khiết.”
+        </h2>
+<div class="space-y-space-md font-body-default text-body-default text-on-surface-variant leading-relaxed font-light max-w-xl">
+<p>
+            Được thành lập với tầm nhìn kết nối ngôn ngữ nội thất đương đại và tinh hoa chế tác, ROOMCRAFT tuyển chọn những tuyệt tác mang tính vượt thời gian từ các studio kiến trúc uy tín trên toàn cầu.
+          </p>
+<p>
+            Mỗi bộ sưu tập được ra đời dựa trên sự tôn trọng tuyệt đối dành cho nguyên bản: từ vân đá vôi Travertine, bề mặt gỗ sồi hun khói đến sợi dệt gai mộc. Chúng tôi loại bỏ mọi chi tiết thừa để nhường chỗ cho ánh sáng, khoảng lặng và những đối thoại bình yên trong tâm trí người thưởng lãm.
+          </p>
+</div>
+<div class="pt-space-xl flex items-center gap-space-lg">
+<a class="inline-flex items-center gap-2 font-label-navigation text-label-navigation uppercase tracking-wider text-primary hover:text-secondary transition-colors pb-1 border-b border-primary" data-path="about" href="#">
+<span>Tìm hiểu thêm về hành trình chế tác</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: CURATED NEWSLETTER BANNER (Tactile Tone on Tone) -->
+<section class="w-full bg-surface-container py-space-2xl">
+<div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-xl">
+<div class="max-w-xl">
+<span class="font-label-overline text-label-overline uppercase tracking-[0.2em] text-secondary block mb-space-2xs">Ấn phẩm kiến trúc</span>
+<h3 class="font-title-product text-[28px] text-primary font-normal leading-tight">
+            Nhận ấn bản không gian và cảm hứng sắp đặt hàng tháng
+          </h3>
+<p class="font-body-default text-body-default text-on-surface-variant mt-2 font-light">
+            Không thư rác, không quảng cáo ồn ào. Chỉ gồm các tiểu luận về vật liệu và bản đồ thị giác độc quyền.
+          </p>
+</div>
+<div class="w-full lg:w-auto flex-1 max-w-md">
+<form class="flex flex-col sm:flex-row gap-2 w-full" onsubmit="event.preventDefault();">
+<input class="flex-1 h-12 px-4 bg-surface-container-lowest text-primary font-body-default text-body-default placeholder:text-secondary focus:outline-none focus:ring-1 focus:ring-primary rounded-[2px] shadow-sm" placeholder="Nhập email của bạn..." required="" type="email">
+<button class="h-12 px-8 bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider hover:bg-surface-tint transition-colors rounded-[2px] shrink-0" type="submit">
+              Gia nhập
+            </button>
+</form>
+<span class="font-label-overline text-label-overline text-secondary uppercase block mt-2">Được hơn 12,000 kiến trúc sư và người yêu nghệ thuật theo dõi</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Simple micro-interaction for product favorite toggling
+  document.querySelectorAll('button[aria-label="Yêu thích sản phẩm"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (icon) {
+        if (icon.textContent === 'favorite_border') {
+          icon.textContent = 'favorite';
+          icon.style.fontVariationSettings = "'FILL' 1";
+          btn.classList.add('text-primary');
+        } else {
+          icon.textContent = 'favorite_border';
+          icon.style.fontVariationSettings = "'FILL' 0";
+        }
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container border-t border-surface-dim pt-space-3xl pb-space-2xl"><div class="max-w-[1920px] mx-auto px-margin-mobile md:px-margin-tablet xl:px-margin grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><img alt="ROOMCRAFT Logo" class="h-7 w-auto object-contain" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4="><span class="font-brand-logo text-brand-logo tracking-wider text-primary uppercase">ROOMCRAFT</span></div><p class="font-body-default text-body-default text-secondary max-w-sm leading-relaxed">Kiến tạo trật tự không gian sống tĩnh lặng qua chất liệu nguyên bản và ngôn ngữ tối giản kỷ luật.</p><span class="font-label-overline text-label-overline text-secondary uppercase tracking-widest mt-auto">© 2025 ROOMCRAFT ARCHITECTURE</span></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest mb-space-xs">Điều hướng không gian</h3><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="home" href="#">Trang chủ</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="styles" href="#">Khám phá phong cách</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="catalog" href="#">Danh mục sản phẩm</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="shop-the-room" href="#">Không gian mẫu (Shop the Room)</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="about" href="#">Về ROOMCRAFT</a></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest mb-space-xs">Hỗ trợ &amp; Pháp lý</h3><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="terms-conditions" href="#">Điều khoản mua sắm</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="privacy-policy" href="#">Chính sách bảo mật</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="shipping-returns" href="#">Chính sách giao nhận &amp; Giám định</a><a class="font-body-default text-body-default text-secondary hover:text-primary transition-colors" data-path="material-care" href="#">Bảo tồn chất liệu</a></div><div class="flex flex-col gap-space-md"><h3 class="font-label-navigation text-label-navigation uppercase text-primary tracking-widest">Tuyển chọn nội thất</h3><p class="font-body-default text-body-default text-secondary leading-relaxed">Nhận thông báo về các ấn phẩm bộ sưu tập giới hạn và tiểu luận kiến trúc không gian.</p><div class="flex flex-col gap-space-xs"><div class="flex w-full"><input class="flex-1 h-12 px-4 bg-surface-container-lowest border border-surface-dim font-body-default text-body-default text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary rounded-none" placeholder="Địa chỉ email của bạn" type="email"><button class="h-12 px-space-md bg-primary text-on-primary font-label-navigation text-label-navigation uppercase tracking-wider hover:bg-tertiary-container hover:text-on-tertiary-container transition-colors rounded-none" type="button">Đăng ký</button></div><span class="font-label-overline text-label-overline text-secondary uppercase">Bản quyền tuyển tập phát hành định kỳ</span></div></div></div></footer></body></html>
