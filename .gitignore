@@ -24,3 +24,6 @@ data/export/
 
 # Khóa bí mật Google (không bao giờ đưa lên GitHub)
 client_secret*.json
+
+# Log chạy Kaggle (không đưa lên GitHub)
+assets/models/logs/
