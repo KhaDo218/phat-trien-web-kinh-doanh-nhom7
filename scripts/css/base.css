@@ -468,7 +468,85 @@ textarea.input{
     color: #686868;
 }
 
-/* ---------- 9. Màn hình nhỏ ---------- */
+/* ---------- 9. Popup (modal) - dùng cho Điều khoản dịch vụ, có thể dùng lại ---------- */
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(32, 32, 32, 0.55);
+}
+.modal.hidden{
+    display: none;
+}
+.modal-box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 760px;
+    max-height: 86vh;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+}
+.modal-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 32px 40px 20px;
+    border-bottom: 1px solid #DADAD7;
+}
+.modal-head .overline{
+    margin-bottom: 4px;
+}
+.modal-body{
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 40px;
+}
+.modal-foot{
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 40px;
+    border-top: 1px solid #DADAD7;
+}
+.terms-toc{
+    margin-bottom: 32px;
+    padding: 16px 20px;
+    background: #F7F7F5;
+    column-count: 2;
+    column-gap: 24px;
+    font-size: 13px;
+    line-height: 26px;
+}
+.terms-toc a{
+    color: #686868;
+}
+.terms-toc a:hover{
+    color: #202020;
+    text-decoration: underline;
+}
+.terms-section{
+    margin-bottom: 28px;
+}
+.terms-section h3{
+    margin-bottom: 10px;
+}
+.terms-section p{
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 23px;
+    color: #383838;
+}
+
+/* ---------- 10. Màn hình nhỏ ---------- */
 @media (max-width: 1024px){
     .container{
         padding: 0 40px;
@@ -532,6 +610,20 @@ textarea.input{
     }
     #footer .columns > div{
         margin-top: 32px;
+    }
+    .modal{
+        padding: 0;
+    }
+    .modal-box{
+        max-height: 100vh;
+        height: 100%;
+    }
+    .modal-head, .modal-body, .modal-foot{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .terms-toc{
+        column-count: 1;
     }
 }
 @media (max-width: 480px){
