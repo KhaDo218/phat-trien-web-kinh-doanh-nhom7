@@ -1,7 +1,59 @@
 /* =====================================================================
    ROOMCRAFT - CSS riêng của trang register.html
    Người phụ trách: Quỳnh Kha
-   Màu, font, nút, ô nhập dùng class có sẵn trong base.css
-   (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
+   Khung .auth-box, .auth-row, .auth-note lấy từ login.css.
+   Phần OTP (.otp-demo, .otp-input...) dùng chung cho forgot-password.html.
    ===================================================================== */
+
+.auth-box-wide{
+    max-width: 640px;
+}
+.form-row{
+    display: flex;
+    gap: 16px;
+}
+.form-row .form-group{
+    flex: 1;
+}
+.auth-row a{
+    text-decoration: underline;
+}
+.auth-desc{
+    margin: -16px 0 24px;
+    font-size: 14px;
+}
+
+/* Khung "email mô phỏng" hiện mã OTP */
+.otp-demo{
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: #EEEEEC;
+    border-left: 2px solid #202020;
+    font-size: 14px;
+}
+.otp-demo p{
+    margin-top: 4px;
+}
+.otp-demo b{
+    font-size: 18px;
+    letter-spacing: 0.2em;
+}
+.otp-input{
+    font-size: 22px;
+    letter-spacing: 0.5em;
+    text-align: center;
+}
+.otp-actions{
+    margin-top: 20px;
+}
+.otp-actions a.disabled{
+    color: #686868;
+    text-decoration: none;
+    cursor: default;
+}
+
+@media (max-width: 768px){
+    .form-row{
+        display: block;
+    }
+}

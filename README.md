@@ -269,9 +269,9 @@ git push -u origin duy/rooms                  # rồi lên GitHub tạo Pull Req
   ```
   `initPage()` của trang luôn gọi `renderHeader("muc-menu")`, `renderFooter()`, `renderChatbot()` rồi mới tới phần riêng. Trang cần đăng nhập gọi `requireLogin()` đầu tiên; trang admin gọi `requireAdmin()` + `renderAdminSidebar("muc")` (trang admin thêm `../` trước các đường dẫn, xem `scripts/admin/products.html`).
 - Hàm dùng chung có sẵn (đọc chú thích đầu mỗi file để biết cách gọi):
-  - `utils.js`: `asset()`, `formatVND()`, `getParam()`, `formatDate()`, `checkEmail()`, `checkPhone()`, `sha256()`
+  - `utils.js`: `asset()`, `formatVND()`, `getParam()`, `formatDate()`, `checkEmail()`, `checkPhone()`, `checkPasswordRule()`, `sha256()`
   - `store.js`: `getTable()`, `saveTable()`, `findById()`, `getNextId()`, `getObject()`, `saveObject()`, `resetData()`
-  - `auth.js`: `login()`, `logout()`, `getCurrentUser()`, `isLoggedIn()`, `isAdmin()`, `requireLogin()`, `requireAdmin()`
+  - `auth.js`: `login()`, `loginWithGoogle()`, `logout()`, `getCurrentUser()`, `isLoggedIn()`, `isAdmin()`, `requireLogin()`, `requireAdmin()`, `findUserByEmail()`, `findUserByPhone()`, `createVerificationCode()`, `checkVerificationCode()`
   - `header.js`: `updateCartCount()` (gọi sau khi sửa giỏ hàng)
 - Class giao diện có sẵn trong `base.css`: `.container`, `.section`, `.grid-3`, `.grid-4`, `.headline-page`, `.headline-section`, `.title-product`, `.overline`, `.lead`, `.price`, `.price-old`, `.btn`, `.btn-outline`, `.btn-light`, `.btn-link`, `.input`, `.form-group`, `.card`, `.chip`, `.badge`, `.badge-stock`, `.breadcrumb`, `.error-text`. Trang admin thêm `.table`, `.toolbar`, `.stat-card` trong `admin.css`.
 - Phải mở trang bằng **Live Server** (mở thẳng file thì không đọc được `data/json`). Sửa file JSON xong muốn web nạp lại: mở Console gõ `resetData()`.

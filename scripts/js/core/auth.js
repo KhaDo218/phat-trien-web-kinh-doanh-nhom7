@@ -8,6 +8,10 @@
      loginWithGoogle(credential) -> giống login(), dùng cho nút "Đăng nhập bằng Google"
      logout()
      getSession(), getCurrentUser(), isLoggedIn(), isAdmin()
+     findUserByEmail(email), findUserByPhone(sdt)   không có trả về null
+     createVerificationCode(email, mucDich)    tạo mã OTP 6 số (mô phỏng gửi email), trả về mã
+     checkVerificationCode(email, mucDich, ma) -> "" nếu mã đúng, ngược lại trả về câu báo lỗi
+       mucDich: "REGISTER" (đăng ký) hoặc "RESET_PASSWORD" (quên mật khẩu)
      requireLogin()         đặt đầu trang cần đăng nhập (giỏ hàng, đơn hàng...)
      requireAdmin()         đặt đầu mọi trang trong admin/
    Tài khoản mẫu: admin@roomcraft.vn / Admin@123, user@roomcraft.vn / User@123
@@ -134,4 +138,69 @@ function requireAdmin(){
         return false;
     }
     return true;
+}
+
+function findUserByEmail(email){
+    var users = getTable("users");
+    for(var i = 0; i < users.length; i++){
+        if(users[i].email.toLowerCase() == email.trim().toLowerCase())
+            return users[i];
+    }
+    return null;
+}
+
+function findUserByPhone(sdt){
+    var users = getTable("users");
+    for(var i = 0; i < users.length; i++){
+        if(users[i].phone != null && users[i].phone == sdt.trim())
+            return users[i];
+    }
+    return null;
+}
+
+// ----- Mã xác minh OTP (mô phỏng: không gửi email thật, trang tự hiện mã ra) -----
+var OTP_MINUTES = 5;      // mã hết hạn sau 5 phút
+
+function createVerificationCode(email, mucDich){
+    var ma = "";
+    for(var i = 0; i < 6; i++)
+        ma = ma + Math.floor(Math.random() * 10);
+
+    var codes = getTable("verification_codes");
+    // mã cũ cùng email, cùng mục đích chưa dùng thì vô hiệu hóa
+    for(var i = 0; i < codes.length; i++){
+        if(codes[i].email == email && codes[i].purpose == mucDich)
+            codes[i].is_used = true;
+    }
+    var bayGio = new Date();
+    var hetHan = new Date(bayGio.getTime() + OTP_MINUTES * 60 * 1000);
+    codes.push({
+        id: getNextId("verification_codes"),
+        email: email,
+        code: ma,
+        purpose: mucDich,
+        expires_at: hetHan.toISOString(),
+        is_used: false,
+        created_at: bayGio.toISOString()
+    });
+    saveTable("verification_codes", codes);
+    return ma;
+}
+
+function checkVerificationCode(email, mucDich, ma){
+    var codes = getTable("verification_codes");
+    var dong = null;
+    for(var i = 0; i < codes.length; i++){
+        if(codes[i].email == email && codes[i].purpose == mucDich && codes[i].is_used == false)
+            dong = codes[i];
+    }
+    if(dong == null)
+        return "Không tìm thấy mã xác minh, vui lòng bấm Gửi lại mã!";
+    if(new Date() > new Date(dong.expires_at))
+        return "Mã xác minh đã hết hạn, vui lòng bấm Gửi lại mã!";
+    if(dong.code != ma.trim())
+        return "Mã xác minh không đúng!";
+    dong.is_used = true;
+    saveTable("verification_codes", codes);
+    return "";
 }

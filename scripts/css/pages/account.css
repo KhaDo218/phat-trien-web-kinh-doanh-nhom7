@@ -1,7 +1,121 @@
 /* =====================================================================
    ROOMCRAFT - CSS riêng của trang account.html
    Người phụ trách: Quỳnh Kha
-   Màu, font, nút, ô nhập dùng class có sẵn trong base.css
-   (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.account-layout{
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin: 40px 0 96px;
+}
+
+/* ----- Cột trái ----- */
+.account-side{
+    position: sticky;
+    top: 140px;
+    width: 300px;
+    flex-shrink: 0;
+}
+.account-user{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    border-bottom: 1px solid #DADAD7;
+}
+.avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #202020;
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 22px;
+}
+.avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.small{
+    font-size: 13px;
+    line-height: 20px;
+}
+.account-menu{
+    padding: 12px 0;
+}
+.account-menu a{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: #686868;
+    border-left: 2px solid transparent;
+}
+.account-menu a:hover, .account-menu a.active{
+    background: #F7F7F5;
+    color: #202020;
+    border-left-color: #202020;
+}
+.account-menu .count{
+    margin-left: auto;
+    font-size: 12px;
+    color: #686868;
+}
+
+/* ----- Cột phải ----- */
+.account-main{
+    flex: 1;
+    min-width: 0;
+}
+.account-card{
+    padding: 40px;
+    margin-bottom: 24px;
+    scroll-margin-top: 140px;
+}
+.account-card .overline{
+    margin-bottom: 8px;
+}
+.account-card h2{
+    margin-bottom: 24px;
+}
+.account-card .small{
+    margin-bottom: 16px;
+}
+.account-card input[readonly]{
+    background: #F7F7F5;
+    color: #686868;
+}
+.form-row{
+    display: flex;
+    gap: 16px;
+}
+.form-row .form-group{
+    flex: 1;
+}
+
+@media (max-width: 1024px){
+    .account-layout{
+        display: block;
+    }
+    .account-side{
+        position: static;
+        width: 100%;
+        margin-bottom: 24px;
+    }
+}
+@media (max-width: 768px){
+    .account-card{
+        padding: 24px 20px;
+    }
+    .form-row{
+        display: block;
+    }
+}

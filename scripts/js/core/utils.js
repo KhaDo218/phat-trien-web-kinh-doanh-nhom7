@@ -8,6 +8,7 @@
      getParam(ten)      -> lấy tham số trên URL, vd. product-detail.html?id=abc
      formatDate(chuoi)  -> "19/10/2026"
      checkEmail(email), checkPhone(sdt) -> true / false
+     checkPasswordRule(matKhau) -> "" nếu đạt, ngược lại trả về câu báo lỗi
      sha256(chuoi)      -> mã băm mật khẩu (giống cột password_hash)
    ===================================================================== */
 
@@ -74,6 +75,17 @@ function checkEmail(email){
 function checkPhone(sdt){
     var mau = /^0[0-9]{9}$/;
     return mau.test(sdt);
+}
+
+// Mật khẩu: ít nhất 8 ký tự, có cả chữ và số
+function checkPasswordRule(matKhau){
+    if(matKhau.length < 8)
+        return "Mật khẩu phải có ít nhất 8 ký tự!";
+    var coChu = /[a-zA-Z]/;
+    var coSo = /[0-9]/;
+    if(coChu.test(matKhau) == false || coSo.test(matKhau) == false)
+        return "Mật khẩu phải có cả chữ và số!";
+    return "";
 }
 
 // SHA-256 viết bằng JavaScript thuần (dùng để so mật khẩu với password_hash).

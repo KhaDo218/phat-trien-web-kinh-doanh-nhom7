@@ -23,8 +23,82 @@
             <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Tài khoản của tôi</div>
             <h1 class="headline-page">Tài khoản của tôi</h1>
 
-            <!-- TODO (Quỳnh Kha): Hồ sơ cá nhân, đổi mật khẩu, liên kết tới Đơn hàng và Wishlist. -->
+            <div class="account-layout">
+                <!-- ===== Cột trái: thông tin ngắn + menu ===== -->
+                <aside class="account-side card">
+                    <div class="account-user">
+                        <div class="avatar" id="divAvatar"></div>
+                        <div>
+                            <p class="title-product" id="lblName"></p>
+                            <p class="text-secondary small" id="lblSince"></p>
+                        </div>
+                    </div>
+                    <ul class="account-menu">
+                        <li><a class="active" href="#hoSo"><span class="material-symbols-outlined">person</span>Hồ sơ cá nhân</a></li>
+                        <li><a href="orders.html"><span class="material-symbols-outlined">receipt_long</span>Đơn hàng của tôi <span class="count" id="lblOrderCount">0</span></a></li>
+                        <li><a href="wishlist.html"><span class="material-symbols-outlined">favorite</span>Sản phẩm yêu thích <span class="count" id="lblWishCount">0</span></a></li>
+                        <li><a href="#matKhau"><span class="material-symbols-outlined">lock</span><span id="lblMenuPassword">Đổi mật khẩu</span></a></li>
+                        <li id="liAdmin" class="hidden"><a href="admin/index.html"><span class="material-symbols-outlined">dashboard</span>Trang quản trị</a></li>
+                        <li><a href="javascript:doLogout()"><span class="material-symbols-outlined">logout</span>Đăng xuất</a></li>
+                    </ul>
+                </aside>
 
+                <div class="account-main">
+                    <!-- ===== Hồ sơ cá nhân ===== -->
+                    <section class="card account-card" id="hoSo">
+                        <p class="overline">Thông tin cá nhân</p>
+                        <h2 class="headline-section">Hồ sơ</h2>
+                        <form name="frmProfile" onsubmit="return saveProfile()">
+                            <div class="form-group">
+                                <label for="txtFullName">Họ và tên</label>
+                                <input class="input" type="text" id="txtFullName">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="txtEmail">Email</label>
+                                    <input class="input" type="text" id="txtEmail" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtPhone">Số điện thoại</label>
+                                    <input class="input" type="text" id="txtPhone" maxlength="10" placeholder="0901234567">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtAddress">Địa chỉ giao hàng mặc định</label>
+                                <textarea class="input" id="txtAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+                            </div>
+                            <p class="text-secondary small" id="lblGoogle"></p>
+                            <p class="success-text" id="msgProfile"></p>
+                            <input class="btn" type="submit" value="Lưu thay đổi">
+                        </form>
+                    </section>
+
+                    <!-- ===== Mật khẩu ===== -->
+                    <section class="card account-card" id="matKhau">
+                        <p class="overline">Bảo mật</p>
+                        <h2 class="headline-section" id="lblPasswordTitle">Đổi mật khẩu</h2>
+                        <p class="text-secondary small hidden" id="lblNoPassword">Tài khoản của bạn đăng ký bằng Google nên chưa có mật khẩu. Tạo mật khẩu để có thể đăng nhập bằng email.</p>
+                        <form name="frmPassword" onsubmit="return changePassword()">
+                            <div class="form-group" id="divOldPassword">
+                                <label for="txtOldPassword">Mật khẩu hiện tại</label>
+                                <input class="input" type="password" id="txtOldPassword">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="txtNewPassword">Mật khẩu mới</label>
+                                    <input class="input" type="password" id="txtNewPassword" placeholder="Ít nhất 8 ký tự, có chữ và số">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtConfirm">Nhập lại mật khẩu mới</label>
+                                    <input class="input" type="password" id="txtConfirm">
+                                </div>
+                            </div>
+                            <p class="error-text" id="msgPassword"></p>
+                            <input class="btn btn-outline" type="submit" value="Cập nhật mật khẩu">
+                        </form>
+                    </section>
+                </div>
+            </div>
         </main>
 
         <div id="footer"></div>

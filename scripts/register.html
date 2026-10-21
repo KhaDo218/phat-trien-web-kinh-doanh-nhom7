@@ -21,11 +21,79 @@
         <div id="header"></div>
 
         <main class="container">
-            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Đăng ký</div>
-            <h1 class="headline-page">Đăng ký</h1>
+            <div class="auth-box auth-box-wide card">
 
-            <!-- TODO (Quỳnh Kha): Form đăng ký + bước xác minh OTP (mô phỏng). -->
+                <!-- ===== Bước 1: nhập thông tin ===== -->
+                <div id="step1">
+                    <p class="overline">Bước 1 / 2 · Thông tin tài khoản</p>
+                    <h1 class="headline-section">Tạo tài khoản</h1>
 
+                    <form name="frmRegister" onsubmit="return doRegister()">
+                        <div class="form-group">
+                            <label for="txtFullName">Họ và tên</label>
+                            <input class="input" type="text" id="txtFullName" placeholder="Nguyễn Văn A">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="txtEmail">Email</label>
+                                <input class="input" type="text" id="txtEmail" placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPhone">Số điện thoại</label>
+                                <input class="input" type="text" id="txtPhone" placeholder="0901234567" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="txtPassword">Mật khẩu</label>
+                                <input class="input" type="password" id="txtPassword" placeholder="Ít nhất 8 ký tự, có chữ và số">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtConfirm">Nhập lại mật khẩu</label>
+                                <input class="input" type="password" id="txtConfirm" placeholder="Nhập lại mật khẩu">
+                            </div>
+                        </div>
+                        <div class="auth-row">
+                            <label><input type="checkbox" id="chkShow" onclick="showPassword()"> Hiện mật khẩu</label>
+                        </div>
+                        <div class="auth-row">
+                            <label><input type="checkbox" id="chkAgree"> Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> của RoomCraft</label>
+                        </div>
+                        <p class="error-text" id="msgError"></p>
+                        <input class="btn btn-full" type="submit" value="Tiếp tục">
+                    </form>
+
+                    <p class="auth-note">Đã có tài khoản? <a href="login.html">Đăng nhập</a> (có thể đăng nhập nhanh bằng Google)</p>
+                </div>
+
+                <!-- ===== Bước 2: xác minh OTP (mô phỏng) ===== -->
+                <div id="step2" class="hidden">
+                    <p class="overline">Bước 2 / 2 · Xác minh email</p>
+                    <h1 class="headline-section">Nhập mã xác minh</h1>
+                    <p class="text-secondary auth-desc">Mã gồm 6 số đã được gửi tới <b id="lblEmail"></b>. Mã có hiệu lực trong 5 phút.</p>
+
+                    <!-- Mô phỏng: web tĩnh không gửi email thật nên hiện mã ở đây -->
+                    <div class="otp-demo">
+                        <span class="overline">Email mô phỏng</span>
+                        <p>Mã xác minh RoomCraft của bạn là: <b id="lblOtp"></b></p>
+                    </div>
+
+                    <form name="frmOtp" onsubmit="return doVerify()">
+                        <div class="form-group">
+                            <label for="txtOtp">Mã xác minh</label>
+                            <input class="input otp-input" type="text" id="txtOtp" maxlength="6" placeholder="------">
+                        </div>
+                        <p class="error-text" id="msgOtpError"></p>
+                        <input class="btn btn-full" type="submit" value="Xác minh và tạo tài khoản">
+                    </form>
+
+                    <div class="auth-row otp-actions">
+                        <a href="javascript:backToStep1()">← Sửa thông tin</a>
+                        <a href="javascript:resendCode()" id="lnkResend">Gửi lại mã</a>
+                    </div>
+                </div>
+
+            </div>
         </main>
 
         <div id="footer"></div>
