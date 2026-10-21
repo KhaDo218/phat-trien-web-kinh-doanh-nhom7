@@ -27,7 +27,99 @@
             <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><a href="products.html">Sản phẩm</a><span>/</span>Chi tiết sản phẩm</div>
             <h1 class="headline-page">Chi tiết sản phẩm</h1>
 
-            <!-- TODO (Nguyên Khôi): Ảnh nhiều góc, giá, tồn kho, thông số, Xem 3D, Complete Your Room, đánh giá. Lấy sản phẩm theo getParam("id"). -->
+            <section class="product-detail-layout" id="productDetail">
+                <div class="product-gallery">
+                    <div class="product-gallery-main card">
+                        <img id="productMainImage" src="" alt="Ảnh sản phẩm" hidden>
+                    </div>
+                    <div class="product-gallery-thumbnails" id="productThumbnails" aria-label="Ảnh các góc sản phẩm"></div>
+                </div>
+
+                <div class="product-summary">
+                    <div class="product-summary-heading">
+                        <p class="overline" id="productBrand">Thông tin sản phẩm</p>
+                        <span class="badge badge-stock" id="productStock">Tình trạng kho</span>
+                    </div>
+                    <h2 class="product-detail-name" id="productName">Tên sản phẩm</h2>
+                    <p class="overline product-category" id="productCategory">Danh mục sản phẩm</p>
+                    <div class="product-detail-price">
+                        <span class="price" id="productPrice">Giá sản phẩm</span>
+                        <span class="price-old hidden" id="productOriginalPrice"></span>
+                    </div>
+                    <p class="product-detail-description text-secondary" id="productDescription">Mô tả sản phẩm sẽ hiển thị tại đây.</p>
+
+                    <dl class="product-specifications">
+                        <div><dt>Kích thước</dt><dd id="productDimensions">—</dd></div>
+                        <div><dt>Chất liệu</dt><dd id="productMaterial">—</dd></div>
+                        <div><dt>Màu sắc</dt><dd id="productColor">—</dd></div>
+                    </dl>
+
+                    <div class="product-detail-actions">
+                        <button class="btn btn-full" type="button" id="addToCartButton">Thêm vào giỏ hàng</button>
+                        <button class="btn btn-outline" type="button" id="addToWishlistButton" aria-label="Lưu sản phẩm yêu thích">
+                            <span class="material-symbols-outlined">favorite</span>
+                            Lưu yêu thích
+                        </button>
+                    </div>
+                    <a class="product-3d-link" href="#product3d">
+                        <span class="material-symbols-outlined">view_in_ar</span>
+                        Trải nghiệm mô hình 3D tương tác
+                    </a>
+                </div>
+            </section>
+
+            <section class="product-3d-section" id="product3d">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">Xem sản phẩm ở mọi góc độ</p>
+                        <h2 class="headline-section">Trải nghiệm 3D</h2>
+                    </div>
+                </div>
+                <div class="product-3d-viewer card" id="product3dViewer">
+                    <p class="empty">Mô hình 3D sẽ hiển thị nếu sản phẩm có model.</p>
+                </div>
+            </section>
+
+            <section class="product-description-section card">
+                <div class="product-description-copy">
+                    <p class="overline">Mô tả sản phẩm</p>
+                    <h2 class="headline-section">Chi tiết thiết kế</h2>
+                    <p class="text-secondary" id="productLongDescription">Thông tin chi tiết về sản phẩm sẽ hiển thị tại đây.</p>
+                </div>
+                <div class="product-description-aside">
+                    <h3 class="overline">Thông số &amp; chất liệu</h3>
+                    <dl class="product-specifications">
+                        <div><dt>Kích thước</dt><dd id="descriptionDimensions">—</dd></div>
+                        <div><dt>Chất liệu</dt><dd id="descriptionMaterial">—</dd></div>
+                        <div><dt>Màu sắc</dt><dd id="descriptionColor">—</dd></div>
+                    </dl>
+                </div>
+            </section>
+
+            <section class="product-reviews">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">Trải nghiệm khách hàng</p>
+                        <h2 class="headline-section">Đánh giá sản phẩm <span id="reviewCount"></span></h2>
+                    </div>
+                    <button class="btn btn-outline" type="button" id="writeReviewButton">Viết đánh giá</button>
+                </div>
+                <div class="product-review-list" id="productReviews">
+                    <p class="empty">Đánh giá sẽ hiển thị tại đây.</p>
+                </div>
+            </section>
+
+            <section class="related-products">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">Gợi ý phối ngẫu không gian</p>
+                        <h2 class="headline-section">Hoàn thiện không gian</h2>
+                        <p class="text-secondary">Sản phẩm cùng phong cách, tông màu hoặc danh mục bổ trợ.</p>
+                    </div>
+                    <a class="btn-link" id="relatedStyleLink" href="products.html">Khám phá bộ sưu tập</a>
+                </div>
+                <div class="grid-4 related-product-grid" id="relatedProductGrid"></div>
+            </section>
 
         </main>
 
