@@ -5,3 +5,38 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.wishlist-intro{
+    margin: 8px 0 32px;
+}
+.wishlist-content{
+    min-height: 360px;
+    margin-bottom: 96px;
+}
+.wishlist-empty{
+    padding: 72px 24px;
+    border: 1px solid #DADAD7;
+    background: #FFFFFF;
+}
+.wishlist-empty .material-symbols-outlined{
+    margin-bottom: 16px;
+    color: #686868;
+    font-size: 32px;
+}
+.wishlist-empty .headline-section{
+    margin-bottom: 8px;
+    color: #202020;
+}
+.wishlist-empty p{
+    margin-bottom: 24px;
+}
+.wishlist-grid{
+    align-content: start;
+}
+
+@media (max-width: 700px){
+    .wishlist-grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
