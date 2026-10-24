@@ -3,5 +3,485 @@
    Người phụ trách: Bảo Duy
    Màu, font, nút, ô nhập dùng class có sẵn trong base.css
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
+   chấm hotspot + thẻ phòng + thẻ sản phẩm: css/components/room.css
    ===================================================================== */
+
+/* ----- Tiêu đề phòng ----- */
+.rd-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 32px;
+}
+.rd-title{
+    max-width: 760px;
+}
+.rd-tags{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.rd-tags .rd-style{
+    background: #EEEEEC;
+    border: 1px solid #DADAD7;
+}
+.rd-tags .rd-style:hover{
+    border-color: #202020;
+}
+.rd-title .lead{
+    margin-top: 12px;
+}
+.rd-summary{
+    flex-shrink: 0;
+    width: 280px;
+    padding: 20px 24px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+}
+.rd-total{
+    margin: 4px 0 2px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 30px;
+    line-height: 38px;
+}
+.rd-summary .text-secondary{
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+.btn:disabled{
+    background: #DADAD7;
+    border-color: #DADAD7;
+    color: #686868;
+    cursor: not-allowed;
+}
+
+/* ----- Ảnh phòng + hotspot ----- */
+.rd-stage{
+    position: relative;
+    aspect-ratio: 4 / 3;
+    max-height: 82vh;
+    margin: 0 auto;
+    background: #EEEEEC;
+    overflow: hidden;
+}
+@supports (aspect-ratio: 4 / 3){
+    .rd-stage{
+        width: min(100%, calc(82vh * 4 / 3));
+    }
+}
+.rd-stage > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: default;
+}
+.rd-hint, .rd-counter{
+    position: absolute;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+.rd-hint{
+    left: 16px;
+    top: 16px;
+}
+.rd-hint .material-symbols-outlined{
+    font-size: 18px;
+}
+.rd-counter{
+    right: 16px;
+    bottom: 16px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+}
+.rd-counter.hidden{
+    display: none;
+}
+/* chấm sáng lên khi rê chuột vào thẻ sản phẩm tương ứng */
+.hotspot.glow{
+    background: #202020;
+    transform: scale(1.2);
+}
+.hotspot.glow::before{
+    background: #FFFFFF;
+}
+
+/* Popup sản phẩm cạnh chấm */
+.rd-popup{
+    position: absolute;
+    z-index: 5;
+    width: 360px;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    animation: popupIn 0.2s ease-out;
+}
+.rd-popup.hidden{
+    display: none;
+}
+@keyframes popupIn{
+    from{ opacity: 0; transform: scale(0.96); }
+    to{ opacity: 1; transform: scale(1); }
+}
+.rd-popup-close{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.rd-popup-main{
+    display: flex;
+    gap: 16px;
+    padding-right: 24px;
+}
+.rd-popup-img{
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    padding: 6px;
+    background: #EEEEEC;
+}
+.rd-popup-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.rd-popup-info{
+    min-width: 0;
+}
+.rd-popup-info .title-product{
+    margin: 4px 0 6px;
+    font-size: 19px;
+    line-height: 24px;
+}
+.rd-popup-info .title-product a:hover{
+    text-decoration: underline;
+}
+.rd-popup-price{
+    margin-bottom: 6px;
+}
+.rd-popup-spec{
+    display: flex;
+    flex-direction: column;
+    margin: 14px 0 16px;
+    padding-top: 12px;
+    border-top: 1px solid #DADAD7;
+    font-size: 13px;
+    line-height: 20px;
+    color: #686868;
+}
+.rd-popup-actions{
+    display: grid;
+    grid-template-columns: 1fr 1.4fr auto;
+    gap: 8px;
+}
+.rd-popup-actions .btn{
+    height: 40px;
+    padding: 0 12px;
+    font-size: 11px;
+}
+.rd-popup-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #686868;
+}
+.rd-popup-nav .btn-icon{
+    width: 28px;
+    height: 28px;
+}
+
+/* Ảnh nhỏ các góc nhìn */
+.rd-thumbs{
+    display: flex;
+    gap: 12px;
+    margin: 16px auto 0;
+    overflow-x: auto;
+}
+@supports (aspect-ratio: 4 / 3){
+    .rd-thumbs{
+        width: min(100%, calc(82vh * 4 / 3));
+    }
+}
+.rd-thumb{
+    flex-shrink: 0;
+    width: 112px;
+    height: 84px;
+    padding: 0;
+    background: #EEEEEC;
+    border: 1px solid #DADAD7;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.rd-thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.rd-thumb:hover, .rd-thumb.active{
+    opacity: 1;
+    border-color: #202020;
+}
+.rd-thumb.active{
+    outline: 1px solid #202020;
+}
+
+/* ----- Các mục bên dưới ----- */
+.rd-section{
+    padding: 72px 0 0;
+}
+.rd-section.hidden{
+    display: none;
+}
+.rd-section:last-child{
+    padding-bottom: 96px;
+}
+.rd-count{
+    font-size: 20px;
+    color: #686868;
+}
+.rd-section-note{
+    max-width: 420px;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+/* nhãn "Điểm n" trên ảnh thẻ sản phẩm */
+.rd-point{
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px 4px 6px;
+    background: #202020;
+    color: #FFFFFF;
+    border: none;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.rd-point .material-symbols-outlined{
+    font-size: 14px;
+}
+.rd-card-actions{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 8px;
+    margin-top: 16px;
+}
+.rd-card-actions .btn{
+    height: 40px;
+    padding: 0 10px;
+    font-size: 11px;
+}
+.rd-card-actions .product-card-detail{
+    margin-top: 0;
+}
+
+/* Dải mua trọn bộ */
+.rd-bundle{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 32px;
+    padding: 24px 32px;
+    background: #EEEEEC;
+}
+.rd-bundle.hidden{
+    display: none;
+}
+.rd-bundle-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #202020;
+    color: #FFFFFF;
+}
+.rd-bundle-text{
+    flex: 1;
+}
+.rd-bundle-text .text-secondary{
+    font-size: 13px;
+}
+.rd-bundle-total{
+    text-align: right;
+}
+.rd-more{
+    margin-top: 32px;
+    text-align: center;
+}
+
+/* ----- Cửa sổ 3D ----- */
+.rd-viewer-box{
+    max-width: 960px;
+}
+.rd-viewer-box:fullscreen{
+    max-width: none;
+    max-height: none;
+}
+.rd-viewer{
+    position: relative;
+    flex: 1;
+    min-height: 420px;
+    background: #F7F7F5;
+}
+.rd-viewer model-viewer{
+    display: block;
+    width: 100%;
+    height: 56vh;
+    min-height: 420px;
+    background: #F7F7F5;
+}
+.rd-viewer-box:fullscreen .rd-viewer model-viewer{
+    height: calc(100vh - 200px);
+}
+.rd-viewer-loading{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+    color: #686868;
+}
+.rd-viewer-error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 14px;
+}
+.rd-viewer-error img{
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    background: #EEEEEC;
+}
+.rd-viewer-foot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 40px;
+    border-top: 1px solid #DADAD7;
+    font-size: 13px;
+}
+.rd-viewer-foot .btn{
+    height: 40px;
+    font-size: 11px;
+}
+
+@media (max-width: 1024px){
+    .rd-head{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+    .rd-summary{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        column-gap: 24px;
+    }
+    .rd-summary .btn{
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        width: auto;
+    }
+    .rd-summary .text-secondary{
+        margin-bottom: 0;
+    }
+}
+@media (max-width: 768px){
+    .rd-stage, .rd-thumbs{
+        width: 100%;
+        max-height: none;
+    }
+    .rd-hint{
+        left: 8px;
+        top: 8px;
+        right: 8px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    .rd-counter{
+        display: none;
+    }
+    /* popup thành khung trượt ở đáy màn hình */
+    .rd-popup{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        z-index: 90;
+        width: 100%;
+        padding: 20px 20px 16px;
+        border-width: 1px 0 0;
+        animation: sheetIn 0.25s ease-out;
+    }
+    @keyframes sheetIn{
+        from{ transform: translateY(100%); }
+        to{ transform: translateY(0); }
+    }
+    .rd-summary{
+        display: block;
+    }
+    .rd-summary .btn{
+        width: 100%;
+        margin-top: 12px;
+    }
+    .rd-section{
+        padding-top: 56px;
+    }
+    .rd-bundle{
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    .rd-bundle-icon{
+        display: none;
+    }
+    .rd-bundle-total{
+        text-align: left;
+    }
+    .rd-bundle .btn{
+        width: 100%;
+    }
+    .rd-card-actions{
+        grid-template-columns: 1fr;
+    }
+    .rd-viewer-foot{
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px 20px;
+    }
+    .rd-viewer-foot div{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    .rd-viewer model-viewer{
+        height: 50vh;
+        min-height: 300px;
+    }
+}

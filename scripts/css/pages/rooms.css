@@ -3,5 +3,125 @@
    Người phụ trách: Bảo Duy
    Màu, font, nút, ô nhập dùng class có sẵn trong base.css
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
+   thẻ phòng nằm trong css/components/room.css; file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.rooms-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.rooms-heading .overline{
+    margin-bottom: 8px;
+}
+.rooms-heading .lead{
+    max-width: 640px;
+    margin-top: 12px;
+}
+.rooms-count{
+    flex-shrink: 0;
+    color: #686868;
+    font-size: 14px;
+}
+.rooms-count b{
+    color: #202020;
+    font-weight: 500;
+}
+
+.rooms-filter{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #DADAD7;
+}
+.rooms-filter .chip span{
+    margin-left: 4px;
+    font-size: 11px;
+    color: #686868;
+}
+.rooms-filter .chip:hover span, .rooms-filter .chip.active span{
+    color: #DADAD7;
+}
+
+.rooms-toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0 32px;
+}
+.rooms-check{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.rooms-check input{
+    width: 16px;
+    height: 16px;
+    accent-color: #202020;
+}
+.rooms-sort{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.rooms-sort .input{
+    width: 220px;
+    height: 40px;
+}
+
+.rooms-grid{
+    margin-bottom: 96px;
+}
+.rooms-empty{
+    grid-column: 1 / -1;
+}
+.rooms-empty .title-product{
+    margin-bottom: 8px;
+    color: #202020;
+}
+.rooms-empty .btn{
+    margin-top: 24px;
+}
+
+@media (max-width: 1024px){
+    .rooms-grid.grid-3{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px){
+    .rooms-heading{
+        display: block;
+    }
+    .rooms-count{
+        margin-top: 12px;
+    }
+    .rooms-filter{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 16px;
+    }
+    .rooms-filter .chip{
+        flex-shrink: 0;
+    }
+    .rooms-toolbar{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .rooms-sort .input{
+        width: 100%;
+    }
+    .rooms-grid{
+        margin-bottom: 64px;
+    }
+}
+@media (max-width: 560px){
+    .rooms-grid.grid-3{
+        grid-template-columns: 1fr;
+    }
+}
