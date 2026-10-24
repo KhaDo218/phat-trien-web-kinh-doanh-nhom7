@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             @import url(css/base.css);
+            @import url(css/components/room.css);
             @import url(css/pages/index.css);
         </style>
         <!-- JS dùng chung: luôn nạp theo đúng thứ tự này -->
@@ -15,6 +16,8 @@
         <script src="components/header.js"></script>
         <script src="components/footer.js"></script>
         <script src="components/chatbot.js"></script>
+        <script src="components/product-card.js"></script>
+        <script src="components/room-card.js"></script>
         <!-- JS riêng của trang -->
         <script src="js/pages/index.js"></script>
     </head>
@@ -36,6 +39,13 @@
             </div>
         </section>
 
+        <!-- Dải số liệu (JS đếm từ dữ liệu) -->
+        <section class="stats-band">
+            <div class="container">
+                <ul class="stats" id="statList"></ul>
+            </div>
+        </section>
+
         <!-- ===== 2. Không gian được tuyển chọn (JS đổ dữ liệu từ rc_rooms) ===== -->
         <section class="section">
             <div class="container">
@@ -50,26 +60,99 @@
             </div>
         </section>
 
-        <!-- ===== 3. Phong cách (JS đổ dữ liệu từ rc_styles) ===== -->
+        <!-- ===== 3. Trải nghiệm Shop the Room ===== -->
+        <section class="section section-grey" id="shop-the-room">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">Tính năng tương tác</p>
+                        <h2 class="headline-section">Trải nghiệm Shop the Room</h2>
+                        <p class="text-secondary section-sub">Từ ảnh một căn phòng đẹp đến món đồ trong giỏ hàng chỉ với vài lần bấm.</p>
+                    </div>
+                </div>
+                <div class="str-layout">
+                    <div class="str-demo">
+                        <div class="str-stage" id="demoStage">
+                            <img id="demoImage" src="" alt="">
+                        </div>
+                        <p class="str-hint"><span class="dot"></span>Bấm vào điểm tròn để xem sản phẩm trong phòng</p>
+                    </div>
+                    <ol class="str-steps">
+                        <li class="card">
+                            <div class="step-head"><p class="overline">Bước 01</p><span class="material-symbols-outlined">explore</span></div>
+                            <h3 class="title-product">Chọn một căn phòng bạn thích</h3>
+                            <p class="text-secondary">Duyệt các không gian mẫu theo 7 phong cách, mỗi phòng là một bố cục hoàn chỉnh.</p>
+                        </li>
+                        <li class="card">
+                            <div class="step-head"><p class="overline">Bước 02</p><span class="material-symbols-outlined">touch_app</span></div>
+                            <h3 class="title-product">Bấm vào món đồ trong ảnh</h3>
+                            <p class="text-secondary">Mỗi điểm tròn gắn với một sản phẩm thật: tên, giá, tình trạng còn hàng hiện ngay trên ảnh.</p>
+                        </li>
+                        <li class="card">
+                            <div class="step-head"><p class="overline">Bước 03</p><span class="material-symbols-outlined">view_in_ar</span></div>
+                            <h3 class="title-product">Xoay mô hình 3D và thêm vào giỏ</h3>
+                            <p class="text-secondary">Xem sản phẩm từ mọi góc trước khi mua, thêm từng món hoặc cả bộ phòng vào giỏ hàng.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 4. Sản phẩm nổi bật (lấy từ các phòng có hotspot) ===== -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="overline">Có mặt trong không gian mẫu</p>
+                        <h2 class="headline-section">Sản phẩm nổi bật</h2>
+                    </div>
+                    <a class="btn-link" href="products.html">Xem tất cả sản phẩm <span class="material-symbols-outlined">arrow_forward</span></a>
+                </div>
+                <div class="grid-4" id="productList"></div>
+            </div>
+        </section>
+
+        <!-- ===== 5. Phong cách (JS đổ dữ liệu từ rc_styles) ===== -->
         <section class="section section-grey">
             <div class="container">
                 <div class="section-head">
                     <div>
                         <p class="overline">7 phong cách tuyển chọn</p>
-                        <h2 class="headline-section">Mua sắm theo phong cách</h2>
+                        <h2 class="headline-section">Khám phá theo phong cách</h2>
                     </div>
                 </div>
-                <div id="styleList"></div>
+                <div class="style-grid" id="styleList"></div>
             </div>
         </section>
 
-        <!-- ===== 4. Về RoomCraft ===== -->
+        <!-- ===== 6. Về RoomCraft ===== -->
         <section class="section" id="ve-roomcraft">
             <div class="container about">
-                <p class="overline">Triết lý thiết kế</p>
-                <h2 class="headline-section">Nghệ thuật sắp đặt không gian</h2>
-                <p class="lead">RoomCraft giới thiệu nội thất qua những căn phòng hoàn chỉnh. Bạn chọn một không gian mình thích,
-                    bấm vào từng món đồ trong ảnh để xem chi tiết, xoay mô hình 3D và thêm vào giỏ hàng.</p>
+                <div class="about-text">
+                    <p class="overline">Triết lý thiết kế</p>
+                    <h2 class="headline-page">Nghệ thuật sắp đặt không gian sống</h2>
+                    <p class="about-lead">RoomCraft giới thiệu nội thất qua những căn phòng hoàn chỉnh. Bạn chọn một không gian mình thích,
+                        bấm vào từng món đồ trong ảnh để xem chi tiết, xoay mô hình 3D và thêm vào giỏ hàng.</p>
+                    <p class="text-secondary">Mỗi sản phẩm trong phòng đều có thông tin thật về kích thước, chất liệu và màu sắc,
+                        được chọn để hài hòa với phong cách của căn phòng.</p>
+                    <div class="about-points">
+                        <div>
+                            <p class="overline">01 / Bắt đầu từ cảm hứng</p>
+                            <p>Đi từ ảnh không gian đẹp tới sản phẩm cụ thể, không phải tìm từng món rời rạc.</p>
+                        </div>
+                        <div>
+                            <p class="overline">02 / Xem trước khi mua</p>
+                            <p>Mô hình 3D giúp hình dung kích thước, đường nét của món đồ trong không gian thật.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img id="aboutImage" src="" alt="Không gian mẫu của RoomCraft">
+                    <div class="about-caption card">
+                        <p class="overline">Không gian mẫu</p>
+                        <p class="title-product" id="aboutCaption"></p>
+                    </div>
+                </div>
             </div>
         </section>
 

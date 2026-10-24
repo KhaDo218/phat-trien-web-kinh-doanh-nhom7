@@ -1,0 +1,258 @@
+/* =====================================================================
+   ROOMCRAFT - room.css (thành phần dùng chung cho các trang về phòng)
+   Người phụ trách: Bảo Duy
+   Dùng ở: index.html, rooms.html, room-detail.html, admin/rooms.html
+   Gồm: thẻ phòng (.room-card), chấm hotspot (.hotspot), thẻ sản phẩm (.product-card)
+   Chỉ dùng màu trong bảng màu của base.css.
+   ===================================================================== */
+
+/* ---------- 1. Thẻ phòng (do createRoomCard() trong components/room-card.js tạo ra) ---------- */
+.room-card{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    transition: border-color 0.3s;
+}
+.room-card:hover{
+    border-color: #202020;
+}
+.room-card .room-image{
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #EEEEEC;
+}
+.room-card .room-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+}
+.room-card:hover .room-image img{
+    transform: scale(1.03);
+}
+.room-card .room-tags{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.room-card .badge-dark{
+    background: #202020;
+    color: #FFFFFF;
+}
+.room-card .room-body{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 24px;
+}
+.room-card .title-product{
+    margin: 8px 0;
+}
+.room-card .room-desc{
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 22px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.room-card .room-meta{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #DADAD7;
+    font-size: 12px;
+    color: #686868;
+}
+.room-card .room-meta span{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.room-card .room-meta .material-symbols-outlined{
+    font-size: 16px;
+}
+
+/* ---------- 2. Chấm hotspot trên ảnh phòng ---------- */
+/* Khung chứa ảnh phải có position: relative; chấm đặt theo % (left = position_x, top = position_y) */
+.hotspot{
+    position: absolute;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;      /* tâm chấm nằm đúng tọa độ */
+    padding: 0;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid #202020;
+    border-radius: 50%;           /* ngoại lệ được phép bo tròn: chấm hotspot */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hotspot::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #202020;
+    border-radius: 50%;
+}
+.hotspot::after{
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    animation: hotspotPulse 2s ease-out infinite;
+    pointer-events: none;
+}
+.hotspot:hover, .hotspot:focus-visible, .hotspot.active{
+    background: #202020;
+    outline: none;
+}
+.hotspot:hover::before, .hotspot:focus-visible::before, .hotspot.active::before{
+    background: #FFFFFF;
+}
+.hotspot.active::after{
+    animation: none;
+    opacity: 0;
+}
+.hotspot .hotspot-number{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    background: #202020;
+    color: #FFFFFF;
+    border-radius: 9px;
+    font-size: 10px;
+    line-height: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+@keyframes hotspotPulse{
+    0%   { transform: scale(0.8); opacity: 0.9; }
+    70%  { transform: scale(1.35); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce){
+    .hotspot::after{
+        animation: none;
+    }
+}
+
+/* ---------- 3. Thẻ sản phẩm (components/product-card.js của Khôi) ----------
+   CSS gốc của thẻ đang nằm trong css/pages/products.css (chỉ nạp ở trang Sản phẩm),
+   nên chép lại ở đây để các trang phòng hiển thị giống hệt. Khi nhóm tách CSS thẻ
+   sản phẩm ra file dùng chung thì xóa phần này. */
+.product-card{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+}
+.product-card-media{
+    position: relative;
+    padding: 12px;
+    background: #EEEEEC;
+}
+.product-card-media img{
+    display: block;
+    width: 100%;
+    height: 210px;
+    object-fit: contain;
+    background: #EEEEEC;
+}
+.product-card-favorite{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #FFFFFF;
+}
+.product-card-favorite:hover{
+    background: #EEEEEC;
+}
+.product-card-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px;
+}
+.product-card-name{
+    min-height: 52px;
+    margin-top: 6px;
+}
+.product-card-prices{
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+.product-card-detail{
+    margin-top: auto;
+}
+.product-card-prices + .product-card-detail{
+    margin-top: 16px;
+}
+
+/* ---------- 4. Thông báo nhỏ góc dưới (toast) ---------- */
+.room-toast{
+    position: fixed;
+    left: 50%;
+    bottom: 32px;
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: calc(100% - 32px);
+    padding: 14px 20px;
+    background: #202020;
+    color: #FFFFFF;
+    font-size: 14px;
+    transform: translate(-50%, 20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+}
+.room-toast.show{
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+.room-toast a{
+    color: #FFFFFF;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px){
+    .room-card .room-body{
+        padding: 16px;
+    }
+    .product-card-media img{
+        height: 150px;
+    }
+    .product-card-content{
+        padding: 12px;
+    }
+    .hotspot{
+        width: 28px;
+        height: 28px;
+        margin: -14px 0 0 -14px;
+    }
+}

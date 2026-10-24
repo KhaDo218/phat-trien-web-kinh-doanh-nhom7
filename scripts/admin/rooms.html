@@ -7,6 +7,7 @@
         <style type="text/css">
             @import url(../css/base.css);
             @import url(../css/admin.css);
+            @import url(../css/components/room.css);
             @import url(../css/pages/admin-rooms.css);
         </style>
         <script src="../js/core/utils.js"></script>
@@ -22,11 +23,189 @@
                 <div class="admin-head">
                     <p class="overline">Quản trị</p>
                     <h1 class="headline-section">Quản lý phòng</h1>
+                    <div class="ar-head-actions">
+                        <button type="button" class="btn btn-outline" onclick="openExport()"><span class="material-symbols-outlined">data_object</span>Xuất JSON</button>
+                        <button type="button" class="btn" onclick="openRoomForm('')"><span class="material-symbols-outlined">add</span>Thêm phòng</button>
+                    </div>
                 </div>
 
-                <!-- TODO (Bảo Duy): Thêm / sửa phòng, gắn sản phẩm vào phòng bằng cách bấm lên ảnh (tọa độ %). -->
+                <!-- Số liệu nhanh -->
+                <div class="ar-stats">
+                    <div class="stat-card"><p class="overline">Tổng số phòng</p><p class="value" id="statRooms">0</p></div>
+                    <div class="stat-card"><p class="overline">Phòng đã gắn hotspot</p><p class="value" id="statReady">0</p></div>
+                    <div class="stat-card"><p class="overline">Tổng số hotspot</p><p class="value" id="statHotspots">0</p></div>
+                </div>
 
+                <!-- ===== Form thêm / sửa phòng (UC7.2) ===== -->
+                <section class="card ar-panel hidden" id="roomFormPanel">
+                    <div class="ar-panel-head">
+                        <div>
+                            <p class="overline" id="roomFormMode">Thêm phòng mới</p>
+                            <h2 class="headline-section" id="roomFormTitle">Thông tin phòng</h2>
+                        </div>
+                        <button type="button" class="btn-icon" onclick="closeRoomForm()" aria-label="Đóng biểu mẫu"><span class="material-symbols-outlined">close</span></button>
+                    </div>
+                    <form id="frmRoom" onsubmit="return saveRoom()">
+                        <div class="ar-form">
+                            <div class="ar-form-fields">
+                                <div class="form-group">
+                                    <label for="txtRoomId">Mã phòng</label>
+                                    <input class="input" type="text" id="txtRoomId" readonly placeholder="Tự tạo khi lưu">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtRoomName">Tên phòng *</label>
+                                    <input class="input" type="text" id="txtRoomName" maxlength="255" placeholder="Ví dụ: Phòng khách Bohemian ấm cúng">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cboRoomStyle">Phong cách *</label>
+                                    <select class="input" id="cboRoomStyle"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtRoomImage">Ảnh chính (đường dẫn tính từ thư mục gốc) *</label>
+                                    <div class="ar-inline">
+                                        <input class="input" type="text" id="txtRoomImage" placeholder="assets/rooms/glam/room-glam-4190768-01.jpg" onchange="previewRoomImage()">
+                                        <button type="button" class="btn btn-light" onclick="previewRoomImage()">Xem ảnh</button>
+                                    </div>
+                                    <p class="ar-help">Ảnh phải có sẵn trong thư mục <b>assets/rooms/&lt;phong-cách&gt;/</b>, định dạng .jpg, .jpeg, .png hoặc .webp. Hotspot được gắn trên ảnh này.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtRoomImages">Ảnh góc nhìn khác (mỗi dòng một đường dẫn, không bắt buộc)</label>
+                                    <textarea class="input" id="txtRoomImages" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtRoomDesc">Mô tả</label>
+                                    <textarea class="input" id="txtRoomDesc" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="ar-form-preview">
+                                <p class="overline">Xem trước ảnh chính</p>
+                                <div class="ar-preview" id="previewBox">
+                                    <img id="imgPreview" src="" alt="" class="hidden">
+                                    <p id="previewText">Nhập đường dẫn ảnh rồi bấm "Xem ảnh"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ar-form-actions">
+                            <button type="button" class="btn btn-outline" onclick="closeRoomForm()">Hủy</button>
+                            <button type="submit" class="btn">Lưu phòng</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- ===== Gắn sản phẩm vào phòng bằng cách bấm lên ảnh (UC7.3) ===== -->
+                <section class="card ar-panel hidden" id="hotspotPanel">
+                    <div class="ar-panel-head">
+                        <div>
+                            <p class="overline">Gắn sản phẩm vào phòng</p>
+                            <h2 class="headline-section" id="hotspotTitle"></h2>
+                        </div>
+                        <div class="ar-panel-tools">
+                            <a class="btn btn-light" id="lnkViewRoom" href="#" target="_blank"><span class="material-symbols-outlined">open_in_new</span>Xem trên web</a>
+                            <button type="button" class="btn-icon" onclick="closeHotspotEditor()" aria-label="Đóng"><span class="material-symbols-outlined">close</span></button>
+                        </div>
+                    </div>
+
+                    <div class="ar-editor">
+                        <div>
+                            <div class="ar-stage" id="editorStage" onclick="pickPosition(event)">
+                                <img id="editorImage" src="" alt="">
+                                <span class="ar-marker hidden" id="pendingMarker"></span>
+                            </div>
+                            <p class="ar-help" id="editorHint"><span class="material-symbols-outlined">ads_click</span>Bấm lên ảnh tại vị trí món đồ để lấy tọa độ (%), chọn sản phẩm rồi bấm "Lưu hotspot". Bấm vào chấm có sẵn để sửa.</p>
+                        </div>
+
+                        <div class="ar-editor-side">
+                            <form class="ar-hotspot-form" onsubmit="return saveHotspot()">
+                                <p class="overline" id="hotspotFormMode">Thêm hotspot</p>
+                                <div class="form-group">
+                                    <label for="cboHotspotProduct">Sản phẩm *</label>
+                                    <select class="input" id="cboHotspotProduct" onchange="showPickedProduct()"></select>
+                                </div>
+                                <div class="ar-picked hidden" id="pickedProduct"></div>
+                                <div class="ar-xy">
+                                    <div class="form-group">
+                                        <label for="txtPosX">Tọa độ X (%) *</label>
+                                        <input class="input" type="number" id="txtPosX" min="0" max="100" step="0.1" oninput="movePendingMarker()">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtPosY">Tọa độ Y (%) *</label>
+                                        <input class="input" type="number" id="txtPosY" min="0" max="100" step="0.1" oninput="movePendingMarker()">
+                                    </div>
+                                </div>
+                                <div class="ar-form-actions">
+                                    <button type="button" class="btn btn-outline" onclick="resetHotspotForm()">Bỏ chọn</button>
+                                    <button type="submit" class="btn">Lưu hotspot</button>
+                                </div>
+                            </form>
+
+                            <div class="ar-hotspot-list">
+                                <p class="overline">Hotspot của phòng (<span id="hotspotCount">0</span>) · nên có 3 - 7 điểm</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr><th>#</th><th>Sản phẩm</th><th>X</th><th>Y</th><th></th></tr>
+                                    </thead>
+                                    <tbody id="tbHotspots"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== Danh sách phòng ===== -->
+                <div class="toolbar ar-toolbar">
+                    <label class="ar-search">
+                        <span class="material-symbols-outlined">search</span>
+                        <input class="input" type="search" id="txtRoomSearch" placeholder="Tìm theo tên hoặc mã phòng..." oninput="showRoomTable()">
+                    </label>
+                    <select class="input" id="cboStyleFilter" onchange="showRoomTable()" aria-label="Lọc theo phong cách"></select>
+                    <select class="input" id="cboHotspotFilter" onchange="showRoomTable()" aria-label="Lọc theo hotspot">
+                        <option value="">Tất cả phòng</option>
+                        <option value="yes">Đã gắn hotspot</option>
+                        <option value="no">Chưa gắn hotspot</option>
+                    </select>
+                    <p class="text-secondary ar-result" id="roomResult"></p>
+                </div>
+                <div class="ar-table-wrap">
+                    <table class="table ar-table">
+                        <thead>
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Phòng</th>
+                                <th>Phong cách</th>
+                                <th>Sản phẩm</th>
+                                <th>Hotspot</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbRooms"></tbody>
+                    </table>
+                </div>
             </main>
+        </div>
+
+        <!-- ===== Xuất JSON để chép vào data/json ===== -->
+        <div class="modal hidden" id="exportModal" onclick="closeExportOutside(event)">
+            <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+                <div class="modal-head">
+                    <div>
+                        <p class="overline">Dữ liệu đang lưu trong trình duyệt</p>
+                        <h2 class="headline-section" id="exportTitle">Xuất JSON</h2>
+                    </div>
+                    <button type="button" class="btn-icon" onclick="closeExport()" aria-label="Đóng"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-secondary ar-export-note">Thay đổi trên trang quản trị chỉ lưu trong localStorage của máy này. Muốn cả nhóm cùng thấy, chép nội dung dưới đây
+                        đè vào file tương ứng trong <b>data/json/</b> rồi commit.</p>
+                    <div class="ar-inline">
+                        <select class="input" id="cboExport" onchange="fillExport()">
+                            <option value="room_hotspots">room_hotspots.json</option>
+                            <option value="rooms">rooms.json</option>
+                        </select>
+                        <button type="button" class="btn" onclick="copyExport()"><span class="material-symbols-outlined">content_copy</span>Sao chép</button>
+                    </div>
+                    <textarea class="input ar-export" id="txtExport" readonly></textarea>
+                </div>
+            </div>
         </div>
 
         <script>
