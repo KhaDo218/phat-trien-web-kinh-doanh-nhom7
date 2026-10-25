@@ -20,17 +20,74 @@
             <div id="sidebar"></div>
             <main class="admin-main">
                 <div class="admin-head">
-                    <p class="overline">Quản trị</p>
-                    <h1 class="headline-section">Quản lý người dùng</h1>
+                    <div>
+                        <p class="overline">Hệ thống & Tài khoản</p>
+                        <h1 class="headline-section">Quản lý người dùng</h1>
+                    </div>
                 </div>
 
-                <!-- TODO (Như Huyền): Khóa / mở tài khoản (is_active). -->
+                <!-- Thống kê tài khoản -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <p class="overline">Tổng thành viên</p>
+                        <p class="value" id="statTotalUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Đang hoạt động</p>
+                        <p class="value" id="statActiveUsers" style="color:#2C6B3F;">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Tài khoản bị khóa</p>
+                        <p class="value" id="statLockedUsers" style="color:#8C3B2D;">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Quản trị viên</p>
+                        <p class="value" id="statAdminUsers" style="color:#202020;">0</p>
+                    </div>
+                </div>
 
+                <!-- Toolbar lọc & tìm kiếm -->
+                <div class="toolbar">
+                    <input type="text" id="txtSearchUser" class="input" placeholder="Tìm theo tên, email, số điện thoại..." oninput="onSearchChange()">
+                    <select id="slFilterRole" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả vai trò</option>
+                        <option value="Admin">Quản trị viên</option>
+                        <option value="User">Khách hàng</option>
+                    </select>
+                    <select id="slFilterStatus" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="active">Đang hoạt động</option>
+                        <option value="locked">Bị khóa</option>
+                    </select>
+                </div>
+
+                <!-- Bảng danh sách người dùng -->
+                <div class="table-responsive card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 60px;">ID</th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th style="width: 140px;">Vai trò</th>
+                                <th style="width: 130px;">Ngày đăng ký</th>
+                                <th style="width: 130px;">Trạng thái</th>
+                                <th style="width: 180px; text-align: right;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbUsers">
+                            <!-- Dữ liệu JS điền vào đây -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Thông báo trống -->
+                <div id="divEmpty" class="empty card hidden" style="margin-top:20px;">
+                    <span class="material-symbols-outlined" style="font-size:36px;">person_search</span>
+                    <p style="margin-top:8px;">Không tìm thấy người dùng nào phù hợp với điều kiện tìm kiếm.</p>
+                </div>
             </main>
         </div>
-
-        <script>
-            loadData(initPage);
-        </script>
     </body>
 </html>

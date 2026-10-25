@@ -1,7 +1,98 @@
 /* =====================================================================
-   ROOMCRAFT - CSS riêng của trang admin/marketplace.html
+   ROOMCRAFT - admin-marketplace.css (Quản lý đồ cũ)
    Người phụ trách: Như Huyền
-   Màu, font, nút, ô nhập dùng class có sẵn trong base.css
-   (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.stat-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.toolbar{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.toolbar #txtSearch{
+    flex: 1;
+    min-width: 240px;
+    height: 40px;
+}
+.filter-select{
+    width: 170px;
+    height: 40px;
+}
+
+/* Bảng */
+.table-responsive{
+    overflow-x: auto;
+}
+.table td{
+    vertical-align: middle;
+}
+.table-img{
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    background: #EEEEEC;
+    border: 1px solid #DADAD7;
+}
+
+.badge-grade-likenew{
+    background: #E8F3EB;
+    color: #2C6B3F;
+}
+.badge-grade-good{
+    background: #EAF1F8;
+    color: #2B5876;
+}
+.badge-grade-fair{
+    background: #FBF5EB;
+    color: #875A18;
+}
+
+/* Thao tác hàng */
+.actions-cell{
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+.btn-sm{
+    height: 32px;
+    padding: 0 10px;
+    font-size: 11px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.btn-sm .material-symbols-outlined{
+    font-size: 16px;
+}
+.btn-danger{
+    color: #8C3B2D;
+    border-color: #8C3B2D;
+}
+.btn-danger:hover{
+    background: #8C3B2D;
+    color: #FFFFFF;
+}
+
+/* Modal Form */
+.form-row{
+    display: flex;
+    gap: 16px;
+}
+.flex-1{ flex: 1; min-width: 0; }
+.flex-2{ flex: 2; min-width: 0; }
+.req{ color: #8C3B2D; font-weight: bold; }
+
+@media (max-width: 1024px){
+    .stat-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .form-row{
+        flex-direction: column;
+        gap: 0;
+    }
+}

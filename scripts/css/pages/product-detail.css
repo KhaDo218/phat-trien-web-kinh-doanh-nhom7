@@ -1,191 +1,256 @@
 /* =====================================================================
    ROOMCRAFT - CSS riêng của trang product-detail.html
-   Người phụ trách: Nguyên Khôi
-   Màu, font, nút, ô nhập dùng class có sẵn trong base.css
-   (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
+   Người phụ trách: Nguyên Khôi & Như Huyền (phần đồ cũ)
    ===================================================================== */
 
-.product-detail-layout{
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+.detail-layout{
+    display: flex;
     gap: 48px;
-    margin: 8px 0 96px;
+    align-items: flex-start;
+    margin-bottom: 48px;
 }
-.product-gallery-main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 460px;
-    padding: 24px;
-    background: #EEEEEC;
+.detail-media{
+    flex: 1.1;
+    min-width: 0;
 }
-.product-gallery-main img{
-    width: 100%;
-    max-height: 520px;
-    object-fit: contain;
-}
-.product-gallery-main img[hidden]{
-    display: none;
-}
-.product-gallery-thumbnails{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 12px;
-}
-.product-gallery-thumbnails img{
-    width: 100%;
-    height: 92px;
-    object-fit: cover;
-    background: #EEEEEC;
-}
-.product-summary{
-    padding-top: 8px;
-}
-.product-summary-heading{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-.product-detail-name{
-    font-family: "EB Garamond", Georgia, serif;
-    font-size: 42px;
-    line-height: 48px;
-    font-weight: 400;
-}
-.product-category{
-    margin-top: 10px;
-}
-.product-detail-price{
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin: 24px 0;
-    padding: 16px 0;
-    border-top: 1px solid #DADAD7;
-    border-bottom: 1px solid #DADAD7;
-}
-.product-detail-price .price{
-    font-size: 22px;
-}
-.product-detail-description{
-    font-size: 14px;
-    line-height: 24px;
-}
-.product-specifications{
-    margin: 24px 0;
-}
-.product-specifications div{
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 0;
-    border-bottom: 1px solid #DADAD7;
-    font-size: 13px;
-}
-.product-specifications dt{
-    color: #686868;
-}
-.product-specifications dd{
-    text-align: right;
-}
-.product-detail-actions{
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 12px;
-}
-.product-detail-actions .btn-outline{
-    padding: 0 16px;
-}
-.product-3d-link{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 16px;
-    padding: 14px;
-    background: #EEEEEC;
-    font-size: 12px;
-}
-.product-3d-section,
-.product-reviews,
-.related-products{
-    margin-bottom: 96px;
-}
-.product-3d-section .section-head,
-.product-reviews .section-head,
-.related-products .section-head{
-    margin-bottom: 24px;
-}
-.product-3d-viewer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 360px;
-    background: #EEEEEC;
-}
-.product-3d-viewer .empty{
-    padding: 32px;
-}
-.product-description-section{
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
-    gap: 48px;
-    margin-bottom: 96px;
-    padding: 40px;
-}
-.product-description-copy .headline-section{
-    margin: 8px 0 16px;
-}
-.product-description-copy .text-secondary{
-    line-height: 26px;
-}
-.product-description-aside .product-specifications{
-    margin-bottom: 0;
-}
-.product-review-list{
-    min-height: 120px;
-    border-top: 1px solid #DADAD7;
-}
-.related-product-grid{
-    align-content: start;
-}
-.related-products .section-head .text-secondary{
-    margin-top: 8px;
-    font-size: 13px;
+.detail-info{
+    flex: 1;
+    min-width: 0;
 }
 
-@media (max-width: 900px){
-    .product-detail-layout{
-        grid-template-columns: 1fr;
+/* Khung ảnh & 3D */
+.detail-main-img-box{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #EEEEEC;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detail-main-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+}
+.detail-3d-box{
+    width: 100%;
+    height: 100%;
+}
+.detail-thumbs{
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+.thumb-btn{
+    width: 72px;
+    height: 72px;
+    background: #EEEEEC;
+    border: 1px solid #DADAD7;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0.7;
+    transition: all 0.15s;
+}
+.thumb-btn:hover, .thumb-btn.active{
+    opacity: 1;
+    border-color: #202020;
+    box-shadow: 0 0 0 1px #202020;
+}
+.thumb-btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.detail-switcher{
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* Thông tin sản phẩm */
+.detail-brand-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.detail-title{
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 16px;
+}
+.detail-price-box{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #DADAD7;
+}
+.detail-price{
+    font-size: 26px;
+    font-weight: 600;
+}
+.detail-price-old{
+    font-size: 16px;
+    color: #686868;
+    text-decoration: line-through;
+}
+.badge-sale{
+    background: #8C3B2D;
+    color: #FFFFFF;
+}
+
+/* Khung thông tin đồ cũ tuyển chọn */
+.used-info-card{
+    background: #FFFFFF;
+    border-left: 4px solid #2C6B3F;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+}
+.used-card-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #DADAD7;
+}
+.used-title-wrap{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.used-title-wrap h4{
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 19px;
+    margin: 0;
+    color: #202020;
+}
+.used-details-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13.5px;
+}
+.used-item{
+    display: flex;
+    gap: 12px;
+}
+.used-lbl{
+    width: 140px;
+    color: #686868;
+    flex-shrink: 0;
+}
+.used-val{
+    color: #202020;
+    flex: 1;
+}
+.used-guarantee{
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #DADAD7;
+    font-size: 12px;
+    color: #2C6B3F;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.used-guarantee .material-symbols-outlined{
+    font-size: 16px;
+}
+
+/* Bảng thông số */
+.detail-specs{
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+}
+.spec-row{
+    display: flex;
+    padding: 8px 0;
+    border-bottom: 1px solid #EEEEEC;
+}
+.spec-row:last-child{
+    border-bottom: none;
+}
+.spec-lbl{
+    width: 120px;
+    color: #686868;
+    flex-shrink: 0;
+}
+.spec-val{
+    color: #202020;
+}
+
+/* Nút hành động */
+.detail-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.qty-selector{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+}
+.qty-input{
+    width: 80px;
+    height: 40px;
+    text-align: center;
+}
+.action-buttons{
+    display: flex;
+    gap: 12px;
+}
+.action-buttons .btn-full{
+    flex: 1;
+}
+
+/* Mô tả sản phẩm */
+.detail-description-section{
+    margin-top: 48px;
+}
+.desc-card{
+    padding: 32px 40px;
+}
+.desc-content{
+    font-size: 15px;
+    line-height: 26px;
+    color: #383838;
+}
+
+/* Responsive */
+@media (max-width: 1024px){
+    .detail-layout{
+        flex-direction: column;
         gap: 32px;
     }
-    .product-gallery-main{
-        min-height: 360px;
-    }
-    .product-description-section{
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 28px;
-    }
-}
-@media (max-width: 600px){
-    .product-detail-name{
-        font-size: 36px;
-        line-height: 42px;
-    }
-    .product-detail-actions{
-        grid-template-columns: 1fr;
-    }
-    .product-detail-actions .btn-outline{
+    .detail-media, .detail-info{
         width: 100%;
     }
-    .product-gallery-thumbnails{
-        gap: 8px;
+}
+@media (max-width: 768px){
+    .detail-title{
+        font-size: 26px;
+        line-height: 34px;
     }
-    .product-gallery-thumbnails img{
-        height: 68px;
+    .desc-card{
+        padding: 24px 20px;
+    }
+    .used-item{
+        flex-direction: column;
+        gap: 2px;
+    }
+    .used-lbl{
+        width: 100%;
     }
 }

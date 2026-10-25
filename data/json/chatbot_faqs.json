@@ -1,1 +1,142 @@
-[]
+[
+  {
+    "id": 1,
+    "topic": "PRODUCT",
+    "keywords": "chất liệu, gỗ thật, gỗ công nghiệp, gỗ tự nhiên, nguồn gốc, xuất xứ",
+    "answer": "Các sản phẩm nội thất tại RoomCraft được tuyển chọn kỹ lưỡng từ các thương hiệu uy tín (IKEA, Nhà Xinh, BoConcept, Chổi Xể...). Chất liệu chủ đạo là gỗ sồi tự nhiên, gỗ óc chó (walnut), gỗ xoài, kim loại sơn tĩnh điện và vải bọc cao cấp (nhung tuyết, da thật, vải bố). Thông số chất liệu chi tiết luôn được ghi rõ trong từng trang sản phẩm.",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "topic": "PRODUCT",
+    "keywords": "bảo hành, thời gian bảo hành, sửa chữa, bảo trì",
+    "answer": "Sản phẩm mới (NEW) được bảo hành chính hãng từ 12 đến 24 tháng cho khung sườn và kết cấu kỹ thuật. Đối với đồ cũ tuyển chọn (USED) trên Marketplace, RoomCraft hỗ trợ bảo hành kỹ thuật 03 tháng và bao kiểm tra đổi trả trong vòng 7 ngày đầu tiên nếu phát sinh lỗi kỹ thuật.",
+    "is_active": true
+  },
+  {
+    "id": 3,
+    "topic": "PRODUCT",
+    "keywords": "xem 3d, mô hình 3d, ar, thực tế ảo, xoay 3d",
+    "answer": "RoomCraft tích hợp công nghệ xem 3D trực tiếp trên trình duyệt bằng chuẩn WebGL/model-viewer. Với các sản phẩm có nhãn 'Xem 3D', bạn chỉ cần bấm vào khung 3D trên trang chi tiết để xoay 360 độ, phóng to chi tiết bề mặt hoặc nhấn nút 'AR' trên điện thoại để ướm thử vào không gian thực của phòng.",
+    "is_active": true
+  },
+  {
+    "id": 4,
+    "topic": "PRODUCT",
+    "keywords": "đồ cũ, marketplace, chất lượng đồ cũ, kiểm định, độ mới",
+    "answer": "Mỗi món đồ cũ trên RoomCraft Marketplace đều là sản phẩm độc bản (chỉ có duy nhất 1 món, số lượng = 1). Tất cả đều được chuyên viên kiểm định và phân loại thành 3 cấp độ: Like New (như mới >95%), Good (tình trạng tốt 85-95%) và Fair (sử dụng tốt >70%, có hao mòn nhẹ). Chúng tôi luôn chụp ảnh thật nhiều góc độ và ghi rõ thời gian đã qua sử dụng cùng ghi chú tình trạng.",
+    "is_active": true
+  },
+  {
+    "id": 5,
+    "topic": "PRODUCT",
+    "keywords": "kích thước, tư vấn kích thước, đo đạc, vừa phòng",
+    "answer": "Tất cả sản phẩm đều có thông số Kích thước chi tiết (Rộng x Sâu x Cao). Bạn có thể dùng tính năng 'Shop the Room' để hình dung tỉ lệ sản phẩm so với các món đồ khác trong căn phòng mẫu, hoặc nhắn kích thước phòng cho RoomCraft để được tư vấn kích thước phù hợp nhất.",
+    "is_active": true
+  },
+  {
+    "id": 6,
+    "topic": "STYLE",
+    "keywords": "coastal, phong cách coastal, biển, màu sắc coastal",
+    "answer": "Phong cách Coastal (Ven biển) mang cảm hứng thư thái từ đại dương, kết hợp tông màu trắng tinh khiết, xanh navy, be cát cùng các chất liệu tự nhiên như gỗ sáng màu, mây tre đan và vải lanh. Phong cách này mang lại cảm giác thoáng đãng, ngập tràn ánh sáng và thanh bình cho tổ ấm.",
+    "is_active": true
+  },
+  {
+    "id": 7,
+    "topic": "STYLE",
+    "keywords": "scandinavian, phong cách scandinavian, bắc âu, tối giản",
+    "answer": "Scandinavian (Bắc Âu) đề cao sự cân bằng giữa tính thẩm mỹ tối giản và công năng sử dụng. Đặc trưng bởi tông màu sáng (trắng, xám nhạt), gỗ sồi sáng màu, đường nét thanh mảnh gọn gàng và tận dụng tối đa ánh sáng tự nhiên.",
+    "is_active": true
+  },
+  {
+    "id": 8,
+    "topic": "STYLE",
+    "keywords": "mid-century, mid century modern, hoài cổ, hiện đại thế kỷ 20",
+    "answer": "Mid-century Modern là phong cách thiết kế bùng nổ giữa thế kỷ 20 với đặc trưng chân côn thon gọn, đường cong hình học mềm mại, gỗ óc chó sẫm màu kết hợp cùng các gam màu nhấn cá tính như vàng mù tạt, xanh rêu và cam cháy.",
+    "is_active": true
+  },
+  {
+    "id": 9,
+    "topic": "STYLE",
+    "keywords": "bohemian, boho, phóng khoáng, cây xanh",
+    "answer": "Bohemian (Boho) thể hiện tinh thần tự do, phóng khoáng với nhiều họa tiết thổ cẩm, cây xanh trang trí, chất liệu đan lát thủ công (macrame, mây đay) và các gam màu đất ấm áp, tạo cảm giác gần gũi với thiên nhiên.",
+    "is_active": true
+  },
+  {
+    "id": 10,
+    "topic": "STYLE",
+    "keywords": "farmhouse, nhà vườn, mộc mạc, cổ điển",
+    "answer": "Farmhouse mang vẻ đẹp mộc mạc, ấm cúng kiểu nhà vườn truyền thống với các thớ gỗ tự nhiên có vân thô mộc, tông màu trung tính và các chi tiết kim loại sơn đen cổ điển, mang lại cảm giác thân thuộc và bình yên.",
+    "is_active": true
+  },
+  {
+    "id": 11,
+    "topic": "STYLE",
+    "keywords": "tư vấn phong cách, chọn phong cách, phòng nhỏ, chung cư",
+    "answer": "Đối với căn hộ chung cư hoặc phòng có diện tích nhỏ (< 60m²), RoomCraft gợi ý phong cách Scandinavian hoặc Coastal: ưu tiên gam màu sáng, nội thất chân cao thanh mảnh, gương treo tường và các món đồ đa năng (như bàn trà tròn, sofa giường, đôn có ngăn chứa đồ) giúp không gian thoáng đãng và rộng hơn.",
+    "is_active": true
+  },
+  {
+    "id": 12,
+    "topic": "POLICY",
+    "keywords": "thanh toán, phương thức thanh toán, cod, chuyển khoản, momo, vnpay",
+    "answer": "RoomCraft hỗ trợ đa dạng phương thức thanh toán: Thanh toán khi nhận hàng (COD), Chuyển khoản ngân hàng qua mã VietQR tự động và Ví điện tử (MoMo / VNPay). Mọi giao dịch đều được mã hóa bảo mật chuẩn SSL.",
+    "is_active": true
+  },
+  {
+    "id": 13,
+    "topic": "POLICY",
+    "keywords": "hóa đơn, vat, hóa đơn đỏ, hóa đơn điện tử",
+    "answer": "RoomCraft hỗ trợ xuất hóa đơn GTGT (VAT) điện tử hợp pháp cho mọi đơn hàng cá nhân và doanh nghiệp. Quý khách chỉ cần tích chọn 'Yêu cầu xuất hóa đơn VAT' và nhập thông tin công ty / mã số thuế tại bước thanh toán Checkout.",
+    "is_active": true
+  },
+  {
+    "id": 14,
+    "topic": "POLICY",
+    "keywords": "mã giảm giá, coupon, voucher, khuyến mãi, cách dùng coupon",
+    "answer": "Bạn có thể nhập mã giảm giá tại ô 'Mã giảm giá' ở trang Giỏ hàng hoặc Thanh toán. Ví dụ mã WELCOME10 giảm 10% cho đơn hàng đầu tiên (áp dụng đơn từ 2 triệu), FREESHIP miễn phí vận chuyển nội thành. Hệ thống sẽ tự động trừ số tiền giảm vào tổng thanh toán.",
+    "is_active": true
+  },
+  {
+    "id": 15,
+    "topic": "SHIPPING",
+    "keywords": "vận chuyển, phí ship, giao hàng, bao lâu thì nhận được",
+    "answer": "Thời gian giao hàng tiêu chuẩn là từ 2-4 ngày làm việc đối với khu vực TP.HCM & Hà Nội, và 4-7 ngày làm việc đối với các tỉnh thành khác. Phí vận chuyển được tính dựa trên phương thức bạn chọn tại trang Thanh toán: Giao hàng tiêu chuẩn (50.000 ₫) hoặc Giao hàng nhanh kèm hỗ trợ bốc xếp (150.000 ₫). Đơn hàng từ 10.000.000 ₫ được miễn phí vận chuyển.",
+    "is_active": true
+  },
+  {
+    "id": 16,
+    "topic": "SHIPPING",
+    "keywords": "lắp đặt, bốc xếp, khiêng lên lầu, chung cư thang bộ",
+    "answer": "Đội ngũ giao nhận của RoomCraft hỗ trợ mang sản phẩm tận phòng và lắp ráp hoàn chỉnh đối với các sản phẩm kích thước lớn (như bàn ăn, giường ngủ, tủ kệ). Quý khách vui lòng ghi chú số tầng và tình trạng thang máy/thang bộ khi đặt hàng để tài xế chuẩn bị nhân lực phù hợp.",
+    "is_active": true
+  },
+  {
+    "id": 17,
+    "topic": "SHIPPING",
+    "keywords": "theo dõi đơn hàng, tra cứu đơn hàng, kiểm tra đơn hàng, trạng thái đơn",
+    "answer": "Bạn có thể theo dõi tiến độ đơn hàng tại mục 'Đơn hàng của tôi' trong trang Tài khoản. Trạng thái đơn hàng sẽ cập nhật theo thời gian thực: Confirmed (Đã xác nhận) → Packing (Đang chuẩn bị hàng) → Shipping (Đang giao hàng) → Delivered (Đã giao thành công).",
+    "is_active": true
+  },
+  {
+    "id": 18,
+    "topic": "RETURN",
+    "keywords": "đổi trả, chính sách đổi trả, hoàn tiền, thời gian đổi trả",
+    "answer": "Khách hàng được quyền đổi trả sản phẩm mới trong vòng 07 ngày kể từ ngày nhận hàng nếu sản phẩm bị lỗi do nhà sản xuất, trầy xước khi vận chuyển hoặc không đúng mô tả. Đối với đồ cũ Marketplace, bạn được kiểm tra hàng trực tiếp khi nhận, nếu không ưng ý có thể từ chối nhận hàng ngay lập tức.",
+    "is_active": true
+  },
+  {
+    "id": 19,
+    "topic": "RETURN",
+    "keywords": "điều kiện đổi trả, thủ tục đổi trả, hoàn hàng",
+    "answer": "Điều kiện đổi trả: Sản phẩm còn nguyên vẹn tem nhãn, chưa qua sử dụng chỉnh sửa hay hư hại do người dùng, và có hóa đơn / mã đơn hàng RoomCraft tương ứng. Chúng tôi sẽ cử nhân viên đến tận nhà thu hồi sản phẩm cần đổi trả.",
+    "is_active": true
+  },
+  {
+    "id": 20,
+    "topic": "RETURN",
+    "keywords": "hoàn tiền, nhận lại tiền, tài khoản hoàn tiền",
+    "answer": "Sau khi sản phẩm hoàn trả được kiểm tra hợp lệ tại kho RoomCraft, số tiền sẽ được hoàn về tài khoản ngân hàng hoặc phương thức thanh toán ban đầu của quý khách trong vòng 24 - 48 giờ làm việc.",
+    "is_active": true
+  }
+]

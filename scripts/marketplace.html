@@ -1,38 +1,225 @@
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-        <title>Đồ cũ tuyển chọn - RoomCraft</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style type="text/css">
-            @import url(css/base.css);
-            @import url(css/pages/marketplace.css);
-        </style>
-        <script src="js/core/utils.js"></script>
-        <script src="js/core/store.js"></script>
-        <script src="js/core/auth.js"></script>
-        <script src="components/header.js"></script>
-        <script src="components/footer.js"></script>
-        <script src="components/chatbot.js"></script>
-        <script src="components/product-card.js"></script>
-        <script src="js/services/products.js"></script>
-        <script src="js/pages/marketplace.js"></script>
-    </head>
-    <body>
-        <div id="header"></div>
 
-        <main class="container">
-            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Đồ cũ tuyển chọn</div>
-            <h1 class="headline-page">Đồ cũ tuyển chọn</h1>
+<head>
+    <title>Đồ cũ tuyển chọn - RoomCraft Marketplace</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        @import url(css/base.css);
+        @import url(css/pages/marketplace.css);
+    </style>
+    <script src="js/core/utils.js"></script>
+    <script src="js/core/store.js"></script>
+    <script src="js/core/auth.js"></script>
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/chatbot.js"></script>
+    <script src="components/product-card.js"></script>
+    <script src="js/services/products.js"></script>
+    <script src="js/pages/marketplace.js"></script>
+</head>
 
-            <!-- TODO (Như Huyền): Danh sách đồ cũ (product_type = "USED"), lọc tình trạng, giá, thương hiệu, danh mục. -->
+<body>
+    <div id="header"></div>
 
-        </main>
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Trang chủ</a><span>/</span>Đồ cũ tuyển chọn
+        </div>
 
-        <div id="footer"></div>
+        <!-- Header phần Marketplace -->
+        <div class="market-header">
+            <div>
+                <p class="overline">Curated Marketplace • Độc bản</p>
+                <h1 class="headline-page">Đồ cũ tuyển chọn</h1>
+                <p class="lead" style="max-width: 760px; margin-top: 8px;">
+                    Bộ sưu tập nội thất secondhand độc bản, tuyển chọn kỹ lưỡng theo các phong cách thiết kế đặc trưng.
+                    Mỗi sản phẩm đều được kiểm định chất lượng, mô tả chân thực và tiết kiệm đến 65% so với giá gốc.
+                </p>
+            </div>
+            <div class="market-trust-badges">
+                <div class="trust-badge-item">
+                    <span class="material-symbols-outlined">verified</span>
+                    <div><strong>Kiểm định 100%</strong>
+                        <p>Chuyên viên thẩm định</p>
+                    </div>
+                </div>
+                <div class="trust-badge-item">
+                    <span class="material-symbols-outlined">recycling</span>
+                    <div><strong>Nội thất xanh</strong>
+                        <p>Tiết kiệm & bền vững</p>
+                    </div>
+                </div>
+                <div class="trust-badge-item">
+                    <span class="material-symbols-outlined">local_shipping</span>
+                    <div><strong>Kiểm tra tận nhà</strong>
+                        <p>Xem hàng trước khi nhận</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <script>
-            loadData(initPage);
-        </script>
-    </body>
+        <!-- Bố cục lọc và danh sách sản phẩm -->
+        <div class="market-layout">
+            <!-- Cột lọc bên trái -->
+            <aside class="market-sidebar">
+                <div class="market-filter-card card">
+                    <div class="filter-header">
+                        <h3 class="filter-title"><span class="material-symbols-outlined">tune</span> Bộ lọc</h3>
+                        <button type="button" class="btn-link" onclick="resetFilters()">Đặt lại</button>
+                    </div>
+
+                    <!-- Lọc theo Tình trạng -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Tình trạng đồ cũ</h4>
+                        <div class="filter-chips" id="filterGradeChips">
+                            <button type="button" class="chip active" onclick="setConditionFilter('')">Tất cả</button>
+                            <button type="button" class="chip" onclick="setConditionFilter('Like New')">Like New
+                                (>95%)</button>
+                            <button type="button" class="chip" onclick="setConditionFilter('Good')">Good
+                                (85-95%)</button>
+                            <button type="button" class="chip" onclick="setConditionFilter('Fair')">Fair (>70%)</button>
+                        </div>
+                    </div>
+
+                    <!-- Lọc theo Khoảng giá -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Mức giá (VND)</h4>
+                        <div class="filter-radios">
+                            <label class="radio-label">
+                                <input type="radio" name="radPrice" value="" checked onchange="applyFilters()">
+                                <span>Tất cả mức giá</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="radPrice" value="0-1000000" onchange="applyFilters()">
+                                <span>Dưới 1.000.000 ₫</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="radPrice" value="1000000-3000000" onchange="applyFilters()">
+                                <span>1.000.000 ₫ – 3.000.000 ₫</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="radPrice" value="3000000-6000000" onchange="applyFilters()">
+                                <span>3.000.000 ₫ – 6.000.000 ₫</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="radPrice" value="6000000-999999999" onchange="applyFilters()">
+                                <span>Trên 6.000.000 ₫</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Lọc theo Danh mục -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Danh mục sản phẩm</h4>
+                        <select id="slCategory" class="input" onchange="applyFilters()">
+                            <option value="">Tất cả danh mục</option>
+                        </select>
+                    </div>
+
+                    <!-- Lọc theo Thương hiệu -->
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Thương hiệu</h4>
+                        <select id="slBrand" class="input" onchange="applyFilters()">
+                            <option value="">Tất cả thương hiệu</option>
+                        </select>
+                    </div>
+
+                    <!-- Lọc còn hàng -->
+                    <div class="filter-group" style="margin-bottom:0;">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="chkInStockOnly" onchange="applyFilters()">
+                            <span>Chỉ hiện sản phẩm còn hàng</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Cột nội dung bên phải: Thanh công cụ + Lưới sản phẩm -->
+            <div class="market-content">
+                <div class="market-toolbar card">
+                    <div class="toolbar-left">
+                        <span class="result-count" id="lblResultCount">Đang tải sản phẩm...</span>
+                        <div class="active-tags" id="divActiveTags"></div>
+                    </div>
+                    <div class="toolbar-right">
+                        <div class="search-mini">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="txtMarketSearch" class="input"
+                                placeholder="Tìm tên đồ cũ, chất liệu..." oninput="onSearchInput()">
+                        </div>
+                        <div class="sort-box">
+                            <label for="slSort">Sắp xếp:</label>
+                            <select id="slSort" class="input" onchange="applyFilters()">
+                                <option value="newest">Mới cập nhật</option>
+                                <option value="price-asc">Giá: Thấp đến Cao</option>
+                                <option value="price-desc">Giá: Cao đến Thấp</option>
+                                <option value="grade">Tình trạng tốt nhất</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lưới danh sách sản phẩm -->
+                <div id="usedProductsGrid" class="grid-3 market-grid"></div>
+
+                <!-- Khung khi không có kết quả -->
+                <div id="emptyResults" class="market-empty empty hidden card">
+                    <span class="material-symbols-outlined empty-icon">inventory_2</span>
+                    <h3 class="headline-section" style="font-size:24px; margin-top:12px;">Không tìm thấy món đồ cũ phù
+                        hợp</h3>
+                    <p class="text-secondary" style="max-width:440px; margin:8px auto 20px;">
+                        Hãy thử điều chỉnh bộ lọc tình trạng, mức giá hoặc từ khóa tìm kiếm để khám phá thêm các món đồ
+                        cũ khác.
+                    </p>
+                    <button type="button" class="btn" onclick="resetFilters()">Xem tất cả đồ cũ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Giới thiệu quy trình kiểm định -->
+        <section class="section market-guide-section">
+            <div class="section-head">
+                <div>
+                    <p class="overline">Cam kết chất lượng</p>
+                    <h2 class="headline-section">Quy trình kiểm định 4 bước tại RoomCraft</h2>
+                </div>
+            </div>
+            <div class="grid-4 market-steps">
+                <div class="step-card card">
+                    <span class="step-num">01</span>
+                    <h4 class="step-title">Tiếp nhận & Sàng lọc</h4>
+                    <p class="text-secondary">Chỉ tuyển chọn đồ cũ từ các thương hiệu nội thất uy tín, có nguồn gốc minh
+                        bạch và kết cấu vững chắc.</p>
+                </div>
+                <div class="step-card card">
+                    <span class="step-num">02</span>
+                    <h4 class="step-title">Thẩm định kỹ thuật</h4>
+                    <p class="text-secondary">Kiểm tra khung xương, khớp nối, đệm mút và nước sơn. Đánh giá xếp loại
+                        khách quan (Like New / Good / Fair).</p>
+                </div>
+                <div class="step-card card">
+                    <span class="step-num">03</span>
+                    <h4 class="step-title">Vệ sinh & Bảo dưỡng</h4>
+                    <p class="text-secondary">Giặt hấp khử khuẩn vải nệm, đánh sáp dưỡng gỗ chống ẩm mốc và siết chặt ốc
+                        vít gia cố kết cấu.</p>
+                </div>
+                <div class="step-card card">
+                    <span class="step-num">04</span>
+                    <h4 class="step-title">Minh bạch thông tin</h4>
+                    <p class="text-secondary">Chụp ảnh thật mọi góc cạnh, công khai thời gian sử dụng, vết xước (nếu có)
+                        và định giá tiết kiệm 40–65%.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script>
+        loadData(initPage);
+    </script>
+</body>
+
 </html>

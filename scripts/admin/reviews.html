@@ -20,17 +20,77 @@
             <div id="sidebar"></div>
             <main class="admin-main">
                 <div class="admin-head">
-                    <p class="overline">Quản trị</p>
-                    <h1 class="headline-section">Quản lý đánh giá</h1>
+                    <div>
+                        <p class="overline">Khách hàng & Phản hồi</p>
+                        <h1 class="headline-section">Quản lý đánh giá & Nhận xét</h1>
+                    </div>
                 </div>
 
-                <!-- TODO (Như Huyền): Ẩn / xóa đánh giá. -->
+                <!-- Thống kê đánh giá -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <p class="overline">Tổng đánh giá</p>
+                        <p class="value" id="statTotalReviews">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Điểm trung bình</p>
+                        <p class="value" id="statAvgRating" style="color:#B38E38;">0.0 ★</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Đang hiển thị</p>
+                        <p class="value" id="statVisibleReviews" style="color:#2C6B3F;">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Đã ẩn vi phạm</p>
+                        <p class="value" id="statHiddenReviews" style="color:#8C3B2D;">0</p>
+                    </div>
+                </div>
 
+                <!-- Thanh công cụ tìm kiếm và lọc -->
+                <div class="toolbar">
+                    <input type="text" id="txtSearchReview" class="input" placeholder="Tìm theo tên sản phẩm, khách hàng, nội dung..." oninput="onSearchChange()">
+                    <select id="slFilterRating" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả số sao</option>
+                        <option value="5">5 Sao (Rất hài lòng)</option>
+                        <option value="4">4 Sao (Hài lòng)</option>
+                        <option value="3">3 Sao (Bình thường)</option>
+                        <option value="2">2 Sao (Chưa hài lòng)</option>
+                        <option value="1">1 Sao (Thất vọng)</option>
+                    </select>
+                    <select id="slFilterStatus" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="visible">Đang hiển thị</option>
+                        <option value="hidden">Đã ẩn</option>
+                    </select>
+                </div>
+
+                <!-- Bảng đánh giá -->
+                <div class="table-responsive card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 60px;">ID</th>
+                                <th style="width: 240px;">Sản phẩm</th>
+                                <th style="width: 170px;">Khách hàng</th>
+                                <th style="width: 110px;">Số sao</th>
+                                <th>Nhận xét của khách hàng</th>
+                                <th style="width: 110px;">Ngày gửi</th>
+                                <th style="width: 110px;">Trạng thái</th>
+                                <th style="width: 150px; text-align: right;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbReviews">
+                            <!-- Dữ liệu JS điền vào đây -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Khung trống khi không tìm thấy -->
+                <div id="divEmpty" class="empty card hidden" style="margin-top:20px;">
+                    <span class="material-symbols-outlined" style="font-size:36px;">reviews</span>
+                    <p style="margin-top:8px;">Không tìm thấy đánh giá nào phù hợp với bộ lọc.</p>
+                </div>
             </main>
         </div>
-
-        <script>
-            loadData(initPage);
-        </script>
     </body>
 </html>

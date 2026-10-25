@@ -1,102 +1,186 @@
 /* =====================================================================
-   ROOMCRAFT - product-card.js (thẻ sản phẩm dùng chung)
-   Người phụ trách: Nguyên Khôi  (cần xong trước Thứ 5, 22/10)
-   Dùng ở: products, wishlist, marketplace, room-detail, product-detail
+   ROOMCRAFT - product-card.js (Thẻ sản phẩm dùng chung)
+   Người phụ trách: Nguyên Khôi (dùng ở: products, wishlist, marketplace, room-detail, product-detail)
    Mẫu thẻ theo mockup: ảnh nền #EEEEEC + nút tim góc phải, dòng "THƯƠNG HIỆU • DANH MỤC",
    tên (font Garamond, class title-product), giá + giá gốc gạch ngang (price, price-old),
    nhãn "Còn hàng" (badge badge-stock), nút "Xem chi tiết" (btn btn-full).
    Ảnh: asset(product.images[0]); giá: formatVND(product.price)
-
-   Cách dùng: container.appendChild(createProductCard(product))
    ===================================================================== */
 
 function createProductCard(product){
-    var card = document.createElement("article");
-    card.className = "card product-card";
+    var card = document.createElement("div");
+    card.className = "product-card card";
+    card.setAttribute("data-id", product.id);
 
-    var imageLink = document.createElement("a");
-    imageLink.className = "product-card-image";
-    imageLink.href = "product-detail.html?id=" + encodeURIComponent(product.id);
-    imageLink.setAttribute("aria-label", "Xem " + product.name);
+    // Lấy thông tin danh mục & phong cách
+    var cat = findById("categories", product.category_id);
+    var catName = cat ? cat.name : "Nội thất";
+    var brandName = product.brand || "RoomCraft";
 
-    var image = document.createElement("img");
-    if(product.images != null && product.images.length > 0)
-        image.src = asset(product.images[0]);
-    image.alt = product.name;
-    image.loading = "lazy";
-    imageLink.appendChild(image);
+    // Khung ảnh
+    var imgBox = document.createElement("div");
+    imgBox.className = "product-card-img";
 
-    var favoriteButton = document.createElement("button");
-    favoriteButton.className = "btn-icon product-card-favorite";
-    favoriteButton.type = "button";
-    favoriteButton.setAttribute("aria-label", "Lưu " + product.name + " vào yêu thích");
-    var favoriteIcon = document.createElement("span");
-    favoriteIcon.className = "material-symbols-outlined";
-    favoriteIcon.textContent = "favorite";
-    favoriteButton.appendChild(favoriteIcon);
+    var linkImg = document.createElement("a");
+    linkImg.href = "product-detail.html?id=" + product.id;
 
-    var imageArea = document.createElement("div");
-    imageArea.className = "product-card-media";
-    imageArea.appendChild(imageLink);
-    imageArea.appendChild(favoriteButton);
+    var img = document.createElement("img");
+    var imgSrc = (product.images && product.images.length > 0) ? asset(product.images[0]) : "";
+    img.src = imgSrc;
+    img.alt = product.name;
+    img.loading = "lazy";
+    linkImg.appendChild(img);
+    imgBox.appendChild(linkImg);
 
-    var content = document.createElement("div");
-    content.className = "product-card-content";
+    // Huy hiệu trên ảnh (Đồ cũ: Tình trạng / Mới: 3D nếu có)
+    var badgesBox = document.createElement("div");
+    badgesBox.className = "product-card-badges";
 
-    var meta = document.createElement("p");
-    meta.className = "overline";
-    var categoryName = "";
-    if(typeof getCategoryName == "function")
-        categoryName = getCategoryName(product.category_id);
-    meta.textContent = product.brand || "";
-    if(categoryName != "")
-        meta.textContent += " · " + categoryName;
+    if(product.product_type === "USED"){
+        var badgeGrade = document.createElement("span");
+        var gradeCls = "badge-grade-good";
+        if(product.condition_grade === "Like New") gradeCls = "badge-grade-likenew";
+        else if(product.condition_grade === "Fair") gradeCls = "badge-grade-fair";
+        badgeGrade.className = "badge " + gradeCls;
+        badgeGrade.innerHTML = product.condition_grade || "Đồ cũ";
+        badgesBox.appendChild(badgeGrade);
+    } else if(product.model_3d_url){
+        var badge3d = document.createElement("span");
+        badge3d.className = "badge badge-3d";
+        badge3d.innerHTML = "<span class='material-symbols-outlined' style='font-size:12px;vertical-align:-1px;margin-right:2px;'>view_in_ar</span>3D";
+        badgesBox.appendChild(badge3d);
+    }
 
-    var nameLink = document.createElement("a");
-    nameLink.href = imageLink.href;
-    var name = document.createElement("h3");
-    name.className = "title-product";
-    name.className += " product-card-name";
-    name.textContent = product.name;
-    nameLink.appendChild(name);
+    imgBox.appendChild(badgesBox);
 
+    // Nút yêu thích
+    var btnWish = document.createElement("button");
+    btnWish.className = "btn-wishlist";
+    btnWish.setAttribute("title", "Lưu vào yêu thích");
+    btnWish.setAttribute("aria-label", "Yêu thích sản phẩm " + product.name);
+    var isFav = checkIsWishlist(product.id);
+    btnWish.innerHTML = "<span class='material-symbols-outlined' style='" + (isFav ? "font-variation-settings:\"FILL\" 1; color:#8C3B2D;" : "") + "'>favorite</span>";
+    btnWish.onclick = function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        toggleWishlistProduct(product.id, btnWish);
+    };
+    imgBox.appendChild(btnWish);
+
+    // Thân thẻ
+    var body = document.createElement("div");
+    body.className = "product-card-body";
+
+    // Overline: THƯƠNG HIỆU • DANH MỤC
+    var overline = document.createElement("p");
+    overline.className = "overline";
+    overline.textContent = brandName.toUpperCase() + " • " + catName.toUpperCase();
+    body.appendChild(overline);
+
+    // Tên sản phẩm
+    var title = document.createElement("h3");
+    title.className = "title-product";
+    var titleLink = document.createElement("a");
+    titleLink.href = "product-detail.html?id=" + product.id;
+    titleLink.textContent = product.name;
+    title.appendChild(titleLink);
+    body.appendChild(title);
+
+    // Thời gian sử dụng & ghi chú nếu là đồ cũ
+    if(product.product_type === "USED"){
+        var usedMeta = document.createElement("p");
+        usedMeta.className = "product-used-meta";
+        var timeText = product.usage_time ? "Đã dùng " + product.usage_time : "Đã qua sử dụng";
+        usedMeta.innerHTML = "<span class='material-symbols-outlined' style='font-size:14px;vertical-align:-2px;'>history</span> " + timeText;
+        body.appendChild(usedMeta);
+    }
+
+    // Giá & Trạng thái tồn kho
     var priceRow = document.createElement("div");
-    priceRow.className = "product-card-prices";
+    priceRow.className = "product-card-price-row";
 
-    var price = document.createElement("span");
-    price.className = "price";
-    price.textContent = formatVND(product.price);
-    priceRow.appendChild(price);
+    var priceBox = document.createElement("div");
+    priceBox.className = "product-prices";
+    var priceSpan = document.createElement("span");
+    priceSpan.className = "price";
+    priceSpan.textContent = formatVND(product.price);
+    priceBox.appendChild(priceSpan);
 
-    if(product.original_price != null && Number(product.original_price) > Number(product.price)){
-        var originalPrice = document.createElement("span");
-        originalPrice.className = "price-old";
-        originalPrice.textContent = formatVND(product.original_price);
-        priceRow.appendChild(originalPrice);
+    if(product.original_price && product.original_price > product.price){
+        var oldPriceSpan = document.createElement("span");
+        oldPriceSpan.className = "price-old";
+        oldPriceSpan.textContent = formatVND(product.original_price);
+        priceBox.appendChild(oldPriceSpan);
     }
+    priceRow.appendChild(priceBox);
 
-    var stock = document.createElement("span");
-    if(Number(product.stock_quantity) > 0){
-        stock.className = "badge badge-stock";
-        stock.textContent = "Còn hàng";
+    // Nhãn tình trạng kho
+    var stockBadge = document.createElement("span");
+    if(product.stock_quantity === 0){
+        stockBadge.className = "badge badge-out";
+        stockBadge.textContent = "Hết hàng";
+        if(product.product_type === "USED")
+            stockBadge.textContent = "Đã bán";
+    } else {
+        stockBadge.className = "badge badge-stock";
+        if(product.product_type === "USED"){
+            stockBadge.textContent = "Duy nhất 1 món";
+        } else {
+            stockBadge.textContent = "Còn hàng";
+        }
     }
-    else{
-        stock.className = "badge badge-out";
-        stock.textContent = product.product_type == "USED" ? "Đã bán" : "Hết hàng";
+    priceRow.appendChild(stockBadge);
+    body.appendChild(priceRow);
+
+    // Nút hành động
+    var actionBox = document.createElement("div");
+    actionBox.className = "product-card-actions";
+    var btnView = document.createElement("a");
+    btnView.className = "btn btn-outline btn-full";
+    btnView.href = "product-detail.html?id=" + product.id;
+    btnView.textContent = "Xem chi tiết";
+    if(product.stock_quantity === 0 && product.product_type === "USED"){
+        btnView.className = "btn btn-light btn-full";
+        btnView.textContent = "Đã bán";
     }
-    priceRow.appendChild(stock);
+    actionBox.appendChild(btnView);
+    body.appendChild(actionBox);
 
-    var detailLink = document.createElement("a");
-    detailLink.className = "btn btn-full";
-    detailLink.href = imageLink.href;
-    detailLink.className += " product-card-detail";
-    detailLink.textContent = "Xem chi tiết";
-
-    content.appendChild(meta);
-    content.appendChild(nameLink);
-    content.appendChild(priceRow);
-    content.appendChild(detailLink);
-    card.appendChild(imageArea);
-    card.appendChild(content);
+    card.appendChild(imgBox);
+    card.appendChild(body);
     return card;
+}
+
+function checkIsWishlist(productId){
+    var user = getCurrentUser();
+    var wishlists = getObject("wishlists") || {};
+    var key = user ? user.id : "guest";
+    var list = wishlists[key] || [];
+    return list.indexOf(productId) >= 0;
+}
+
+function toggleWishlistProduct(productId, btnElem){
+    var user = getCurrentUser();
+    var wishlists = getObject("wishlists") || {};
+    var key = user ? user.id : "guest";
+    if(!wishlists[key]) wishlists[key] = [];
+
+    var list = wishlists[key];
+    var idx = list.indexOf(productId);
+    var icon = btnElem.querySelector(".material-symbols-outlined");
+
+    if(idx >= 0){
+        list.splice(idx, 1);
+        if(icon){
+            icon.style.fontVariationSettings = "\"FILL\" 0";
+            icon.style.color = "";
+        }
+    } else {
+        list.push(productId);
+        if(icon){
+            icon.style.fontVariationSettings = "\"FILL\" 1";
+            icon.style.color = "#8C3B2D";
+        }
+    }
+    saveObject("wishlists", wishlists);
 }
