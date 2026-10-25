@@ -15,6 +15,7 @@
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
+        <script src="../js/services/orders.js"></script>
         <script src="../js/pages/admin-index.js"></script>
     </head>
     <body>
@@ -26,7 +27,31 @@
                     <h1 class="headline-section">Dashboard</h1>
                 </div>
 
-                <!-- TODO (Phương Anh): Doanh thu, số đơn, sản phẩm bán chạy, số người dùng (Chart.js). -->
+                <div class="grid-4 stat-grid">
+                    <div class="stat-card"><p class="overline">Doanh thu</p><p class="value" id="statRevenue">0 ₫</p></div>
+                    <div class="stat-card"><p class="overline">Số đơn hàng</p><p class="value" id="statOrders">0</p></div>
+                    <div class="stat-card"><p class="overline">Người dùng</p><p class="value" id="statUsers">0</p></div>
+                    <div class="stat-card"><p class="overline">Đơn chờ xử lý</p><p class="value" id="statPending">0</p></div>
+                </div>
+
+                <div class="chart-row">
+                    <div class="card chart-box">
+                        <p class="overline">Doanh thu 6 tháng gần nhất</p>
+                        <canvas id="chartRevenue"></canvas>
+                    </div>
+                    <div class="card chart-box">
+                        <p class="overline">Đơn hàng theo trạng thái</p>
+                        <canvas id="chartStatus"></canvas>
+                    </div>
+                </div>
+
+                <h2 class="headline-section top-title">Sản phẩm bán chạy</h2>
+                <table class="table">
+                    <thead>
+                        <tr><th>Sản phẩm</th><th>Tên</th><th>Đã bán</th><th>Doanh thu</th></tr>
+                    </thead>
+                    <tbody id="tbTopProducts"></tbody>
+                </table>
 
             </main>
         </div>

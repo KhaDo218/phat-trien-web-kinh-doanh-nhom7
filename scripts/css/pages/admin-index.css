@@ -5,3 +5,31 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.stat-grid{
+    margin-bottom: 32px;
+}
+.chart-row{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+.chart-box{
+    padding: 24px;
+}
+.chart-box .overline{
+    margin-bottom: 16px;
+}
+.chart-box canvas{
+    width: 100%;
+    max-height: 320px;
+}
+.top-title{
+    margin-bottom: 16px;
+}
+@media (max-width: 1024px){
+    .chart-row{
+        grid-template-columns: 1fr;
+    }
+}
