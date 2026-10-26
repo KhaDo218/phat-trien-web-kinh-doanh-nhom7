@@ -5,3 +5,25 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.admin-category-form{
+    max-width:900px;
+    margin-bottom:36px;
+    padding:24px;
+}
+.admin-category-form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 20px;
+}
+.admin-category-list{min-width:0}
+.admin-category-list .admin-table-wrap{overflow-x:auto}
+.admin-category-list table{min-width:680px}
+.admin-category-list .admin-table-wrap{background:#FFFFFF}
+.admin-category-list td:nth-child(2){font-weight:500}
+.admin-category-list td .btn-link{margin-right:8px}
+
+@media(max-width:700px){
+    .admin-category-form{padding:16px}
+    .admin-category-form-grid{grid-template-columns:1fr}
+}

@@ -18,6 +18,7 @@
         <script src="components/chatbot.js"></script>
         <script src="components/product-card.js"></script>
         <script src="js/services/products.js"></script>
+        <script src="js/services/orders.js"></script>
         <script src="js/pages/product-detail.js"></script>
     </head>
     <body>
@@ -144,6 +145,61 @@
                         <div id="lblDescription" class="desc-content"></div>
                     </div>
                 </div>
+
+                <section class="detail-recommendations detail-related-section" id="completeRoomSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Hoàn thiện không gian</p>
+                            <h2 class="headline-section">Complete Your Room</h2>
+                        </div>
+                        <p class="text-secondary">Gợi ý cùng phong cách, cùng tông màu và khác danh mục.</p>
+                    </div>
+                    <div class="grid-4 detail-product-grid" id="completeRoomProducts"></div>
+                    <p class="text-secondary detail-empty-note hidden" id="completeRoomEmpty">Hiện chưa có gợi ý phù hợp.</p>
+                </section>
+
+                <section class="detail-recommendations detail-related-section" id="similarProductsSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Khám phá thêm</p>
+                            <h2 class="headline-section">Sản phẩm tương tự</h2>
+                        </div>
+                    </div>
+                    <div class="grid-4 detail-product-grid" id="similarProducts"></div>
+                    <p class="text-secondary detail-empty-note hidden" id="similarProductsEmpty">Hiện chưa có sản phẩm tương tự.</p>
+                </section>
+
+                <section class="detail-reviews detail-related-section" id="productReviewsSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Trải nghiệm khách hàng</p>
+                            <h2 class="headline-section">Đánh giá sản phẩm</h2>
+                        </div>
+                        <p class="text-secondary" id="reviewSummary">Chưa có đánh giá.</p>
+                    </div>
+                    <div class="review-form-card card">
+                        <h3 class="title-product">Chia sẻ trải nghiệm của bạn</h3>
+                        <p class="text-secondary" id="reviewEligibility"></p>
+                        <form id="frmProductReview" class="hidden" onsubmit="return submitProductReview(event)">
+                            <div class="form-group">
+                                <label for="cboReviewRating">Số sao</label>
+                                <select class="input" id="cboReviewRating" required>
+                                    <option value="5">5 sao - Rất hài lòng</option>
+                                    <option value="4">4 sao - Hài lòng</option>
+                                    <option value="3">3 sao - Bình thường</option>
+                                    <option value="2">2 sao - Chưa hài lòng</option>
+                                    <option value="1">1 sao - Không hài lòng</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtReviewComment">Nhận xét</label>
+                                <textarea class="input" id="txtReviewComment" required maxlength="1000"></textarea>
+                            </div>
+                            <button class="btn" type="submit">Gửi đánh giá</button>
+                        </form>
+                    </div>
+                    <div class="review-list" id="productReviewList"></div>
+                </section>
             </div>
 
             <!-- Khung báo lỗi không tìm thấy sản phẩm -->

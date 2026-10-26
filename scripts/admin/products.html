@@ -24,7 +24,124 @@
                     <h1 class="headline-section">Quản lý sản phẩm</h1>
                 </div>
 
-                <!-- TODO (Nguyên Khôi): Thêm / sửa / ẩn sản phẩm, tồn kho, đường dẫn ảnh và model 3D. -->
+                <div class="toolbar admin-product-toolbar">
+                    <input class="input" type="search" id="txtProductSearch" placeholder="Tìm theo mã, tên hoặc thương hiệu..." oninput="renderAdminProducts()">
+                    <select class="input" id="cboProductStatus" onchange="renderAdminProducts()">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="active">Đang hiển thị</option>
+                        <option value="inactive">Đang ẩn</option>
+                    </select>
+                    <button class="btn" type="button" onclick="openProductForm('')">
+                        <span class="material-symbols-outlined">add</span> Thêm sản phẩm
+                    </button>
+                </div>
+
+                <section class="admin-product-form card hidden" id="productFormPanel">
+                    <div class="admin-section-heading">
+                        <div>
+                            <p class="overline" id="productFormMode">Sản phẩm</p>
+                            <h2 class="headline-section" id="productFormTitle">Thêm sản phẩm</h2>
+                        </div>
+                        <button class="btn-icon" type="button" onclick="closeProductForm()" aria-label="Đóng biểu mẫu">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <form id="frmProduct" onsubmit="return saveAdminProduct(event)">
+                        <div class="admin-form-grid">
+                            <div class="form-group">
+                                <label for="txtProductId">Mã sản phẩm <span class="req">*</span></label>
+                                <input class="input" type="text" id="txtProductId" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductName">Tên sản phẩm <span class="req">*</span></label>
+                                <input class="input" type="text" id="txtProductName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductBrand">Thương hiệu</label>
+                                <input class="input" type="text" id="txtProductBrand">
+                            </div>
+                            <div class="form-group">
+                                <label for="cboProductCategory">Danh mục <span class="req">*</span></label>
+                                <select class="input" id="cboProductCategory" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cboProductStyle">Phong cách <span class="req">*</span></label>
+                                <select class="input" id="cboProductStyle" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductPrice">Giá bán (₫) <span class="req">*</span></label>
+                                <input class="input" type="number" id="txtProductPrice" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductOriginalPrice">Giá gốc (₫)</label>
+                                <input class="input" type="number" id="txtProductOriginalPrice" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductStock">Tồn kho <span class="req">*</span></label>
+                                <input class="input" type="number" id="txtProductStock" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductDimensions">Kích thước</label>
+                                <input class="input" type="text" id="txtProductDimensions">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductMaterial">Chất liệu</label>
+                                <input class="input" type="text" id="txtProductMaterial">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtProductColor">Màu sắc</label>
+                                <input class="input" type="text" id="txtProductColor">
+                            </div>
+                            <div class="form-group admin-form-wide">
+                                <label for="txtProductImages">Đường dẫn ảnh (mỗi dòng một ảnh) <span class="req">*</span></label>
+                                <textarea class="input" id="txtProductImages" required></textarea>
+                            </div>
+                            <div class="form-group admin-form-wide">
+                                <label for="txtProductModel">Đường dẫn model 3D (không bắt buộc)</label>
+                                <input class="input" type="text" id="txtProductModel">
+                            </div>
+                            <div class="form-group admin-form-wide">
+                                <label for="txtProductDescription">Mô tả</label>
+                                <textarea class="input" id="txtProductDescription"></textarea>
+                            </div>
+                        </div>
+                        <label class="admin-active-toggle">
+                            <input type="checkbox" id="chkProductActive" checked>
+                            Hiển thị sản phẩm trên cửa hàng
+                        </label>
+                        <div class="admin-form-actions">
+                            <button class="btn btn-outline" type="button" onclick="closeProductForm()">Hủy</button>
+                            <button class="btn" type="submit">Lưu sản phẩm</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="admin-product-list">
+                    <div class="admin-section-heading">
+                        <div>
+                            <p class="overline">Kho hàng</p>
+                            <h2 class="headline-section">Danh sách sản phẩm</h2>
+                        </div>
+                        <p class="text-secondary" id="productResult"></p>
+                    </div>
+                    <div class="admin-table-wrap card">
+                        <table class="table admin-product-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ảnh</th>
+                                    <th scope="col">Mã / Tên sản phẩm</th>
+                                    <th scope="col">Danh mục</th>
+                                    <th scope="col">Giá bán</th>
+                                    <th scope="col">Tồn kho</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbProducts"></tbody>
+                        </table>
+                    </div>
+                    <nav class="catalog-pagination admin-pagination" id="adminProductPagination" aria-label="Phân trang sản phẩm"></nav>
+                </section>
 
             </main>
         </div>
