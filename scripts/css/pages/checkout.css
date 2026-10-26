@@ -5,3 +5,116 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+/* ---------- Bố cục 2 cột: form + tóm tắt đơn ---------- */
+.checkout-layout{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 48px;
+    align-items: start;
+    padding-bottom: 96px;
+}
+.checkout-box{
+    padding: 32px;
+    margin-bottom: 24px;
+}
+.checkout-box .overline{
+    margin-bottom: 4px;
+}
+.checkout-box .headline-section{
+    margin-bottom: 24px;
+}
+.option{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    cursor: pointer;
+}
+.option:hover{
+    border-color: #202020;
+}
+.option input{
+    accent-color: #202020;
+}
+.option .option-info{
+    flex: 1;
+}
+.option .option-info small{
+    display: block;
+    color: #686868;
+}
+.payment-note{
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #EEEEEC;
+    font-size: 13px;
+    color: #383838;
+}
+.checkout-summary{
+    padding: 32px;
+    position: sticky;
+    top: 160px;
+}
+.checkout-summary .overline{
+    margin-bottom: 16px;
+}
+.summary-item{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 0;
+}
+.summary-item img{
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    background: #EEEEEC;
+}
+.summary-item .summary-name{
+    flex: 1;
+    font-size: 13px;
+    line-height: 20px;
+}
+.coupon-row{
+    display: flex;
+    gap: 8px;
+    margin: 16px 0 8px;
+}
+.coupon-row .input{
+    height: 44px;
+}
+.coupon-row .btn{
+    height: 44px;
+    padding: 0 16px;
+}
+.sum-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #DADAD7;
+}
+.sum-total{
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: none;
+    margin-bottom: 16px;
+}
+.summary-note{
+    margin-top: 12px;
+    font-size: 12px;
+    text-align: center;
+}
+
+@media (max-width: 1024px){
+    .checkout-layout{
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .checkout-summary{
+        position: static;
+    }
+}

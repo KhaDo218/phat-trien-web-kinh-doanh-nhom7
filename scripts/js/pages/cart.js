@@ -2,6 +2,7 @@
    ROOMCRAFT - Giỏ hàng (cart.html)
    Người phụ trách: Phương Anh
    Việc cần làm: Đổi số lượng (không vượt tồn kho), xóa, tạm tính. Sau khi đổi gọi updateCartCount().
+   (updateCartCount() đã được gọi sẵn bên trong saveCart() của services/cart.js)
    ===================================================================== */
 
 // Gọi sau khi loadData() nạp xong dữ liệu
@@ -9,4 +10,118 @@ function initPage(){
     renderHeader("");
     renderFooter();
     renderChatbot();
+    showCart();
+}
+
+// Vẽ lại toàn bộ giỏ hàng (gọi lại mỗi khi đổi số lượng / xóa)
+function showCart(){
+    cleanCart();
+    var items = getCart();
+    var box = document.getElementById("cartContent");
+
+    if(items.length == 0){
+        box.innerHTML = "<div class='empty'><p>Giỏ hàng của bạn đang trống.</p><br>"
+                      + "<a class='btn' href='products.html'>Tiếp tục mua sắm</a></div>";
+        return;
+    }
+
+    var html = "<div class='cart-layout'>";
+    html += "<div>";
+    html += "  <div class='cart-head overline'><span>Sản phẩm</span><span>Số lượng</span><span>Thành tiền</span><span></span></div>";
+
+    for(var i = 0; i < items.length; i++){
+        var p = findById("products", items[i].product_id);
+        var anh = "";
+        if(p.images != null && p.images.length > 0)
+            anh = asset(p.images[0]);
+
+        html += "<div class='cart-row'>";
+        html += "  <div class='cart-product'>";
+        html += "    <img src='" + anh + "' alt='" + safeText(p.name) + "'>";
+        html += "    <div>";
+        html += "      <p class='title-product'>" + safeText(p.name) + "</p>";
+        html += "      <p class='price'>" + formatVND(p.price) + "</p>";
+        if(p.stock_quantity <= 0)
+            html += "  <span class='badge badge-out'>Hết hàng</span>";
+        else
+            html += "  <span class='badge badge-stock'>Còn " + p.stock_quantity + " sản phẩm</span>";
+        html += "    </div>";
+        html += "  </div>";
+
+        if(p.stock_quantity <= 0){
+            html += "<div class='text-secondary'>Không thể đặt</div>";
+            html += "<div class='line-total'>0 ₫</div>";
+        }
+        else{
+            html += "<div class='qty-box'>";
+            html += "  <button class='btn-icon' onclick='changeQty(" + i + ", -1)'>−</button>";
+            html += "  <input class='input qty-input' type='text' id='txtQty" + i + "' value='" + items[i].quantity + "' onchange='setQty(" + i + ")'>";
+            html += "  <button class='btn-icon' onclick='changeQty(" + i + ", 1)'>+</button>";
+            html += "</div>";
+            html += "<div class='line-total'>" + formatVND(p.price * items[i].quantity) + "</div>";
+        }
+        html += "  <button class='btn-icon' title='Xóa' onclick='removeItem(" + i + ")'><span class='material-symbols-outlined'>delete</span></button>";
+        html += "</div>";
+    }
+    html += "  <p style='margin-top:24px'><a class='btn-link' href='products.html'>← Tiếp tục mua sắm</a></p>";
+    html += "</div>";
+
+    // Cột tóm tắt bên phải
+    html += "<aside class='card cart-summary'>";
+    html += "  <p class='overline'>Tóm tắt đơn hàng</p>";
+    html += "  <div class='sum-row'><span>Tạm tính</span><span>" + formatVND(getCartTotal()) + "</span></div>";
+    html += "  <div class='sum-row sum-total'><span>Tổng (chưa gồm phí vận chuyển)</span><span>" + formatVND(getCartTotal()) + "</span></div>";
+    if(hasOutOfStockItem())
+        html += "<p class='error-text'>Giỏ hàng có sản phẩm đã hết hàng, vui lòng xóa trước khi thanh toán.</p>";
+    html += "  <input class='btn btn-full' type='button' value='Tiến hành thanh toán' onclick='goCheckout()'>";
+    html += "</aside>";
+    html += "</div>";
+
+    box.innerHTML = html;
+}
+
+// Bấm nút - hoặc +
+function changeQty(viTri, tang){
+    var items = getCart();
+    var loi = updateQuantity(items[viTri].product_id, Number(items[viTri].quantity) + tang);
+    if(loi != "")
+        alert(loi);
+    showCart();
+}
+
+// Gõ trực tiếp số lượng vào ô
+function setQty(viTri){
+    var items = getCart();
+    var chuoi = document.getElementById("txtQty" + viTri).value.trim();
+    var soLuong = Number(chuoi);
+    if(chuoi == "" || isNaN(soLuong) || soLuong != Math.floor(soLuong)){
+        alert("Số lượng phải là số nguyên!");
+        showCart();
+        return;
+    }
+    var loi = updateQuantity(items[viTri].product_id, soLuong);
+    if(loi != "")
+        alert(loi);
+    showCart();
+}
+
+function removeItem(viTri){
+    var items = getCart();
+    if(confirm("Xóa sản phẩm này khỏi giỏ hàng?") == false)
+        return;
+    removeFromCart(items[viTri].product_id);
+    showCart();
+}
+
+function goCheckout(){
+    if(hasOutOfStockItem()){
+        alert("Giỏ hàng có sản phẩm đã hết hàng, vui lòng xóa trước khi thanh toán!");
+        return;
+    }
+    if(isLoggedIn() == false){
+        alert("Vui lòng đăng nhập để thanh toán!");
+        window.location.href = "login.html?redirect=" + encodeURIComponent(window.location.href.replace("cart.html", "checkout.html"));
+        return;
+    }
+    window.location.href = "checkout.html";
 }

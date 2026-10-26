@@ -26,7 +26,69 @@
             <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><a href="cart.html">Giỏ hàng</a><span>/</span>Thanh toán</div>
             <h1 class="headline-page">Thanh toán</h1>
 
-            <!-- TODO (Phương Anh): Thông tin giao hàng, phương thức vận chuyển, mã giảm giá, thanh toán mô phỏng. -->
+            <div class="checkout-layout">
+                <form name="frmCheckout" class="checkout-form" onsubmit="return placeOrder()">
+                    <div class="card checkout-box">
+                        <p class="overline">Bước 1</p>
+                        <h2 class="headline-section">Thông tin giao hàng</h2>
+                        <div class="form-group">
+                            <label for="txtName">Họ tên người nhận</label>
+                            <input class="input" type="text" id="txtName" placeholder="Nguyễn Văn A">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPhone">Số điện thoại</label>
+                            <input class="input" type="text" id="txtPhone" placeholder="0901234567">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAddress">Địa chỉ giao hàng</label>
+                            <textarea class="input" id="txtAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card checkout-box">
+                        <p class="overline">Bước 2</p>
+                        <h2 class="headline-section">Phương thức vận chuyển</h2>
+                        <div id="shippingList"></div>
+                    </div>
+
+                    <div class="card checkout-box">
+                        <p class="overline">Bước 3</p>
+                        <h2 class="headline-section">Phương thức thanh toán</h2>
+                        <label class="option">
+                            <input type="radio" name="rdoPayment" value="COD" checked onclick="showPaymentNote()">
+                            <span>Thanh toán khi nhận hàng (COD)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="rdoPayment" value="Bank Transfer" onclick="showPaymentNote()">
+                            <span>Chuyển khoản ngân hàng</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="rdoPayment" value="E-wallet" onclick="showPaymentNote()">
+                            <span>Ví điện tử</span>
+                        </label>
+                        <p class="payment-note" id="paymentNote"></p>
+                    </div>
+                </form>
+
+                <aside class="card checkout-summary">
+                    <p class="overline">Đơn hàng của bạn</p>
+                    <div id="summaryItems"></div>
+
+                    <div class="coupon-row">
+                        <input class="input" type="text" id="txtCoupon" placeholder="Nhập mã giảm giá">
+                        <input class="btn btn-outline" type="button" value="Áp dụng" onclick="applyCoupon()">
+                    </div>
+                    <p id="msgCoupon"></p>
+
+                    <div class="sum-row"><span>Tạm tính</span><span id="sumSubtotal"></span></div>
+                    <div class="sum-row"><span>Phí vận chuyển</span><span id="sumShipping"></span></div>
+                    <div class="sum-row"><span>Giảm giá</span><span id="sumDiscount"></span></div>
+                    <div class="sum-row sum-total"><span>Tổng cộng</span><span id="sumTotal"></span></div>
+
+                    <input class="btn btn-full" type="button" value="Đặt hàng" onclick="placeOrder()">
+                    <p class="text-secondary summary-note">Thanh toán được mô phỏng, không phát sinh giao dịch thật.</p>
+                </aside>
+            </div>
 
         </main>
 

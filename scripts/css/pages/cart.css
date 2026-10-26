@@ -5,3 +5,116 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+/* ---------- Bố cục 2 cột: danh sách món + tóm tắt ---------- */
+.cart-layout{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: start;
+    padding-bottom: 96px;
+}
+.cart-head, .cart-row{
+    display: grid;
+    grid-template-columns: 2.4fr 1.3fr 1fr 40px;
+    gap: 16px;
+    align-items: center;
+}
+.cart-head{
+    padding: 12px 16px;
+    background: #EEEEEC;
+}
+.cart-row{
+    padding: 20px 16px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    border-top: none;
+}
+.cart-product{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    min-width: 0;
+}
+.cart-product img{
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    background: #EEEEEC;
+    flex-shrink: 0;
+}
+.cart-product .title-product{
+    margin-bottom: 4px;
+}
+.qty-box{
+    display: flex;
+    align-items: center;
+}
+.qty-box .btn-icon{
+    width: 36px;
+    height: 40px;
+    border: 1px solid #DADAD7;
+    background: #FFFFFF;
+    font-size: 18px;
+}
+.qty-box .btn-icon:hover{
+    background: #EEEEEC;
+}
+.qty-input{
+    width: 56px;
+    height: 40px;
+    padding: 0;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+}
+.line-total{
+    font-weight: 500;
+}
+.cart-summary{
+    padding: 32px;
+    position: sticky;
+    top: 160px;
+}
+.cart-summary .overline{
+    margin-bottom: 16px;
+}
+.sum-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #DADAD7;
+}
+.sum-total{
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: none;
+    margin-bottom: 16px;
+}
+.cart-summary .btn{
+    margin-top: 8px;
+}
+.cart-summary .error-text{
+    margin: 12px 0;
+}
+
+@media (max-width: 1024px){
+    .cart-layout{
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .cart-summary{
+        position: static;
+    }
+}
+@media (max-width: 768px){
+    .cart-head{
+        display: none;
+    }
+    .cart-row{
+        grid-template-columns: 1fr 1fr;
+    }
+    .cart-product{
+        grid-column: 1 / 3;
+    }
+}

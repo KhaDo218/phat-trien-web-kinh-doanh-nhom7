@@ -13,6 +13,7 @@
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
+        <script src="../js/services/orders.js"></script>
         <script src="../js/pages/admin-orders.js"></script>
     </head>
     <body>
@@ -24,7 +25,33 @@
                     <h1 class="headline-section">Quản lý đơn hàng</h1>
                 </div>
 
-                <!-- TODO (Phương Anh): Đổi trạng thái đơn: Confirmed -> Packing -> Shipping -> Delivered, hoặc Cancelled (hoàn tồn kho). -->
+                <div class="toolbar">
+                    <input class="input" type="text" id="txtSearch" placeholder="Tìm theo mã đơn, tên khách..." onkeyup="showOrders()">
+                    <select class="input" id="cboStatus" onchange="showOrders()">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="Confirmed">Đã xác nhận</option>
+                        <option value="Packing">Đang đóng gói</option>
+                        <option value="Shipping">Đang giao hàng</option>
+                        <option value="Delivered">Đã giao</option>
+                        <option value="Cancelled">Đã hủy</option>
+                    </select>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Khách hàng</th>
+                            <th>Sản phẩm</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Thanh toán</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbOrders"></tbody>
+                </table>
 
             </main>
         </div>

@@ -5,3 +5,43 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.success-box{
+    max-width: 720px;
+    margin: 0 auto 96px;
+    padding: 48px;
+    text-align: center;
+}
+.success-icon{
+    font-size: 56px;
+    color: #485238;
+}
+.success-box .headline-section{
+    margin: 16px 0 8px;
+}
+.success-info{
+    margin: 32px 0;
+    text-align: left;
+    border-top: 1px solid #DADAD7;
+}
+.success-info .info-row{
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid #DADAD7;
+}
+.success-info .info-row span:first-child{
+    color: #686868;
+}
+.success-actions{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+@media (max-width: 480px){
+    .success-box{
+        padding: 32px 20px;
+    }
+}

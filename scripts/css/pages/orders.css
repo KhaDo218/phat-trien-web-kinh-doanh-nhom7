@@ -5,3 +5,53 @@
    (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.orders-table{
+    width: 100%;
+    margin-bottom: 96px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.orders-table th{
+    padding: 12px 16px;
+    background: #EEEEEC;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #686868;
+}
+.orders-table td{
+    padding: 16px;
+    border-top: 1px solid #DADAD7;
+    vertical-align: middle;
+}
+.orders-table tr:hover td{
+    background: #F7F7F5;
+}
+.status{
+    display: inline-block;
+    padding: 4px 10px;
+    background: #EEEEEC;
+    color: #202020;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.status-Delivered{
+    background: #E8F3EB;
+    color: #2C6B3F;
+}
+.status-Cancelled{
+    color: #8C3B2D;
+}
+@media (max-width: 768px){
+    .orders-table{
+        display: block;
+        overflow-x: auto;
+    }
+}
