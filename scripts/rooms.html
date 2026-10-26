@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             @import url(css/base.css);
+            @import url(css/components/room.css);
             @import url(css/pages/rooms.css);
         </style>
         <script src="js/core/utils.js"></script>
@@ -14,17 +15,43 @@
         <script src="components/header.js"></script>
         <script src="components/footer.js"></script>
         <script src="components/chatbot.js"></script>
+        <script src="components/room-card.js"></script>
         <script src="js/pages/rooms.js"></script>
     </head>
     <body>
         <div id="header"></div>
 
         <main class="container">
-            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Không gian mẫu</div>
-            <h1 class="headline-page">Không gian mẫu</h1>
+            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span id="crumbStyle">Không gian mẫu</span></div>
 
-            <!-- TODO (Bảo Duy): Danh sách phòng, lọc theo phong cách. -->
+            <div class="rooms-heading">
+                <div>
+                    <p class="overline">Bộ sưu tập không gian</p>
+                    <h1 class="headline-page" id="pageTitle">Không gian mẫu</h1>
+                    <p class="lead" id="pageLead">Chọn một căn phòng để xem từng món nội thất trong ảnh, xoay mô hình 3D và mua ngay.</p>
+                </div>
+                <p class="rooms-count" id="roomCount"></p>
+            </div>
 
+            <!-- Lọc theo phong cách (UC3.1 - A1) -->
+            <div class="rooms-filter" role="group" aria-label="Lọc theo phong cách" id="styleFilter"></div>
+
+            <div class="rooms-toolbar">
+                <label class="rooms-check">
+                    <input type="checkbox" id="chkShopTheRoom" onclick="changeOption()">
+                    Chỉ hiện phòng có Shop the Room
+                </label>
+                <label class="rooms-sort">
+                    <span class="overline">Sắp xếp</span>
+                    <select class="input" id="cboSort" onchange="changeOption()">
+                        <option value="featured">Nổi bật</option>
+                        <option value="most">Nhiều sản phẩm nhất</option>
+                        <option value="name">Tên phòng A - Z</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="grid-3 rooms-grid" id="roomList"></div>
         </main>
 
         <div id="footer"></div>

@@ -1,7 +1,349 @@
 /* =====================================================================
    ROOMCRAFT - CSS riêng của trang admin/rooms.html
    Người phụ trách: Bảo Duy
-   Màu, font, nút, ô nhập dùng class có sẵn trong base.css
-   (.btn, .btn-outline, .input, .card, .chip, .badge, .overline ...),
-   file này chỉ viết phần riêng của trang.
+   Màu, font, nút, ô nhập dùng class có sẵn trong base.css + admin.css,
+   chấm hotspot nằm trong css/components/room.css; file này chỉ viết phần riêng của trang.
    ===================================================================== */
+
+.ar-head-actions{
+    display: flex;
+    gap: 12px;
+}
+.ar-head-actions .btn{
+    height: 42px;
+}
+.ar-stats{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+/* ----- Thanh công cụ + bảng ----- */
+.ar-toolbar{
+    flex-wrap: wrap;
+    align-items: center;
+}
+.ar-toolbar > .input{
+    width: 200px;
+}
+.ar-search{
+    position: relative;
+    flex: 1;
+    max-width: 380px;
+}
+.ar-search .material-symbols-outlined{
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    color: #686868;
+}
+.ar-search .input{
+    max-width: none;
+    padding-left: 42px;
+}
+.ar-result{
+    margin-left: auto;
+    font-size: 13px;
+}
+.ar-table-wrap{
+    overflow-x: auto;
+    margin-bottom: 48px;
+}
+.ar-table img{
+    width: 96px;
+    height: 72px;
+}
+.ar-room-name{
+    font-weight: 500;
+}
+.ar-room-id{
+    font-size: 12px;
+    color: #686868;
+}
+.ar-actions{
+    white-space: nowrap;
+}
+.ar-actions .btn{
+    height: 36px;
+    padding: 0 12px;
+    font-size: 11px;
+    vertical-align: middle;
+}
+.ar-actions .btn-icon{
+    vertical-align: middle;
+}
+.ar-actions .btn-icon:hover{
+    background: #EEEEEC;
+}
+.ar-danger{
+    color: #8C3B2D;
+}
+.ar-empty{
+    padding: 32px 16px !important;
+    text-align: center;
+    color: #686868;
+}
+
+/* ----- Khung form / trình gắn hotspot ----- */
+.ar-panel{
+    margin-bottom: 32px;
+    padding: 28px;
+}
+.ar-panel.hidden{
+    display: none;
+}
+.ar-panel-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.ar-panel-head .overline{
+    margin-bottom: 4px;
+}
+.ar-panel-tools{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.ar-panel-tools .btn{
+    height: 40px;
+    font-size: 11px;
+}
+.ar-title-style{
+    margin-left: 8px;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #686868;
+    vertical-align: middle;
+}
+.ar-form{
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 32px;
+}
+.ar-form .form-group{
+    margin-bottom: 16px;
+}
+.ar-form .input{
+    height: 42px;
+}
+.ar-form textarea.input{
+    height: 84px;
+}
+.ar-inline{
+    display: flex;
+    gap: 8px;
+}
+.ar-inline .btn{
+    flex-shrink: 0;
+    height: 42px;
+}
+.ar-help{
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #686868;
+}
+.ar-help .material-symbols-outlined{
+    font-size: 16px;
+}
+.ar-form-preview .overline{
+    margin-bottom: 8px;
+}
+.ar-preview{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    background: #EEEEEC;
+    font-size: 13px;
+    color: #686868;
+    text-align: center;
+    padding: 0;
+}
+.ar-preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ar-preview p:empty{
+    display: none;
+}
+.ar-form-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+.ar-form-actions .btn{
+    height: 42px;
+}
+
+/* trình gắn hotspot */
+.ar-editor{
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+    gap: 28px;
+    align-items: start;
+}
+.ar-stage{
+    position: relative;
+    background: #EEEEEC;
+    cursor: crosshair;
+    user-select: none;
+}
+.ar-stage img{
+    width: 100%;
+    pointer-events: none;
+}
+.ar-stage .hotspot::after{
+    animation: none;        /* trang quản trị không cần nhấp nháy */
+    opacity: 0;
+}
+/* chấm tạm khi vừa bấm lên ảnh */
+.ar-marker{
+    position: absolute;
+    z-index: 3;
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    border: 2px dashed #FFFFFF;
+    border-radius: 50%;
+    background: rgba(32, 32, 32, 0.6);
+    pointer-events: none;
+}
+.ar-marker::before, .ar-marker::after{
+    content: "";
+    position: absolute;
+    background: #FFFFFF;
+}
+.ar-marker::before{
+    left: 12px;
+    top: 4px;
+    width: 2px;
+    height: 16px;
+}
+.ar-marker::after{
+    left: 4px;
+    top: 12px;
+    width: 16px;
+    height: 2px;
+}
+.ar-marker.hidden{
+    display: none;
+}
+.ar-hotspot-form{
+    padding: 20px;
+    background: #F7F7F5;
+    border: 1px solid #DADAD7;
+}
+.ar-hotspot-form > .overline{
+    margin-bottom: 12px;
+    color: #202020;
+}
+.ar-hotspot-form .form-group{
+    margin-bottom: 14px;
+}
+.ar-hotspot-form .input{
+    height: 42px;
+}
+.ar-xy{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.ar-picked{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    font-size: 13px;
+    line-height: 19px;
+}
+.ar-picked.hidden{
+    display: none;
+}
+.ar-picked img{
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    background: #EEEEEC;
+}
+.ar-hotspot-list{
+    margin-top: 20px;
+}
+.ar-hotspot-list .overline{
+    margin-bottom: 8px;
+}
+.ar-hotspot-list .table td{
+    padding: 8px 10px;
+    font-size: 13px;
+}
+.ar-hotspot-list .table th{
+    padding: 8px 10px;
+}
+.ar-hs-name{
+    max-width: 220px;
+}
+.ar-row-active td{
+    background: #EEEEEC;
+}
+
+/* xuất JSON */
+.ar-export-note{
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+.ar-export-note b{
+    color: #202020;
+}
+.ar-inline select.input{
+    max-width: 260px;
+    height: 42px;
+}
+textarea.ar-export{
+    height: 360px;
+    margin-top: 12px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: pre;
+}
+
+@media (max-width: 1200px){
+    .ar-editor{
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px){
+    .ar-stats{
+        grid-template-columns: 1fr;
+    }
+    .ar-form{
+        grid-template-columns: 1fr;
+    }
+    .ar-head-actions{
+        width: 100%;
+    }
+    .ar-head-actions .btn{
+        flex: 1;
+    }
+    .ar-toolbar > .input, .ar-search{
+        width: 100%;
+        max-width: none;
+    }
+    .ar-result{
+        margin-left: 0;
+    }
+}

@@ -6,8 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             @import url(css/base.css);
+            @import url(css/components/room.css);
             @import url(css/pages/room-detail.css);
         </style>
+        <!-- Thư viện xem 3D của Google (README mục 5) -->
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
         <script src="js/core/utils.js"></script>
         <script src="js/core/store.js"></script>
         <script src="js/core/auth.js"></script>
@@ -15,6 +18,7 @@
         <script src="components/footer.js"></script>
         <script src="components/chatbot.js"></script>
         <script src="components/product-card.js"></script>
+        <script src="components/room-card.js"></script>
         <script src="js/services/products.js"></script>
         <script src="js/services/cart.js"></script>
         <script src="js/pages/room-detail.js"></script>
@@ -23,12 +27,133 @@
         <div id="header"></div>
 
         <main class="container">
-            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><a href="rooms.html">Không gian mẫu</a><span>/</span>Chi tiết không gian</div>
-            <h1 class="headline-page">Chi tiết không gian</h1>
+            <div class="breadcrumb" id="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><a href="rooms.html">Không gian mẫu</a><span>/</span>Chi tiết không gian</div>
 
-            <!-- TODO (Bảo Duy): Ảnh phòng + hotspot (Shop the Room). Lấy phòng theo getParam("id"). -->
+            <!-- Không tìm thấy phòng -->
+            <div class="empty hidden" id="roomNotFound">
+                <h1 class="headline-section">Không tìm thấy không gian này</h1>
+                <p>Không gian có thể đã bị gỡ hoặc đường dẫn chưa đúng.</p>
+                <a class="btn" href="rooms.html">Xem các không gian mẫu</a>
+            </div>
 
+            <div id="roomContent" class="hidden">
+                <!-- ===== Tiêu đề phòng ===== -->
+                <div class="rd-head">
+                    <div class="rd-title">
+                        <div class="rd-tags" id="roomTags"></div>
+                        <h1 class="headline-page" id="roomName"></h1>
+                        <p class="lead" id="roomDesc"></p>
+                    </div>
+                    <div class="rd-summary" id="roomSummary">
+                        <p class="overline">Tổng giá trị trọn bộ</p>
+                        <p class="rd-total" id="roomTotal"></p>
+                        <p class="text-secondary" id="roomTotalNote"></p>
+                        <button type="button" class="btn btn-full" id="btnAddAllTop" onclick="addAllToCart()">
+                            <span class="material-symbols-outlined">shopping_bag</span>Thêm trọn bộ vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ===== Ảnh phòng + hotspot (UC3.2, UC3.3) ===== -->
+                <div class="rd-stage" id="stage">
+                    <img id="roomImage" src="" alt="">
+                    <p class="rd-hint" id="stageHint"><span class="material-symbols-outlined">touch_app</span><span id="stageHintText">Chạm vào điểm tròn để khám phá sản phẩm</span></p>
+                    <p class="rd-counter" id="stageCounter"></p>
+
+                    <!-- Popup sản phẩm (JS đổ nội dung) -->
+                    <div class="rd-popup hidden" id="hotspotPopup" role="dialog" aria-modal="false" aria-labelledby="popupName"></div>
+                </div>
+                <div class="rd-thumbs" id="thumbList"></div>
+
+                <!-- ===== Sản phẩm trong không gian ===== -->
+                <section class="rd-section" id="hotspotSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Thành phần không gian</p>
+                            <h2 class="headline-section">Sản phẩm trong không gian <span class="rd-count" id="hotspotCount"></span></h2>
+                        </div>
+                        <p class="text-secondary rd-section-note">Các món được đánh dấu trên ảnh phòng, rê chuột vào thẻ để thấy vị trí của món đồ trong ảnh.</p>
+                    </div>
+                    <div class="grid-4" id="hotspotProducts"></div>
+
+                    <div class="rd-bundle" id="bundleBar">
+                        <div class="rd-bundle-icon"><span class="material-symbols-outlined">inventory_2</span></div>
+                        <div class="rd-bundle-text">
+                            <p class="title-product" id="bundleTitle"></p>
+                            <p class="text-secondary" id="bundleNote"></p>
+                        </div>
+                        <div class="rd-bundle-total">
+                            <p class="overline">Tổng ước tính</p>
+                            <p class="rd-total" id="bundleTotal"></p>
+                        </div>
+                        <button type="button" class="btn" id="btnAddAll" onclick="addAllToCart()">
+                            <span class="material-symbols-outlined">shopping_bag</span><span id="btnAddAllText">Thêm cả bộ vào giỏ</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- ===== Các món khác có trong phòng (chưa gắn hotspot) ===== -->
+                <section class="rd-section" id="otherSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Trong cùng bộ sưu tập</p>
+                            <h2 class="headline-section" id="otherTitle">Các món khác trong phòng</h2>
+                        </div>
+                    </div>
+                    <div class="grid-4" id="otherProducts"></div>
+                    <div class="rd-more"><button type="button" class="btn btn-outline" id="btnMore" onclick="showMoreOther()"></button></div>
+                </section>
+
+                <!-- ===== Gợi ý hoàn thiện không gian (theo quy tắc, UC3.5) ===== -->
+                <section class="rd-section" id="suggestSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Mảnh ghép hài hòa</p>
+                            <h2 class="headline-section">Hoàn thiện không gian</h2>
+                        </div>
+                        <p class="text-secondary rd-section-note" id="suggestNote"></p>
+                    </div>
+                    <div class="grid-4" id="suggestProducts"></div>
+                </section>
+
+                <!-- ===== Không gian cùng phong cách ===== -->
+                <section class="rd-section" id="relatedSection">
+                    <div class="section-head">
+                        <div>
+                            <p class="overline">Cùng phong cách</p>
+                            <h2 class="headline-section">Không gian tương tự</h2>
+                        </div>
+                        <a class="btn-link" id="relatedLink" href="rooms.html">Xem tất cả <span class="material-symbols-outlined">arrow_forward</span></a>
+                    </div>
+                    <div class="grid-3" id="relatedRooms"></div>
+                </section>
+            </div>
         </main>
+
+        <!-- ===== Cửa sổ xem 3D (UC3.4) ===== -->
+        <div class="modal hidden" id="modal3d" onclick="closeViewerOutside(event)">
+            <div class="modal-box rd-viewer-box" id="viewerBox" role="dialog" aria-modal="true" aria-labelledby="viewerTitle">
+                <div class="modal-head">
+                    <div>
+                        <p class="overline">Xem sản phẩm 3D</p>
+                        <h2 class="title-product" id="viewerTitle"></h2>
+                    </div>
+                    <button type="button" class="btn-icon" onclick="closeViewer()" aria-label="Đóng cửa sổ 3D">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="rd-viewer" id="viewerArea">
+                    <p class="rd-viewer-loading" id="viewerLoading">Đang tải mô hình 3D...</p>
+                </div>
+                <div class="rd-viewer-foot">
+                    <p class="text-secondary">Kéo chuột để xoay · Cuộn để phóng to · Chuột phải để di chuyển</p>
+                    <div>
+                        <button type="button" class="btn btn-light" onclick="resetViewer()"><span class="material-symbols-outlined">restart_alt</span>Đặt lại góc nhìn</button>
+                        <button type="button" class="btn btn-light" onclick="fullscreenViewer()"><span class="material-symbols-outlined">fullscreen</span>Toàn màn hình</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="footer"></div>
 
