@@ -347,3 +347,36 @@ textarea.ar-export{
         margin-left: 0;
     }
 }
+
+/* ----- Chọn góc chụp cần gắn hotspot ----- */
+.ar-image-tabs{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+}
+.ar-image-tab{
+    flex-shrink: 0;
+    width: 120px;
+    padding: 0;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    cursor: pointer;
+    opacity: 0.7;
+    text-align: left;
+}
+.ar-image-tab img{
+    display: block;
+    width: 100%;
+    height: 72px;
+    object-fit: cover;
+}
+.ar-image-tab span{
+    display: block;
+    padding: 4px 6px;
+    font-size: 11px;
+}
+.ar-image-tab:hover, .ar-image-tab.active{
+    opacity: 1;
+    border-color: #202020;
+}

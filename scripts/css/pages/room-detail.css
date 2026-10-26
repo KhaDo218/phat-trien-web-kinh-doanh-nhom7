@@ -215,6 +215,7 @@
     }
 }
 .rd-thumb{
+    position: relative;
     flex-shrink: 0;
     width: 112px;
     height: 84px;
@@ -235,6 +236,17 @@
 }
 .rd-thumb.active{
     outline: 1px solid #202020;
+}
+/* số điểm đã gắn trên từng góc chụp */
+.rd-thumb-count{
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    padding: 1px 6px;
+    background: #202020;
+    color: #FFFFFF;
+    font-size: 10px;
+    line-height: 16px;
 }
 
 /* ----- Các mục bên dưới ----- */

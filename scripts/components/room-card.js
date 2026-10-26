@@ -7,7 +7,9 @@
      roomEscape(chuoi)              chuỗi an toàn để chèn vào innerHTML
      findProduct(id)                tìm sản phẩm theo id (nhanh, đọc localStorage 1 lần/trang)
      getStyleOfRoom(room)           phong cách của phòng {id, slug, name, description}
-     getRoomHotspots(roomId)        mảng hotspot của phòng (đã bỏ sản phẩm bị ẩn)
+     getRoomHotspots(roomId)        mảng hotspot của phòng ở mọi góc chụp (đã bỏ sản phẩm bị ẩn)
+     getHotspotImage(h, room)       ảnh (góc chụp) mà hotspot được gắn lên
+     getHotspotProductIds(hotspots) các sản phẩm khác nhau trong danh sách hotspot (1 món có thể gắn ở nhiều góc)
      getRoomProducts(room)          mảng sản phẩm đang bán (is_active) có trong phòng
      getRoomTotal(room)             tổng giá các sản phẩm gắn hotspot còn hàng
      sortRoomsForDisplay(mang)      phòng có hotspot (Shop the Room) xếp lên trước
@@ -60,6 +62,22 @@ function getRoomHotspots(roomId){
     return kq;
 }
 
+// Mỗi hotspot có image_url là ảnh nó được gắn lên. Dữ liệu cũ chưa có image_url thì hiểu là ảnh chính.
+function getHotspotImage(h, room){
+    if(h.image_url == null || h.image_url == "")
+        return room.image_url;
+    return h.image_url;
+}
+
+function getHotspotProductIds(hotspots){
+    var ds = [];
+    for(var i = 0; i < hotspots.length; i++){
+        if(ds.indexOf(hotspots[i].product_id) < 0)
+            ds.push(hotspots[i].product_id);
+    }
+    return ds;
+}
+
 function getRoomProducts(room){
     var kq = [];
     var ds = room.product_ids || [];
@@ -72,10 +90,10 @@ function getRoomProducts(room){
 }
 
 function getRoomTotal(room){
-    var hotspots = getRoomHotspots(room.id);
+    var dsId = getHotspotProductIds(getRoomHotspots(room.id));
     var tong = 0;
-    for(var i = 0; i < hotspots.length; i++){
-        var sp = findProduct(hotspots[i].product_id);
+    for(var i = 0; i < dsId.length; i++){
+        var sp = findProduct(dsId[i]);
         if(Number(sp.stock_quantity) > 0)
             tong = tong + Number(sp.price);
     }

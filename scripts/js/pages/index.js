@@ -89,6 +89,8 @@ function showDemoRoom(){
     var stage = document.getElementById("demoStage");
     var hotspots = getRoomHotspots(room.id);
     for(var i = 0; i < hotspots.length; i++){
+        if(getHotspotImage(hotspots[i], room) != room.image_url)     // chỉ vẽ điểm của ảnh chính
+            continue;
         var sp = findProduct(hotspots[i].product_id);
         var a = document.createElement("a");
         a.className = "hotspot";

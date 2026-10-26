@@ -9,7 +9,9 @@
    ===================================================================== */
 
 var room = null;             // phòng đang xem
-var hotspots = [];           // [{room_id, product_id, position_x, position_y}] đã bỏ sản phẩm bị ẩn
+var hotspots = [];           // [{room_id, product_id, image_url, position_x, position_y}] mọi góc chụp, đã bỏ sản phẩm bị ẩn
+var hotspotProductIds = [];  // các sản phẩm khác nhau được gắn hotspot (1 món có thể xuất hiện ở nhiều góc)
+var currentImage = "";       // ảnh (góc chụp) đang hiển thị trên khung lớn
 var activeIndex = -1;        // hotspot đang mở popup (-1 = chưa mở)
 var otherProducts = [];      // các món trong phòng chưa gắn hotspot
 var otherShown = 8;          // số món khác đang hiển thị
@@ -29,6 +31,8 @@ function initPage(){
     }
     document.getElementById("roomContent").className = "";
     hotspots = getRoomHotspots(room.id);
+    hotspotProductIds = getHotspotProductIds(hotspots);
+    currentImage = room.image_url;
 
     showRoomInfo();
     showStage();
@@ -72,11 +76,11 @@ function showRoomInfo(){
 // Tổng giá các món gắn hotspot còn hàng (dùng cho ô tóm tắt và dải "mua trọn bộ")
 function showTotals(){
     var soConHang = 0;
-    for(var i = 0; i < hotspots.length; i++){
-        if(Number(findProduct(hotspots[i].product_id).stock_quantity) > 0)
+    for(var i = 0; i < hotspotProductIds.length; i++){
+        if(Number(findProduct(hotspotProductIds[i]).stock_quantity) > 0)
             soConHang = soConHang + 1;
     }
-    if(hotspots.length == 0){
+    if(hotspotProductIds.length == 0){
         document.getElementById("roomSummary").className = "rd-summary hidden";
         document.getElementById("bundleBar").className = "rd-bundle hidden";
         return;
@@ -84,11 +88,11 @@ function showTotals(){
     var tong = formatVND(getRoomTotal(room));
     document.getElementById("roomTotal").innerHTML = tong;
     document.getElementById("bundleTotal").innerHTML = tong;
-    var ghiChu = soConHang + " / " + hotspots.length + " món còn hàng";
+    var ghiChu = soConHang + " / " + hotspotProductIds.length + " món còn hàng";
     document.getElementById("roomTotalNote").innerHTML = ghiChu;
     document.getElementById("bundleTitle").innerHTML = "Đặt mua trọn bộ " + roomEscape(room.name);
     document.getElementById("bundleNote").innerHTML = "Gồm " + soConHang + " món còn hàng được đánh dấu trên ảnh phòng"
-        + (soConHang < hotspots.length ? " (bỏ qua món đã hết hàng)." : ".");
+        + (soConHang < hotspotProductIds.length ? " (bỏ qua món đã hết hàng)." : ".");
     document.getElementById("btnAddAllText").innerHTML = "Thêm cả " + soConHang + " món vào giỏ";
     var khoa = soConHang == 0;
     document.getElementById("btnAddAll").disabled = khoa;
@@ -96,9 +100,10 @@ function showTotals(){
 }
 
 // ===================== 2. Ảnh phòng + chấm hotspot =====================
+// Mỗi góc chụp có chấm riêng: tạo chấm của mọi góc, chỉ hiện chấm thuộc ảnh đang xem.
 function showStage(){
     var img = document.getElementById("roomImage");
-    img.src = asset(room.image_url);
+    img.src = asset(currentImage);
     img.alt = room.name;
 
     var stage = document.getElementById("stage");
@@ -116,13 +121,7 @@ function showStage(){
         nut.innerHTML = "<span class='hotspot-number'>" + (i + 1) + "</span>";
         stage.appendChild(nut);
     }
-    if(hotspots.length == 0){
-        document.getElementById("stageHintText").innerHTML = "Phòng này chưa được gắn sản phẩm lên ảnh, xem danh sách món đồ bên dưới";
-        document.getElementById("stageCounter").className = "rd-counter hidden";
-    }
-    else{
-        document.getElementById("stageCounter").innerHTML = hotspots.length + " sản phẩm được đánh dấu";
-    }
+    updateStageForImage();
     // bấm ra ngoài popup và ngoài chấm thì đóng popup
     stage.addEventListener("click", function(e){
         if(e.target.id == "roomImage")
@@ -130,7 +129,43 @@ function showStage(){
     });
 }
 
-// Ảnh nhỏ các góc chụp khác của phòng. Hotspot chỉ gắn trên ảnh chính (image_url).
+// Số hotspot gắn trên 1 ảnh
+function countHotspotsOnImage(anh){
+    var dem = 0;
+    for(var i = 0; i < hotspots.length; i++){
+        if(getHotspotImage(hotspots[i], room) == anh)
+            dem = dem + 1;
+    }
+    return dem;
+}
+
+// Hiện chấm của ảnh đang xem, ẩn chấm của góc khác, cập nhật dòng hướng dẫn
+function updateStageForImage(){
+    for(var i = 0; i < hotspots.length; i++){
+        if(getHotspotImage(hotspots[i], room) == currentImage)
+            document.getElementById("hotspot-" + i).style.display = "";
+        else
+            document.getElementById("hotspot-" + i).style.display = "none";
+    }
+    var soDiem = countHotspotsOnImage(currentImage);
+    var counter = document.getElementById("stageCounter");
+    var hint = document.getElementById("stageHintText");
+    if(hotspots.length == 0){
+        hint.innerHTML = "Phòng này chưa được gắn sản phẩm lên ảnh, xem danh sách món đồ bên dưới";
+        counter.className = "rd-counter hidden";
+    }
+    else if(soDiem == 0){
+        hint.innerHTML = "Góc chụp này chưa gắn sản phẩm, chọn ảnh nhỏ có số điểm bên dưới để mua sắm";
+        counter.className = "rd-counter hidden";
+    }
+    else{
+        hint.innerHTML = "Chạm vào điểm tròn để khám phá sản phẩm";
+        counter.innerHTML = soDiem + " sản phẩm được đánh dấu";
+        counter.className = "rd-counter";
+    }
+}
+
+// Ảnh nhỏ các góc chụp của phòng, kèm số điểm đã gắn trên từng ảnh
 function showThumbs(){
     var anh = room.images || [];
     var list = document.getElementById("thumbList");
@@ -141,29 +176,36 @@ function showThumbs(){
     var html = "";
     for(var i = 0; i < anh.length; i++){
         var lop = "rd-thumb";
-        if(anh[i] == room.image_url)
+        if(anh[i] == currentImage)
             lop += " active";
+        var soDiem = countHotspotsOnImage(anh[i]);
         html += "<button type='button' class='" + lop + "' onclick='changeImage(" + i + ")' aria-label='Góc nhìn " + (i + 1) + "'>"
-              + "<img src='" + asset(anh[i]) + "' alt='' loading='lazy'></button>";
+              + "<img src='" + asset(anh[i]) + "' alt='' loading='lazy'>";
+        if(soDiem > 0)
+            html += "<span class='rd-thumb-count'>" + soDiem + " điểm</span>";
+        html += "</button>";
     }
     list.innerHTML = html;
 }
 
 function changeImage(viTri){
-    var anh = room.images[viTri];
-    document.getElementById("roomImage").src = asset(anh);
+    currentImage = room.images[viTri];
+    document.getElementById("roomImage").src = asset(currentImage);
     var nuts = document.getElementById("thumbList").getElementsByTagName("button");
     for(var i = 0; i < nuts.length; i++)
         nuts[i].className = (i == viTri) ? "rd-thumb active" : "rd-thumb";
-
-    var laAnhChinh = (anh == room.image_url);
     closePopup();
-    for(var i = 0; i < hotspots.length; i++)
-        document.getElementById("hotspot-" + i).style.display = laAnhChinh ? "" : "none";
-    if(hotspots.length > 0){
-        document.getElementById("stageHintText").innerHTML = laAnhChinh ? "Chạm vào điểm tròn để khám phá sản phẩm"
-            : "Góc nhìn khác của phòng. Chọn ảnh đầu tiên để mua sắm theo điểm đánh dấu";
-    }
+    updateStageForImage();
+}
+
+// Chuyển khung lớn sang ảnh chứa hotspot viTri (nếu đang xem góc khác)
+function goToHotspotImage(viTri){
+    var anh = getHotspotImage(hotspots[viTri], room);
+    if(anh == currentImage)
+        return;
+    var viTriAnh = (room.images || []).indexOf(anh);
+    if(viTriAnh >= 0)
+        changeImage(viTriAnh);
 }
 
 // ===================== 3. Popup sản phẩm (UC3.3) =====================
@@ -177,6 +219,7 @@ function toggleHotspot(viTri){
 function openHotspot(viTri){
     if(viTri < 0 || viTri >= hotspots.length)
         return;
+    goToHotspotImage(viTri);
     if(activeIndex >= 0)
         setHotspotActive(activeIndex, false);
     activeIndex = viTri;
@@ -220,7 +263,8 @@ function openHotspot(viTri){
     html += "</div>";
     html += "<div class='rd-popup-nav'>";
     html += "  <button type='button' class='btn-icon' onclick='stepHotspot(-1)' aria-label='Sản phẩm trước'><span class='material-symbols-outlined'>chevron_left</span></button>";
-    html += "  <span>" + (viTri + 1) + " / " + hotspots.length + "</span>";
+    var cungAnh = getImageHotspotIndexes();
+    html += "  <span>" + (cungAnh.indexOf(viTri) + 1) + " / " + cungAnh.length + "</span>";
     html += "  <button type='button' class='btn-icon' onclick='stepHotspot(1)' aria-label='Sản phẩm tiếp theo'><span class='material-symbols-outlined'>chevron_right</span></button>";
     html += "</div>";
 
@@ -268,9 +312,22 @@ function closePopup(){
     document.getElementById("hotspotPopup").className = "rd-popup hidden";
 }
 
+// Vị trí (trong mảng hotspots) của các điểm thuộc ảnh đang xem
+function getImageHotspotIndexes(){
+    var ds = [];
+    for(var i = 0; i < hotspots.length; i++){
+        if(getHotspotImage(hotspots[i], room) == currentImage)
+            ds.push(i);
+    }
+    return ds;
+}
+
+// Mũi tên trong popup: chuyển qua lại giữa các điểm của cùng góc chụp
 function stepHotspot(buoc){
-    var tiep = (activeIndex + buoc + hotspots.length) % hotspots.length;
-    openHotspot(tiep);
+    var ds = getImageHotspotIndexes();
+    var viTri = ds.indexOf(activeIndex);
+    var tiep = (viTri + buoc + ds.length) % ds.length;
+    openHotspot(ds[tiep]);
 }
 
 function setHotspotActive(viTri, dangMo){
@@ -346,9 +403,14 @@ function showHotspotProducts(){
         document.getElementById("hotspotSection").className = "rd-section hidden";
         return;
     }
-    document.getElementById("hotspotCount").innerHTML = "(" + hotspots.length + " món)";
-    for(var i = 0; i < hotspots.length; i++)
-        list.appendChild(createRoomProductCard(findProduct(hotspots[i].product_id), i));
+    document.getElementById("hotspotCount").innerHTML = "(" + hotspotProductIds.length + " món)";
+    // mỗi món 1 thẻ, nhãn "Điểm n" trỏ tới lần gắn đầu tiên của món đó
+    for(var i = 0; i < hotspotProductIds.length; i++){
+        var viTriDau = 0;
+        while(hotspots[viTriDau].product_id != hotspotProductIds[i])
+            viTriDau = viTriDau + 1;
+        list.appendChild(createRoomProductCard(findProduct(hotspotProductIds[i]), viTriDau));
+    }
 }
 
 function highlightHotspot(viTri, bat){
@@ -363,10 +425,8 @@ function highlightHotspot(viTri, bat){
 
 // Bấm nhãn "Điểm n" trên thẻ: cuộn lên ảnh và mở popup
 function showOnImage(viTri){
-    if(room.images && room.images.length > 1)
-        changeImage(room.images.indexOf(room.image_url) >= 0 ? room.images.indexOf(room.image_url) : 0);
     document.getElementById("stage").scrollIntoView({ behavior: "smooth", block: "center" });
-    openHotspot(viTri);
+    openHotspot(viTri);      // openHotspot tự chuyển sang đúng góc chụp
 }
 
 function showOtherProducts(){
@@ -511,8 +571,8 @@ function addAllToCart(){
         return;
     var soThem = 0;
     var cacLoi = [];
-    for(var i = 0; i < hotspots.length; i++){
-        var sp = findProduct(hotspots[i].product_id);
+    for(var i = 0; i < hotspotProductIds.length; i++){
+        var sp = findProduct(hotspotProductIds[i]);
         if(Number(sp.stock_quantity) <= 0)
             continue;
         var loi = putProductInCart(sp.id);

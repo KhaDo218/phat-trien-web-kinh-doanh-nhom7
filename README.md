@@ -208,8 +208,9 @@ Hiển thị trên trang chi tiết sản phẩm (Khôi làm) chỉ cần thẻ 
 
 `data/json/room_hotspots.json`:
 ```json
-[{ "room_id": "room-glam-4190768", "product_id": "product-glam-....-01", "position_x": 42.5, "position_y": 63 }]
+[{ "room_id": "room-glam-4190768", "image_url": "assets/rooms/glam/room-glam-4190768-02.jpg", "product_id": "product-glam-....-01", "position_x": 42.5, "position_y": 63 }]
 ```
+`image_url` là góc chụp (1 ảnh trong `images` của phòng) mà điểm được gắn lên; mỗi góc gắn điểm riêng, 1 sản phẩm có thể gắn ở nhiều góc. Nên gắn bằng trang `admin/rooms.html` (chọn góc, bấm lên ảnh), xong bấm Xuất JSON để chép vào file.
 Sửa JSON xong, mở bằng https://jsonlint.com (hoặc VS Code báo đỏ) để chắc chắn không sai dấu phẩy, ngoặc.
 
 ---
