@@ -245,6 +245,19 @@ function saveAdminProduct(event){
         return false;
     }
 
+    var price = Number(document.getElementById("txtProductPrice").value);
+    var originalPrice = document.getElementById("txtProductOriginalPrice").value;
+    if(price <= 0){
+        alert("Giá bán phải lớn hơn 0!");
+        document.getElementById("txtProductPrice").focus();
+        return false;
+    }
+    if(originalPrice != "" && Number(originalPrice) <= price){
+        alert("Giá gốc phải lớn hơn giá bán (để trống nếu không giảm giá)!");
+        document.getElementById("txtProductOriginalPrice").focus();
+        return false;
+    }
+
     var category = findById("categories", categoryId);
     if(category == null){
         alert("Vui lòng chọn danh mục hợp lệ.");
@@ -260,12 +273,18 @@ function saveAdminProduct(event){
     product.id = id;
     product.category_id = category.id;
     product.parent_category_id = category.parent_id == null ? category.id : category.parent_id;
+    // giữ lại các phong cách phụ đã có, phong cách vừa chọn đứng đầu
+    var oldStyleIds = product.style_ids || [];
     product.style_id = style.id;
     product.style_ids = [style.id];
+    for(var i = 0; i < oldStyleIds.length; i++){
+        if(oldStyleIds[i] != style.id)
+            product.style_ids.push(oldStyleIds[i]);
+    }
     product.name = document.getElementById("txtProductName").value.trim();
     product.brand = document.getElementById("txtProductBrand").value.trim();
-    product.price = Number(document.getElementById("txtProductPrice").value);
-    product.original_price = document.getElementById("txtProductOriginalPrice").value == "" ? null : Number(document.getElementById("txtProductOriginalPrice").value);
+    product.price = price;
+    product.original_price = originalPrice == "" ? null : Number(originalPrice);
     product.stock_quantity = Number(document.getElementById("txtProductStock").value);
     product.dimensions = document.getElementById("txtProductDimensions").value.trim();
     product.material = document.getElementById("txtProductMaterial").value.trim();

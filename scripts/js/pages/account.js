@@ -16,6 +16,7 @@ function initPage(){
 
 function showAccount(){
     var user = getCurrentUser();
+    checkPasswordLive();
 
     // Cột trái
     var avatar = document.getElementById("divAvatar");
@@ -188,4 +189,10 @@ function changePassword(){
 function doLogout(){
     if(confirm("Bạn có chắc muốn đăng xuất?"))
         logout();
+}
+
+// Kiểm tra mật khẩu ngay khi gõ: quy tắc đỏ/xanh + báo nhập lại đã khớp chưa
+function checkPasswordLive(){
+    showPasswordRules("txtNewPassword", "divPasswordRules");
+    showConfirmMatch("txtNewPassword", "txtConfirm", "msgConfirm");
 }

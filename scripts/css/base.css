@@ -544,6 +544,78 @@ textarea.input{
 }
 
 /* ---------- 10. Màn hình nhỏ ---------- */
+/* ----- Kiểm tra mật khẩu mạnh (register, forgot-password, account) ----- */
+.pw-box{
+    margin: -8px 0 20px;
+    padding: 16px 20px;
+    background: #F7F7F5;
+    border: 1px solid #DADAD7;
+}
+.pw-meter{
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.pw-meter span{
+    flex: 1;
+    height: 4px;
+    background: #DADAD7;
+}
+.pw-box.level-1 .pw-meter span:nth-child(-n+1){ background: #8C3B2D; }
+.pw-box.level-2 .pw-meter span:nth-child(-n+2){ background: #C77700; }
+.pw-box.level-3 .pw-meter span:nth-child(-n+3){ background: #8A9A2B; }
+.pw-box.level-4 .pw-meter span{ background: #2C6B3F; }
+.pw-level{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #686868;
+}
+.pw-box.level-1 .pw-level{ color: #8C3B2D; }
+.pw-box.level-2 .pw-level{ color: #C77700; }
+.pw-box.level-3 .pw-level{ color: #6B7A1F; }
+.pw-box.level-4 .pw-level{ color: #2C6B3F; }
+.pw-level .material-symbols-outlined{
+    font-size: 18px;
+}
+.pw-rules{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.pw-rule, .pw-match{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #686868;
+}
+.pw-rule .material-symbols-outlined, .pw-match .material-symbols-outlined{
+    font-size: 16px;
+}
+.pw-rule.ok, .pw-match.ok{
+    color: #2C6B3F;
+}
+.pw-rule.bad, .pw-match.bad{
+    color: #8C3B2D;
+}
+.pw-match{
+    min-height: 18px;
+    margin: -12px 0 16px;
+}
+@media (max-width: 480px){
+    .pw-rules{
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 1024px){
     .container{
         padding: 0 40px;
@@ -593,6 +665,12 @@ textarea.input{
     }
     #header .logo{
         font-size: 24px;
+    }
+    #header .header-top{
+        gap: 12px;
+    }
+    #header .icons{
+        gap: 2px;
     }
     #header .menu{
         gap: 20px;

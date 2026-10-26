@@ -46,13 +46,15 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="txtPassword">Mật khẩu</label>
-                                <input class="input" type="password" id="txtPassword" placeholder="Ít nhất 8 ký tự, có chữ và số">
+                                <input class="input" type="password" id="txtPassword" placeholder="Tạo mật khẩu mạnh" oninput="checkPasswordLive()">
                             </div>
                             <div class="form-group">
                                 <label for="txtConfirm">Nhập lại mật khẩu</label>
-                                <input class="input" type="password" id="txtConfirm" placeholder="Nhập lại mật khẩu">
+                                <input class="input" type="password" id="txtConfirm" placeholder="Nhập lại mật khẩu" oninput="checkPasswordLive()">
                             </div>
                         </div>
+                        <p class="pw-match" id="msgConfirm"></p>
+                        <div class="pw-box" id="divPasswordRules"></div>
                         <div class="auth-row">
                             <label><input type="checkbox" id="chkShow" onclick="showPassword()"> Hiện mật khẩu</label>
                         </div>

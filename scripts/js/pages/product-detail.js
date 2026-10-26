@@ -292,175 +292,175 @@ function updateWishlistDetailButton(productId){
 }
 
 function renderProductRecommendations(product){
-        var products = getActiveProducts();
-        var completeCandidates = [];
-        var similar = [];
+    var products = getActiveProducts();
+    var completeCandidates = [];
+    var similar = [];
 
-        for(var i = 0; i < products.length; i++){
-            var candidate = products[i];
-            if(candidate.id == product.id)
-                continue;
-            if(candidate.category_id == product.category_id)
-                similar.push(candidate);
-            else {
-                var score = 0;
-                if(productsShareStyle(product, candidate))
-                    score += 2;
-                if(product.color && candidate.color && product.color.trim().toLowerCase() == candidate.color.trim().toLowerCase())
-                    score += 1;
-                if(score > 0)
-                    completeCandidates.push({ product: candidate, score: score });
-            }
+    for(var i = 0; i < products.length; i++){
+        var candidate = products[i];
+        if(candidate.id == product.id)
+            continue;
+        if(candidate.category_id == product.category_id)
+            similar.push(candidate);
+        else {
+            var score = 0;
+            if(productsShareStyle(product, candidate))
+                score += 2;
+            if(product.color && candidate.color && product.color.trim().toLowerCase() == candidate.color.trim().toLowerCase())
+                score += 1;
+            if(score > 0)
+                completeCandidates.push({ product: candidate, score: score });
         }
-
-        completeCandidates.sort(function(a, b){
-            return b.score - a.score;
-        });
-        similar.sort(function(a, b){
-            if(productsShareStyle(product, a) && !productsShareStyle(product, b))
-                return -1;
-            if(!productsShareStyle(product, a) && productsShareStyle(product, b))
-                return 1;
-            return 0;
-        });
-
-        var completeGrid = document.getElementById("completeRoomProducts");
-        completeGrid.innerHTML = "";
-        for(var i = 0; i < completeCandidates.length && i < 4; i++)
-            completeGrid.appendChild(createProductCard(completeCandidates[i].product));
-        if(completeCandidates.length == 0)
-            document.getElementById("completeRoomEmpty").classList.remove("hidden");
-
-        var similarGrid = document.getElementById("similarProducts");
-        similarGrid.innerHTML = "";
-        for(var i = 0; i < similar.length && i < 4; i++)
-            similarGrid.appendChild(createProductCard(similar[i]));
-        if(similar.length == 0)
-            document.getElementById("similarProductsEmpty").classList.remove("hidden");
     }
+
+    completeCandidates.sort(function(a, b){
+        return b.score - a.score;
+    });
+    similar.sort(function(a, b){
+        if(productsShareStyle(product, a) && !productsShareStyle(product, b))
+            return -1;
+        if(!productsShareStyle(product, a) && productsShareStyle(product, b))
+            return 1;
+        return 0;
+    });
+
+    var completeGrid = document.getElementById("completeRoomProducts");
+    completeGrid.innerHTML = "";
+    for(var i = 0; i < completeCandidates.length && i < 4; i++)
+        completeGrid.appendChild(createProductCard(completeCandidates[i].product));
+    if(completeCandidates.length == 0)
+        document.getElementById("completeRoomEmpty").classList.remove("hidden");
+
+    var similarGrid = document.getElementById("similarProducts");
+    similarGrid.innerHTML = "";
+    for(var i = 0; i < similar.length && i < 4; i++)
+        similarGrid.appendChild(createProductCard(similar[i]));
+    if(similar.length == 0)
+        document.getElementById("similarProductsEmpty").classList.remove("hidden");
+}
 
 function productsShareStyle(first, second){
-        var firstStyles = first.style_ids || [];
-        var secondStyles = second.style_ids || [];
-        if(first.style_id != null && second.style_id != null && first.style_id == second.style_id)
-            return true;
-        for(var i = 0; i < firstStyles.length; i++){
-            for(var j = 0; j < secondStyles.length; j++){
-                if(firstStyles[i] == secondStyles[j])
-                    return true;
-            }
+    var firstStyles = first.style_ids || [];
+    var secondStyles = second.style_ids || [];
+    if(first.style_id != null && second.style_id != null && first.style_id == second.style_id)
+        return true;
+    for(var i = 0; i < firstStyles.length; i++){
+        for(var j = 0; j < secondStyles.length; j++){
+            if(firstStyles[i] == secondStyles[j])
+                return true;
         }
-        return false;
     }
+    return false;
+}
 
 function renderProductReviews(product){
-        var reviews = getTable("reviews");
-        var visibleReviews = [];
-        var totalRating = 0;
-        for(var i = 0; i < reviews.length; i++){
-            if(reviews[i].product_id == product.id && reviews[i].is_hidden != true){
-                visibleReviews.push(reviews[i]);
-                totalRating += Number(reviews[i].rating);
-            }
+    var reviews = getTable("reviews");
+    var visibleReviews = [];
+    var totalRating = 0;
+    for(var i = 0; i < reviews.length; i++){
+        if(reviews[i].product_id == product.id && reviews[i].is_hidden != true){
+            visibleReviews.push(reviews[i]);
+            totalRating += Number(reviews[i].rating);
         }
-
-        var summary = document.getElementById("reviewSummary");
-        if(visibleReviews.length == 0)
-            summary.textContent = "Chưa có đánh giá.";
-        else
-            summary.textContent = (totalRating / visibleReviews.length).toFixed(1) + " / 5 · " + visibleReviews.length + " đánh giá";
-
-        var reviewList = document.getElementById("productReviewList");
-        reviewList.innerHTML = "";
-        for(var i = visibleReviews.length - 1; i >= 0; i--)
-            reviewList.appendChild(createProductReview(visibleReviews[i]));
-
-        updateReviewEligibility(product);
     }
+
+    var summary = document.getElementById("reviewSummary");
+    if(visibleReviews.length == 0)
+        summary.textContent = "Chưa có đánh giá.";
+    else
+        summary.textContent = (totalRating / visibleReviews.length).toFixed(1) + " / 5 · " + visibleReviews.length + " đánh giá";
+
+    var reviewList = document.getElementById("productReviewList");
+    reviewList.innerHTML = "";
+    for(var i = visibleReviews.length - 1; i >= 0; i--)
+        reviewList.appendChild(createProductReview(visibleReviews[i]));
+
+    updateReviewEligibility(product);
+}
 
 function createProductReview(review){
-        var card = document.createElement("article");
-        card.className = "product-review card";
-        var user = findById("users", review.user_id);
-        var heading = document.createElement("div");
-        heading.className = "product-review-heading";
+    var card = document.createElement("article");
+    card.className = "product-review card";
+    var user = findById("users", review.user_id);
+    var heading = document.createElement("div");
+    heading.className = "product-review-heading";
 
-        var name = document.createElement("strong");
-        name.textContent = user ? user.full_name : "Khách hàng";
-        heading.appendChild(name);
+    var name = document.createElement("strong");
+    name.textContent = user ? user.full_name : "Khách hàng";
+    heading.appendChild(name);
 
-        var date = document.createElement("span");
-        date.className = "text-secondary";
-        date.textContent = review.created_at ? formatDate(review.created_at) : "";
-        heading.appendChild(date);
-        card.appendChild(heading);
+    var date = document.createElement("span");
+    date.className = "text-secondary";
+    date.textContent = review.created_at ? formatDate(review.created_at) : "";
+    heading.appendChild(date);
+    card.appendChild(heading);
 
-        var rating = document.createElement("p");
-        rating.className = "product-review-rating";
-        var stars = Number(review.rating);
-        var starText = "";
-        for(var i = 0; i < Math.max(0, Math.min(5, stars)); i++)
-            starText += "★";
-        rating.textContent = starText + " (" + stars + "/5)";
-        card.appendChild(rating);
+    var rating = document.createElement("p");
+    rating.className = "product-review-rating";
+    var stars = Number(review.rating);
+    var starText = "";
+    for(var i = 0; i < Math.max(0, Math.min(5, stars)); i++)
+        starText += "★";
+    rating.textContent = starText + " (" + stars + "/5)";
+    card.appendChild(rating);
 
-        var comment = document.createElement("p");
-        comment.textContent = review.comment || "";
-        card.appendChild(comment);
-        return card;
-    }
+    var comment = document.createElement("p");
+    comment.textContent = review.comment || "";
+    card.appendChild(comment);
+    return card;
+}
 
 function updateReviewEligibility(product){
-        var message = document.getElementById("reviewEligibility");
-        var form = document.getElementById("frmProductReview");
-        var user = getCurrentUser();
-        if(user == null){
-            message.textContent = "Đăng nhập và mua sản phẩm để gửi đánh giá.";
-            return;
-        }
-        if(hasReviewed(user.id, product.id)){
-            message.textContent = "Bạn đã gửi đánh giá cho sản phẩm này.";
-            return;
-        }
+    var message = document.getElementById("reviewEligibility");
+    var form = document.getElementById("frmProductReview");
+    var user = getCurrentUser();
+    if(user == null){
+        message.textContent = "Đăng nhập và mua sản phẩm để gửi đánh giá.";
+        return;
+    }
+    if(hasReviewed(user.id, product.id)){
+        message.textContent = "Bạn đã gửi đánh giá cho sản phẩm này.";
+        return;
+    }
 
-        var orders = getTable("orders");
-        var hasDeliveredProduct = false;
-        for(var i = 0; i < orders.length; i++){
-            if(orders[i].user_id != user.id || orders[i].status != "Delivered")
-                continue;
-            var items = orders[i].items || [];
-            for(var j = 0; j < items.length; j++){
-                if(items[j].product_id == product.id)
-                    hasDeliveredProduct = true;
-            }
-        }
-        if(hasDeliveredProduct){
-            message.textContent = "Đánh giá chỉ khả dụng sau khi đơn hàng đã giao.";
-            form.classList.remove("hidden");
-        } else {
-            message.textContent = "Đánh giá sẽ khả dụng sau khi bạn nhận được sản phẩm.";
+    var orders = getTable("orders");
+    var hasDeliveredProduct = false;
+    for(var i = 0; i < orders.length; i++){
+        if(orders[i].user_id != user.id || orders[i].status != "Delivered")
+            continue;
+        var items = orders[i].items || [];
+        for(var j = 0; j < items.length; j++){
+            if(items[j].product_id == product.id)
+                hasDeliveredProduct = true;
         }
     }
+    if(hasDeliveredProduct){
+        message.textContent = "Bạn đã nhận sản phẩm này, hãy chia sẻ cảm nhận của bạn.";
+        form.classList.remove("hidden");
+    } else {
+        message.textContent = "Đánh giá sẽ khả dụng sau khi bạn nhận được sản phẩm.";
+    }
+}
 
 function submitProductReview(event){
-        event.preventDefault();
-        var user = getCurrentUser();
-        if(user == null || currentProduct == null){
-            alert("Vui lòng đăng nhập để gửi đánh giá.");
-            return false;
-        }
-        var comment = document.getElementById("txtReviewComment").value.trim();
-        if(comment == ""){
-            alert("Vui lòng nhập nhận xét.");
-            return false;
-        }
-        var result = addReview(user.id, currentProduct.id, document.getElementById("cboReviewRating").value, comment);
-        if(result != ""){
-            alert(result);
-            return false;
-        }
-        document.getElementById("frmProductReview").reset();
-        renderProductReviews(currentProduct);
-        alert("Cảm ơn bạn đã đánh giá sản phẩm.");
+    event.preventDefault();
+    var user = getCurrentUser();
+    if(user == null || currentProduct == null){
+        alert("Vui lòng đăng nhập để gửi đánh giá.");
         return false;
     }
+    var comment = document.getElementById("txtReviewComment").value.trim();
+    if(comment == ""){
+        alert("Vui lòng nhập nhận xét.");
+        return false;
+    }
+    var result = addReview(user.id, currentProduct.id, document.getElementById("cboReviewRating").value, comment);
+    if(result != ""){
+        alert(result);
+        return false;
+    }
+    document.getElementById("frmProductReview").reset();
+    renderProductReviews(currentProduct);
+    alert("Cảm ơn bạn đã đánh giá sản phẩm.");
+    return false;
+}
