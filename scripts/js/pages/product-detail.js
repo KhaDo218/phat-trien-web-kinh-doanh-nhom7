@@ -12,7 +12,8 @@ function initPage(){
     var id = getParam("id");
     currentProduct = findById("products", id);
 
-    if(!currentProduct){
+    // sản phẩm bị Admin ẩn (is_active = false) thì khách không xem được
+    if(!currentProduct || currentProduct.is_active === false){
         renderHeader("san-pham");
         renderFooter();
         renderChatbot();
@@ -217,32 +218,12 @@ function handleAddToCart(){
     if(!currentProduct || currentProduct.stock_quantity === 0)
         return;
 
-    var qty = Number(document.getElementById("txtQuantity").value) || 1;
-    if(qty > currentProduct.stock_quantity)
-        qty = currentProduct.stock_quantity;
-
-    var session = getSession();
-    var maGio = session ? session.user_id : "guest";
-    var carts = getObject("carts") || {};
-    if(!carts[maGio]) carts[maGio] = [];
-
-    var found = false;
-    for(var i = 0; i < carts[maGio].length; i++){
-        if(carts[maGio][i].product_id === currentProduct.id){
-            var newQty = carts[maGio][i].quantity + qty;
-            if(newQty > currentProduct.stock_quantity)
-                newQty = currentProduct.stock_quantity;
-            carts[maGio][i].quantity = newQty;
-            found = true;
-            break;
-        }
+    var qty = Number(document.getElementById("txtQuantity").value);
+    var loi = addToCart(currentProduct.id, qty);      // services/cart.js
+    if(loi != ""){
+        alert(loi);
+        return;
     }
-    if(!found){
-        carts[maGio].push({ product_id: currentProduct.id, quantity: qty });
-    }
-
-    saveObject("carts", carts);
-    updateCartCount();
 
     var msgNotice = document.getElementById("msgCartNotice");
     if(msgNotice){

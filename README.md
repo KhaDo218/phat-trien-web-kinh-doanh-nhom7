@@ -18,12 +18,13 @@ phat-trien-web-kinh-doanh-nhom7/
 │   ├── css/
 │   │   ├── base.css            ← màu, font, nút, form, header, footer dùng chung (Kha)
 │   │   ├── admin.css           ← khung trang quản trị: sidebar, bảng, thẻ số liệu (Kha)
+│   │   ├── components/         ← CSS của thành phần dùng chung: product-card.css (Khôi), room.css (Duy), chatbot.css (Huyền)
 │   │   └── pages/<trang>.css   ← CSS riêng từng trang (trang admin: pages/admin-<trang>.css)
 │   ├── js/
 │   │   ├── core/               ← utils.js, store.js, auth.js dùng chung (Kha)
 │   │   ├── services/           ← products.js (Khôi), cart.js, orders.js (Phương Anh)
 │   │   └── pages/<trang>.js    ← JS riêng từng trang (trang admin: pages/admin-<trang>.js)
-│   └── components/             ← header.js, footer.js, admin-sidebar.js (Kha), product-card.js (Khôi), chatbot.js (Huyền)
+│   └── components/             ← header.js, footer.js, admin-sidebar.js (Kha), product-card.js (Khôi), room-card.js (Duy), chatbot.js (Huyền)
 ├── data/
 │   ├── json/                   ← DỮ LIỆU WEB ĐỌC (đã dịch tiếng Việt, giá VND)
 │   ├── masterdata_vi.csv       ← cùng dữ liệu, dạng bảng để xem bằng Excel / làm mockup

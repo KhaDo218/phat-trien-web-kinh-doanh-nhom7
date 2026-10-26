@@ -55,6 +55,8 @@ function addToCart(productId, soLuong){
         return "Sản phẩm không tồn tại!";
     if(p.stock_quantity <= 0)
         return "Sản phẩm đã hết hàng!";
+    if(soLuong < 1 || soLuong != Math.floor(soLuong))
+        return "Số lượng phải là số nguyên từ 1 trở lên!";
     var items = getCart();
     var viTri = findCartIndex(items, productId);
     var daCo = 0;

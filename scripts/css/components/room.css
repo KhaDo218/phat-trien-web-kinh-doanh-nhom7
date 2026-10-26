@@ -2,7 +2,8 @@
    ROOMCRAFT - room.css (thành phần dùng chung cho các trang về phòng)
    Người phụ trách: Bảo Duy
    Dùng ở: index.html, rooms.html, room-detail.html, admin/rooms.html
-   Gồm: thẻ phòng (.room-card), chấm hotspot (.hotspot), thẻ sản phẩm (.product-card)
+   Gồm: thẻ phòng (.room-card), chấm hotspot (.hotspot), thông báo nhỏ (.room-toast)
+   Thẻ sản phẩm dùng css/components/product-card.css
    Chỉ dùng màu trong bảng màu của base.css.
    ===================================================================== */
 
@@ -155,62 +156,7 @@
     }
 }
 
-/* ---------- 3. Thẻ sản phẩm (components/product-card.js của Khôi) ----------
-   CSS gốc của thẻ đang nằm trong css/pages/products.css (chỉ nạp ở trang Sản phẩm),
-   nên chép lại ở đây để các trang phòng hiển thị giống hệt. Khi nhóm tách CSS thẻ
-   sản phẩm ra file dùng chung thì xóa phần này. */
-.product-card{
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    overflow: hidden;
-}
-.product-card-media{
-    position: relative;
-    padding: 12px;
-    background: #EEEEEC;
-}
-.product-card-media img{
-    display: block;
-    width: 100%;
-    height: 210px;
-    object-fit: contain;
-    background: #EEEEEC;
-}
-.product-card-favorite{
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: #FFFFFF;
-}
-.product-card-favorite:hover{
-    background: #EEEEEC;
-}
-.product-card-content{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 16px;
-}
-.product-card-name{
-    min-height: 52px;
-    margin-top: 6px;
-}
-.product-card-prices{
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
-}
-.product-card-detail{
-    margin-top: auto;
-}
-.product-card-prices + .product-card-detail{
-    margin-top: 16px;
-}
-
-/* ---------- 4. Thông báo nhỏ góc dưới (toast) ---------- */
+/* ---------- 3. Thông báo nhỏ góc dưới (toast) ---------- */
 .room-toast{
     position: fixed;
     left: 50%;
@@ -243,12 +189,6 @@
 @media (max-width: 768px){
     .room-card .room-body{
         padding: 16px;
-    }
-    .product-card-media img{
-        height: 150px;
-    }
-    .product-card-content{
-        padding: 12px;
     }
     .hotspot{
         width: 28px;

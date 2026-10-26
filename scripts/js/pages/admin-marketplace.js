@@ -201,6 +201,8 @@ function saveUsedProduct(e){
     var name = document.getElementById("txtName").value.trim();
     var brand = document.getElementById("txtBrand").value.trim();
     var catId = Number(document.getElementById("slCategory").value);
+    var catObj = findById("categories", catId);
+    var parentCatId = (catObj && catObj.parent_id) ? catObj.parent_id : catId;   // danh mục cha của danh mục đã chọn
     var styleId = Number(document.getElementById("slStyle").value);
     var grade = document.getElementById("slGrade").value;
     var price = Number(document.getElementById("txtPrice").value);
@@ -233,6 +235,7 @@ function saveUsedProduct(e){
                 allProducts[j].name = name;
                 allProducts[j].brand = brand;
                 allProducts[j].category_id = catId;
+                allProducts[j].parent_category_id = parentCatId;
                 allProducts[j].style_id = styleId;
                 allProducts[j].style_ids = [styleId];
                 allProducts[j].condition_grade = grade;
@@ -281,7 +284,7 @@ function saveUsedProduct(e){
             is_active: isActive,
             images: images,
             style_ids: [styleId],
-            parent_category_id: 1,
+            parent_category_id: parentCatId,
             condition_grade: grade,
             usage_time: usageTime,
             condition_note: condNote

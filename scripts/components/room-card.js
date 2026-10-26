@@ -23,7 +23,7 @@ function roomEscape(chuoi){
 }
 
 // findById("products", id) đọc + JSON.parse cả bảng 950+ sản phẩm mỗi lần gọi, rất chậm khi
-// gọi trong vòng lặp. Hàm này đọc 1 lần rồi tra theo id; gọi resetProductCache() sau khi sửa bảng.
+// gọi trong vòng lặp. Hàm này đọc 1 lần rồi tra theo id (bảng chỉ đọc lại khi tải lại trang).
 var productCache = null;
 
 function findProduct(id){
@@ -36,10 +36,6 @@ function findProduct(id){
     if(productCache[id] == null)
         return null;
     return productCache[id];
-}
-
-function resetProductCache(){
-    productCache = null;
 }
 
 function getStyleOfRoom(room){

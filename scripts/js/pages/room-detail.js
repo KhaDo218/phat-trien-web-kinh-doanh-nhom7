@@ -300,14 +300,15 @@ function pageKeyDown(e){
 // Thẻ sản phẩm của Khôi + hàng nút "Chi tiết / Thêm vào giỏ"; soDiem != null thì gắn nhãn số điểm trên ảnh
 function createRoomProductCard(sp, soDiem){
     var card = createProductCard(sp);
-    var noiDung = card.getElementsByClassName("product-card-content")[0];
-    var nutChiTiet = card.getElementsByClassName("product-card-detail")[0];
+    var noiDung = card.getElementsByClassName("product-card-body")[0];
+    var khungNut = card.getElementsByClassName("product-card-actions")[0];
+    var nutChiTiet = khungNut.getElementsByTagName("a")[0];
     nutChiTiet.className = "btn btn-light product-card-detail";
     nutChiTiet.innerHTML = "Chi tiết";
 
     var hang = document.createElement("div");
     hang.className = "rd-card-actions";
-    noiDung.removeChild(nutChiTiet);
+    noiDung.removeChild(khungNut);
     hang.appendChild(nutChiTiet);
 
     var nutMua = document.createElement("button");
@@ -331,7 +332,7 @@ function createRoomProductCard(sp, soDiem){
         nhan.innerHTML = "<span class='material-symbols-outlined'>location_on</span>Điểm " + (soDiem + 1);
         nhan.setAttribute("onclick", "showOnImage(" + soDiem + ")");
         nhan.setAttribute("aria-label", "Xem vị trí trên ảnh phòng");
-        card.getElementsByClassName("product-card-media")[0].appendChild(nhan);
+        card.getElementsByClassName("product-card-img")[0].appendChild(nhan);
         card.setAttribute("onmouseenter", "highlightHotspot(" + soDiem + ", true)");
         card.setAttribute("onmouseleave", "highlightHotspot(" + soDiem + ", false)");
     }
@@ -483,39 +484,10 @@ function showRelatedRooms(){
 }
 
 // ===================== 5. Giỏ hàng =====================
-// Dữ liệu giỏ theo README: getObject("carts") = { user_id: [ {product_id, quantity} ] }
+// Thêm 1 sản phẩm bằng addToCart() trong services/cart.js (đã kiểm tra còn bán, tồn kho).
 // Trả về "" nếu thêm được, ngược lại trả về câu báo lỗi.
-// (Khi services/cart.js của Phương Anh có hàm addToCart() dùng chung thì có thể đổi sang gọi hàm đó.)
 function putProductInCart(productId){
-    var session = getSession();
-    var sp = findById("products", productId);       // đọc mới để có tồn kho mới nhất
-    if(sp == null || sp.is_active == false)
-        return "Sản phẩm không còn bán.";
-    if(Number(sp.stock_quantity) <= 0)
-        return "\"" + sp.name + "\" đã hết hàng.";
-
-    var carts = getObject("carts");
-    if(carts == null)
-        carts = {};
-    var maGio = session.user_id;
-    if(carts[maGio] == null)
-        carts[maGio] = [];
-    var gio = carts[maGio];
-    var dong = null;
-    for(var i = 0; i < gio.length; i++){
-        if(gio[i].product_id == productId)
-            dong = gio[i];
-    }
-    if(dong == null){
-        gio.push({ product_id: productId, quantity: 1 });
-    }
-    else{
-        if(Number(dong.quantity) + 1 > Number(sp.stock_quantity))
-            return "\"" + sp.name + "\" chỉ còn " + sp.stock_quantity + " sản phẩm, giỏ hàng đã đủ số lượng.";
-        dong.quantity = Number(dong.quantity) + 1;
-    }
-    saveObject("carts", carts);
-    return "";
+    return addToCart(productId, 1);
 }
 
 // UC3.3 A3: khách chưa đăng nhập bấm Thêm vào giỏ -> chuyển sang trang đăng nhập

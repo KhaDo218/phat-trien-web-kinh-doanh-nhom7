@@ -221,7 +221,7 @@ function renderTable(){
               + "</td>";
         html += "<td><strong>" + userName + "</strong><br><small class='text-secondary'>" + userEmail + "</small></td>";
         html += "<td><span class='rating-stars'>" + starsStr + "</span><span class='rating-num'>(" + r.rating + ")</span></td>";
-        html += "<td><div class='comment-text'>" + (r.comment || "<em class='text-secondary'>Không có nhận xét viết</em>") + "</div></td>";
+        html += "<td><div class='comment-text'>" + (r.comment ? safeText(r.comment) : "<em class='text-secondary'>Không có nhận xét viết</em>") + "</div></td>";
         html += "<td>" + formatDate(r.created_at || "2026-10-20") + "</td>";
         html += "<td>" + statusBadge + "</td>";
         html += "<td class='actions-cell'>"
