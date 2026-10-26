@@ -26,7 +26,19 @@
             <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Sản phẩm yêu thích</div>
             <h1 class="headline-page">Sản phẩm yêu thích</h1>
 
-            <!-- TODO (Nguyên Khôi): Danh sách sản phẩm trong rc_wishlists của người đang đăng nhập. -->
+            <section class="wishlist-intro">
+                <p class="lead">Những món đồ bạn đã lưu để hoàn thiện không gian sống.</p>
+            </section>
+            <section class="wishlist-content" aria-label="Danh sách sản phẩm yêu thích">
+                <p class="text-secondary" id="wishlistCount"></p>
+                <div class="grid-4 wishlist-grid" id="wishlistGrid"></div>
+                <div class="empty wishlist-empty hidden" id="emptyWishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <h2 class="headline-section">Danh sách của bạn đang trống</h2>
+                    <p>Các sản phẩm đã lưu sẽ xuất hiện tại đây.</p>
+                    <a class="btn" href="products.html">Khám phá sản phẩm</a>
+                </div>
+            </section>
 
         </main>
 
