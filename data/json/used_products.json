@@ -1,1 +1,512 @@
-[]
+[
+  {
+    "id": "used-001",
+    "category_id": 7,
+    "style_id": 6,
+    "name": "Ghế ăn gỗ sồi tự nhiên (đã qua sử dụng)",
+    "brand": "IKEA",
+    "price": 550000,
+    "original_price": 1450000,
+    "dimensions": "R 45 x S 52 x C 82 cm",
+    "material": "Gỗ sồi tự nhiên",
+    "color": "Gỗ sáng màu",
+    "description": "Ghế ăn thanh lịch nhập khẩu, thiết kế tối giản Bắc Âu. Khung gỗ sồi thịt cứng cáp, gia đình chuyển nhà nên thanh lý.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-001-01.jpg"
+    ],
+    "style_ids": [
+      6
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "6 tháng",
+    "condition_note": "Gần như mới, đệm ngồi và khung không trầy xước, chân ghế đã dán lót nỉ chống trầy sàn."
+  },
+  {
+    "id": "used-002",
+    "category_id": 8,
+    "style_id": 5,
+    "name": "Sofa da 3 chỗ dáng vòm màu cognac",
+    "brand": "BoConcept",
+    "price": 8900000,
+    "original_price": 24500000,
+    "dimensions": "R 205 x S 88 x C 78 cm",
+    "material": "Da bò thật & gỗ sồi",
+    "color": "Nâu cognac",
+    "description": "Sofa da thật phong cách Mid-century cao cấp, đệm mút lông vũ êm ái, màu nâu sang trọng nâng tầm không gian phòng khách.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-002-01.jpg"
+    ],
+    "style_ids": [
+      5
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1.5 năm",
+    "condition_note": "Bề mặt da lên patina tự nhiên rất đẹp, có một vết nhăn nhẹ ở góc tay vịn trái, nệm ngồi vẫn đàn hồi rất tốt."
+  },
+  {
+    "id": "used-003",
+    "category_id": 6,
+    "style_id": 1,
+    "name": "Bàn trà tròn gỗ xoài khắc họa tiết thủ công",
+    "brand": "Nhà Xinh",
+    "price": 1850000,
+    "original_price": 4200000,
+    "dimensions": "Đường kính 80 x C 42 cm",
+    "material": "Gỗ xoài tự nhiên",
+    "color": "Nâu mộc",
+    "description": "Bàn trà tròn phong cách Bohemian với viền khắc hoa văn độc đáo, mặt gỗ chắc nặng tạo điểm nhấn ấm cúng.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-003-01.jpg",
+      "assets/marketplace/used-003-02.jpg",
+      "assets/marketplace/used-003-03.jpg"
+    ],
+    "style_ids": [
+      1
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1 năm",
+    "condition_note": "Mặt bàn có 1-2 vệt xước dăm li ti do đặt cốc, đã đánh sáp dưỡng gỗ bảo vệ chống thấm nước."
+  },
+  {
+    "id": "used-004",
+    "category_id": 5,
+    "style_id": 3,
+    "name": "Ghế bành xoay thư giãn Julius bọc nubuck",
+    "brand": "Chổi Xể",
+    "price": 3200000,
+    "original_price": 7800000,
+    "dimensions": "R 82 x S 80 x C 76 cm",
+    "material": "Da nubuck & chân kim loại",
+    "color": "Nâu vàng",
+    "description": "Ghế bành xoay 360 độ cực kỳ êm ái, thiết kế bao bọc thư giãn, thích hợp cho góc đọc sách hoặc phòng khách.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-004-01.jpg",
+      "assets/marketplace/used-004-02.jpg",
+      "assets/marketplace/used-004-03.jpg"
+    ],
+    "style_ids": [
+      3
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "8 tháng",
+    "condition_note": "Cơ chế xoay mượt mà không tiếng ồn, bề mặt nubuck mịn như nhung không sờn rách."
+  },
+  {
+    "id": "used-005",
+    "category_id": 11,
+    "style_id": 3,
+    "name": "Kệ tivi 4 cánh gỗ sồi mộc Abigail 150 cm",
+    "brand": "JYSK",
+    "price": 2750000,
+    "original_price": 6200000,
+    "dimensions": "R 150 x S 40 x C 58 cm",
+    "material": "Gỗ sồi & kim loại sơn đen",
+    "color": "Gỗ sồi mộc",
+    "description": "Kệ tivi dáng farmhouse rộng rãi có 4 ngăn chứa đồ với cửa lùa mộc mạc, có lỗ luồn dây điện thông minh ở mặt sau.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-005-01.jpg",
+      "assets/marketplace/used-005-02.jpg",
+      "assets/marketplace/used-005-03.jpg"
+    ],
+    "style_ids": [
+      3
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "2 năm",
+    "condition_note": "Khung kệ cực kỳ vững chắc, bản lề mở trơn tru, mép đáy sau có vết cọ sát nhỏ không ảnh hưởng thẩm mỹ."
+  },
+  {
+    "id": "used-006",
+    "category_id": 10,
+    "style_id": 6,
+    "name": "Kệ sách dáng thang khung thép sơn đen",
+    "brand": "Baya",
+    "price": 1200000,
+    "original_price": 3100000,
+    "dimensions": "R 75 x S 35 x C 190 cm",
+    "material": "Thép sơn tĩnh điện & gỗ ép phủ sồi",
+    "color": "Đen & sồi sáng",
+    "description": "Kệ sách dạng thang áp tường tiết kiệm diện tích tối đa, 5 tầng chứa sách và vật phẩm trang trí tinh tế.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-006-01.jpg",
+      "assets/marketplace/used-006-02.jpg",
+      "assets/marketplace/used-006-03.jpg"
+    ],
+    "style_ids": [
+      6
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1 năm",
+    "condition_note": "Khung thép không trầy gỉ, các đợt gỗ chắc chắn chịu lực 15kg/tầng."
+  },
+  {
+    "id": "used-007",
+    "category_id": 7,
+    "style_id": 2,
+    "name": "Bàn ăn mở rộng Morriston màu mật ong mộc",
+    "brand": "Nhà Xinh",
+    "price": 6400000,
+    "original_price": 16500000,
+    "dimensions": "R 160–220 x S 90 x C 76 cm",
+    "material": "Gỗ keo tự nhiên",
+    "color": "Vàng mật ong",
+    "description": "Bàn ăn kéo dài linh hoạt từ 6 ghế lên 10 ghế ngồi, tông màu mật ong ấm áp cho phòng ăn sum vầy.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-007-01.jpg",
+      "assets/marketplace/used-007-02.jpg"
+    ],
+    "style_ids": [
+      2
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Fair",
+    "usage_time": "2.5 năm",
+    "condition_note": "Mặt bàn có vết quầng nhiệt mờ do cốc nóng và xước dăm ở góc, ray trượt mở rộng hoạt động hoàn hảo."
+  },
+  {
+    "id": "used-008",
+    "category_id": 10,
+    "style_id": 2,
+    "name": "Tủ buffet cánh mây đan Caprice 180 cm",
+    "brand": "Sonder Living",
+    "price": 7200000,
+    "original_price": 19800000,
+    "dimensions": "R 180 x S 45 x C 82 cm",
+    "material": "Gỗ xoài tự nhiên & mây mắt cáo",
+    "color": "Gỗ sáng & mây tự nhiên",
+    "description": "Tủ lưu trữ phong cách Coastal sang trọng với chi tiết mây đan thủ công thoáng khí, tay nắm đồng thau thanh nhã.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-008-01.jpg",
+      "assets/marketplace/used-008-02.jpg",
+      "assets/marketplace/used-008-03.jpg"
+    ],
+    "style_ids": [
+      2
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "1 năm",
+    "condition_note": "Mây đan căng đều không bung sợi, cánh tủ đóng mở êm, nội thất bên trong sạch sẽ như mới."
+  },
+  {
+    "id": "used-009",
+    "category_id": 12,
+    "style_id": 2,
+    "name": "Bàn làm việc Merriton chân đồng thau kèm 2 ngăn kéo",
+    "brand": "Index Living Mall",
+    "price": 3100000,
+    "original_price": 7500000,
+    "dimensions": "R 130 x S 65 x C 75 cm",
+    "material": "Gỗ sồi trắng & khung đồng thau",
+    "color": "Trắng ngà & vàng đồng",
+    "description": "Bàn làm việc tại nhà thanh lịch, mặt gỗ chống trầy phối hợp chân kim loại ánh kim tạo cảm hứng sáng tạo.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-009-01.jpg",
+      "assets/marketplace/used-009-02.jpg"
+    ],
+    "style_ids": [
+      2
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1 năm",
+    "condition_note": "Ray trượt 2 hộc kéo nhẹ nhàng, chân kim loại có chấm oxi hóa nhẹ khó nhìn thấy."
+  },
+  {
+    "id": "used-010",
+    "category_id": 9,
+    "style_id": 2,
+    "name": "Giường ngủ Queen Lowen bọc nệm chần nút",
+    "brand": "BoConcept",
+    "price": 6800000,
+    "original_price": 18200000,
+    "dimensions": "D 215 x R 170 x C 110 cm",
+    "material": "Khung gỗ dầu & vải bố cao cấp",
+    "color": "Be cát biển",
+    "description": "Giường ngủ cao cấp tựa đầu bọc nệm êm ái phong cách Coastal, thang dát giường gỗ nguyên khối chịu lực cao.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-010-01.jpg",
+      "assets/marketplace/used-010-02.jpg",
+      "assets/marketplace/used-010-03.jpg"
+    ],
+    "style_ids": [
+      2
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "10 tháng",
+    "condition_note": "Vải bọc đã giặt hấp khử khuẩn chuyên nghiệp, dát giường chắc chắn không rung lắc hay kêu cọt kẹt."
+  },
+  {
+    "id": "used-011",
+    "category_id": 7,
+    "style_id": 4,
+    "name": "Ghế quầy bar nhung kem chân mạ vàng",
+    "brand": "IKEA",
+    "price": 680000,
+    "original_price": 1850000,
+    "dimensions": "R 44 x S 46 x C 95 cm (cao ngồi 70 cm)",
+    "material": "Vải nhung tuyết & thép mạ titan vàng",
+    "color": "Kem & vàng gold",
+    "description": "Ghế bar sang trọng quý phái, lưng tựa uốn cong nâng đỡ cột sống, chân mạ vàng bóng bẩy tạo điểm nhấn góc bar bếp.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-011-01.jpg",
+      "assets/marketplace/used-011-02.jpg",
+      "assets/marketplace/used-011-03.jpg"
+    ],
+    "style_ids": [
+      4
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1 năm",
+    "condition_note": "Lớp mạ vàng còn sáng đẹp, vải nhung không rách, có vết tì nhẹ ở mép đệm do sử dụng."
+  },
+  {
+    "id": "used-012",
+    "category_id": 6,
+    "style_id": 5,
+    "name": "Bàn góc mặt đá cẩm thạch trắng Jennibelle",
+    "brand": "Chổi Xể",
+    "price": 950000,
+    "original_price": 2400000,
+    "dimensions": "Đường kính 35 x C 58 cm",
+    "material": "Đá marble tự nhiên & kim loại",
+    "color": "Trắng vân mây & đồng cổ",
+    "description": "Bàn trà nhỏ gọn đặt cạnh sofa hoặc đầu giường, mặt đá cẩm thạch tự nhiên vân xám sang trọng.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-012-01.jpg"
+    ],
+    "style_ids": [
+      5
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "7 tháng",
+    "condition_note": "Mặt đá sáng bóng không ố vàng hay sứt mẻ góc, trụ kim loại vững chãi."
+  },
+  {
+    "id": "used-013",
+    "category_id": 9,
+    "style_id": 5,
+    "name": "Tủ đầu giường 2 ngăn kéo gỗ óc chó Heist",
+    "brand": "Nhà Xinh",
+    "price": 1400000,
+    "original_price": 3600000,
+    "dimensions": "R 50 x S 40 x C 52 cm",
+    "material": "Gỗ óc chó Bắc Mỹ (Walnut)",
+    "color": "Nâu óc chó",
+    "description": "Tủ tab đầu giường đường nét bo cong đặc trưng Mid-century, vân gỗ óc chó trầm ấm sang trọng.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-013-01.jpg",
+      "assets/marketplace/used-013-02.jpg",
+      "assets/marketplace/used-013-03.jpg"
+    ],
+    "style_ids": [
+      5
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1.5 năm",
+    "condition_note": "Ngăn kéo trượt êm ái, bề mặt có vệt nhạt nhỏ do đèn ngủ, tổng thể rất mới và đẹp."
+  },
+  {
+    "id": "used-014",
+    "category_id": 10,
+    "style_id": 5,
+    "name": "Tủ quần áo gỗ sồi cánh mây Albertha 2 buồng",
+    "brand": "JYSK",
+    "price": 5600000,
+    "original_price": 14200000,
+    "dimensions": "R 105 x S 58 x C 185 cm",
+    "material": "Gỗ sồi tự nhiên & mây mắt cáo",
+    "color": "Gỗ tự nhiên",
+    "description": "Tủ áo mộc mạc thoáng mát với thiết kế mây mắt cáo tự nhiên, ngăn treo đồ và đợt gấp đồ tiện ích.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-014-01.jpg"
+    ],
+    "style_ids": [
+      5
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Fair",
+    "usage_time": "2 năm",
+    "condition_note": "Khung gỗ cực kỳ đầm chắc, cánh mây góc dưới có 1 sợi xơ nhỏ đã được gia cố lại kỹ."
+  },
+  {
+    "id": "used-015",
+    "category_id": 5,
+    "style_id": 7,
+    "name": "Đôn ghế dài có ngăn chứa đồ nắp mở Dyer",
+    "brand": "IKEA",
+    "price": 1150000,
+    "original_price": 2800000,
+    "dimensions": "R 110 x S 45 x C 44 cm",
+    "material": "Khung gỗ nệm bọc vải nỉ cao cấp",
+    "color": "Xám ghi",
+    "description": "Đôn dài đa năng đặt đuôi giường hoặc lối vào, nắp mở có piston trợ lực, khoang chứa đồ rộng rãi cho chăn màn.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-015-01.jpg",
+      "assets/marketplace/used-015-02.jpg",
+      "assets/marketplace/used-015-03.jpg"
+    ],
+    "style_ids": [
+      7
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "9 tháng",
+    "condition_note": "Bản lề trợ lực mở êm dịu, nệm ngồi đàn hồi cao, lòng thùng chứa đồ lót vải đen sạch sẽ."
+  },
+  {
+    "id": "used-016",
+    "category_id": 7,
+    "style_id": 2,
+    "name": "Ghế ăn lưng mây Bodine khung gỗ tự nhiên",
+    "brand": "Chổi Xể",
+    "price": 750000,
+    "original_price": 1950000,
+    "dimensions": "R 48 x S 54 x C 85 cm",
+    "material": "Gỗ cao su tuyển chọn & mây tự nhiên",
+    "color": "Gỗ sáng & nệm vải be",
+    "description": "Ghế ăn duyên dáng với phần lưng mây tự nhiên ôm cong thoải mái, đệm ngồi tháo giặt dễ dàng.",
+    "model_3d_url": null,
+    "stock_quantity": 0,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-016-01.jpg"
+    ],
+    "style_ids": [
+      2
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "1 năm",
+    "condition_note": "Mây đan lành lặn, đệm ngồi sạch tinh tươm, chân ghế có vết chạm nhẹ không đáng kể."
+  },
+  {
+    "id": "used-017",
+    "category_id": 6,
+    "style_id": 1,
+    "name": "Bàn trà bê tông nhẹ đúc nguyên khối Patrizia",
+    "brand": "BoConcept",
+    "price": 2400000,
+    "original_price": 5800000,
+    "dimensions": "Đường kính 75 x C 38 cm",
+    "material": "Bê tông composite nhẹ",
+    "color": "Trắng xi măng tự nhiên",
+    "description": "Bàn trà tròn đúc nguyên khối kiểu dáng điêu khắc đương đại, chất liệu bền bỉ chịu nước dùng trong nhà hoặc ban công có mái.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-017-01.jpg",
+      "assets/marketplace/used-017-02.jpg",
+      "assets/marketplace/used-017-03.jpg"
+    ],
+    "style_ids": [
+      1
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Good",
+    "usage_time": "14 tháng",
+    "condition_note": "Chất liệu bê tông phủ nano chống thấm, mặt bàn nhẵn mịn, có chấm đổi màu tự nhiên của chất liệu."
+  },
+  {
+    "id": "used-018",
+    "category_id": 10,
+    "style_id": 2,
+    "name": "Tủ sách vòm kính hiện đại Chantelle màu trắng",
+    "brand": "Nhà Xinh",
+    "price": 5900000,
+    "original_price": 15000000,
+    "dimensions": "R 90 x S 40 x C 195 cm",
+    "material": "Gỗ sồi sơn trắng & kính cường lực",
+    "color": "Trắng kem",
+    "description": "Tủ sách đỉnh vòm cong thời thượng, cửa kính trong suốt giúp chống bụi sách và đồ trang trí kỷ niệm.",
+    "model_3d_url": null,
+    "stock_quantity": 1,
+    "product_type": "USED",
+    "is_active": true,
+    "images": [
+      "assets/marketplace/used-018-01.jpg",
+      "assets/marketplace/used-018-02.jpg",
+      "assets/marketplace/used-018-03.jpg"
+    ],
+    "style_ids": [
+      2
+    ],
+    "parent_category_id": 1,
+    "condition_grade": "Like New",
+    "usage_time": "1 năm",
+    "condition_note": "Kính cường lực sáng trong không trầy xước, khóa nam châm hít êm, nước sơn trắng đều màu."
+  }
+]

@@ -437,4 +437,4 @@ INSERT IGNORE INTO styles (name) VALUES
 -- KIỂM TRA SAU KHI CHẠY (kết quả mong đợi: 19 bảng)
 -- ============================================================
 
-SHOW TABLES;
+

@@ -20,17 +20,201 @@
             <div id="sidebar"></div>
             <main class="admin-main">
                 <div class="admin-head">
-                    <p class="overline">Quản trị</p>
-                    <h1 class="headline-section">Quản lý đồ cũ</h1>
+                    <div>
+                        <p class="overline">Quản trị nội dung</p>
+                        <h1 class="headline-section">Quản lý đồ cũ Marketplace</h1>
+                    </div>
+                    <div>
+                        <button type="button" class="btn" onclick="openAddModal()">
+                            <span class="material-symbols-outlined">add</span> Thêm món đồ cũ
+                        </button>
+                    </div>
                 </div>
 
-                <!-- TODO (Như Huyền): Thêm / sửa / ẩn đồ cũ. -->
+                <!-- Thẻ số liệu thống kê -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <p class="overline">Tổng đồ cũ</p>
+                        <p class="value" id="statTotal">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Đang đăng bán</p>
+                        <p class="value" id="statActive" style="color:#2C6B3F;">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Đã bán</p>
+                        <p class="value" id="statSold" style="color:#686868;">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="overline">Tạm ẩn</p>
+                        <p class="value" id="statHidden" style="color:#8C3B2D;">0</p>
+                    </div>
+                </div>
 
+                <!-- Thanh công cụ tìm kiếm và lọc -->
+                <div class="toolbar">
+                    <input type="text" id="txtSearch" class="input" placeholder="Tìm theo mã, tên món đồ, thương hiệu..." oninput="onSearchChange()">
+                    <select id="slFilterGrade" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả tình trạng</option>
+                        <option value="Like New">Like New</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                    </select>
+                    <select id="slFilterStock" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả tồn kho</option>
+                        <option value="1">Còn hàng (1)</option>
+                        <option value="0">Đã bán (0)</option>
+                    </select>
+                    <select id="slFilterActive" class="input filter-select" onchange="renderTable()">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="true">Đang hiển thị</option>
+                        <option value="false">Đang ẩn</option>
+                    </select>
+                </div>
+
+                <!-- Bảng danh sách đồ cũ -->
+                <div class="table-responsive card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Ảnh</th>
+                                <th style="width: 100px;">Mã</th>
+                                <th>Tên sản phẩm đồ cũ</th>
+                                <th>Danh mục / Phong cách</th>
+                                <th style="width: 110px;">Tình trạng</th>
+                                <th style="width: 120px;">Giá bán</th>
+                                <th style="width: 90px;">Tồn kho</th>
+                                <th style="width: 110px;">Trạng thái</th>
+                                <th style="width: 160px; text-align: right;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbUsedProducts">
+                            <!-- Dữ liệu JS điền vào đây -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Thông báo trống -->
+                <div id="divEmpty" class="empty card hidden" style="margin-top:20px;">
+                    <span class="material-symbols-outlined" style="font-size:36px;">inventory_2</span>
+                    <p style="margin-top:8px;">Không tìm thấy món đồ cũ nào phù hợp với bộ lọc.</p>
+                </div>
             </main>
         </div>
 
-        <script>
-            loadData(initPage);
-        </script>
+        <!-- Modal Thêm / Sửa đồ cũ -->
+        <div id="modalUsed" class="modal hidden">
+            <div class="modal-box">
+                <div class="modal-head">
+                    <div>
+                        <p class="overline" id="lblModalOverline">Marketplace</p>
+                        <h2 class="headline-section" id="lblModalTitle" style="font-size:24px;">Thêm món đồ cũ</h2>
+                    </div>
+                    <button type="button" class="btn-icon" onclick="closeModal()">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <form id="frmUsedProduct" onsubmit="return saveUsedProduct(event)">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtEditId" value="">
+
+                        <div class="form-row">
+                            <div class="form-group flex-2">
+                                <label for="txtName">Tên sản phẩm đồ cũ <span class="req">*</span></label>
+                                <input type="text" id="txtName" class="input" placeholder="Ví dụ: Ghế ăn gỗ sồi tự nhiên (đã qua sử dụng)" required>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="txtBrand">Thương hiệu</label>
+                                <input type="text" id="txtBrand" class="input" placeholder="Ví dụ: IKEA, Nhà Xinh...">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="slCategory">Danh mục <span class="req">*</span></label>
+                                <select id="slCategory" class="input" required></select>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="slStyle">Phong cách <span class="req">*</span></label>
+                                <select id="slStyle" class="input" required></select>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="slGrade">Tình trạng kiểm định <span class="req">*</span></label>
+                                <select id="slGrade" class="input" required>
+                                    <option value="Like New">Like New (&gt;95%)</option>
+                                    <option value="Good" selected>Good (85–95%)</option>
+                                    <option value="Fair">Fair (&gt;70%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="txtPrice">Giá bán thanh lý (VND) <span class="req">*</span></label>
+                                <input type="number" id="txtPrice" class="input" placeholder="Ví dụ: 850000" min="0" required>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="txtOriginalPrice">Giá gốc khi mua mới (VND)</label>
+                                <input type="number" id="txtOriginalPrice" class="input" placeholder="Ví dụ: 2200000" min="0">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="txtStock">Tồn kho (1 = Còn, 0 = Đã bán)</label>
+                                <select id="txtStock" class="input">
+                                    <option value="1" selected>Còn hàng (1 món)</option>
+                                    <option value="0">Đã bán (0)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="txtUsageTime">Thời gian đã dùng</label>
+                                <input type="text" id="txtUsageTime" class="input" placeholder="Ví dụ: 6 tháng, 1 năm, 2 năm...">
+                            </div>
+                            <div class="form-group flex-2">
+                                <label for="txtConditionNote">Ghi chú tình trạng chi tiết</label>
+                                <input type="text" id="txtConditionNote" class="input" placeholder="Ví dụ: Vài vết xước nhỏ ở chân, đệm ngồi sạch tinh tươm...">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="txtDimensions">Kích thước</label>
+                                <input type="text" id="txtDimensions" class="input" placeholder="Ví dụ: R 45 x S 50 x C 80 cm">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="txtMaterial">Chất liệu</label>
+                                <input type="text" id="txtMaterial" class="input" placeholder="Ví dụ: Gỗ sồi tự nhiên, Da bò...">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="txtColor">Màu sắc</label>
+                                <input type="text" id="txtColor" class="input" placeholder="Ví dụ: Gỗ tự nhiên, Nâu cognac...">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtImages">Đường dẫn ảnh (mỗi ảnh 1 dòng hoặc cách nhau dấu phẩy)</label>
+                            <textarea id="txtImages" class="input" style="height:64px;" placeholder="assets/marketplace/used-001-01.jpg&#10;assets/marketplace/used-001-02.jpg"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtDescription">Mô tả sản phẩm</label>
+                            <textarea id="txtDescription" class="input" style="height:80px;" placeholder="Mô tả nguồn gốc, thiết kế, cảm giác ngồi..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="chkIsActive" checked>
+                                <span>Hiển thị sản phẩm cho khách hàng trên Marketplace</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-foot">
+                        <button type="button" class="btn btn-outline" onclick="closeModal()" style="margin-right:8px;">Hủy bỏ</button>
+                        <button type="submit" class="btn">Lưu thông tin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

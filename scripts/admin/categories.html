@@ -24,58 +24,7 @@
                     <h1 class="headline-section">Quản lý danh mục</h1>
                 </div>
 
-                <section class="admin-category-form card">
-                    <div class="admin-section-heading">
-                        <div>
-                            <p class="overline">Danh mục sản phẩm</p>
-                            <h2 class="headline-section" id="categoryFormTitle">Thêm danh mục</h2>
-                        </div>
-                    </div>
-                    <form id="frmCategory">
-                        <input type="hidden" id="txtCategoryId" name="id">
-                        <div class="admin-category-form-grid">
-                            <div class="form-group">
-                                <label for="txtCategoryName">Tên danh mục</label>
-                                <input class="input" type="text" id="txtCategoryName" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cboParentCategory">Danh mục cha</label>
-                                <select class="input" id="cboParentCategory" name="parent_id">
-                                    <option value="">Danh mục cha (không có)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="admin-form-actions">
-                            <button class="btn btn-outline" type="reset">Nhập lại</button>
-                            <button class="btn" type="button" id="saveCategoryButton">Lưu danh mục</button>
-                        </div>
-                    </form>
-                </section>
-
-                <section class="admin-category-list">
-                    <div class="admin-section-heading">
-                        <div>
-                            <p class="overline">Cấu trúc danh mục</p>
-                            <h2 class="headline-section">Danh sách danh mục</h2>
-                        </div>
-                        <p class="text-secondary" id="adminCategoryCount">Danh mục</p>
-                    </div>
-                    <div class="admin-table-wrap">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Mã danh mục</th>
-                                    <th scope="col">Tên danh mục</th>
-                                    <th scope="col">Danh mục cha</th>
-                                    <th scope="col">Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbCategories">
-                                <tr><td colspan="4" class="admin-table-empty">Danh sách sẽ hiển thị tại đây.</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
+                <!-- TODO (Nguyên Khôi): Thêm / sửa danh mục cha - con. -->
 
             </main>
         </div>
