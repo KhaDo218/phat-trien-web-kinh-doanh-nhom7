@@ -151,7 +151,7 @@
                         <div class="form-row">
                             <div class="form-group flex-1">
                                 <label for="txtPrice">Giá bán thanh lý (VND) <span class="req">*</span></label>
-                                <input type="number" id="txtPrice" class="input" placeholder="Ví dụ: 850000" min="0" required>
+                                <input type="number" id="txtPrice" class="input" placeholder="Ví dụ: 850000" min="1" required>
                             </div>
                             <div class="form-group flex-1">
                                 <label for="txtOriginalPrice">Giá gốc khi mua mới (VND)</label>
@@ -216,5 +216,9 @@
                 </form>
             </div>
         </div>
+
+        <script>
+            loadData(initPage);
+        </script>
     </body>
 </html>

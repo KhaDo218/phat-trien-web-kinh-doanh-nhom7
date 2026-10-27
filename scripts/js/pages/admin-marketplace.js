@@ -222,8 +222,20 @@ function saveUsedProduct(e){
         var s = rawImgs[i].trim();
         if(s) images.push(s);
     }
+    if(price <= 0){
+        alert("Giá bán phải lớn hơn 0!");
+        document.getElementById("txtPrice").focus();
+        return false;
+    }
+    if(origPrice != null && origPrice <= price){
+        alert("Giá gốc phải lớn hơn giá bán (để trống nếu không có)!");
+        document.getElementById("txtOriginalPrice").focus();
+        return false;
+    }
     if(images.length === 0){
-        images.push("assets/marketplace/used-001-01.jpg");
+        alert("Vui lòng nhập ít nhất một đường dẫn ảnh!");
+        document.getElementById("txtImages").focus();
+        return false;
     }
 
     var allProducts = getTable("products");
@@ -287,7 +299,8 @@ function saveUsedProduct(e){
             parent_category_id: parentCatId,
             condition_grade: grade,
             usage_time: usageTime,
-            condition_note: condNote
+            condition_note: condNote,
+            created_at: new Date().toISOString()
         };
         allProducts.push(newItem);
         alert("Đã thêm món đồ cũ mới với mã: " + newId + "!");

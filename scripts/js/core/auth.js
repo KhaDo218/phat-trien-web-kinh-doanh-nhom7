@@ -182,7 +182,11 @@ function requireLogin(){
 function requireAdmin(){
     if(isAdmin() == false){
         alert("Bạn không có quyền truy cập trang quản trị!");
-        window.location.href = getRoot() + "scripts/login.html";
+        // đã đăng nhập bằng tài khoản khách thì về trang chủ, chưa đăng nhập thì sang trang đăng nhập
+        if(isLoggedIn())
+            window.location.href = getRoot() + "scripts/index.html";
+        else
+            window.location.href = getRoot() + "scripts/login.html";
         return false;
     }
     return true;
