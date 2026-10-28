@@ -50,6 +50,13 @@
   },
   {
     "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-01.jpg",
+    "product_id": "product-bohemian-rectangle-no-pattern-cotton-table-runner-03",
+    "position_x": 52.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-bohemian-4168521",
     "image_url": "assets/rooms/bohemian/room-bohemian-4168521-02.jpg",
     "product_id": "product-bohemian-kutztown-42-kitchen-island-04",
     "position_x": 20.0,
@@ -80,8 +87,8 @@
     "room_id": "room-bohemian-4168521",
     "image_url": "assets/rooms/bohemian/room-bohemian-4168521-02.jpg",
     "product_id": "product-bohemian-outdoor-wooden-loveseat-with-cushions-02",
-    "position_x": 89.0,
-    "position_y": 60.0
+    "position_x": 84.0,
+    "position_y": 65.0
   },
   {
     "room_id": "room-bohemian-4168521",
@@ -96,6 +103,20 @@
     "product_id": "product-bohemian-arlo-home-hand-woven-area-rug-nf356a-natural-6-x-6-round-02",
     "position_x": 78.0,
     "position_y": 82.0
+  },
+  {
+    "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-02.jpg",
+    "product_id": "product-bohemian-safflower-saff-7194-18-l-x-18-w-pillow-cover-02",
+    "position_x": 85.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-02.jpg",
+    "product_id": "product-bohemian-lykan-white-vase-set-of-3-07",
+    "position_x": 73.0,
+    "position_y": 53.0
   },
   {
     "room_id": "room-bohemian-4168521",
@@ -138,6 +159,20 @@
     "product_id": "product-bohemian-lykan-white-vase-set-of-3-07",
     "position_x": 45.0,
     "position_y": 52.0
+  },
+  {
+    "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-03.jpg",
+    "product_id": "product-bohemian-outdoor-wooden-loveseat-with-cushions-02",
+    "position_x": 66.0,
+    "position_y": 50.0
+  },
+  {
+    "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-03.jpg",
+    "product_id": "product-bohemian-woven-storage-bin-01",
+    "position_x": 72.0,
+    "position_y": 58.0
   },
   {
     "room_id": "room-bohemian-4168521",
@@ -189,6 +224,20 @@
     "position_y": 66.0
   },
   {
+    "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-04.jpg",
+    "product_id": "product-bohemian-lykan-white-vase-set-of-3-07",
+    "position_x": 79.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-bohemian-4168521",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4168521-04.jpg",
+    "product_id": "product-bohemian-safflower-saff-7194-18-l-x-18-w-pillow-cover-02",
+    "position_x": 86.0,
+    "position_y": 56.0
+  },
+  {
     "room_id": "room-bohemian-4177683",
     "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
     "product_id": "product-bohemian-belmin-stone-concrete-side-table-01",
@@ -238,6 +287,41 @@
     "position_y": 88.0
   },
   {
+    "room_id": "room-bohemian-4177683",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
+    "product_id": "product-bohemian-decorative-object-natural-03",
+    "position_x": 11.0,
+    "position_y": 44.0
+  },
+  {
+    "room_id": "room-bohemian-4177683",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
+    "product_id": "product-bohemian-venezia-amber-brown-glass-taper-candle-holders-set-of-3-04",
+    "position_x": 22.0,
+    "position_y": 44.0
+  },
+  {
+    "room_id": "room-bohemian-4177683",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
+    "product_id": "product-bohemian-woven-cotton-striped-lumbar-pillow-with-chambray-back-and-ta-06",
+    "position_x": 47.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-bohemian-4177683",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
+    "product_id": "product-bohemian-herringbone-throw-01",
+    "position_x": 62.0,
+    "position_y": 50.0
+  },
+  {
+    "room_id": "room-bohemian-4177683",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
+    "product_id": "product-bohemian-hand-blown-frosted-art-glass-vase-with-multi-color-stripe-05",
+    "position_x": 50.0,
+    "position_y": 61.0
+  },
+  {
     "room_id": "room-bohemian-4189649",
     "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
     "product_id": "product-bohemian-james-sleeper-sofa-04",
@@ -285,6 +369,62 @@
     "product_id": "product-bohemian-rue-52-natural-wood-12-cube-bookcase-12",
     "position_x": 6.0,
     "position_y": 60.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-crosby-black-and-ivory-alpaca-lumbar-pillow-with-feather-dow-08",
+    "position_x": 46.0,
+    "position_y": 61.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-eastern-accents-charlie-throw-pillow-11",
+    "position_x": 37.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-cy-vase-medium-white-09",
+    "position_x": 79.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-maria-vase-small-08",
+    "position_x": 76.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-brooklyn-cannelee-vase-and-sage-green-leaf-branch-arrangemen-10",
+    "position_x": 77.0,
+    "position_y": 26.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-all-across-africa-brown-pom-pom-garland-07",
+    "position_x": 5.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-in-stitches-stripe-wallpaper-black-cream-05",
+    "position_x": 48.0,
+    "position_y": 15.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
+    "product_id": "product-bohemian-samson-black-indoor-outdoor-rug-8-x-10-01",
+    "position_x": 60.0,
+    "position_y": 86.0
   },
   {
     "room_id": "room-bohemian-4189649",
@@ -358,6 +498,27 @@
   },
   {
     "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-02.jpg",
+    "product_id": "product-bohemian-all-across-africa-brown-pom-pom-garland-07",
+    "position_x": 25.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-02.jpg",
+    "product_id": "product-bohemian-in-stitches-stripe-wallpaper-black-cream-05",
+    "position_x": 53.0,
+    "position_y": 22.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-02.jpg",
+    "product_id": "product-bohemian-wonderful-wicker-natural-11-storage-basket-set-of-4-03",
+    "position_x": 25.0,
+    "position_y": 45.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
     "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
     "product_id": "product-bohemian-caprice-black-natural-cane-narrow-cabinet-09",
     "position_x": 5.0,
@@ -374,8 +535,8 @@
     "room_id": "room-bohemian-4189649",
     "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
     "product_id": "product-bohemian-scarlett-sleeper-sofa-03",
-    "position_x": 33.0,
-    "position_y": 62.0
+    "position_x": 22.0,
+    "position_y": 72.0
   },
   {
     "room_id": "room-bohemian-4189649",
@@ -418,6 +579,48 @@
     "product_id": "product-bohemian-samson-black-indoor-outdoor-rug-8-x-10-01",
     "position_x": 72.0,
     "position_y": 86.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
+    "product_id": "product-bohemian-stria-sienna-brown-woven-silk-lumbar-pillow-cover-23-x11-by--01",
+    "position_x": 85.0,
+    "position_y": 59.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
+    "product_id": "product-bohemian-mongolian-green-sheepskin-fur-throw-pillow-with-feather-down-13",
+    "position_x": 80.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
+    "product_id": "product-bohemian-xbase-pillow-23x23-feather-insert-10",
+    "position_x": 76.0,
+    "position_y": 54.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
+    "product_id": "product-bohemian-in-stitches-stripe-wallpaper-black-cream-05",
+    "position_x": 43.0,
+    "position_y": 15.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
+    "product_id": "product-bohemian-admir-floor-lamp-01",
+    "position_x": 52.0,
+    "position_y": 44.0
+  },
+  {
+    "room_id": "room-bohemian-4189649",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4189649-03.jpg",
+    "product_id": "product-bohemian-brooklyn-cannelee-vase-and-sage-green-leaf-branch-arrangemen-10",
+    "position_x": 52.0,
+    "position_y": 28.0
   },
   {
     "room_id": "room-bohemian-4192274",
@@ -484,6 +687,13 @@
   },
   {
     "room_id": "room-bohemian-4192274",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4192274-01.jpg",
+    "product_id": "product-bohemian-strange-landscape-by-rose-beck-framed-wall-art-basic-white-1-02",
+    "position_x": 94.0,
+    "position_y": 12.0
+  },
+  {
+    "room_id": "room-bohemian-4192274",
     "image_url": "assets/rooms/bohemian/room-bohemian-4192274-02.jpg",
     "product_id": "product-bohemian-square-boho-rattan-framed-wall-mirror-natural-04",
     "position_x": 44.0,
@@ -544,6 +754,20 @@
     "product_id": "product-bohemian-ficus-tineke-by-cassia-beck-framed-wall-art-bamboo-11-x-13-01",
     "position_x": 95.0,
     "position_y": 35.0
+  },
+  {
+    "room_id": "room-bohemian-4192274",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4192274-02.jpg",
+    "product_id": "product-bohemian-strange-landscape-by-rose-beck-framed-wall-art-basic-white-1-02",
+    "position_x": 41.0,
+    "position_y": 14.0
+  },
+  {
+    "room_id": "room-bohemian-4192274",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4192274-02.jpg",
+    "product_id": "product-bohemian-picture-frame-13",
+    "position_x": 47.0,
+    "position_y": 14.0
   },
   {
     "room_id": "room-bohemian-4192274",
@@ -638,6 +862,20 @@
   },
   {
     "room_id": "room-bohemian-4206259",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4206259-01.jpg",
+    "product_id": "product-bohemian-matte-black-1-curtain-rod-and-end-cap-finials-set-48-88-08",
+    "position_x": 25.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-bohemian-4206259",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4206259-01.jpg",
+    "product_id": "product-bohemian-matte-black-1-curtain-rod-and-end-cap-finials-set-48-88-08",
+    "position_x": 67.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-bohemian-4206259",
     "image_url": "assets/rooms/bohemian/room-bohemian-4206259-02.jpg",
     "product_id": "product-bohemian-linen-curtain-antique-white-linen-50-x-96-blackout-05",
     "position_x": 25.0,
@@ -684,6 +922,13 @@
     "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
     "position_x": 86.0,
     "position_y": 55.0
+  },
+  {
+    "room_id": "room-bohemian-4206259",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4206259-02.jpg",
+    "product_id": "product-bohemian-matte-black-1-curtain-rod-and-end-cap-finials-set-48-88-08",
+    "position_x": 38.0,
+    "position_y": 29.0
   },
   {
     "room_id": "room-bohemian-4211866",
@@ -738,8 +983,8 @@
     "room_id": "room-bohemian-4211866",
     "image_url": "assets/rooms/bohemian/room-bohemian-4211866-01.jpg",
     "product_id": "product-bohemian-faux-silk-velvet-alabaster-20-x-20-04",
-    "position_x": 85.0,
-    "position_y": 62.0
+    "position_x": 86.0,
+    "position_y": 73.0
   },
   {
     "room_id": "room-bohemian-4211866",
@@ -747,6 +992,20 @@
     "product_id": "product-bohemian-the-citizenry-nehal-handwoven-area-rug-10-x-14-tan-01",
     "position_x": 12.0,
     "position_y": 82.0
+  },
+  {
+    "room_id": "room-bohemian-4211866",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4211866-01.jpg",
+    "product_id": "product-bohemian-palma-reclaimed-wood-sculptural-coffee-table-01",
+    "position_x": 52.0,
+    "position_y": 76.0
+  },
+  {
+    "room_id": "room-bohemian-4211866",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4211866-01.jpg",
+    "product_id": "product-bohemian-calda-chantilly-70-x55-warm-sand-beige-throw-blanket-02",
+    "position_x": 83.0,
+    "position_y": 63.0
   },
   {
     "room_id": "room-bohemian-4211866",
@@ -784,6 +1043,13 @@
     "position_y": 72.0
   },
   {
+    "room_id": "room-bohemian-4211866",
+    "image_url": "assets/rooms/bohemian/room-bohemian-4211866-02.jpg",
+    "product_id": "product-bohemian-terrill-27-brass-table-lamp-04",
+    "position_x": 69.0,
+    "position_y": 48.0
+  },
+  {
     "room_id": "room-bohemian-4236536",
     "image_url": "assets/rooms/bohemian/room-bohemian-4236536-01.jpg",
     "product_id": "product-bohemian-egon-chandelier-antique-brass-iron-02",
@@ -794,8 +1060,8 @@
     "room_id": "room-bohemian-4236536",
     "image_url": "assets/rooms/bohemian/room-bohemian-4236536-01.jpg",
     "product_id": "product-bohemian-lukas-3-seat-sofa-04",
-    "position_x": 52.0,
-    "position_y": 58.0
+    "position_x": 36.0,
+    "position_y": 48.0
   },
   {
     "room_id": "room-bohemian-4236536",
@@ -899,8 +1165,8 @@
     "room_id": "room-bohemian-4236536",
     "image_url": "assets/rooms/bohemian/room-bohemian-4236536-03.jpg",
     "product_id": "product-bohemian-lukas-3-seat-sofa-04",
-    "position_x": 52.0,
-    "position_y": 58.0
+    "position_x": 36.0,
+    "position_y": 48.0
   },
   {
     "room_id": "room-bohemian-4236536",
@@ -1023,6 +1289,41 @@
   },
   {
     "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-01.jpg",
+    "product_id": "product-coastal-tube-vase-04",
+    "position_x": 85.0,
+    "position_y": 29.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-01.jpg",
+    "product_id": "product-coastal-victoria-black-terracotta-vase-06",
+    "position_x": 64.0,
+    "position_y": 26.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-01.jpg",
+    "product_id": "product-coastal-lena-vase-small-20",
+    "position_x": 77.0,
+    "position_y": 23.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-01.jpg",
+    "product_id": "product-coastal-nasser-wood-decorative-bowl-in-beige-09",
+    "position_x": 86.0,
+    "position_y": 6.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-01.jpg",
+    "product_id": "product-coastal-artesia-natural-rattan-bowl-with-handles-16",
+    "position_x": 59.0,
+    "position_y": 15.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
     "image_url": "assets/rooms/coastal/room-coastal-4173476-02.jpg",
     "product_id": "product-coastal-1-light-dimmable-picture-light-01",
     "position_x": 15.0,
@@ -1072,6 +1373,20 @@
   },
   {
     "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-02.jpg",
+    "product_id": "product-coastal-rememberance-framed-wall-art-01",
+    "position_x": 34.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-02.jpg",
+    "product_id": "product-coastal-1-light-dimmable-picture-light-01",
+    "position_x": 35.0,
+    "position_y": 14.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
     "image_url": "assets/rooms/coastal/room-coastal-4173476-03.jpg",
     "product_id": "product-coastal-index-wall-shelf-set-of-6-oak-wood-01",
     "position_x": 54.0,
@@ -1104,6 +1419,34 @@
     "product_id": "product-coastal-kadin-medallion-blue-gray-area-rug-9-x12-01",
     "position_x": 50.0,
     "position_y": 90.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-03.jpg",
+    "product_id": "product-coastal-victoria-black-terracotta-vase-06",
+    "position_x": 47.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-03.jpg",
+    "product_id": "product-coastal-tube-vase-04",
+    "position_x": 48.0,
+    "position_y": 23.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-03.jpg",
+    "product_id": "product-coastal-lena-vase-small-20",
+    "position_x": 61.0,
+    "position_y": 39.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-03.jpg",
+    "product_id": "product-coastal-casta-vase-blue-03",
+    "position_x": 55.0,
+    "position_y": 17.0
   },
   {
     "room_id": "room-coastal-4173476",
@@ -1155,6 +1498,62 @@
     "position_y": 68.0
   },
   {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-victoria-black-terracotta-vase-06",
+    "position_x": 43.0,
+    "position_y": 38.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-doyle-vase-small-13",
+    "position_x": 54.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-coralie-round-white-terracotta-vase-17",
+    "position_x": 64.0,
+    "position_y": 66.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-artesia-natural-rattan-bowl-with-handles-16",
+    "position_x": 64.0,
+    "position_y": 49.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-camden-handmade-rattan-decorative-bowl-1-03",
+    "position_x": 75.0,
+    "position_y": 66.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-haven-pot-planter-02",
+    "position_x": 64.0,
+    "position_y": 22.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-casta-vase-blue-03",
+    "position_x": 53.0,
+    "position_y": 21.0
+  },
+  {
+    "room_id": "room-coastal-4173476",
+    "image_url": "assets/rooms/coastal/room-coastal-4173476-04.jpg",
+    "product_id": "product-coastal-gracie-oaks-terracotta-jute-vase-18",
+    "position_x": 75.0,
+    "position_y": 30.0
+  },
+  {
     "room_id": "room-coastal-4178680",
     "image_url": "assets/rooms/coastal/room-coastal-4178680-01.jpg",
     "product_id": "product-coastal-faux-olive-tree-05",
@@ -1202,6 +1601,13 @@
     "product_id": "product-coastal-camber-hand-knotted-medallion-gray-cream-area-rug-6-x9-01",
     "position_x": 60.0,
     "position_y": 85.0
+  },
+  {
+    "room_id": "room-coastal-4178680",
+    "image_url": "assets/rooms/coastal/room-coastal-4178680-01.jpg",
+    "product_id": "product-coastal-capri-wallpaper-04",
+    "position_x": 25.0,
+    "position_y": 35.0
   },
   {
     "room_id": "room-coastal-4178680",
@@ -1260,6 +1666,27 @@
     "position_y": 80.0
   },
   {
+    "room_id": "room-coastal-4178680",
+    "image_url": "assets/rooms/coastal/room-coastal-4178680-02.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 83.0,
+    "position_y": 60.0
+  },
+  {
+    "room_id": "room-coastal-4178680",
+    "image_url": "assets/rooms/coastal/room-coastal-4178680-02.jpg",
+    "product_id": "product-coastal-faux-olive-tree-05",
+    "position_x": 78.0,
+    "position_y": 40.0
+  },
+  {
+    "room_id": "room-coastal-4178680",
+    "image_url": "assets/rooms/coastal/room-coastal-4178680-02.jpg",
+    "product_id": "product-coastal-capri-wallpaper-04",
+    "position_x": 50.0,
+    "position_y": 32.0
+  },
+  {
     "room_id": "room-coastal-4181734",
     "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
     "product_id": "product-coastal-fiona-loveseat-01",
@@ -1284,8 +1711,8 @@
     "room_id": "room-coastal-4181734",
     "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
     "product_id": "product-coastal-lowen-upholstered-bed-with-tufting-option-04",
-    "position_x": 52.0,
-    "position_y": 47.0
+    "position_x": 50.0,
+    "position_y": 52.0
   },
   {
     "room_id": "room-coastal-4181734",
@@ -1306,6 +1733,48 @@
     "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
     "product_id": "product-coastal-fairport-seagrass-baskets-01",
     "position_x": 88.0,
+    "position_y": 68.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
+    "product_id": "product-coastal-throw-pillow-20-x-20-square-03",
+    "position_x": 44.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
+    "product_id": "product-coastal-smithery-curtain-rod-02",
+    "position_x": 8.0,
+    "position_y": 26.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
+    "product_id": "product-coastal-quimby-blackout-curtain-pair-set-of-2-03",
+    "position_x": 5.0,
+    "position_y": 42.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
+    "product_id": "product-coastal-the-citizenry-ahana-handwoven-area-rug-9-x-12-sand-01",
+    "position_x": 33.0,
+    "position_y": 88.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
+    "product_id": "product-coastal-the-old-town-by-dan-hobday-03",
+    "position_x": 50.0,
+    "position_y": 43.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
+    "product_id": "product-coastal-waffle-bedding-king-ca-king-restock-04-19-2026-02",
+    "position_x": 45.0,
     "position_y": 68.0
   },
   {
@@ -1393,6 +1862,20 @@
     "position_y": 70.0
   },
   {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-02.jpg",
+    "product_id": "product-coastal-smithery-curtain-rod-02",
+    "position_x": 25.0,
+    "position_y": 29.0
+  },
+  {
+    "room_id": "room-coastal-4181734",
+    "image_url": "assets/rooms/coastal/room-coastal-4181734-02.jpg",
+    "product_id": "product-coastal-etched-city-framed-art-01",
+    "position_x": 47.0,
+    "position_y": 46.0
+  },
+  {
     "room_id": "room-coastal-4192177",
     "image_url": "assets/rooms/coastal/room-coastal-4192177-01.jpg",
     "product_id": "product-coastal-chantelle-modern-arched-bookshelf-with-glass-doors-02",
@@ -1425,7 +1908,7 @@
     "image_url": "assets/rooms/coastal/room-coastal-4192177-01.jpg",
     "product_id": "product-coastal-possini-euro-ralston-14-antique-brass-modern-plug-in-picture-01",
     "position_x": 53.0,
-    "position_y": 23.0
+    "position_y": 31.0
   },
   {
     "room_id": "room-coastal-4192177",
@@ -1440,6 +1923,27 @@
     "product_id": "product-coastal-ciro-vase-small-08",
     "position_x": 70.0,
     "position_y": 50.0
+  },
+  {
+    "room_id": "room-coastal-4192177",
+    "image_url": "assets/rooms/coastal/room-coastal-4192177-01.jpg",
+    "product_id": "product-coastal-potted-faux-agave-sisal-plant-10",
+    "position_x": 36.0,
+    "position_y": 35.0
+  },
+  {
+    "room_id": "room-coastal-4192177",
+    "image_url": "assets/rooms/coastal/room-coastal-4192177-01.jpg",
+    "product_id": "product-coastal-derry-vase-short-05",
+    "position_x": 77.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-coastal-4192177",
+    "image_url": "assets/rooms/coastal/room-coastal-4192177-01.jpg",
+    "product_id": "product-coastal-arcas-vase-medium-06",
+    "position_x": 29.0,
+    "position_y": 55.0
   },
   {
     "room_id": "room-coastal-4192177",
@@ -1489,6 +1993,13 @@
     "product_id": "product-coastal-ankara-beige-indoor-5-3-x-7-machine-woven-rug-01",
     "position_x": 60.0,
     "position_y": 88.0
+  },
+  {
+    "room_id": "room-coastal-4192177",
+    "image_url": "assets/rooms/coastal/room-coastal-4192177-02.jpg",
+    "product_id": "product-coastal-potted-faux-agave-sisal-plant-10",
+    "position_x": 93.0,
+    "position_y": 45.0
   },
   {
     "room_id": "room-coastal-4192177",
@@ -1551,7 +2062,7 @@
     "image_url": "assets/rooms/coastal/room-coastal-4195190-01.jpg",
     "product_id": "product-coastal-beam-cream-natural-jute-floor-lamp-02",
     "position_x": 9.0,
-    "position_y": 40.0
+    "position_y": 47.0
   },
   {
     "room_id": "room-coastal-4195190",
@@ -1576,6 +2087,13 @@
   },
   {
     "room_id": "room-coastal-4195190",
+    "image_url": "assets/rooms/coastal/room-coastal-4195190-01.jpg",
+    "product_id": "product-coastal-the-citizenry-isidora-pillow-12-x-20-tan-04",
+    "position_x": 3.0,
+    "position_y": 59.0
+  },
+  {
+    "room_id": "room-coastal-4195190",
     "image_url": "assets/rooms/coastal/room-coastal-4195190-02.jpg",
     "product_id": "product-coastal-agatha-table-lamp-01",
     "position_x": 20.0,
@@ -1586,7 +2104,7 @@
     "image_url": "assets/rooms/coastal/room-coastal-4195190-02.jpg",
     "product_id": "product-coastal-the-citizenry-padma-round-storage-basket-oversized-tan-03",
     "position_x": 65.0,
-    "position_y": 57.0
+    "position_y": 63.0
   },
   {
     "room_id": "room-coastal-4206259",
@@ -1646,6 +2164,20 @@
   },
   {
     "room_id": "room-coastal-4206259",
+    "image_url": "assets/rooms/coastal/room-coastal-4206259-01.jpg",
+    "product_id": "product-bohemian-matte-black-1-double-curtain-rod-and-end-cap-finials-set-88--07",
+    "position_x": 25.0,
+    "position_y": 29.0
+  },
+  {
+    "room_id": "room-coastal-4206259",
+    "image_url": "assets/rooms/coastal/room-coastal-4206259-01.jpg",
+    "product_id": "product-bohemian-matte-black-1-curtain-rod-and-end-cap-finials-set-48-88-08",
+    "position_x": 67.0,
+    "position_y": 29.0
+  },
+  {
+    "room_id": "room-coastal-4206259",
     "image_url": "assets/rooms/coastal/room-coastal-4206259-02.jpg",
     "product_id": "product-bohemian-linen-curtain-antique-white-linen-50-x-96-blackout-05",
     "position_x": 25.0,
@@ -1694,6 +2226,13 @@
     "position_y": 55.0
   },
   {
+    "room_id": "room-coastal-4206259",
+    "image_url": "assets/rooms/coastal/room-coastal-4206259-02.jpg",
+    "product_id": "product-bohemian-matte-black-1-double-curtain-rod-and-end-cap-finials-set-88--07",
+    "position_x": 38.0,
+    "position_y": 22.0
+  },
+  {
     "room_id": "room-coastal-4220292",
     "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
     "product_id": "product-coastal-luxe-linen-blend-woven-curtain-04",
@@ -1712,7 +2251,7 @@
     "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
     "product_id": "product-coastal-morriston-126-inch-extension-dining-table-rustic-honey-01",
     "position_x": 52.0,
-    "position_y": 45.0
+    "position_y": 58.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1740,7 +2279,7 @@
     "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
     "product_id": "product-bohemian-12-5-handmade-natural-jute-and-cotton-planter-17",
     "position_x": 74.0,
-    "position_y": 74.0
+    "position_y": 66.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1754,14 +2293,14 @@
     "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
     "product_id": "product-coastal-camilla-gold-tray-02",
     "position_x": 88.0,
-    "position_y": 42.0
+    "position_y": 54.0
   },
   {
     "room_id": "room-coastal-4220292",
     "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
     "product_id": "product-coastal-caprice-96-sideboard-natural-mango-03",
     "position_x": 88.0,
-    "position_y": 52.0
+    "position_y": 64.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1769,6 +2308,13 @@
     "product_id": "product-coastal-amore-gray-indoor-8-10-x-13-1-machine-woven-rug-01",
     "position_x": 40.0,
     "position_y": 88.0
+  },
+  {
+    "room_id": "room-coastal-4220292",
+    "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
+    "product_id": "product-coastal-venezia-clear-glass-taper-candle-holders-set-of-3-04",
+    "position_x": 36.0,
+    "position_y": 41.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1802,8 +2348,8 @@
     "room_id": "room-coastal-4220292",
     "image_url": "assets/rooms/coastal/room-coastal-4220292-02.jpg",
     "product_id": "product-coastal-morriston-126-inch-extension-dining-table-rustic-honey-01",
-    "position_x": 45.0,
-    "position_y": 46.0
+    "position_x": 62.0,
+    "position_y": 60.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1835,6 +2381,13 @@
   },
   {
     "room_id": "room-coastal-4220292",
+    "image_url": "assets/rooms/coastal/room-coastal-4220292-02.jpg",
+    "product_id": "product-coastal-camilla-gold-tray-02",
+    "position_x": 6.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-coastal-4220292",
     "image_url": "assets/rooms/coastal/room-coastal-4220292-03.jpg",
     "product_id": "product-coastal-luxe-linen-blend-woven-curtain-04",
     "position_x": 17.0,
@@ -1851,8 +2404,8 @@
     "room_id": "room-coastal-4220292",
     "image_url": "assets/rooms/coastal/room-coastal-4220292-03.jpg",
     "product_id": "product-coastal-morriston-126-inch-extension-dining-table-rustic-honey-01",
-    "position_x": 25.0,
-    "position_y": 46.0
+    "position_x": 30.0,
+    "position_y": 58.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1887,7 +2440,7 @@
     "image_url": "assets/rooms/coastal/room-coastal-4220292-03.jpg",
     "product_id": "product-coastal-caprice-96-sideboard-natural-mango-03",
     "position_x": 88.0,
-    "position_y": 52.0
+    "position_y": 63.0
   },
   {
     "room_id": "room-coastal-4220292",
@@ -1895,6 +2448,20 @@
     "product_id": "product-coastal-amore-gray-indoor-8-10-x-13-1-machine-woven-rug-01",
     "position_x": 60.0,
     "position_y": 88.0
+  },
+  {
+    "room_id": "room-coastal-4220292",
+    "image_url": "assets/rooms/coastal/room-coastal-4220292-03.jpg",
+    "product_id": "product-coastal-camilla-gold-tray-02",
+    "position_x": 88.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-coastal-4220292",
+    "image_url": "assets/rooms/coastal/room-coastal-4220292-03.jpg",
+    "product_id": "product-coastal-venezia-clear-glass-taper-candle-holders-set-of-3-04",
+    "position_x": 36.0,
+    "position_y": 42.0
   },
   {
     "room_id": "room-farmhouse-4181982",
@@ -1954,6 +2521,13 @@
   },
   {
     "room_id": "room-farmhouse-4181982",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4181982-01.jpg",
+    "product_id": "product-farmhouse-harlan-black-nickel-objects-set-2-07",
+    "position_x": 74.0,
+    "position_y": 47.0
+  },
+  {
+    "room_id": "room-farmhouse-4181982",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4181982-02.jpg",
     "product_id": "product-farmhouse-modern-5-shelf-arched-tall-bookcase-with-glass-doors-coastal-01",
     "position_x": 8.0,
@@ -1977,8 +2551,8 @@
     "room_id": "room-farmhouse-4181982",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4181982-02.jpg",
     "product_id": "product-farmhouse-emmett-bronze-taper-candle-holders-set-of-3-03",
-    "position_x": 45.0,
-    "position_y": 40.0
+    "position_x": 44.0,
+    "position_y": 52.0
   },
   {
     "room_id": "room-farmhouse-4181982",
@@ -2087,6 +2661,48 @@
   },
   {
     "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
+    "product_id": "product-coastal-frida-vase-03",
+    "position_x": 58.0,
+    "position_y": 66.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
+    "product_id": "product-farmhouse-faux-potted-iron-leaf-plant-35-03",
+    "position_x": 82.0,
+    "position_y": 42.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
+    "product_id": "product-farmhouse-veneto-painted-24-h-x-15-w-x-15-d-accent-table-lamp-02",
+    "position_x": 88.0,
+    "position_y": 47.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
+    "product_id": "product-farmhouse-nigel-2-door-1-drawer-chest-white-safavieh-01",
+    "position_x": 90.0,
+    "position_y": 60.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
+    "product_id": "product-farmhouse-brooklyn-cut-velvet-spa-blue-ldc-20-x-20-cording-spa-blue-03",
+    "position_x": 97.0,
+    "position_y": 60.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
+    "product_id": "product-farmhouse-stoneware-footed-bowl-matte-green-reactive-glaze-02",
+    "position_x": 28.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-02.jpg",
     "product_id": "product-farmhouse-paulson-65-floor-lamp-01",
     "position_x": 11.0,
@@ -2171,6 +2787,13 @@
   },
   {
     "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-02.jpg",
+    "product_id": "product-farmhouse-brooklyn-cut-velvet-spa-blue-ldc-20-x-20-cording-spa-blue-03",
+    "position_x": 25.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-03.jpg",
     "product_id": "product-farmhouse-indigo-blue-european-flax-certified-linen-window-curtain-pan-04",
     "position_x": 10.0,
@@ -2238,6 +2861,13 @@
     "product_id": "product-farmhouse-isabella-collection-area-rug-8x10-01",
     "position_x": 88.0,
     "position_y": 82.0
+  },
+  {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-03.jpg",
+    "product_id": "product-farmhouse-brayden-arch-metal-mirror-02",
+    "position_x": 55.0,
+    "position_y": 37.0
   },
   {
     "room_id": "room-farmhouse-4182339",
@@ -2317,6 +2947,13 @@
     "position_y": 88.0
   },
   {
+    "room_id": "room-farmhouse-4182339",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-04.jpg",
+    "product_id": "product-farmhouse-chinese-peony-gold-lee-jofa-12-x-16-butterfly-flange-backord-05",
+    "position_x": 8.0,
+    "position_y": 58.0
+  },
+  {
     "room_id": "room-farmhouse-4189945",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
     "product_id": "product-farmhouse-brooklyn-coffee-table-blonde-yukas-02",
@@ -2364,6 +3001,69 @@
     "product_id": "product-farmhouse-the-citizenry-zaha-hand-knotted-area-rug-9-x-12-sand-01",
     "position_x": 45.0,
     "position_y": 85.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-jensen-black-metal-semi-flushmount-light-55-03",
+    "position_x": 47.0,
+    "position_y": 5.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-nanette-20-pillow-cover-02",
+    "position_x": 34.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-sully-sul-005-18-l-x-18-w-polyester-filled-pillow-04",
+    "position_x": 68.0,
+    "position_y": 59.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-tuck-green-linen-throw-pillow-cover-20-x20-07",
+    "position_x": 28.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-the-citizenry-rivi-storage-basket-oversized-natural-05",
+    "position_x": 93.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-flat-stack-vi-by-fh-art-studio-black-12",
+    "position_x": 21.0,
+    "position_y": 30.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-ivory-european-linen-window-curtain-panel-52-x108-05",
+    "position_x": 27.0,
+    "position_y": 35.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-black-1-5-standard-curtain-rod-and-round-end-cap-finials-set-03",
+    "position_x": 50.0,
+    "position_y": 26.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
+    "product_id": "product-farmhouse-alten-leather-wood-framed-upholstered-seat-counter-stool-03",
+    "position_x": 97.0,
+    "position_y": 64.0
   },
   {
     "room_id": "room-farmhouse-4189945",
@@ -2448,6 +3148,20 @@
     "product_id": "product-farmhouse-the-citizenry-zaha-hand-knotted-area-rug-9-x-12-sand-01",
     "position_x": 30.0,
     "position_y": 85.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-02.jpg",
+    "product_id": "product-farmhouse-naturalist-vase-03",
+    "position_x": 28.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-02.jpg",
+    "product_id": "product-farmhouse-cement-orb-planter-09",
+    "position_x": 68.0,
+    "position_y": 51.0
   },
   {
     "room_id": "room-farmhouse-4189945",
@@ -2646,6 +3360,20 @@
     "position_y": 85.0
   },
   {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-04.jpg",
+    "product_id": "product-farmhouse-naturalist-vase-03",
+    "position_x": 28.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-farmhouse-4189945",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-04.jpg",
+    "product_id": "product-farmhouse-cement-orb-planter-09",
+    "position_x": 68.0,
+    "position_y": 51.0
+  },
+  {
     "room_id": "room-farmhouse-4198168",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
     "product_id": "product-farmhouse-nomad-leather-sofa-camel-top-grain-leather-oak-wood-arch-06",
@@ -2693,6 +3421,48 @@
     "product_id": "product-farmhouse-montego-nightstand-06",
     "position_x": 86.0,
     "position_y": 63.0
+  },
+  {
+    "room_id": "room-farmhouse-4198168",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
+    "product_id": "product-farmhouse-the-citizenry-ghama-suede-pillow-20-x-20-olive-02",
+    "position_x": 17.0,
+    "position_y": 54.0
+  },
+  {
+    "room_id": "room-farmhouse-4198168",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
+    "product_id": "product-farmhouse-ossa-decorative-vessel-03",
+    "position_x": 61.0,
+    "position_y": 39.0
+  },
+  {
+    "room_id": "room-farmhouse-4198168",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
+    "product_id": "product-farmhouse-decorative-arched-wood-vase-natural-04",
+    "position_x": 50.0,
+    "position_y": 28.0
+  },
+  {
+    "room_id": "room-farmhouse-4198168",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
+    "product_id": "product-farmhouse-natural-elm-wood-floating-shelf-48-04",
+    "position_x": 53.0,
+    "position_y": 33.0
+  },
+  {
+    "room_id": "room-farmhouse-4198168",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
+    "product_id": "product-farmhouse-whitmire-10-5-high-1-light-plug-in-hardwire-sconce-matte-bla-03",
+    "position_x": 88.0,
+    "position_y": 50.0
+  },
+  {
+    "room_id": "room-farmhouse-4198168",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
+    "product_id": "product-farmhouse-halston-chair-heirloom-black-02",
+    "position_x": 93.0,
+    "position_y": 72.0
   },
   {
     "room_id": "room-farmhouse-4198168",
@@ -2761,8 +3531,8 @@
     "room_id": "room-farmhouse-4198168",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-02.jpg",
     "product_id": "product-farmhouse-nomad-leather-sofa-camel-top-grain-leather-oak-wood-arch-06",
-    "position_x": 65.0,
-    "position_y": 63.0
+    "position_x": 74.0,
+    "position_y": 58.0
   },
   {
     "room_id": "room-farmhouse-4198168",
@@ -2830,23 +3600,23 @@
   {
     "room_id": "room-farmhouse-4209217",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-01.jpg",
-    "product_id": "product-farmhouse-reine-round-wooden-tray-16",
+    "product_id": "product-farmhouse-mardin-beige-indoor-8-10-x-12-handmade-rug-07",
+    "position_x": 25.0,
+    "position_y": 75.0
+  },
+  {
+    "room_id": "room-farmhouse-4209217",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-01.jpg",
+    "product_id": "product-farmhouse-gable-round-tray-06",
     "position_x": 48.0,
     "position_y": 78.0
   },
   {
     "room_id": "room-farmhouse-4209217",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-01.jpg",
-    "product_id": "product-farmhouse-charlise-basket-02",
+    "product_id": "product-farmhouse-murphy-mpy-002-18-l-x-18-w-pillow-cover-01",
     "position_x": 44.0,
-    "position_y": 70.0
-  },
-  {
-    "room_id": "room-farmhouse-4209217",
-    "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-01.jpg",
-    "product_id": "product-farmhouse-mardin-beige-indoor-8-10-x-12-handmade-rug-07",
-    "position_x": 25.0,
-    "position_y": 75.0
+    "position_y": 83.0
   },
   {
     "room_id": "room-farmhouse-4209217",
@@ -2875,6 +3645,27 @@
     "product_id": "product-farmhouse-textured-faux-fur-70-x55-arctic-ivory-throw-blanket-01",
     "position_x": 77.0,
     "position_y": 70.0
+  },
+  {
+    "room_id": "room-farmhouse-4209217",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-02.jpg",
+    "product_id": "product-farmhouse-possini-euro-cascadia-11-3-4-high-black-piastra-glass-led-wa-01",
+    "position_x": 51.0,
+    "position_y": 39.0
+  },
+  {
+    "room_id": "room-farmhouse-4209217",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-02.jpg",
+    "product_id": "product-farmhouse-gable-round-tray-06",
+    "position_x": 60.0,
+    "position_y": 69.0
+  },
+  {
+    "room_id": "room-farmhouse-4209217",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-02.jpg",
+    "product_id": "product-farmhouse-edwina-eda-001-18-l-x-18-w-pillow-cover-04",
+    "position_x": 96.0,
+    "position_y": 66.0
   },
   {
     "room_id": "room-farmhouse-4213376",
@@ -2976,6 +3767,20 @@
   },
   {
     "room_id": "room-farmhouse-4213376",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-01.jpg",
+    "product_id": "product-farmhouse-douglas-end-table-aged-bronze-05",
+    "position_x": 38.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-farmhouse-4213376",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-01.jpg",
+    "product_id": "product-farmhouse-booker-tray-07",
+    "position_x": 54.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-farmhouse-4213376",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-02.jpg",
     "product_id": "product-farmhouse-santos-side-table-01",
     "position_x": 15.0,
@@ -3057,6 +3862,27 @@
     "product_id": "product-farmhouse-angela-rose-x-loloi-blake-ocean-mocha-7-10-x-10-2-02",
     "position_x": 70.0,
     "position_y": 80.0
+  },
+  {
+    "room_id": "room-farmhouse-4213376",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-02.jpg",
+    "product_id": "product-farmhouse-20-inches-square-stonewashed-linen-pillow-with-fringe-olive-08",
+    "position_x": 61.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-farmhouse-4213376",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-02.jpg",
+    "product_id": "product-farmhouse-harriet-paper-pleated-floor-lamp-03",
+    "position_x": 63.0,
+    "position_y": 42.0
+  },
+  {
+    "room_id": "room-farmhouse-4213376",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-02.jpg",
+    "product_id": "product-farmhouse-cotton-chenille-lumbar-pillow-with-tassels-06",
+    "position_x": 29.0,
+    "position_y": 55.0
   },
   {
     "room_id": "room-farmhouse-4221366",
@@ -3169,6 +3995,13 @@
     "product_id": "product-farmhouse-angela-rose-x-loloi-ember-ivory-multi-7-10-x-10-01",
     "position_x": 50.0,
     "position_y": 92.0
+  },
+  {
+    "room_id": "room-farmhouse-4221366",
+    "image_url": "assets/rooms/farmhouse/room-farmhouse-4221366-01.jpg",
+    "product_id": "product-bohemian-matte-black-1-curtain-rod-and-end-cap-finials-set-48-88-08",
+    "position_x": 42.0,
+    "position_y": 21.0
   },
   {
     "room_id": "room-farmhouse-4221366",
@@ -3286,8 +4119,8 @@
     "room_id": "room-glam-4190768",
     "image_url": "assets/rooms/glam/room-glam-4190768-01.jpg",
     "product_id": "product-glam-modern-transparent-bubble-glass-and-metal-table-lamp-brushed-01",
-    "position_x": 5.0,
-    "position_y": 47.0
+    "position_x": 4.0,
+    "position_y": 45.0
   },
   {
     "room_id": "room-glam-4190768",
@@ -3302,6 +4135,13 @@
     "product_id": "product-glam-marble-footed-bowl-white-02",
     "position_x": 72.0,
     "position_y": 47.0
+  },
+  {
+    "room_id": "room-glam-4190768",
+    "image_url": "assets/rooms/glam/room-glam-4190768-01.jpg",
+    "product_id": "product-glam-the-citizenry-alegria-organic-cotton-quilted-bed-blanket-ful-02",
+    "position_x": 17.0,
+    "position_y": 60.0
   },
   {
     "room_id": "room-glam-4190768",
@@ -3382,6 +4222,13 @@
   },
   {
     "room_id": "room-glam-4190768",
+    "image_url": "assets/rooms/glam/room-glam-4190768-03.jpg",
+    "product_id": "product-glam-cindy-console-with-storage-drawers-black-safavieh-01",
+    "position_x": 53.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-glam-4190768",
     "image_url": "assets/rooms/glam/room-glam-4190768-04.jpg",
     "product_id": "product-glam-cindy-console-with-storage-drawers-black-safavieh-01",
     "position_x": 72.0,
@@ -3438,6 +4285,13 @@
   },
   {
     "room_id": "room-glam-4192140",
+    "image_url": "assets/rooms/glam/room-glam-4192140-01.jpg",
+    "product_id": "product-glam-kingston-outdoor-dining-table-03",
+    "position_x": 50.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-glam-4192140",
     "image_url": "assets/rooms/glam/room-glam-4192140-02.jpg",
     "product_id": "product-glam-65-casa-vieja-ultra-breeze-black-wet-led-ceiling-fan-with-re-01",
     "position_x": 50.0,
@@ -3456,6 +4310,13 @@
     "product_id": "product-glam-boka-rectangular-black-resin-indoor-outdoor-large-planter-15-01",
     "position_x": 78.0,
     "position_y": 57.0
+  },
+  {
+    "room_id": "room-glam-4192140",
+    "image_url": "assets/rooms/glam/room-glam-4192140-02.jpg",
+    "product_id": "product-glam-kingston-outdoor-dining-table-03",
+    "position_x": 53.0,
+    "position_y": 66.0
   },
   {
     "room_id": "room-glam-4192177",
@@ -3713,8 +4574,8 @@
     "room_id": "room-glam-4193251",
     "image_url": "assets/rooms/glam/room-glam-4193251-02.jpg",
     "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
-    "position_x": 15.0,
-    "position_y": 25.0
+    "position_x": 8.0,
+    "position_y": 42.0
   },
   {
     "room_id": "room-glam-4193251",
@@ -3769,8 +4630,8 @@
     "room_id": "room-glam-4193251",
     "image_url": "assets/rooms/glam/room-glam-4193251-03.jpg",
     "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
-    "position_x": 35.0,
-    "position_y": 25.0
+    "position_x": 18.0,
+    "position_y": 30.0
   },
   {
     "room_id": "room-glam-4193251",
@@ -4019,6 +4880,41 @@
   },
   {
     "room_id": "room-glam-4195020",
+    "image_url": "assets/rooms/glam/room-glam-4195020-01.jpg",
+    "product_id": "product-glam-vetro-8-wick-green-glass-citronella-candle-02",
+    "position_x": 62.0,
+    "position_y": 51.0
+  },
+  {
+    "room_id": "room-glam-4195020",
+    "image_url": "assets/rooms/glam/room-glam-4195020-01.jpg",
+    "product_id": "product-glam-outdoor-14-x-20-lumbar-pillow-lavender-million-flowers-14-x--02",
+    "position_x": 79.0,
+    "position_y": 61.0
+  },
+  {
+    "room_id": "room-glam-4195020",
+    "image_url": "assets/rooms/glam/room-glam-4195020-01.jpg",
+    "product_id": "product-glam-mischa-indoor-outdoor-pillow-09",
+    "position_x": 35.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-glam-4195020",
+    "image_url": "assets/rooms/glam/room-glam-4195020-01.jpg",
+    "product_id": "product-glam-dotted-dandelion-outdoor-pillow-10",
+    "position_x": 40.0,
+    "position_y": 46.0
+  },
+  {
+    "room_id": "room-glam-4195020",
+    "image_url": "assets/rooms/glam/room-glam-4195020-01.jpg",
+    "product_id": "product-glam-ortice-round-black-resin-indoor-outdoor-large-planter-26-h-06",
+    "position_x": 31.0,
+    "position_y": 45.0
+  },
+  {
+    "room_id": "room-glam-4195020",
     "image_url": "assets/rooms/glam/room-glam-4195020-02.jpg",
     "product_id": "product-glam-riva-outdoor-accent-chair-03",
     "position_x": 18.0,
@@ -4161,8 +5057,8 @@
     "room_id": "room-glam-4256121",
     "image_url": "assets/rooms/glam/room-glam-4256121-01.jpg",
     "product_id": "product-glam-suri-44-square-coffee-table-white-oak-02",
-    "position_x": 40.0,
-    "position_y": 74.0
+    "position_x": 38.0,
+    "position_y": 78.0
   },
   {
     "room_id": "room-glam-4256121",
@@ -4177,6 +5073,13 @@
     "product_id": "product-glam-matte-velvet-blackout-curtain-01",
     "position_x": 45.0,
     "position_y": 50.0
+  },
+  {
+    "room_id": "room-glam-4256121",
+    "image_url": "assets/rooms/glam/room-glam-4256121-01.jpg",
+    "product_id": "product-glam-matte-velvet-blackout-curtain-03",
+    "position_x": 97.0,
+    "position_y": 40.0
   },
   {
     "room_id": "room-glam-4256121",
@@ -4203,8 +5106,8 @@
     "room_id": "room-glam-4256121",
     "image_url": "assets/rooms/glam/room-glam-4256121-02.jpg",
     "product_id": "product-glam-suri-44-square-coffee-table-white-oak-02",
-    "position_x": 45.0,
-    "position_y": 77.0
+    "position_x": 44.0,
+    "position_y": 80.0
   },
   {
     "room_id": "room-glam-4256121",
@@ -4226,13 +5129,6 @@
     "product_id": "product-glam-suri-44-square-coffee-table-white-oak-02",
     "position_x": 55.0,
     "position_y": 82.0
-  },
-  {
-    "room_id": "room-glam-4256121",
-    "image_url": "assets/rooms/glam/room-glam-4256121-03.jpg",
-    "product_id": "product-glam-copenhagen-floor-mirror-in-wood-gold-01",
-    "position_x": 83.0,
-    "position_y": 20.0
   },
   {
     "room_id": "room-mid-century-modern-4224427",
@@ -4282,6 +5178,20 @@
     "product_id": "product-glam-paris-modern-scandinavian-reeded-dresser-02",
     "position_x": 88.0,
     "position_y": 82.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4224427",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4224427-01.jpg",
+    "product_id": "product-mid-century-modern-the-citizenry-naveta-velvet-small-lumbar-pillow-12-x-20-blue-03",
+    "position_x": 75.0,
+    "position_y": 67.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4224427",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4224427-01.jpg",
+    "product_id": "product-mid-century-modern-stockbridge-satin-brass-curtain-rod-02",
+    "position_x": 86.0,
+    "position_y": 24.0
   },
   {
     "room_id": "room-mid-century-modern-4224427",
@@ -4511,8 +5421,29 @@
     "room_id": "room-mid-century-modern-4226979",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-01.jpg",
     "product_id": "product-mid-century-modern-67-square-arm-loveseat-02",
-    "position_x": 80.0,
+    "position_x": 62.0,
     "position_y": 60.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4226979",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-01.jpg",
+    "product_id": "product-mid-century-modern-cotton-velvet-cv-004-20-l-x-20-w-polyester-filled-pillow-01",
+    "position_x": 76.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4226979",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-01.jpg",
+    "product_id": "product-mid-century-modern-verbrande-cotton-abstract-throw-pillow-04",
+    "position_x": 64.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4226979",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-01.jpg",
+    "product_id": "product-mid-century-modern-flyte-oval-coffee-table-02",
+    "position_x": 82.0,
+    "position_y": 67.0
   },
   {
     "room_id": "room-mid-century-modern-4226979",
@@ -4693,8 +5624,8 @@
     "room_id": "room-mid-century-modern-4229562",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
     "product_id": "product-mid-century-modern-reema-scandinavian-sideboard-tv-stand-05",
-    "position_x": 22.0,
-    "position_y": 53.0
+    "position_x": 20.0,
+    "position_y": 60.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
@@ -4716,6 +5647,48 @@
     "product_id": "product-mid-century-modern-the-citizenry-tara-handwoven-area-rug-9-x-12-sand-01",
     "position_x": 35.0,
     "position_y": 88.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
+    "product_id": "product-mid-century-modern-krissan-vase-08",
+    "position_x": 26.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
+    "product_id": "product-mid-century-modern-interval-hand-tufted-pillow-cover-02",
+    "position_x": 57.0,
+    "position_y": 60.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
+    "product_id": "product-mid-century-modern-the-citizenry-mahi-lumbar-pillow-12-x-20-black-06",
+    "position_x": 10.0,
+    "position_y": 65.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
+    "product_id": "product-mid-century-modern-jeppa-side-table-walnut-02",
+    "position_x": 96.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
+    "product_id": "product-mid-century-modern-linen-curtain-antique-white-linen-50-x-84-blackout-07",
+    "position_x": 36.0,
+    "position_y": 38.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
+    "product_id": "product-mid-century-modern-rama-large-table-lamp-black-02",
+    "position_x": 49.0,
+    "position_y": 46.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
@@ -4743,14 +5716,14 @@
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-02.jpg",
     "product_id": "product-mid-century-modern-jennibelle-marble-and-mirror-drink-table-10",
     "position_x": 24.0,
-    "position_y": 55.0
+    "position_y": 72.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-02.jpg",
     "product_id": "product-mid-century-modern-reema-scandinavian-sideboard-tv-stand-05",
-    "position_x": 51.0,
-    "position_y": 55.0
+    "position_x": 52.0,
+    "position_y": 60.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
@@ -4807,6 +5780,13 @@
     "product_id": "product-mid-century-modern-linen-curtain-antique-white-linen-50-x-84-blackout-07",
     "position_x": 70.0,
     "position_y": 35.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-02.jpg",
+    "product_id": "product-mid-century-modern-emmy-black-floor-mirror-48-x72-02",
+    "position_x": 28.0,
+    "position_y": 40.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
@@ -4925,14 +5905,14 @@
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-04.jpg",
     "product_id": "product-mid-century-modern-dariel-task-table-lamp-black-safavieh-03",
     "position_x": 62.0,
-    "position_y": 45.0
+    "position_y": 48.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-04.jpg",
     "product_id": "product-mid-century-modern-vesper-leather-ottoman-slate-leather-black-ash-08",
-    "position_x": 70.0,
-    "position_y": 62.0
+    "position_x": 58.0,
+    "position_y": 61.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
@@ -4940,6 +5920,20 @@
     "product_id": "product-mid-century-modern-the-citizenry-tara-handwoven-area-rug-9-x-12-sand-01",
     "position_x": 45.0,
     "position_y": 85.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-04.jpg",
+    "product_id": "product-mid-century-modern-vesper-leather-lounge-chair-slate-leather-walnut-03",
+    "position_x": 78.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4229562",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-04.jpg",
+    "product_id": "product-mid-century-modern-parsons-ottoman-antelope-06",
+    "position_x": 42.0,
+    "position_y": 52.0
   },
   {
     "room_id": "room-mid-century-modern-4229562",
@@ -5197,8 +6191,8 @@
     "room_id": "room-mid-century-modern-4236536",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-01.jpg",
     "product_id": "product-bohemian-lukas-3-seat-sofa-04",
-    "position_x": 52.0,
-    "position_y": 63.0
+    "position_x": 37.0,
+    "position_y": 62.0
   },
   {
     "room_id": "room-mid-century-modern-4236536",
@@ -5302,8 +6296,8 @@
     "room_id": "room-mid-century-modern-4236536",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-03.jpg",
     "product_id": "product-bohemian-lukas-3-seat-sofa-04",
-    "position_x": 52.0,
-    "position_y": 58.0
+    "position_x": 36.0,
+    "position_y": 62.0
   },
   {
     "room_id": "room-mid-century-modern-4236536",
@@ -5332,6 +6326,13 @@
     "product_id": "product-bohemian-layla-rug-red-navy-9-0-x-12-0-01",
     "position_x": 80.0,
     "position_y": 86.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4236536",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-03.jpg",
+    "product_id": "product-bohemian-baize-end-table-black-safavieh-01",
+    "position_x": 75.0,
+    "position_y": 62.0
   },
   {
     "room_id": "room-mid-century-modern-4236536",
@@ -5374,6 +6375,13 @@
     "product_id": "product-bohemian-layla-rug-red-navy-9-0-x-12-0-01",
     "position_x": 55.0,
     "position_y": 80.0
+  },
+  {
+    "room_id": "room-mid-century-modern-4236536",
+    "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-04.jpg",
+    "product_id": "product-bohemian-egon-chandelier-antique-brass-iron-02",
+    "position_x": 54.0,
+    "position_y": 24.0
   },
   {
     "room_id": "room-mid-century-modern-4236587",
@@ -5528,6 +6536,48 @@
     "product_id": "product-scandinavian-terra-nova-abstract-framed-print-03",
     "position_x": 74.0,
     "position_y": 37.0
+  },
+  {
+    "room_id": "room-scandinavian-4225368",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
+    "product_id": "product-scandinavian-silves-black-performance-boucle-outdoor-throw-pillow-20-x20-03",
+    "position_x": 65.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-scandinavian-4225368",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
+    "product_id": "product-scandinavian-the-citizenry-veta-pillow-22-x-22-ivory-06",
+    "position_x": 84.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-scandinavian-4225368",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
+    "product_id": "product-glam-marble-footed-bowl-white-02",
+    "position_x": 90.0,
+    "position_y": 70.0
+  },
+  {
+    "room_id": "room-scandinavian-4225368",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
+    "product_id": "product-farmhouse-harlan-black-nickel-objects-set-2-07",
+    "position_x": 97.0,
+    "position_y": 75.0
+  },
+  {
+    "room_id": "room-scandinavian-4225368",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
+    "product_id": "product-scandinavian-ferraro-vase-folded-black-13",
+    "position_x": 25.0,
+    "position_y": 48.0
+  },
+  {
+    "room_id": "room-scandinavian-4225368",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
+    "product_id": "product-scandinavian-assertive-by-johan-manschot-wall-art-02",
+    "position_x": 27.0,
+    "position_y": 32.0
   },
   {
     "room_id": "room-scandinavian-4225368",
@@ -5695,7 +6745,14 @@
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4225398-01.jpg",
     "product_id": "product-scandinavian-belle-bowl-08",
     "position_x": 67.0,
-    "position_y": 78.0
+    "position_y": 66.0
+  },
+  {
+    "room_id": "room-scandinavian-4225398",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4225398-01.jpg",
+    "product_id": "product-scandinavian-stairway-96-black-metal-wall-mount-bookcase-01",
+    "position_x": 4.0,
+    "position_y": 45.0
   },
   {
     "room_id": "room-scandinavian-4225398",
@@ -6052,7 +7109,7 @@
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4232417-02.jpg",
     "product_id": "product-scandinavian-belle-bowl-08",
     "position_x": 67.0,
-    "position_y": 78.0
+    "position_y": 66.0
   },
   {
     "room_id": "room-scandinavian-4232417",
@@ -6060,6 +7117,13 @@
     "product_id": "product-scandinavian-patton-black-nightstand-02",
     "position_x": 20.0,
     "position_y": 75.0
+  },
+  {
+    "room_id": "room-scandinavian-4232417",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4232417-02.jpg",
+    "product_id": "product-scandinavian-stairway-96-black-metal-wall-mount-bookcase-01",
+    "position_x": 4.0,
+    "position_y": 45.0
   },
   {
     "room_id": "room-scandinavian-4233177",
@@ -6308,6 +7372,69 @@
   },
   {
     "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-the-citizenry-la-duna-lumbar-pillow-12-x-48-ivory-07",
+    "position_x": 47.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-the-citizenry-catalina-boucle-bed-blanket-ivory-03",
+    "position_x": 64.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-linen-curtain-antique-white-linen-50-x-108-blackout-09",
+    "position_x": 93.0,
+    "position_y": 40.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-glory-orchid-08",
+    "position_x": 25.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-faux-silver-dollar-eucalyptus-stem-03",
+    "position_x": 95.0,
+    "position_y": 45.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-ema-medium-white-ceramic-vase-12-7-04",
+    "position_x": 96.0,
+    "position_y": 61.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-whim-accent-table-03",
+    "position_x": 97.0,
+    "position_y": 70.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-dimension-i-by-coup-d-esprit-vertical-grain-2-5-white-oak-01",
+    "position_x": 5.0,
+    "position_y": 30.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
+    "product_id": "product-scandinavian-dimension-ii-by-coup-d-esprit-vertical-grain-2-5-white-oak-02",
+    "position_x": 15.0,
+    "position_y": 34.0
+  },
+  {
+    "room_id": "room-scandinavian-4237170",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-02.jpg",
     "product_id": "product-scandinavian-weston-black-mid-century-modern-chandelier-light-45-01",
     "position_x": 52.0,
@@ -6391,11 +7518,18 @@
     "position_y": 72.0
   },
   {
+    "room_id": "room-scandinavian-4237170",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-02.jpg",
+    "product_id": "product-scandinavian-whim-accent-table-03",
+    "position_x": 68.0,
+    "position_y": 66.0
+  },
+  {
     "room_id": "room-scandinavian-4246550",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
     "product_id": "product-scandinavian-leith-dining-table-natural-black-safavieh-08",
-    "position_x": 55.0,
-    "position_y": 57.0
+    "position_x": 52.0,
+    "position_y": 63.0
   },
   {
     "room_id": "room-scandinavian-4246550",
@@ -6438,6 +7572,41 @@
     "product_id": "product-scandinavian-daw-06-natural-8-10-x-12-2-11",
     "position_x": 80.0,
     "position_y": 85.0
+  },
+  {
+    "room_id": "room-scandinavian-4246550",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
+    "product_id": "product-coastal-nerida-white-footed-centerpiece-bowl-18-03",
+    "position_x": 49.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-scandinavian-4246550",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
+    "product_id": "product-scandinavian-the-citizenry-hansa-vase-matte-black-07",
+    "position_x": 46.0,
+    "position_y": 59.0
+  },
+  {
+    "room_id": "room-scandinavian-4246550",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
+    "product_id": "product-scandinavian-hudson-120-natural-linen-blend-woven-table-runner-09",
+    "position_x": 65.0,
+    "position_y": 62.0
+  },
+  {
+    "room_id": "room-scandinavian-4246550",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
+    "product_id": "product-scandinavian-facette-white-vase-8-5-by-athena-calderone-04",
+    "position_x": 55.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-scandinavian-4246550",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
+    "product_id": "product-scandinavian-jabas-black-woven-leather-throw-pillow-with-feather-down-ins-06",
+    "position_x": 4.0,
+    "position_y": 58.0
   },
   {
     "room_id": "room-scandinavian-4246550",
@@ -6538,6 +7707,13 @@
     "position_y": 64.0
   },
   {
+    "room_id": "room-scandinavian-4246550",
+    "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-03.jpg",
+    "product_id": "product-scandinavian-decorative-white-stoneware-pear-03",
+    "position_x": 55.0,
+    "position_y": 57.0
+  },
+  {
     "room_id": "room-traditional-4223198",
     "image_url": "assets/rooms/traditional/room-traditional-4223198-01.jpg",
     "product_id": "product-traditional-olga-table-lamp-03",
@@ -6592,6 +7768,13 @@
     "product_id": "product-traditional-herringbone-swedish-blue-handwoven-cotton-rug-01",
     "position_x": 60.0,
     "position_y": 90.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-01.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 47.0,
+    "position_y": 46.0
   },
   {
     "room_id": "room-traditional-4223198",
@@ -6655,6 +7838,13 @@
     "product_id": "product-traditional-pillar-bowl-03",
     "position_x": 82.0,
     "position_y": 57.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-02.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 49.0,
+    "position_y": 48.0
   },
   {
     "room_id": "room-traditional-4223198",
@@ -6728,6 +7918,27 @@
   },
   {
     "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-03.jpg",
+    "product_id": "product-traditional-pillar-bowl-03",
+    "position_x": 48.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-03.jpg",
+    "product_id": "product-glam-marble-footed-bowl-white-02",
+    "position_x": 97.0,
+    "position_y": 47.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-03.jpg",
+    "product_id": "product-traditional-bell-white-flush-mount-light-01",
+    "position_x": 54.0,
+    "position_y": 3.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
     "image_url": "assets/rooms/traditional/room-traditional-4223198-04.jpg",
     "product_id": "product-traditional-leah-floor-lamp-02",
     "position_x": 4.0,
@@ -6788,6 +7999,13 @@
     "product_id": "product-traditional-momeni-chevron-handmade-tufted-wool-blue-beige-area-rug-02",
     "position_x": 55.0,
     "position_y": 92.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-04.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 46.0,
+    "position_y": 46.0
   },
   {
     "room_id": "room-traditional-4223198",
@@ -6861,6 +8079,13 @@
   },
   {
     "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-05.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 47.0,
+    "position_y": 49.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
     "image_url": "assets/rooms/traditional/room-traditional-4223198-06.jpg",
     "product_id": "product-traditional-bell-white-flush-mount-light-01",
     "position_x": 56.0,
@@ -6931,6 +8156,27 @@
   },
   {
     "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-06.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 9.0,
+    "position_y": 42.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-06.jpg",
+    "product_id": "product-traditional-pillar-bowl-03",
+    "position_x": 51.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-06.jpg",
+    "product_id": "product-glam-marble-footed-bowl-white-02",
+    "position_x": 96.0,
+    "position_y": 46.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
     "image_url": "assets/rooms/traditional/room-traditional-4223198-07.jpg",
     "product_id": "product-traditional-bell-white-flush-mount-light-01",
     "position_x": 53.0,
@@ -6977,6 +8223,20 @@
     "product_id": "product-traditional-momeni-chevron-handmade-tufted-wool-blue-beige-area-rug-02",
     "position_x": 60.0,
     "position_y": 85.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-07.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 49.0,
+    "position_y": 48.0
+  },
+  {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-07.jpg",
+    "product_id": "product-traditional-ivory-tray-05",
+    "position_x": 47.0,
+    "position_y": 66.0
   },
   {
     "room_id": "room-traditional-4223198",
@@ -7035,6 +8295,13 @@
     "position_y": 85.0
   },
   {
+    "room_id": "room-traditional-4223198",
+    "image_url": "assets/rooms/traditional/room-traditional-4223198-08.jpg",
+    "product_id": "product-coastal-hand-carved-paulownia-wood-bowl-with-whitewashed-finish-03",
+    "position_x": 49.0,
+    "position_y": 48.0
+  },
+  {
     "room_id": "room-traditional-4223911",
     "image_url": "assets/rooms/traditional/room-traditional-4223911-01.jpg",
     "product_id": "product-traditional-eagan-24-glass-table-lamp-01",
@@ -7061,6 +8328,13 @@
     "product_id": "product-traditional-faux-silver-dollar-eucalyptus-tree-8-03",
     "position_x": 38.0,
     "position_y": 45.0
+  },
+  {
+    "room_id": "room-traditional-4223911",
+    "image_url": "assets/rooms/traditional/room-traditional-4223911-01.jpg",
+    "product_id": "product-scandinavian-belle-bowl-08",
+    "position_x": 5.0,
+    "position_y": 47.0
   },
   {
     "room_id": "room-traditional-4223911",
@@ -7101,7 +8375,7 @@
     "room_id": "room-traditional-4223911",
     "image_url": "assets/rooms/traditional/room-traditional-4223911-02.jpg",
     "product_id": "product-scandinavian-belle-bowl-08",
-    "position_x": 10.0,
+    "position_x": 16.0,
     "position_y": 57.0
   },
   {
@@ -7360,8 +8634,8 @@
     "room_id": "room-traditional-4240421",
     "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
     "product_id": "product-traditional-freddie-nightstand-brown-04",
-    "position_x": 30.0,
-    "position_y": 57.0
+    "position_x": 31.0,
+    "position_y": 60.0
   },
   {
     "room_id": "room-traditional-4240421",
@@ -7383,6 +8657,48 @@
     "product_id": "product-traditional-quinn-30-wide-6-light-chandelier-old-bronze-02",
     "position_x": 50.0,
     "position_y": 14.0
+  },
+  {
+    "room_id": "room-traditional-4240421",
+    "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
+    "product_id": "product-traditional-shyam-table-clocks-01",
+    "position_x": 66.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-traditional-4240421",
+    "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
+    "product_id": "product-traditional-loloi-not-named-rust-ivory-22-x-22-cover-w-poly-pillow-04",
+    "position_x": 37.0,
+    "position_y": 66.0
+  },
+  {
+    "room_id": "room-traditional-4240421",
+    "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
+    "product_id": "product-traditional-velvet-bolster-pillow-in-brown-cognac-cover-only-09",
+    "position_x": 48.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-traditional-4240421",
+    "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
+    "product_id": "product-traditional-melina-organic-cotton-black-and-warm-white-euro-pillow-shams-01",
+    "position_x": 39.0,
+    "position_y": 54.0
+  },
+  {
+    "room_id": "room-traditional-4240421",
+    "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
+    "product_id": "product-traditional-signature-velvet-merlot-24-x-24-knife-edge-02",
+    "position_x": 44.0,
+    "position_y": 51.0
+  },
+  {
+    "room_id": "room-traditional-4240421",
+    "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
+    "product_id": "product-traditional-dorian-brown-faux-fur-throw-blanket-48-x80-01",
+    "position_x": 50.0,
+    "position_y": 63.0
   },
   {
     "room_id": "room-traditional-4240421",
@@ -7549,8 +8865,8 @@
     "room_id": "room-traditional-4242936",
     "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
     "product_id": "product-traditional-sloan-6-seat-leather-corner-sectional-sofa-02",
-    "position_x": 75.0,
-    "position_y": 58.0
+    "position_x": 70.0,
+    "position_y": 65.0
   },
   {
     "room_id": "room-traditional-4242936",
@@ -7577,8 +8893,8 @@
     "room_id": "room-traditional-4242936",
     "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
     "product_id": "product-traditional-torrington-sideboard-umber-oak-veneer-03",
-    "position_x": 20.0,
-    "position_y": 58.0
+    "position_x": 22.0,
+    "position_y": 64.0
   },
   {
     "room_id": "room-traditional-4242936",
@@ -7592,6 +8908,62 @@
     "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
     "product_id": "product-traditional-loloi-hathaway-navy-multi-9-0-x-12-0-01",
     "position_x": 42.0,
+    "position_y": 88.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-bohemian-brooklyn-cannelee-vase-and-sage-green-leaf-branch-arrangemen-10",
+    "position_x": 51.0,
+    "position_y": 66.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-design-us-teal-cream-22-x22-pillow-01",
+    "position_x": 78.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-pbr0015-natural-charcoal-pillow-11",
+    "position_x": 71.0,
+    "position_y": 55.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-resin-photo-frames-set-of-2-4x6-and-5x7-02",
+    "position_x": 21.0,
+    "position_y": 55.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-greer-bowl-low-black-and-gold-glazed-05",
+    "position_x": 3.0,
+    "position_y": 59.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-overlook-white-chunky-knit-throw-blanket-01",
+    "position_x": 89.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-forest-green-boucle-throw-pillow-with-down-alternative-inser-06",
+    "position_x": 87.0,
+    "position_y": 69.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
+    "product_id": "product-traditional-fogel-gold-metal-gilded-picture-frame-04",
+    "position_x": 60.0,
     "position_y": 88.0
   },
   {
@@ -7694,6 +9066,13 @@
   },
   {
     "room_id": "room-traditional-4242936",
+    "image_url": "assets/rooms/traditional/room-traditional-4242936-02.jpg",
+    "product_id": "product-traditional-overlook-white-chunky-knit-throw-blanket-01",
+    "position_x": 49.0,
+    "position_y": 53.0
+  },
+  {
+    "room_id": "room-traditional-4242936",
     "image_url": "assets/rooms/traditional/room-traditional-4242936-03.jpg",
     "product_id": "product-traditional-serene-blue-wall-art-01",
     "position_x": 50.0,
@@ -7759,8 +9138,8 @@
     "room_id": "room-traditional-4257341",
     "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
     "product_id": "product-traditional-daysi-marble-coffee-table-black-04",
-    "position_x": 52.0,
-    "position_y": 68.0
+    "position_x": 45.0,
+    "position_y": 57.0
   },
   {
     "room_id": "room-traditional-4257341",
@@ -7789,6 +9168,69 @@
     "product_id": "product-traditional-loloi-hathaway-navy-multi-9-0-x-12-0-01",
     "position_x": 38.0,
     "position_y": 82.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-final-sale-16-x-16-lavish-velvet-magenta-pillow-cover-16-x-1-03",
+    "position_x": 58.0,
+    "position_y": 57.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-labyrinth-velvet-navy-thibaut-20-x-20-cording-calypso-blue-05",
+    "position_x": 64.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-symi-brown-and-smoked-lavender-embroidered-linen-throw-pillo-15",
+    "position_x": 77.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-pbr0015-natural-charcoal-pillow-11",
+    "position_x": 26.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-horn-tray-brass-07",
+    "position_x": 42.0,
+    "position_y": 52.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-table-lamp-02",
+    "position_x": 90.0,
+    "position_y": 55.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-icon-wood-6-piece-black-11x11-gallery-wall-frame-set-04",
+    "position_x": 97.0,
+    "position_y": 40.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-intermezzo-by-lillian-winkler-61-5-x41-5-framed-wall-art-pri-04",
+    "position_x": 6.0,
+    "position_y": 30.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
+    "product_id": "product-traditional-greer-bowl-low-black-and-gold-glazed-05",
+    "position_x": 10.0,
+    "position_y": 88.0
   },
   {
     "room_id": "room-traditional-4257341",
@@ -7962,8 +9404,8 @@
     "room_id": "room-traditional-4257341",
     "image_url": "assets/rooms/traditional/room-traditional-4257341-03.jpg",
     "product_id": "product-traditional-lawson-leather-swivel-chair-01",
-    "position_x": 22.0,
-    "position_y": 45.0
+    "position_x": 20.0,
+    "position_y": 60.0
   },
   {
     "room_id": "room-traditional-4257341",
@@ -8006,5 +9448,26 @@
     "product_id": "product-traditional-green-chinoiserie-jar-vase-03",
     "position_x": 27.0,
     "position_y": 60.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-03.jpg",
+    "product_id": "product-traditional-final-sale-16-x-16-lavish-velvet-magenta-pillow-cover-16-x-1-03",
+    "position_x": 52.0,
+    "position_y": 56.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-03.jpg",
+    "product_id": "product-traditional-labyrinth-velvet-navy-thibaut-20-x-20-cording-calypso-blue-05",
+    "position_x": 57.0,
+    "position_y": 58.0
+  },
+  {
+    "room_id": "room-traditional-4257341",
+    "image_url": "assets/rooms/traditional/room-traditional-4257341-03.jpg",
+    "product_id": "product-traditional-panel-signature-velvet-merlot-20-x-20-14",
+    "position_x": 48.0,
+    "position_y": 55.0
   }
 ]

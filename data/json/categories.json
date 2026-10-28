@@ -18,12 +18,6 @@
     "name_en": "Bedding & Bath"
   },
   {
-    "id": 4,
-    "parent_id": null,
-    "name": "Khác",
-    "name_en": "Other"
-  },
-  {
     "id": 5,
     "parent_id": 1,
     "name": "Ghế đơn & Ghế thư giãn",
@@ -62,8 +56,8 @@
   {
     "id": 11,
     "parent_id": 1,
-    "name": "Kệ tivi",
-    "name_en": "Media Consoles"
+    "name": "Kệ tivi & Tủ buffet",
+    "name_en": "TV Stands & Sideboards"
   },
   {
     "id": 12,
@@ -74,14 +68,14 @@
   {
     "id": 13,
     "parent_id": 1,
-    "name": "Nội thất khác",
-    "name_en": "Other"
+    "name": "Nội thất khác & ngoài trời",
+    "name_en": "Other & Outdoor Furniture"
   },
   {
     "id": 14,
     "parent_id": 2,
-    "name": "Đồ trang trí khác",
-    "name_en": "Other Decor"
+    "name": "Đồ trang trí",
+    "name_en": "Decor"
   },
   {
     "id": 15,
@@ -112,12 +106,6 @@
     "parent_id": 2,
     "name": "Thảm",
     "name_en": "Rugs"
-  },
-  {
-    "id": 20,
-    "parent_id": 2,
-    "name": "Trang trí & Chiếu sáng khác",
-    "name_en": "Other"
   },
   {
     "id": 21,
@@ -156,9 +144,9 @@
     "name_en": "Sham"
   },
   {
-    "id": 27,
-    "parent_id": 4,
-    "name": "Sản phẩm khác",
-    "name_en": "Other"
+    "id": 28,
+    "parent_id": 2,
+    "name": "Rèm cửa & Thanh treo",
+    "name_en": "Curtains & Rods"
   }
 ]
