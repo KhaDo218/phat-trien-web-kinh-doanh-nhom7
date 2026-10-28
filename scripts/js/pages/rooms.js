@@ -87,14 +87,10 @@ function showRooms(){
     }
 
     // lọc
-    var chiCoHotspot = document.getElementById("chkShopTheRoom").checked;
-    var demHotspot = countHotspotsByRoom();
     var rooms = getTable("rooms");
     var ketQua = [];
     for(var i = 0; i < rooms.length; i++){
         if(style != null && rooms[i].style_id != style.id)
-            continue;
-        if(chiCoHotspot && !(demHotspot[rooms[i].id] > 0))
             continue;
         ketQua.push(rooms[i]);
     }
@@ -106,7 +102,7 @@ function showRooms(){
     }
     else if(cachXep == "most"){
         ketQua.sort(function(a, b){
-            return getRoomProducts(b).length - getRoomProducts(a).length;
+            return getHotspotProductIds(getRoomHotspots(b.id)).length - getHotspotProductIds(getRoomHotspots(a.id)).length;
         });
     }
     else if(cachXep == "name"){
@@ -130,6 +126,5 @@ function showRooms(){
 }
 
 function clearFilter(){
-    document.getElementById("chkShopTheRoom").checked = false;
     filterStyle("");
 }

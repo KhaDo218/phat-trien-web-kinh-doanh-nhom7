@@ -14,8 +14,20 @@ function getActiveProducts(){
     return active;
 }
 
-function getProductsByStyle(styleId){
+// Sản phẩm mới đang bán (không tính đồ cũ). Trang Sản phẩm và các gợi ý chỉ dùng hàm này,
+// đồ cũ chỉ hiện ở trang Đồ cũ.
+function getNewProducts(){
     var products = getActiveProducts();
+    var kq = [];
+    for(var i = 0; i < products.length; i++){
+        if(products[i].product_type != "USED")
+            kq.push(products[i]);
+    }
+    return kq;
+}
+
+function getProductsByStyle(styleId){
+    var products = getNewProducts();
     var matched = [];
     for(var i = 0; i < products.length; i++){
         var styleIds = products[i].style_ids || [];
@@ -32,7 +44,7 @@ function getProductsByStyle(styleId){
 
 function getProductsByCategory(categoryId){
     var categories = getTable("categories");
-    var products = getActiveProducts();
+    var products = getNewProducts();
     var categoryIds = [categoryId];
     var category = findById("categories", categoryId);
 
@@ -57,7 +69,7 @@ function getProductsByCategory(categoryId){
 
 function searchProducts(tuKhoa){
     var keyword = (tuKhoa || "").trim().toLowerCase();
-    var products = getActiveProducts();
+    var products = getNewProducts();
     if(keyword == "")
         return products;
 

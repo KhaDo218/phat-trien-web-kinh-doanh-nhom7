@@ -128,8 +128,9 @@ function sortRoomsForDisplay(mang){
 
 function createRoomCard(room, soThuTu){
     var style = getStyleOfRoom(room);
-    var soSanPham = getRoomProducts(room).length;
-    var soHotspot = getRoomHotspots(room.id).length;
+    var dsHotspot = getRoomHotspots(room.id);
+    var soSanPham = getHotspotProductIds(dsHotspot).length;   // số món gắn trên ảnh phòng
+    var soHotspot = dsHotspot.length;
     var link = "room-detail.html?id=" + encodeURIComponent(room.id);
 
     var card = document.createElement("article");

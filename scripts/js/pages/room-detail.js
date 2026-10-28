@@ -67,7 +67,7 @@ function showRoomInfo(){
         + "<a href='rooms.html?style=" + style.slug + "'>" + roomEscape(style.name) + "</a><span>/</span>"
         + roomEscape(room.name);
     document.getElementById("roomTags").innerHTML = "<a class='badge rd-style' href='rooms.html?style=" + style.slug + "'>Phong cách: "
-        + roomEscape(style.name) + "</a><span class='overline'>" + getRoomProducts(room).length + " sản phẩm trong bộ sưu tập</span>";
+        + roomEscape(style.name) + "</a><span class='overline'>" + hotspotProductIds.length + " sản phẩm trong phòng</span>";
     document.getElementById("roomName").innerHTML = roomEscape(room.name);
     document.getElementById("roomDesc").innerHTML = roomEscape(room.description);
     showTotals();
@@ -447,7 +447,7 @@ function showOtherProducts(){
     if(hotspots.length == 0)
         document.getElementById("otherTitle").innerHTML = "Sản phẩm trong không gian <span class='rd-count'>(" + otherProducts.length + " món)</span>";
     else
-        document.getElementById("otherTitle").innerHTML = "Các món khác trong phòng <span class='rd-count'>(" + otherProducts.length + " món)</span>";
+        document.getElementById("otherTitle").innerHTML = "Phối thêm cùng bộ sưu tập <span class='rd-count'>(" + otherProducts.length + " món)</span>";
     renderOtherProducts();
 }
 

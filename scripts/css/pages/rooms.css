@@ -48,22 +48,10 @@
 
 .rooms-toolbar{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     gap: 16px;
     margin: 20px 0 32px;
-}
-.rooms-check{
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    cursor: pointer;
-}
-.rooms-check input{
-    width: 16px;
-    height: 16px;
-    accent-color: #202020;
 }
 .rooms-sort{
     display: inline-flex;

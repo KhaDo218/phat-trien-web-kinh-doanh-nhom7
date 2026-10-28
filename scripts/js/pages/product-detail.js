@@ -292,7 +292,7 @@ function updateWishlistDetailButton(productId){
 }
 
 function renderProductRecommendations(product){
-    var products = getActiveProducts();
+    var products = getNewProducts();
     var completeCandidates = [];
     var similar = [];
 

@@ -206,7 +206,7 @@ function renderEmptySuggestions(total){
             products = intersectProducts(products, categoryProducts);
     }
     if(products.length == 0)
-        products = getActiveProducts();
+        products = getNewProducts();
     suggestions.innerHTML = "";
     for(var i = 0; i < products.length && i < 4; i++)
         suggestions.appendChild(createProductCard(products[i]));
