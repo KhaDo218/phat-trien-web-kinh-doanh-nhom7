@@ -171,7 +171,14 @@ function isAdmin(){
 // Chưa đăng nhập -> chuyển sang trang đăng nhập, đăng nhập xong quay lại trang cũ
 function requireLogin(){
     if(isLoggedIn() == false){
-        alert("Vui lòng đăng nhập để tiếp tục!");
+        var session = getSession();
+        var user = (session == null) ? null : findById("users", session.user_id);
+        if(user != null && user.is_active == false){
+            localStorage.removeItem("rc_session");
+            alert("Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!");
+        }
+        else
+            alert("Vui lòng đăng nhập để tiếp tục!");
         var trangCu = encodeURIComponent(window.location.href);
         window.location.href = getRoot() + "scripts/login.html?redirect=" + trangCu;
         return false;
