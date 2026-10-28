@@ -169,3 +169,39 @@ function toggleLockUser(userId, makeActive){
     alert("Đã " + (makeActive ? "mở khóa" : "khóa") + " tài khoản '" + targetName + "' thành công!");
     renderTable();
 }
+
+// ===================== Xuất JSON =====================
+function openExport(){
+    document.getElementById("exportModal").className = "modal";
+    fillExport();
+}
+
+function fillExport(){
+    var bang = document.getElementById("cboExport").value;
+    document.getElementById("txtExport").value = JSON.stringify(getTable(bang), null, 2);
+}
+
+function copyExport(){
+    var o = document.getElementById("txtExport");
+    o.select();
+    if(navigator.clipboard != null){
+        navigator.clipboard.writeText(o.value).then(function(){
+            alert("Đã sao chép " + document.getElementById("cboExport").value + ".json");
+        }, function(){
+            document.execCommand("copy");
+        });
+    }
+    else{
+        document.execCommand("copy");
+        alert("Đã sao chép.");
+    }
+}
+
+function closeExport(){
+    document.getElementById("exportModal").className = "modal hidden";
+}
+
+function closeExportOutside(e){
+    if(e.target.id == "exportModal")
+        closeExport();
+}

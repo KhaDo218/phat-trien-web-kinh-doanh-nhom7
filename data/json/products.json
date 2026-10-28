@@ -142,7 +142,7 @@
     "model_3d_url": null,
     "stock_quantity": 15,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4168521/product-bohemian-stems-eucalyptus-plant-in-decorative-vase-03-01.jpg"
@@ -206,7 +206,7 @@
     "model_3d_url": null,
     "stock_quantity": 0,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4168521/product-bohemian-eucalyptus-branch-05-01.jpg"
@@ -1392,7 +1392,7 @@
     "model_3d_url": null,
     "stock_quantity": 0,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4189649/product-bohemian-lilac-silk-faux-flower-arrangement-04-01.jpg"
@@ -2459,7 +2459,7 @@
     "model_3d_url": null,
     "stock_quantity": 2,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4192274/product-bohemian-potted-faux-banana-tree-02-01.jpg"
@@ -2587,7 +2587,7 @@
     "model_3d_url": null,
     "stock_quantity": 0,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4192274/product-bohemian-snake-plant-07-01.jpg"
@@ -2648,7 +2648,7 @@
     "model_3d_url": null,
     "stock_quantity": 19,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4192274/product-bohemian-faux-banana-leaf-tree-in-pot-liner-10-01.jpg"
@@ -3269,7 +3269,7 @@
     "model_3d_url": null,
     "stock_quantity": 6,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/bohemian/board-4192274/product-bohemian-pothos-plant-06-01.jpg"
@@ -5606,7 +5606,7 @@
     "model_3d_url": null,
     "stock_quantity": 16,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/coastal/board-4173476/product-coastal-faux-branch-27-6-faux-branch-3-stems-02-01.jpg",
@@ -5705,7 +5705,7 @@
     "model_3d_url": null,
     "stock_quantity": 0,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/coastal/board-4173476/product-coastal-faux-potted-sparse-olive-floor-tree-6-5-green-05-01.jpg"
@@ -5768,7 +5768,7 @@
     "model_3d_url": null,
     "stock_quantity": 19,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/coastal/board-4173476/product-coastal-artificial-heart-evergreen-hanging-foliage-plant-07-01.jpg"
@@ -5798,7 +5798,7 @@
     "model_3d_url": null,
     "stock_quantity": 16,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/coastal/board-4173476/product-coastal-9in-pothos-artificial-plant-in-white-planter-real-touch-08-01.jpg"
@@ -5858,7 +5858,7 @@
     "model_3d_url": null,
     "stock_quantity": 10,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/coastal/board-4173476/product-coastal-faux-foliage-plant-in-planter-10-01.jpg"
@@ -9712,7 +9712,7 @@
     "model_3d_url": null,
     "stock_quantity": 4,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/farmhouse/board-4181982/product-farmhouse-84-faux-eucalyptus-tree-in-pot-04-01.jpg"
@@ -21300,7 +21300,7 @@
     "model_3d_url": null,
     "stock_quantity": 19,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/mid-century-modern/board-4229562/product-mid-century-modern-faux-olive-stem-36-05-01.jpg",
@@ -22847,7 +22847,7 @@
     "model_3d_url": null,
     "stock_quantity": 17,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/scandinavian/board-4225368/product-scandinavian-live-neon-prayer-plant-01-01.jpg",
@@ -30141,7 +30141,7 @@
     "model_3d_url": null,
     "stock_quantity": 20,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/traditional/board-4242936/product-traditional-11-5-faux-eucalyptus-plant-in-ceramic-pot-13-01.jpg",
@@ -30246,7 +30246,7 @@
     "model_3d_url": null,
     "stock_quantity": 0,
     "product_type": "NEW",
-    "is_active": true,
+    "is_active": false,
     "created_at": "2026-10-01T00:00:00",
     "images": [
       "assets/products/traditional/board-4242936/product-traditional-faux-olive-tree-in-pot-5-16-01.jpg",

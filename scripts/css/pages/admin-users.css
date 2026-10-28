@@ -106,3 +106,32 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* xuất JSON */
+.au-export-note{
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+.au-export-note b{
+    color: #202020;
+}
+.au-inline{
+    display: flex;
+    gap: 8px;
+}
+.au-inline select.input{
+    max-width: 260px;
+    height: 42px;
+}
+.au-inline .btn{
+    flex-shrink: 0;
+    height: 42px;
+}
+textarea.au-export{
+    height: 360px;
+    margin-top: 12px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: pre;
+}
