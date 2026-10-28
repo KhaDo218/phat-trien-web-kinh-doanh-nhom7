@@ -19,7 +19,11 @@ function showOrders(){
     var orders = getOrdersByUser(getCurrentUser().id);
 
     if(orders.length == 0){
-        box.innerHTML = "<div class='empty'><p>Bạn chưa có đơn hàng nào.</p><br><a class='btn' href='products.html'>Bắt đầu mua sắm</a></div>";
+        box.innerHTML = "<div class='empty orders-empty'>"
+                      + "<span class='empty-icon'><span class='material-symbols-outlined'>receipt_long</span></span>"
+                      + "<h2 class='headline-section'>Chưa có đơn hàng nào</h2>"
+                      + "<p class='empty-copy'>Khi bạn hoàn tất một đơn hàng, thông tin sản phẩm và trạng thái giao hàng sẽ xuất hiện tại đây.</p>"
+                      + "<a class='btn' href='products.html'>Bắt đầu khám phá</a></div>";
         return;
     }
 

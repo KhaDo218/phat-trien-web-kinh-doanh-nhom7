@@ -27,9 +27,12 @@
 
         <!-- ===== 1. Banner ===== -->
         <section id="hero">
+            <video class="hero-video" autoplay muted playsinline data-start="8" data-end-trim="5" aria-hidden="true">
+                <source src="../assets/videos/Minotti%20-%20The%20Sound%20of%20Design%20%20Laurel%20by%20Giampiero%20Tagliaferri%20-%20MINOTTI%20S.p.A.%20(1080p,%20h264).mp4" type="video/mp4">
+            </video>
             <div class="container">
                 <div class="hero-content">
-                    <p class="overline">● Tuyển tập không gian 2026</p>
+                    <p class="overline">Tuyển tập không gian 2026</p>
                     <h1 class="display">Bắt đầu từ không gian của bạn</h1>
                     <p class="lead">Khám phá nội thất tinh tuyển được phối hợp hài hòa trong từng không gian sống thực tế.</p>
                     <div class="hero-buttons">
@@ -38,6 +41,23 @@
                     </div>
                 </div>
             </div>
+            <!-- Dải liên kết nhanh nằm trên mép dưới video -->
+            <nav class="brand-marquee" aria-label="Khám phá nhanh RoomCraft">
+                <div class="brand-marquee-track">
+                    <div class="brand-marquee-group">
+                        <a href="products.html"><span>Nội thất tuyển chọn</span></a><i></i>
+                        <a href="rooms.html"><span>Không gian truyền cảm hứng</span></a><i></i>
+                        <a href="products.html"><span>Trải nghiệm sản phẩm 3D</span></a><i></i>
+                        <a href="#ve-roomcraft"><span>Thiết kế cho mọi không gian</span></a><i></i>
+                    </div>
+                    <div class="brand-marquee-group" aria-hidden="true">
+                        <a href="products.html" tabindex="-1"><span>Nội thất tuyển chọn</span></a><i></i>
+                        <a href="rooms.html" tabindex="-1"><span>Không gian truyền cảm hứng</span></a><i></i>
+                        <a href="products.html" tabindex="-1"><span>Trải nghiệm sản phẩm 3D</span></a><i></i>
+                        <a href="#ve-roomcraft" tabindex="-1"><span>Thiết kế cho mọi không gian</span></a><i></i>
+                    </div>
+                </div>
+            </nav>
         </section>
 
         <!-- Dải số liệu (JS đếm từ dữ liệu) -->
@@ -64,19 +84,16 @@
         <!-- ===== 3. Trải nghiệm Shop the Room ===== -->
         <section class="section section-grey" id="shop-the-room">
             <div class="container">
-                <div class="section-head">
-                    <div>
+                <div class="str-layout">
+                    <div class="str-intro">
                         <p class="overline">Tính năng tương tác</p>
                         <h2 class="headline-section">Trải nghiệm Shop the Room</h2>
                         <p class="text-secondary section-sub">Từ ảnh một căn phòng đẹp đến món đồ trong giỏ hàng chỉ với vài lần bấm.</p>
                     </div>
-                </div>
-                <div class="str-layout">
                     <div class="str-demo">
                         <div class="str-stage" id="demoStage">
                             <img id="demoImage" src="" alt="">
                         </div>
-                        <p class="str-hint"><span class="dot"></span>Bấm vào điểm tròn để xem sản phẩm trong phòng</p>
                     </div>
                     <ol class="str-steps">
                         <li class="card">
@@ -109,7 +126,18 @@
                     </div>
                     <a class="btn-link" href="products.html">Xem tất cả sản phẩm <span class="material-symbols-outlined">arrow_forward</span></a>
                 </div>
-                <div class="grid-4" id="productList"></div>
+                <div class="featured-carousel">
+                    <div class="featured-track" id="productList" tabindex="0" aria-label="Sản phẩm nổi bật"></div>
+                    <div class="featured-controls" aria-label="Điều hướng sản phẩm nổi bật">
+                        <span class="featured-progress" aria-hidden="true"><span id="featuredProgressBar"></span></span>
+                        <button class="featured-arrow" id="featuredPrev" type="button" aria-label="Xem sản phẩm trước">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <button class="featured-arrow" id="featuredNext" type="button" aria-label="Xem sản phẩm tiếp theo">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -132,18 +160,16 @@
                 <div class="about-text">
                     <p class="overline">Triết lý thiết kế</p>
                     <h2 class="headline-page">Nghệ thuật sắp đặt không gian sống</h2>
-                    <p class="about-lead">RoomCraft giới thiệu nội thất qua những căn phòng hoàn chỉnh. Bạn chọn một không gian mình thích,
-                        bấm vào từng món đồ trong ảnh để xem chi tiết, xoay mô hình 3D và thêm vào giỏ hàng.</p>
-                    <p class="text-secondary">Mỗi sản phẩm trong phòng đều có thông tin thật về kích thước, chất liệu và màu sắc,
-                        được chọn để hài hòa với phong cách của căn phòng.</p>
+                    <p class="about-lead">RoomCraft bắt đầu từ một không gian sống hoàn chỉnh, nơi từng món nội thất được lựa chọn để cùng kể một câu chuyện về phong cách, màu sắc và cảm xúc.</p>
+                    <p class="text-secondary">Khám phá căn phòng bạn yêu thích, chạm vào từng sản phẩm để xem thông tin thực tế, quan sát mô hình 3D từ mọi góc và lựa chọn món đồ phù hợp cho chính ngôi nhà của bạn.</p>
                     <div class="about-points">
                         <div>
                             <p class="overline">01 / Bắt đầu từ cảm hứng</p>
-                            <p>Đi từ ảnh không gian đẹp tới sản phẩm cụ thể, không phải tìm từng món rời rạc.</p>
+                            <p>Thay vì ghép từng món đồ rời rạc, bạn bắt đầu bằng một tổng thể đã được tuyển chọn và phối hợp hài hòa.</p>
                         </div>
                         <div>
-                            <p class="overline">02 / Xem trước khi mua</p>
-                            <p>Mô hình 3D giúp hình dung kích thước, đường nét của món đồ trong không gian thật.</p>
+                            <p class="overline">02 / Hiểu rõ trước khi chọn</p>
+                            <p>Thông tin chi tiết và mô hình 3D giúp bạn cảm nhận kích thước, chất liệu và đường nét trước khi quyết định.</p>
                         </div>
                     </div>
                 </div>

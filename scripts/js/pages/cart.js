@@ -20,8 +20,11 @@ function showCart(){
     var box = document.getElementById("cartContent");
 
     if(items.length == 0){
-        box.innerHTML = "<div class='empty'><p>Giỏ hàng của bạn đang trống.</p><br>"
-                      + "<a class='btn' href='products.html'>Tiếp tục mua sắm</a></div>";
+        box.innerHTML = "<div class='empty cart-empty'>"
+                      + "<span class='empty-icon'><span class='material-symbols-outlined'>shopping_bag</span></span>"
+                      + "<h2 class='headline-section'>Không gian đẹp bắt đầu từ món đồ đầu tiên</h2>"
+                      + "<p class='empty-copy'>Giỏ hàng của bạn đang trống. Khám phá bộ sưu tập nội thất được tuyển chọn cho từng phong cách sống.</p>"
+                      + "<a class='btn' href='products.html'>Khám phá sản phẩm</a></div>";
         return;
     }
 
