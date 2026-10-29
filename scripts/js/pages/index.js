@@ -177,7 +177,7 @@ function initHomeMotion(){
         observer.observe(revealItems[n]);
 }
 
-// Video hero đã được cắt sẵn (bỏ tiêu đề đầu/cuối). Nếu thẻ <video> có data-start / data-end-trim thì vẫn cắt khi phát.
+// Bỏ qua phần tiêu đề ở 8 giây đầu và 5 giây cuối khi phát video hero.
 function initHeroVideoTrim(){
     var video = document.querySelector("#hero .hero-video");
     if(!video)
