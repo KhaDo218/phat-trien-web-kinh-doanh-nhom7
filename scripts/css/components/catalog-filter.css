@@ -1,0 +1,314 @@
+/* =====================================================================
+   ROOMCRAFT - catalog-filter.css (Bộ lọc dùng chung)
+   Dùng ở: products.html, marketplace.html (đi cùng components/catalog-filter.js)
+   ===================================================================== */
+
+/* ----- Bố cục: cột lọc bên trái + kết quả bên phải ----- */
+.filter-layout{
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 32px 0 80px;
+}
+.filter-sidebar{
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+.filter-panel{
+    padding: 24px;
+}
+.filter-content{
+    flex: 1;
+    min-width: 0;
+}
+
+/* ----- Khung lọc ----- */
+.filter-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #DADAD7;
+}
+.filter-title{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+.filter-group{
+    margin-bottom: 24px;
+}
+.filter-group-last{
+    margin-bottom: 0;
+}
+.filter-group-title{
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #686868;
+    margin-bottom: 12px;
+}
+.filter-chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.filter-chips .chip{
+    font-size: 12px;
+    padding: 0 12px;
+    height: 32px;
+    line-height: 30px;
+}
+.filter-radios, .filter-checks{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.radio-label, .checkbox-label{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #383838;
+    cursor: pointer;
+}
+.radio-label input, .checkbox-label input, .color-label input{
+    cursor: pointer;
+    accent-color: #202020;
+    flex-shrink: 0;
+}
+.radio-label:hover, .checkbox-label:hover{
+    color: #202020;
+}
+.filter-count{
+    margin-left: auto;
+    font-style: normal;
+    font-size: 11.5px;
+    color: #8A8A86;
+}
+
+/* Màu sắc: ô tròn + tên */
+.filter-colors{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+}
+.color-label{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: #383838;
+    cursor: pointer;
+    min-width: 0;
+}
+.color-label input{
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+.color-swatch{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #DADAD7;
+    flex-shrink: 0;
+}
+.color-name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.color-label input:checked + .color-swatch{
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 3px #202020;
+}
+.color-label input:checked ~ .color-name{
+    font-weight: 600;
+    color: #202020;
+}
+.color-label input:focus-visible + .color-swatch{
+    outline: 2px solid #202020;
+    outline-offset: 3px;
+}
+
+/* ----- Thanh công cụ trên lưới sản phẩm ----- */
+.filter-toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+.toolbar-left{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.result-count{
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #202020;
+}
+.active-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.active-tag-chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: #EEEEEC;
+    font-size: 11px;
+    border: 1px solid #DADAD7;
+    cursor: pointer;
+}
+.active-tag-chip:hover{
+    background: #DADAD7;
+}
+.active-tag-chip .material-symbols-outlined{
+    font-size: 14px;
+}
+.toolbar-right{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.search-mini{
+    position: relative;
+    width: 240px;
+}
+.search-mini span{
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    color: #686868;
+    font-size: 18px;
+}
+.search-mini input{
+    height: 36px;
+    padding: 0 12px 0 34px;
+    font-size: 13px;
+}
+.sort-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+.sort-box label{
+    white-space: nowrap;
+    color: #686868;
+}
+.sort-box select{
+    height: 36px;
+    padding: 0 12px;
+    font-size: 13px;
+    width: 180px;
+}
+.btn-filter-toggle{
+    display: none;
+}
+
+/* ----- Phân trang ----- */
+.catalog-pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+.catalog-page-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #DADAD7;
+    background: #FFFFFF;
+    color: #202020;
+    font-size: 13px;
+    cursor: pointer;
+}
+.catalog-page-link:hover, .catalog-page-link.active{
+    background: #202020;
+    border-color: #202020;
+    color: #FFFFFF;
+}
+.catalog-page-dots{
+    color: #686868;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 1100px){
+    .filter-layout{
+        gap: 20px;
+    }
+    .filter-sidebar{
+        width: 240px;
+    }
+    .toolbar-right{
+        width: 100%;
+    }
+    .search-mini{
+        flex: 1;
+    }
+}
+@media (max-width: 900px){
+    .filter-layout{
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 20px;
+    }
+    .filter-sidebar{
+        width: 100%;
+        position: static;
+        max-height: none;
+        overflow: visible;
+    }
+    .btn-filter-toggle{
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+        justify-content: center;
+    }
+    .filter-panel{
+        display: none;
+        margin-top: 12px;
+    }
+    .filter-panel.open{
+        display: block;
+    }
+}
+@media (max-width: 600px){
+    .filter-toolbar{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .toolbar-right{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-mini{
+        width: 100%;
+    }
+    .sort-box select{
+        width: 100%;
+    }
+}
