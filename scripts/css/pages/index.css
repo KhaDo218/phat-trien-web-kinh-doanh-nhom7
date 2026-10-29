@@ -4,15 +4,54 @@
    Thẻ phòng, chấm hotspot, thẻ sản phẩm: css/components/room.css
    ===================================================================== */
 
+/* Trang chủ giãn gần tràn màn hình trên desktop. */
+body > .section > .container,
+body > .stats-band > .container{
+    max-width: none;
+    padding-right: 32px;
+    padding-left: 32px;
+}
+#roomList{
+    gap: 32px;
+}
+
 /* ----- 1. Banner ----- */
+body > #header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(-105%);
+    opacity: 0;
+    box-shadow: 0 8px 30px rgba(32, 32, 32, 0.1);
+    transition: transform 0.45s ease, opacity 0.35s ease;
+    pointer-events: none;
+}
+body > #header.home-header-visible{
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
 #hero{
     display: flex;
     align-items: flex-end;
-    min-height: 600px;
+    min-height: 100vh;
+    min-height: 100svh;
     padding-bottom: 88px;
-    background: #202020 url(../../../assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg) center / cover no-repeat;
+    background: #202020;
     position: relative;
+    overflow: hidden;
     color: #FFFFFF;
+}
+#hero .hero-video{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    pointer-events: none;
 }
 #hero::before{
     content: "";
@@ -22,16 +61,19 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(to top, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.15));
+    z-index: 1;
+    pointer-events: none;
 }
 #hero .container{
     position: relative;
+    z-index: 2;
 }
 #hero .hero-content{
     max-width: 640px;
 }
 #hero .overline{
     margin-bottom: 16px;
-    color: #FFFFFF;
+    color: #D6B56E;
 }
 #hero .lead{
     margin: 20px 0 32px;
@@ -48,6 +90,82 @@
 #hero .btn-outline:hover{
     background: #FFFFFF;
     color: #202020;
+}
+
+/* ----- Dải chữ chuyển động ----- */
+.brand-marquee{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    overflow: hidden;
+    background: rgba(20, 20, 19, 0.92);
+    backdrop-filter: blur(10px);
+    color: #FFFFFF;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid #202020;
+}
+.brand-marquee-track{
+    display: flex;
+    width: max-content;
+    animation: roomcraft-marquee 30s linear infinite;
+}
+.brand-marquee:hover .brand-marquee-track{
+    animation-play-state: paused;
+}
+.brand-marquee:focus-within .brand-marquee-track{
+    animation-play-state: paused;
+}
+.brand-marquee-group{
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 30px;
+    padding: 15px 15px;
+}
+.brand-marquee-group span{
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #FFFFFF;
+}
+.brand-marquee-group a{
+    display: inline-flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+.brand-marquee-group a span{
+    position: relative;
+}
+.brand-marquee-group a span::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+}
+.brand-marquee-group a:hover span::after,
+.brand-marquee-group a:focus-visible span::after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.brand-marquee-group i{
+    width: 4px;
+    height: 4px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    opacity: 0.65;
+}
+@keyframes roomcraft-marquee{
+    to{ transform: translateX(-50%); }
 }
 
 /* ----- Dải số liệu ----- */
@@ -81,28 +199,189 @@
     margin-top: 8px;
 }
 
+/* ----- Slider sản phẩm nổi bật ----- */
+.featured-track{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 72px) / 4);
+    gap: 24px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: none;
+    scrollbar-width: none;
+    padding: 4px 1px 12px;
+}
+.featured-track::-webkit-scrollbar{
+    display: none;
+}
+.featured-track .product-card{
+    scroll-snap-align: none;
+}
+.featured-track .product-card-img > a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.featured-track .product-card-img img{
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.featured-track .product-card-img .product-card-alt-image{
+    opacity: 0;
+}
+.featured-track .product-card:hover .product-card-img > a > img:first-child{
+    opacity: 0;
+}
+.featured-track .product-card:hover .product-card-img .product-card-alt-image{
+    opacity: 1;
+    transform: scale(1.03);
+}
+.featured-controls{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+.featured-progress{
+    position: relative;
+    flex: 1;
+    height: 1px;
+    margin-right: 18px;
+    overflow: hidden;
+    background: #DADAD7;
+}
+.featured-progress span{
+    display: block;
+    width: 18%;
+    height: 100%;
+    background: #202020;
+    transition: width 0.2s ease;
+}
+.featured-arrow{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid #202020;
+    color: #202020;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.featured-arrow:hover:not(:disabled){
+    background: #202020;
+    color: #FFFFFF;
+}
+.featured-arrow:disabled{
+    opacity: 0.3;
+    cursor: default;
+}
+.featured-arrow .material-symbols-outlined{
+    font-size: 18px;
+}
+
+/* ----- Xuất hiện nhẹ khi cuộn ----- */
+.home-reveal{
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease var(--reveal-delay, 0ms), transform 0.7s ease var(--reveal-delay, 0ms);
+}
+.home-reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ----- 3. Shop the Room ----- */
+#shop-the-room{
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 48% 42%, rgba(255, 255, 255, 0.92) 0, rgba(255, 255, 255, 0.36) 24%, transparent 50%),
+        radial-gradient(circle at 92% 12%, rgba(184, 156, 119, 0.22) 0, transparent 30%),
+        linear-gradient(125deg, #eee9e0 0%, #f7f4ee 46%, #e4ddd2 100%);
+}
+#shop-the-room::before{
+    content: "";
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    left: -250px;
+    bottom: -270px;
+    border: 1px solid rgba(104, 88, 68, 0.16);
+    border-radius: 50%;
+    box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.12), 0 0 0 140px rgba(104, 88, 68, 0.035);
+    pointer-events: none;
+}
+#shop-the-room::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(80, 67, 52, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(80, 67, 52, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to right, transparent, #000 45%, #000);
+    pointer-events: none;
+}
+#shop-the-room > .container{
+    position: relative;
+    z-index: 1;
+}
 .str-layout{
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 40px;
+    grid-template-columns: minmax(220px, 0.78fr) minmax(430px, 1.45fr) minmax(250px, 0.77fr);
+    gap: 0;
     align-items: center;
+    min-height: 610px;
+}
+.str-intro{
+    position: relative;
+    z-index: 3;
+    padding-right: 42px;
+}
+.str-intro .headline-section{
+    max-width: 340px;
+    margin: 14px 0 18px;
+    font-size: clamp(42px, 4vw, 64px);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+}
+.str-intro .section-sub{
+    max-width: 330px;
+    line-height: 1.65;
+}
+.str-demo{
+    position: relative;
+    z-index: 1;
 }
 .str-stage{
     position: relative;
-    aspect-ratio: 4 / 3;
-    background: #DADAD7;
+    aspect-ratio: 4 / 4.65;
+    overflow: visible;
+    background: transparent;
+    filter: drop-shadow(0 28px 24px rgba(32, 32, 32, 0.18));
+}
+.str-stage::before{
+    content: "";
+    position: absolute;
+    inset: 6% -3% -3% 4%;
+    border: 1px solid rgba(32, 32, 32, 0.25);
+    transform: translate(18px, 15px);
+    pointer-events: none;
 }
 .str-stage img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    clip-path: polygon(8% 4%, 96% 0, 100% 92%, 7% 100%, 0 12%);
 }
 .str-hint{
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 20px;
     font-size: 13px;
     color: #686868;
 }
@@ -152,9 +431,59 @@
     flex-direction: column;
     gap: 16px;
     list-style: none;
+    position: relative;
+    z-index: 4;
+    width: 330px;
+    margin-left: -42px;
+    border: 0;
+    box-shadow: none;
 }
 .str-steps li{
-    padding: 24px;
+    position: relative;
+    min-height: 148px;
+    padding: 25px 96px 22px 24px;
+    overflow: hidden;
+    border: 1px solid rgba(32, 32, 32, 0.17);
+    box-shadow: 0 15px 32px rgba(54, 45, 34, 0.15);
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+.str-steps li:nth-child(1){ transform: translateX(-8px); }
+.str-steps li:nth-child(2){ transform: translateX(22px); }
+.str-steps li:nth-child(3){ transform: translateX(2px); }
+.str-steps li::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 74px;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    filter: saturate(0.72) contrast(0.92);
+    transition: width 0.35s ease, filter 0.35s ease;
+}
+.str-steps li:nth-child(1)::after{
+    background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url("../../../assets/rooms/farmhouse/room-farmhouse-4189945-02.jpg");
+}
+.str-steps li:nth-child(2){
+    padding: 25px 24px 22px 96px;
+}
+.str-steps li:nth-child(2)::after{
+    left: 0;
+    right: auto;
+    background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url("../../../assets/rooms/farmhouse/room-farmhouse-4189945-03.jpg");
+}
+.str-steps li:nth-child(3)::after{
+    background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), url("../../../assets/rooms/farmhouse/room-farmhouse-4189945-04.jpg");
+}
+.str-steps li:hover{
+    transform: translateX(8px) translateY(-5px);
+    background: #FAF9F6;
+    box-shadow: 0 22px 42px rgba(54, 45, 34, 0.22);
+}
+.str-steps li:hover::after{
+    width: 82px;
+    filter: saturate(1) contrast(1);
 }
 .str-steps .step-head{
     display: flex;
@@ -162,31 +491,43 @@
     align-items: center;
     margin-bottom: 8px;
 }
+.str-steps .step-head .material-symbols-outlined{
+    display: none;
+}
 .str-steps .title-product{
     margin-bottom: 6px;
+    font-size: 18px;
+    line-height: 22px;
 }
 .str-steps .text-secondary{
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 17px;
 }
 
 /* ----- 5. Phong cách ----- */
 .style-grid{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    grid-auto-flow: dense;
     gap: 16px;
 }
 .style-tile{
     position: relative;
     display: block;
-    aspect-ratio: 4 / 3;
+    height: 100%;
+    aspect-ratio: auto;
     overflow: hidden;
     background: #202020;
     color: #FFFFFF;
 }
 .style-tile:first-child{
     grid-column: span 2;
-    aspect-ratio: auto;
+    grid-row: span 2;
+}
+.style-tile:nth-child(6),
+.style-tile:nth-child(7){
+    grid-column: span 2;
 }
 .style-tile img{
     width: 100%;
@@ -196,7 +537,7 @@
     opacity: 0.85;
 }
 .style-tile:hover img{
-    transform: scale(1.04);
+    transform: scale(1.065);
     opacity: 0.7;
 }
 .style-tile::after{
@@ -217,6 +558,11 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    transform: translateY(4px);
+    transition: transform 0.35s ease;
+}
+.style-tile:hover .style-info{
+    transform: translateY(-4px);
 }
 .style-tile .title-product{
     font-size: 24px;
@@ -240,73 +586,222 @@
 }
 
 /* ----- 6. Về RoomCraft ----- */
+#ve-roomcraft{
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 10% 15%, rgba(164, 133, 91, 0.2), transparent 30%),
+        radial-gradient(circle at 82% 78%, rgba(118, 125, 82, 0.18), transparent 28%),
+        #191916;
+    color: #F7F4ED;
+}
+#ve-roomcraft::before{
+    content: "ROOMCRAFT";
+    position: absolute;
+    left: -12px;
+    bottom: -48px;
+    color: rgba(255, 255, 255, 0.035);
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(110px, 16vw, 290px);
+    line-height: 0.72;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+}
+#ve-roomcraft::after{
+    content: "";
+    position: absolute;
+    top: 8%;
+    right: 2%;
+    width: 340px;
+    height: 340px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 0 52px rgba(255, 255, 255, 0.02), 0 0 0 104px rgba(255, 255, 255, 0.012);
+    pointer-events: none;
+}
 #ve-roomcraft .about{
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 64px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
+    gap: clamp(56px, 7vw, 124px);
     align-items: center;
+    position: relative;
+    z-index: 1;
+    max-width: 1600px;
+    padding-top: 38px;
+    padding-bottom: 38px;
+}
+#ve-roomcraft .about-text{
+    position: relative;
+    z-index: 3;
 }
 #ve-roomcraft .headline-page{
-    margin: 12px 0 20px;
+    max-width: 700px;
+    margin: 14px 0 26px;
+    color: #FFFFFF;
+    font-size: clamp(48px, 5vw, 78px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+}
+#ve-roomcraft .overline{
+    color: #C6AE87;
 }
 #ve-roomcraft .about-lead{
-    margin-bottom: 16px;
-    font-size: 18px;
-    line-height: 28px;
+    max-width: 680px;
+    margin-bottom: 18px;
+    color: #F0ECE3;
+    font-size: 20px;
+    line-height: 32px;
+}
+#ve-roomcraft .about-text > .text-secondary{
+    max-width: 650px;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 15px;
+    line-height: 25px;
 }
 #ve-roomcraft .about-points{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid #DADAD7;
+    gap: 14px;
+    margin-top: 38px;
+    padding-top: 0;
+    border-top: 0;
     font-size: 14px;
     line-height: 22px;
 }
+#ve-roomcraft .about-points > div{
+    min-height: 156px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.055);
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+#ve-roomcraft .about-points > div:nth-child(2){
+    transform: translateY(22px);
+}
+#ve-roomcraft .about-points > div:hover{
+    transform: translateY(-7px);
+    border-color: rgba(198, 174, 135, 0.7);
+    background: rgba(255, 255, 255, 0.09);
+}
 #ve-roomcraft .about-points .overline{
-    margin-bottom: 6px;
-    color: #202020;
+    margin-bottom: 10px;
+    color: #C6AE87;
 }
 #ve-roomcraft .about-image{
     position: relative;
-    padding-bottom: 32px;
+    padding: 28px 0 44px 32px;
+    perspective: 1400px;
+}
+#ve-roomcraft .about-image::before{
+    content: "";
+    position: absolute;
+    inset: 0 34px 12px 0;
+    border: 1px solid rgba(198, 174, 135, 0.5);
+    transform: translate(18px, 14px) rotate(-2deg);
+    pointer-events: none;
 }
 #ve-roomcraft .about-image img{
     width: 100%;
-    aspect-ratio: 4 / 5;
+    height: min(74vh, 760px);
+    min-height: 580px;
     object-fit: cover;
+    box-shadow: 0 38px 70px rgba(0, 0, 0, 0.42);
+    transform: rotateY(-5deg) rotateX(1.5deg);
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(.2,.8,.2,1), filter 0.8s ease;
+    filter: saturate(0.82) contrast(1.04);
+}
+#ve-roomcraft .about-image:hover img{
+    transform: rotateY(0) rotateX(0) scale(1.012);
+    filter: saturate(1) contrast(1);
 }
 #ve-roomcraft .about-caption{
     position: absolute;
-    left: -32px;
-    bottom: 0;
-    max-width: 280px;
-    padding: 20px 24px;
+    left: -26px;
+    bottom: 12px;
+    width: min(330px, 65%);
+    max-width: none;
+    padding: 24px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(247, 244, 237, 0.92);
+    color: #202020;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+}
+#ve-roomcraft .about-caption .overline{
+    color: #74634D;
+}
+#ve-roomcraft .about-caption a{
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+#ve-roomcraft .about-caption a:hover{
+    transform: translateX(5px);
 }
 
 @media (max-width: 1024px){
+    .featured-track{
+        grid-auto-columns: calc((100% - 48px) / 3);
+    }
     .str-layout{
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(200px, 0.8fr) minmax(390px, 1.2fr);
+        gap: 30px;
+    }
+    .str-intro{
+        padding-right: 0;
     }
     .str-steps{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        grid-column: 1 / -1;
+        width: 100%;
+        margin: 8px 0 0;
+    }
+    .str-steps li:nth-child(n){
+        padding: 23px 82px 22px 20px;
+        transform: none;
+    }
+    .str-steps li:nth-child(2){
+        padding: 23px 20px 22px 82px;
     }
     .style-grid{
         grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 210px;
     }
     .style-tile:first-child{
-        grid-column: span 3;
-        aspect-ratio: 16 / 7;
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    .style-tile:nth-child(6),
+    .style-tile:nth-child(7){
+        grid-column: auto;
+    }
+    .style-tile:nth-child(4),
+    .style-tile:nth-child(7){
+        grid-column: span 2;
     }
     #ve-roomcraft .about{
-        gap: 40px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+        gap: 44px;
+    }
+    #ve-roomcraft .headline-page{
+        font-size: clamp(42px, 5.5vw, 62px);
+    }
+    #ve-roomcraft .about-image img{
+        min-height: 520px;
     }
 }
 @media (max-width: 768px){
+    body > .section > .container,
+    body > .stats-band > .container{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
     #hero{
-        min-height: 480px;
+        min-height: 100vh;
+        min-height: 100svh;
         padding-bottom: 56px;
     }
     #hero .hero-buttons{
@@ -315,6 +810,20 @@
     #hero .btn{
         width: 100%;
         margin-bottom: 12px;
+    }
+    .brand-marquee-group{
+        gap: 20px;
+        padding: 13px 10px;
+    }
+    .featured-track{
+        grid-auto-columns: 82%;
+        gap: 16px;
+    }
+    .featured-controls{
+        margin-top: 12px;
+    }
+    .featured-progress{
+        margin-right: 6px;
     }
     .stats{
         grid-template-columns: repeat(2, 1fr);
@@ -337,15 +846,40 @@
     .str-steps{
         grid-template-columns: 1fr;
     }
+    .str-layout{
+        grid-template-columns: 1fr;
+        min-height: 0;
+        gap: 34px;
+    }
+    .str-intro .headline-section{
+        max-width: 520px;
+        font-size: clamp(38px, 12vw, 54px);
+    }
+    .str-demo{
+        width: min(100%, 560px);
+        margin: 0 auto;
+    }
+    .str-steps{
+        grid-column: auto;
+    }
+    .str-steps li:nth-child(n){
+        min-height: 132px;
+    }
     .hotspot .hotspot-tip{
         display: none;
     }
     .style-grid{
         grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 190px;
     }
     .style-tile:first-child{
         grid-column: span 2;
-        aspect-ratio: 4 / 3;
+        grid-row: span 2;
+    }
+    .style-tile:nth-child(6),
+    .style-tile:nth-child(7),
+    .style-tile:nth-child(4){
+        grid-column: auto;
     }
     .style-tile .title-product{
         font-size: 20px;
@@ -353,11 +887,39 @@
     }
     #ve-roomcraft .about{
         grid-template-columns: 1fr;
+        gap: 42px;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     #ve-roomcraft .about-points{
         grid-template-columns: 1fr;
     }
+    #ve-roomcraft .about-points > div:nth-child(2){
+        transform: none;
+    }
+    #ve-roomcraft .about-image{
+        padding: 16px 0 40px 12px;
+    }
+    #ve-roomcraft .about-image img{
+        height: 68vh;
+        min-height: 460px;
+        transform: none;
+    }
     #ve-roomcraft .about-caption{
         left: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .brand-marquee-track{
+        animation: none;
+    }
+    .home-reveal{
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .featured-track{
+        scroll-behavior: auto;
     }
 }
