@@ -961,7 +961,6 @@
     "is_active": true,
     "created_at": "2026-10-01T00:00:00",
     "images": [
-      "assets/products/bohemian/board-4177683/product-bohemian-floor-lamp-01-01.jpg",
       "assets/products/bohemian/board-4177683/product-bohemian-floor-lamp-01-02.jpg",
       "assets/products/bohemian/board-4177683/product-bohemian-floor-lamp-01-03.jpg",
       "assets/products/bohemian/board-4177683/product-bohemian-floor-lamp-01-04.jpg",
@@ -6088,8 +6087,7 @@
     "images": [
       "assets/products/coastal/board-4173476/product-coastal-victoria-black-terracotta-vase-06-01.jpg",
       "assets/products/coastal/board-4173476/product-coastal-victoria-black-terracotta-vase-06-02.jpg",
-      "assets/products/coastal/board-4173476/product-coastal-victoria-black-terracotta-vase-06-03.jpg",
-      "assets/products/coastal/board-4173476/product-coastal-victoria-black-terracotta-vase-06-04.jpg"
+      "assets/products/coastal/board-4173476/product-coastal-victoria-black-terracotta-vase-06-03.jpg"
     ],
     "style_ids": [
       2
@@ -12990,8 +12988,7 @@
       "assets/products/farmhouse/board-4198168/product-farmhouse-mirror-01-01.jpg",
       "assets/products/farmhouse/board-4198168/product-farmhouse-mirror-01-02.jpg",
       "assets/products/farmhouse/board-4198168/product-farmhouse-mirror-01-03.jpg",
-      "assets/products/farmhouse/board-4198168/product-farmhouse-mirror-01-04.jpg",
-      "assets/products/farmhouse/board-4198168/product-farmhouse-mirror-01-05.jpg"
+      "assets/products/farmhouse/board-4198168/product-farmhouse-mirror-01-04.jpg"
     ],
     "style_ids": [
       3
@@ -20420,8 +20417,7 @@
     "is_active": true,
     "created_at": "2026-10-01T00:00:00",
     "images": [
-      "assets/products/glam/board-4256121/product-glam-copenhagen-floor-mirror-in-wood-gold-01-01.jpg",
-      "assets/products/glam/board-4256121/product-glam-copenhagen-floor-mirror-in-wood-gold-01-02.jpg"
+      "assets/products/glam/board-4256121/product-glam-copenhagen-floor-mirror-in-wood-gold-01-01.jpg"
     ],
     "style_ids": [
       4
