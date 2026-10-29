@@ -7,6 +7,10 @@
         <style type="text/css">
             @import url(css/base.css);
             @import url(css/pages/products.css);
+            #catalogBreadcrumb{font-size:15px}
+            .catalog-price-options{display:flex;flex-direction:column;gap:8px}
+            .catalog-price-option{display:flex;align-items:center;gap:8px;color:#383838;font-size:13px;cursor:pointer}
+            .catalog-price-option input{accent-color:#202020;cursor:pointer}
         </style>
         <script src="js/core/utils.js"></script>
         <script src="js/core/store.js"></script>
@@ -22,13 +26,13 @@
         <div id="header"></div>
 
         <main class="container">
-            <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Nội thất cho không gian của bạn</div>
+            <div class="breadcrumb" id="catalogBreadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span>Nội thất cho không gian của bạn</span></div>
             <section class="catalog-heading">
                 <div>
                     <p class="overline">Bộ sưu tập kiến trúc tuyển chọn</p>
                     <h1 class="headline-page">Nội thất cho không gian của bạn</h1>
                 </div>
-                <p class="catalog-note">Kiến trúc · Thủ công đương đại · Tinh chỉnh tỉ lệ</p>
+                <p class="catalog-note">Tuyển chọn</p>
             </section>
 
             <nav class="style-filter" id="styleFilter" aria-label="Lọc theo phong cách"></nav>
@@ -52,12 +56,23 @@
                         </div>
                         <div class="catalog-filter-section">
                             <h3 class="overline">Khoảng giá (₫)</h3>
-                            <div class="price-range-fields">
-                                <label for="txtMinPrice">Từ</label>
-                                <input class="input" type="number" id="txtMinPrice" min="0" placeholder="Giá thấp nhất">
-                                <label for="txtMaxPrice">Đến</label>
-                                <input class="input" type="number" id="txtMaxPrice" min="0" placeholder="Giá cao nhất">
+                            <div class="catalog-price-options">
+                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="all"> <span>Tất cả mức giá</span></label>
+                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="under-1000000"> <span>Dưới 1.000.000 ₫</span></label>
+                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="1000000-3000000"> <span>1.000.000 ₫ – 3.000.000 ₫</span></label>
+                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="3000001-6000000"> <span>Trên 3.000.000 ₫ – 6.000.000 ₫</span></label>
+                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="over-6000000"> <span>Trên 6.000.000 ₫</span></label>
                             </div>
+                        </div>
+                        <div class="catalog-filter-section">
+                            <h3 class="overline">Chất liệu</h3>
+                            <input class="input" type="search" id="txtCatalogMaterial" list="catalogMaterialOptions" placeholder="Tìm chất liệu...">
+                            <datalist id="catalogMaterialOptions"></datalist>
+                        </div>
+                        <div class="catalog-filter-section">
+                            <h3 class="overline">Màu sắc</h3>
+                            <input class="input" type="search" id="txtCatalogColor" list="catalogColorOptions" placeholder="Tìm màu sắc...">
+                            <datalist id="catalogColorOptions"></datalist>
                         </div>
                         <button class="btn btn-outline btn-full" type="submit">Áp dụng bộ lọc</button>
                     </form>

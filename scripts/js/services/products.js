@@ -56,23 +56,38 @@ function getProductsByCategory(categoryId){
 }
 
 function searchProducts(tuKhoa){
-    var keyword = (tuKhoa || "").trim().toLowerCase();
+    var keyword = normalizeProductSearchText(tuKhoa);
     var products = getActiveProducts();
     if(keyword == "")
         return products;
 
-    var matched = [];
+    var matchedNames = [];
+    var matchedDetails = [];
+    var keywordPhrase = " " + keyword + " ";
     for(var i = 0; i < products.length; i++){
-        var haystack = [
-            products[i].id,
-            products[i].name,
-            products[i].brand,
-            products[i].description
-        ].join(" ").toLowerCase();
-        if(haystack.indexOf(keyword) >= 0)
-            matched.push(products[i]);
+        var product = products[i];
+        var name = " " + normalizeProductSearchText(product.name) + " ";
+        if(name.indexOf(keywordPhrase) >= 0){
+            matchedNames.push(product);
+            continue;
+        }
+        var details = normalizeProductSearchText([
+            product.id,
+            product.brand,
+            product.description
+        ].join(" "));
+        if(details.indexOf(keyword) >= 0)
+            matchedDetails.push(product);
     }
-    return matched;
+    return matchedNames.length > 0 ? matchedNames : matchedDetails;
+}
+
+function normalizeProductSearchText(value){
+    return String(value == null ? "" : value).toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim().replace(/\s+/g, " ");
 }
 
 function getCategoryName(categoryId){
