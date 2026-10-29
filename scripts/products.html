@@ -6,11 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             @import url(css/base.css);
+            @import url(css/components/product-card.css);
+            @import url(css/components/catalog-filter.css);
             @import url(css/pages/products.css);
-            #catalogBreadcrumb{font-size:15px}
-            .catalog-price-options{display:flex;flex-direction:column;gap:8px}
-            .catalog-price-option{display:flex;align-items:center;gap:8px;color:#383838;font-size:13px;cursor:pointer}
-            .catalog-price-option input{accent-color:#202020;cursor:pointer}
         </style>
         <script src="js/core/utils.js"></script>
         <script src="js/core/store.js"></script>
@@ -20,82 +18,64 @@
         <script src="components/chatbot.js"></script>
         <script src="components/product-card.js"></script>
         <script src="js/services/products.js"></script>
+        <script src="components/catalog-filter.js"></script>
         <script src="js/pages/products.js"></script>
     </head>
     <body>
         <div id="header"></div>
 
         <main class="container">
-            <div class="breadcrumb" id="catalogBreadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span>Nội thất cho không gian của bạn</span></div>
+            <div class="breadcrumb" id="catalogBreadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Sản phẩm</div>
             <section class="catalog-heading">
                 <div>
                     <p class="overline">Bộ sưu tập kiến trúc tuyển chọn</p>
                     <h1 class="headline-page">Nội thất cho không gian của bạn</h1>
                 </div>
-                <p class="catalog-note">Tuyển chọn</p>
+                <p class="catalog-note">Kiến trúc · Thủ công đương đại · Tinh chỉnh tỉ lệ</p>
             </section>
 
             <nav class="style-filter" id="styleFilter" aria-label="Lọc theo phong cách"></nav>
 
-            <div class="catalog-layout">
-                <aside class="catalog-filters card" aria-label="Bộ lọc sản phẩm">
-                    <div class="catalog-filter-heading">
-                        <h2 class="overline">Bộ lọc tuyển chọn</h2>
-                        <a class="btn-link" href="products.html">Thiết lập lại</a>
-                    </div>
-                    <form id="frmCatalogFilters" onsubmit="return applyCatalogFilters(event)">
-                        <div class="form-group">
-                            <label for="txtCatalogSearch">Tìm kiếm</label>
-                            <input class="input" type="search" id="txtCatalogSearch" placeholder="Tên sản phẩm, thương hiệu...">
-                        </div>
-                        <div class="catalog-filter-section">
-                            <h3 class="overline">Danh mục</h3>
-                            <select class="input" id="cboCatalogCategory">
-                                <option value="">Tất cả danh mục</option>
-                            </select>
-                        </div>
-                        <div class="catalog-filter-section">
-                            <h3 class="overline">Khoảng giá (₫)</h3>
-                            <div class="catalog-price-options">
-                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="all"> <span>Tất cả mức giá</span></label>
-                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="under-1000000"> <span>Dưới 1.000.000 ₫</span></label>
-                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="1000000-3000000"> <span>1.000.000 ₫ – 3.000.000 ₫</span></label>
-                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="3000001-6000000"> <span>Trên 3.000.000 ₫ – 6.000.000 ₫</span></label>
-                                <label class="catalog-price-option"><input type="radio" name="catalogPriceRange" value="over-6000000"> <span>Trên 6.000.000 ₫</span></label>
-                            </div>
-                        </div>
-                        <div class="catalog-filter-section">
-                            <h3 class="overline">Chất liệu</h3>
-                            <input class="input" type="search" id="txtCatalogMaterial" list="catalogMaterialOptions" placeholder="Tìm chất liệu...">
-                            <datalist id="catalogMaterialOptions"></datalist>
-                        </div>
-                        <div class="catalog-filter-section">
-                            <h3 class="overline">Màu sắc</h3>
-                            <input class="input" type="search" id="txtCatalogColor" list="catalogColorOptions" placeholder="Tìm màu sắc...">
-                            <datalist id="catalogColorOptions"></datalist>
-                        </div>
-                        <button class="btn btn-outline btn-full" type="submit">Áp dụng bộ lọc</button>
-                    </form>
+            <!-- Khung lọc dùng chung với trang Đồ cũ: components/catalog-filter.js -->
+            <div class="filter-layout">
+                <aside class="filter-sidebar" aria-label="Bộ lọc sản phẩm">
+                    <button type="button" class="btn btn-outline btn-filter-toggle" onclick="toggleFilterPanel()">
+                        <span class="material-symbols-outlined">tune</span> Bộ lọc
+                    </button>
+                    <div class="filter-panel card" id="filterPanel"></div>
                 </aside>
 
-                <section class="catalog-results" aria-label="Kết quả sản phẩm">
-                    <div class="catalog-toolbar">
-                        <p><strong id="productCount">0 sản phẩm</strong><span class="text-secondary"> · Kết quả tuyển chọn</span></p>
-                        <label class="catalog-sort">
-                            <span class="text-secondary">Sắp xếp theo:</span>
-                            <select class="input" id="cboProductSort" onchange="changeProductSort()">
-                                <option value="default">Mặc định</option>
-                                <option value="price-asc">Giá: thấp đến cao</option>
-                                <option value="price-desc">Giá: cao đến thấp</option>
-                                <option value="name-asc">Tên: A đến Z</option>
-                            </select>
-                        </label>
+                <section class="filter-content" aria-label="Kết quả sản phẩm">
+                    <div class="filter-toolbar card">
+                        <div class="toolbar-left">
+                            <span class="result-count" id="productCount">0 sản phẩm</span>
+                            <div class="active-tags" id="divActiveTags"></div>
+                        </div>
+                        <div class="toolbar-right">
+                            <div class="search-mini">
+                                <span class="material-symbols-outlined">search</span>
+                                <input type="search" id="txtFilterSearch" class="input"
+                                    placeholder="Tìm tên sản phẩm, thương hiệu, chất liệu..." oninput="onFilterSearchInput()">
+                            </div>
+                            <div class="sort-box">
+                                <label for="cboFilterSort">Sắp xếp:</label>
+                                <select id="cboFilterSort" class="input" onchange="onFilterChange()">
+                                    <option value="default">Nổi bật</option>
+                                    <option value="bestseller">Bán chạy</option>
+                                    <option value="rating">Đánh giá cao</option>
+                                    <option value="price-asc">Giá: thấp đến cao</option>
+                                    <option value="price-desc">Giá: cao đến thấp</option>
+                                    <option value="name-asc">Tên: A đến Z</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="grid-4 product-grid" id="productGrid" aria-live="polite"></div>
+                    <div class="grid-3 product-grid" id="productGrid" aria-live="polite"></div>
                     <section class="empty-suggestions hidden" id="emptySuggestions">
-                        <p class="overline">Gợi ý dành cho bạn</p>
+                        <p class="overline">Không tìm thấy sản phẩm phù hợp</p>
                         <h2 class="headline-section">Có thể bạn cũng thích</h2>
-                        <div class="grid-4" id="relatedProducts"></div>
+                        <p class="text-secondary">Hãy thử bỏ bớt bộ lọc hoặc đổi từ khóa. <button type="button" class="btn-link" onclick="resetFilterPanel()">Xem tất cả sản phẩm</button></p>
+                        <div class="grid-3 product-grid" id="relatedProducts"></div>
                     </section>
                     <nav class="catalog-pagination" id="catalogPagination" aria-label="Phân trang"></nav>
                 </section>

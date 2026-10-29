@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
         @import url(css/base.css);
+        @import url(css/components/product-card.css);
+        @import url(css/components/catalog-filter.css);
         @import url(css/pages/marketplace.css);
     </style>
     <script src="js/core/utils.js"></script>
@@ -17,6 +19,7 @@
     <script src="components/chatbot.js"></script>
     <script src="components/product-card.js"></script>
     <script src="js/services/products.js"></script>
+    <script src="components/catalog-filter.js"></script>
     <script src="js/pages/marketplace.js"></script>
 </head>
 
@@ -60,85 +63,17 @@
             </div>
         </div>
 
-        <!-- Bố cục lọc và danh sách sản phẩm -->
-        <div class="market-layout">
-            <!-- Cột lọc bên trái -->
-            <aside class="market-sidebar">
-                <div class="market-filter-card card">
-                    <div class="filter-header">
-                        <h3 class="filter-title"><span class="material-symbols-outlined">tune</span> Bộ lọc</h3>
-                        <button type="button" class="btn-link" onclick="resetFilters()">Đặt lại</button>
-                    </div>
-
-                    <!-- Lọc theo Tình trạng -->
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">Tình trạng đồ cũ</h4>
-                        <div class="filter-chips" id="filterGradeChips">
-                            <button type="button" class="chip active" onclick="setConditionFilter('')">Tất cả</button>
-                            <button type="button" class="chip" onclick="setConditionFilter('Like New')">Like New
-                                (>95%)</button>
-                            <button type="button" class="chip" onclick="setConditionFilter('Good')">Good
-                                (85-95%)</button>
-                            <button type="button" class="chip" onclick="setConditionFilter('Fair')">Fair (>70%)</button>
-                        </div>
-                    </div>
-
-                    <!-- Lọc theo Khoảng giá -->
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">Mức giá (VND)</h4>
-                        <div class="filter-radios">
-                            <label class="radio-label">
-                                <input type="radio" name="radPrice" value="" checked onchange="applyFilters()">
-                                <span>Tất cả mức giá</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="radPrice" value="0-1000000" onchange="applyFilters()">
-                                <span>Dưới 1.000.000 ₫</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="radPrice" value="1000000-3000000" onchange="applyFilters()">
-                                <span>1.000.000 ₫ – 3.000.000 ₫</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="radPrice" value="3000000-6000000" onchange="applyFilters()">
-                                <span>3.000.000 ₫ – 6.000.000 ₫</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="radPrice" value="6000000-999999999" onchange="applyFilters()">
-                                <span>Trên 6.000.000 ₫</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Lọc theo Danh mục -->
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">Danh mục sản phẩm</h4>
-                        <select id="slCategory" class="input" onchange="applyFilters()">
-                            <option value="">Tất cả danh mục</option>
-                        </select>
-                    </div>
-
-                    <!-- Lọc theo Thương hiệu -->
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">Thương hiệu</h4>
-                        <select id="slBrand" class="input" onchange="applyFilters()">
-                            <option value="">Tất cả thương hiệu</option>
-                        </select>
-                    </div>
-
-                    <!-- Lọc còn hàng -->
-                    <div class="filter-group" style="margin-bottom:0;">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="chkInStockOnly" onchange="applyFilters()">
-                            <span>Chỉ hiện sản phẩm còn hàng</span>
-                        </label>
-                    </div>
-                </div>
+        <!-- Bố cục lọc và danh sách sản phẩm (khung lọc dùng chung: components/catalog-filter.js) -->
+        <div class="filter-layout">
+            <aside class="filter-sidebar" aria-label="Bộ lọc đồ cũ">
+                <button type="button" class="btn btn-outline btn-filter-toggle" onclick="toggleFilterPanel()">
+                    <span class="material-symbols-outlined">tune</span> Bộ lọc
+                </button>
+                <div class="filter-panel card" id="filterPanel"></div>
             </aside>
 
-            <!-- Cột nội dung bên phải: Thanh công cụ + Lưới sản phẩm -->
-            <div class="market-content">
-                <div class="market-toolbar card">
+            <div class="filter-content">
+                <div class="filter-toolbar card">
                     <div class="toolbar-left">
                         <span class="result-count" id="lblResultCount">Đang tải sản phẩm...</span>
                         <div class="active-tags" id="divActiveTags"></div>
@@ -146,16 +81,17 @@
                     <div class="toolbar-right">
                         <div class="search-mini">
                             <span class="material-symbols-outlined">search</span>
-                            <input type="text" id="txtMarketSearch" class="input"
-                                placeholder="Tìm tên đồ cũ, chất liệu..." oninput="onSearchInput()">
+                            <input type="search" id="txtFilterSearch" class="input"
+                                placeholder="Tìm tên đồ cũ, thương hiệu, chất liệu..." oninput="onFilterSearchInput()">
                         </div>
                         <div class="sort-box">
-                            <label for="slSort">Sắp xếp:</label>
-                            <select id="slSort" class="input" onchange="applyFilters()">
+                            <label for="cboFilterSort">Sắp xếp:</label>
+                            <select id="cboFilterSort" class="input" onchange="onFilterChange()">
                                 <option value="newest">Mới cập nhật</option>
-                                <option value="price-asc">Giá: Thấp đến Cao</option>
-                                <option value="price-desc">Giá: Cao đến Thấp</option>
                                 <option value="grade">Tình trạng tốt nhất</option>
+                                <option value="price-asc">Giá: thấp đến cao</option>
+                                <option value="price-desc">Giá: cao đến thấp</option>
+                                <option value="name-asc">Tên: A đến Z</option>
                             </select>
                         </div>
                     </div>
@@ -173,8 +109,10 @@
                         Hãy thử điều chỉnh bộ lọc tình trạng, mức giá hoặc từ khóa tìm kiếm để khám phá thêm các món đồ
                         cũ khác.
                     </p>
-                    <button type="button" class="btn" onclick="resetFilters()">Xem tất cả đồ cũ</button>
+                    <button type="button" class="btn" onclick="resetFilterPanel()">Xem tất cả đồ cũ</button>
                 </div>
+
+                <nav class="catalog-pagination" id="catalogPagination" aria-label="Phân trang"></nav>
             </div>
         </div>
 

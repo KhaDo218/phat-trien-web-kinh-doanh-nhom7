@@ -14,8 +14,20 @@ function getActiveProducts(){
     return active;
 }
 
-function getProductsByStyle(styleId){
+// Sản phẩm mới đang bán (không tính đồ cũ). Trang Sản phẩm và các gợi ý chỉ dùng hàm này,
+// đồ cũ chỉ hiện ở trang Đồ cũ.
+function getNewProducts(){
     var products = getActiveProducts();
+    var kq = [];
+    for(var i = 0; i < products.length; i++){
+        if(products[i].product_type != "USED")
+            kq.push(products[i]);
+    }
+    return kq;
+}
+
+function getProductsByStyle(styleId){
+    var products = getNewProducts();
     var matched = [];
     for(var i = 0; i < products.length; i++){
         var styleIds = products[i].style_ids || [];
@@ -32,7 +44,7 @@ function getProductsByStyle(styleId){
 
 function getProductsByCategory(categoryId){
     var categories = getTable("categories");
-    var products = getActiveProducts();
+    var products = getNewProducts();
     var categoryIds = [categoryId];
     var category = findById("categories", categoryId);
 
@@ -56,38 +68,23 @@ function getProductsByCategory(categoryId){
 }
 
 function searchProducts(tuKhoa){
-    var keyword = normalizeProductSearchText(tuKhoa);
-    var products = getActiveProducts();
+    var keyword = (tuKhoa || "").trim().toLowerCase();
+    var products = getNewProducts();
     if(keyword == "")
         return products;
 
-    var matchedNames = [];
-    var matchedDetails = [];
-    var keywordPhrase = " " + keyword + " ";
+    var matched = [];
     for(var i = 0; i < products.length; i++){
-        var product = products[i];
-        var name = " " + normalizeProductSearchText(product.name) + " ";
-        if(name.indexOf(keywordPhrase) >= 0){
-            matchedNames.push(product);
-            continue;
-        }
-        var details = normalizeProductSearchText([
-            product.id,
-            product.brand,
-            product.description
-        ].join(" "));
-        if(details.indexOf(keyword) >= 0)
-            matchedDetails.push(product);
+        var haystack = [
+            products[i].id,
+            products[i].name,
+            products[i].brand,
+            products[i].description
+        ].join(" ").toLowerCase();
+        if(haystack.indexOf(keyword) >= 0)
+            matched.push(products[i]);
     }
-    return matchedNames.length > 0 ? matchedNames : matchedDetails;
-}
-
-function normalizeProductSearchText(value){
-    return String(value == null ? "" : value).toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/đ/g, "d")
-        .replace(/[^a-z0-9]+/g, " ")
-        .trim().replace(/\s+/g, " ");
+    return matched;
 }
 
 function getCategoryName(categoryId){
@@ -98,4 +95,35 @@ function getCategoryName(categoryId){
 function getStyleName(styleId){
     var style = findById("styles", styleId);
     return style ? style.name : "";
+}
+
+/* ----- Bán chạy, đánh giá (dùng cho sắp xếp và hiện số sao trên thẻ sản phẩm) ----- */
+
+// Số lượng đã bán của từng sản phẩm (đơn không bị hủy)
+function getSoldMap(){
+    var orders = getTable("orders");
+    var daBan = {};
+    for(var i = 0; i < orders.length; i++){
+        if(orders[i].status == "Cancelled") continue;
+        var items = orders[i].items || [];
+        for(var j = 0; j < items.length; j++)
+            daBan[items[j].product_id] = (daBan[items[j].product_id] || 0) + Number(items[j].quantity);
+    }
+    return daBan;
+}
+
+// Điểm đánh giá trung bình và số lượt đánh giá (bỏ đánh giá bị ẩn).
+// "score" cộng thêm 2 lượt ảo 4 sao để món 1 lượt 5 sao không xếp trên món 20 lượt 4,8 sao.
+function getRatingMap(){
+    var reviews = getTable("reviews");
+    var tong = {}, dem = {};
+    for(var i = 0; i < reviews.length; i++){
+        if(reviews[i].is_hidden) continue;
+        var id = reviews[i].product_id;
+        tong[id] = (tong[id] || 0) + Number(reviews[i].rating);
+        dem[id] = (dem[id] || 0) + 1;
+    }
+    var kq = {};
+    for(var pid in dem) kq[pid] = { avg: tong[pid] / dem[pid], count: dem[pid], score: (tong[pid] + 8) / (dem[pid] + 2) };
+    return kq;
 }
