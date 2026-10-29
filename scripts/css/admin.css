@@ -147,6 +147,11 @@
     font-size: 34px;
     line-height: 42px;
 }
+.stat-card .stat-note{
+    margin-top: 6px;
+    font-size: 12px;
+    color: #686868;
+}
 
 @media (max-width: 1024px){
     #sidebar{

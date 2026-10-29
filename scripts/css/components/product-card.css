@@ -129,9 +129,25 @@
     padding-top: 10px;
     border-top: 1px dashed #DADAD7;
 }
+.product-card-price-row{
+    flex-wrap: wrap;           /* thiếu chỗ thì nhãn kho xuống hàng, giá không bị bẻ */
+    gap: 6px 8px;
+}
+.product-prices{
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+}
 .product-prices .price{
     font-size: 16px;
     font-weight: 600;
+}
+.product-prices .price-old{
+    margin-left: 0;
+}
+.product-card-price-row .badge{
+    white-space: nowrap;
 }
 .product-card-actions{
     margin-top: 4px;

@@ -422,6 +422,8 @@ main.subpage .empty .empty-copy{
     white-space: nowrap;
 }
 .auth-page .auth-box{
+    width: 100%;
+    max-width: 640px;          /* Đăng nhập, Đăng ký, Quên mật khẩu cùng một độ rộng */
     box-shadow: 0 28px 70px rgba(43, 37, 29, 0.12);
 }
 

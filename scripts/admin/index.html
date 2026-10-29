@@ -28,15 +28,15 @@
                 </div>
 
                 <div class="grid-4 stat-grid">
-                    <div class="stat-card"><p class="overline">Doanh thu</p><p class="value" id="statRevenue">0 ₫</p></div>
-                    <div class="stat-card"><p class="overline">Số đơn hàng</p><p class="value" id="statOrders">0</p></div>
-                    <div class="stat-card"><p class="overline">Người dùng</p><p class="value" id="statUsers">0</p></div>
-                    <div class="stat-card"><p class="overline">Đơn chờ xử lý</p><p class="value" id="statPending">0</p></div>
+                    <div class="stat-card"><p class="overline">Doanh thu (đơn đã giao)</p><p class="value" id="statRevenue">0 ₫</p><p class="stat-note" id="statRevenueNote"></p></div>
+                    <div class="stat-card"><p class="overline">Số đơn hàng</p><p class="value" id="statOrders">0</p><p class="stat-note" id="statOrdersNote"></p></div>
+                    <div class="stat-card"><p class="overline">Người dùng</p><p class="value" id="statUsers">0</p><p class="stat-note" id="statUsersNote"></p></div>
+                    <div class="stat-card"><p class="overline">Đơn chờ xử lý</p><p class="value" id="statPending">0</p><p class="stat-note" id="statPendingNote"></p></div>
                 </div>
 
                 <div class="chart-row">
                     <div class="card chart-box">
-                        <p class="overline">Doanh thu 6 tháng gần nhất</p>
+                        <p class="overline">Doanh thu 6 tháng gần nhất (theo ngày giao thành công)</p>
                         <canvas id="chartRevenue"></canvas>
                     </div>
                     <div class="card chart-box">

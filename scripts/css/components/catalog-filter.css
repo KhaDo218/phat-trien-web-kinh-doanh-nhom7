@@ -87,6 +87,9 @@
     accent-color: #202020;
     flex-shrink: 0;
 }
+.radio-label span, .checkbox-label span{
+    white-space: nowrap;
+}
 .radio-label:hover, .checkbox-label:hover{
     color: #202020;
 }

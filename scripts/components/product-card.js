@@ -91,6 +91,8 @@ function createProductCard(product){
         var usedMeta = document.createElement("p");
         usedMeta.className = "product-used-meta";
         var timeText = product.usage_time ? "Đã dùng " + product.usage_time : "Đã qua sử dụng";
+        if(product.stock_quantity > 0)
+            timeText += " · Duy nhất 1 món";
         usedMeta.innerHTML = "<span class='material-symbols-outlined' style='font-size:14px;vertical-align:-2px;'>history</span> " + timeText;
         body.appendChild(usedMeta);
     }
@@ -114,22 +116,19 @@ function createProductCard(product){
     }
     priceRow.appendChild(priceBox);
 
-    // Nhãn tình trạng kho
+    // Nhãn tình trạng kho: Hết hàng / Đã bán, hoặc "Còn N" khi còn từ 5 món trở xuống.
+    // Đồ cũ còn hàng đã ghi "Duy nhất 1 món" ở dòng trên. Nhờ vậy giá và giá gốc luôn nằm gọn trên một hàng.
     var stockBadge = document.createElement("span");
     if(product.stock_quantity === 0){
         stockBadge.className = "badge badge-out";
-        stockBadge.textContent = "Hết hàng";
-        if(product.product_type === "USED")
-            stockBadge.textContent = "Đã bán";
-    } else {
+        stockBadge.textContent = product.product_type === "USED" ? "Đã bán" : "Hết hàng";
+        priceRow.appendChild(stockBadge);
+    } else if(product.product_type !== "USED" && product.stock_quantity <= 5){
+        // Như các shop thật: chỉ báo khi sắp hết, còn nhiều thì không cần nhãn
         stockBadge.className = "badge badge-stock";
-        if(product.product_type === "USED"){
-            stockBadge.textContent = "Duy nhất 1 món";
-        } else {
-            stockBadge.textContent = "Còn hàng";
-        }
+        stockBadge.textContent = "Còn " + product.stock_quantity;
+        priceRow.appendChild(stockBadge);
     }
-    priceRow.appendChild(stockBadge);
     body.appendChild(priceRow);
 
     // Nút hành động
