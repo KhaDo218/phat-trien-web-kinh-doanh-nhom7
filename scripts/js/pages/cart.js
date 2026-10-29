@@ -73,7 +73,9 @@ function showCart(){
     html += "<aside class='card cart-summary'>";
     html += "  <p class='overline'>Tóm tắt đơn hàng</p>";
     html += "  <div class='sum-row'><span>Tạm tính</span><span>" + formatVND(getCartTotal()) + "</span></div>";
-    html += "  <div class='sum-row sum-total'><span>Tổng (chưa gồm phí vận chuyển)</span><span>" + formatVND(getCartTotal()) + "</span></div>";
+    html += "  <div class='sum-row'><span>Phí giao hàng</span><span class='sum-muted'>Tính ở bước thanh toán</span></div>";
+    html += "  <div class='sum-row sum-total'><span>Tạm tổng</span><span>" + formatVND(getCartTotal()) + "</span></div>";
+    html += getCartShippingNote(getCart(), getCartTotal());
     if(hasOutOfStockItem())
         html += "<p class='error-text'>Giỏ hàng có sản phẩm đã hết hàng, vui lòng xóa trước khi thanh toán.</p>";
     html += "  <input class='btn btn-full' type='button' value='Tiến hành thanh toán' onclick='goCheckout()'>";
@@ -81,6 +83,35 @@ function showCart(){
     html += "</div>";
 
     box.innerHTML = html;
+}
+
+// Gợi ý giao hàng / thanh toán dưới phần tổng (lấy mức miễn phí từ bảng shipping_methods)
+function getCartShippingNote(items, tamTinh){
+    var methods = getTable("shipping_methods");
+    var coDoLon = hasBulkyItem(items);
+    var mienPhiTu = 0;
+    for(var i = 0; i < methods.length; i++){
+        if(coDoLon && methods[i].kind == "BULKY") mienPhiTu = methods[i].free_from;
+        if(!coDoLon && methods[i].kind == "PARCEL" && methods[i].free_from) mienPhiTu = methods[i].free_from;
+    }
+    var html = "<ul class='sum-notes'>";
+    if(coDoLon){
+        html += "<li>Giỏ có nội thất cỡ lớn: giao bằng xe tải và lắp đặt tận nơi.</li>";
+        if(tamTinh >= mienPhiTu)
+            html += "<li>Đơn đủ điều kiện <b>miễn phí giao và lắp đặt</b> nội thành TP. HCM, Hà Nội, Đà Nẵng.</li>";
+        else
+            html += "<li>Miễn phí giao và lắp đặt nội thành cho đơn từ " + formatVND(mienPhiTu) + ".</li>";
+    }
+    else{
+        if(tamTinh >= mienPhiTu)
+            html += "<li>Đơn đủ điều kiện <b>miễn phí giao tiêu chuẩn</b> toàn quốc.</li>";
+        else
+            html += "<li>Mua thêm " + formatVND(mienPhiTu - tamTinh) + " để được miễn phí giao tiêu chuẩn.</li>";
+    }
+    if(!canUseCOD(tamTinh))
+        html += "<li>Đơn trên " + formatVND(COD_LIMIT) + " không nhận COD: thanh toán trước hoặc đặt cọc 30%.</li>";
+    html += "</ul>";
+    return html;
 }
 
 // Bấm nút - hoặc +

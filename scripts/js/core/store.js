@@ -16,7 +16,7 @@
      resetData()                 xóa hết dữ liệu localStorage, nạp lại từ JSON
    ===================================================================== */
 
-var DATA_VERSION = "12";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
+var DATA_VERSION = "13";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
 var DATA_FILES = ["products", "used_products", "categories", "styles", "rooms", "room_hotspots",
                   "users", "roles", "shipping_methods", "coupons", "chatbot_faqs",
                   "orders", "reviews"];
@@ -182,17 +182,37 @@ function getTable(ten){
 }
 
 function saveTable(ten, mang){
-    localStorage.setItem("rc_" + ten, JSON.stringify(mang));
+    try{
+        localStorage.setItem("rc_" + ten, JSON.stringify(mang));
+    }
+    catch(e){
+        // Trình duyệt chỉ cho mỗi trang khoảng 5MB localStorage
+        alert("Bộ nhớ trình duyệt đã đầy, chưa lưu được dữ liệu \"" + ten + "\". Hãy dùng nút Xuất JSON để lưu lại thay đổi.");
+    }
+    delete bangDaDoc[ten];
 }
 
+// findById được gọi rất nhiều lần (vd. trang admin đơn hàng: mỗi món trong 150 đơn).
+// Nếu lần nào cũng JSON.parse cả bảng products (~2MB) thì rất chậm, nên đọc 1 lần rồi
+// lập sẵn mục lục id -> dòng. Gọi saveTable() là mục lục của bảng đó được làm mới.
+var bangDaDoc = {};
+
 function findById(ten, id){
-    var mang = getTable(ten);
-    for(var i = 0; i < mang.length; i++){
-        if(mang[i].id == id)
-            return mang[i];
+    if(bangDaDoc[ten] == null){
+        var mang = getTable(ten);
+        var mucLuc = {};
+        for(var i = 0; i < mang.length; i++)
+            mucLuc[String(mang[i].id)] = mang[i];
+        bangDaDoc[ten] = mucLuc;
     }
-    return null;
+    var dong = bangDaDoc[ten][String(id)];
+    return dong == null ? null : dong;
 }
+
+// Tab khác đổi dữ liệu thì bỏ mục lục cũ
+window.addEventListener("storage", function(){
+    bangDaDoc = {};
+});
 
 function getNextId(ten){
     var mang = getTable(ten);

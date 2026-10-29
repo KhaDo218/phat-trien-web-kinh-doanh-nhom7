@@ -83,6 +83,16 @@ body > #header.home-header-visible{
     display: flex;
     gap: 16px;
 }
+/* nút chính trên nền video tối: nền trắng chữ đen cho nổi bật */
+#hero .hero-buttons .btn:not(.btn-outline){
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #202020;
+}
+#hero .hero-buttons .btn:not(.btn-outline):hover{
+    background: #EEEEEC;
+    border-color: #EEEEEC;
+}
 #hero .btn-outline{
     color: #FFFFFF;
     border-color: #FFFFFF;

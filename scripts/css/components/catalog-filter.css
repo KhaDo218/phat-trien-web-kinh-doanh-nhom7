@@ -13,10 +13,6 @@
 .filter-sidebar{
     width: 280px;
     flex-shrink: 0;
-    position: sticky;
-    top: 80px;
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
 }
 .filter-panel{
     padding: 24px;

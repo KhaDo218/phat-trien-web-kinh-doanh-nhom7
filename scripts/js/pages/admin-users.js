@@ -21,6 +21,14 @@ function onSearchChange(){
     }, 200);
 }
 
+var userPage = 1;
+
+function goUserPage(trang){
+    userPage = trang;
+    renderTable();
+    window.scrollTo(0, 0);
+}
+
 function renderTable(){
     var users = getTable("users");
     var roles = getTable("roles");
@@ -85,8 +93,10 @@ function renderTable(){
         return;
     }
     emptyDiv.classList.add("hidden");
+    userPage = fixAdminPage(userPage, filtered.length);
+    renderAdminPager("pgUsers", userPage, filtered.length, "goUserPage");
 
-    for(var idx = 0; idx < filtered.length; idx++){
+    for(var idx = (userPage - 1) * ADMIN_PAGE_SIZE; idx < Math.min(userPage * ADMIN_PAGE_SIZE, filtered.length); idx++){
         var user = filtered[idx];
         var tr = document.createElement("tr");
 

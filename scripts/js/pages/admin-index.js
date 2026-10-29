@@ -14,8 +14,9 @@ function initPage(){
     renderAdminSidebar("dashboard");
     showStats();
     showTopProducts();
+    showLowStock();
     if(typeof Chart == "undefined"){
-        alert("Không tải được thư viện Chart.js (cần có mạng Internet) nên chưa vẽ được biểu đồ!");
+        alert("Không tải được thư viện Chart.js (scripts/libs/chart.umd.min.js) nên chưa vẽ được biểu đồ!");
         return;
     }
     drawRevenueChart();
@@ -148,7 +149,13 @@ function drawRevenueChart(){
             labels: nhan,
             datasets: [{ label: "Doanh thu (VND)", data: giaTri, backgroundColor: "#202020" }]
         },
-        options: { plugins: { legend: { display: false } } }
+        options: {
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(ctx){ return formatVND(ctx.parsed.y); } } }
+            },
+            scales: { y: { ticks: { callback: function(giaTri){ return (giaTri / 1000000) + " tr"; } } } }
+        }
     });
 }
 
@@ -174,4 +181,30 @@ function drawStatusChart(){
             datasets: [{ data: giaTri, backgroundColor: ["#202020", "#686868", "#DADAD7", "#2C6B3F", "#8C3B2D"] }]
         }
     });
+}
+
+// ---------- Sắp hết hàng: sản phẩm mới đang bán còn từ 1 đến 3 món, món bán chạy xếp trước ----------
+function showLowStock(){
+    var products = getTable("products");
+    var daBan = getSoldMap();
+    var ds = [];
+    for(var i = 0; i < products.length; i++){
+        var p = products[i];
+        if(p.product_type == "USED" || p.is_active == false)
+            continue;
+        if(p.stock_quantity > 0 && p.stock_quantity <= 3)
+            ds.push(p);
+    }
+    ds.sort(function(a, b){
+        return (daBan[b.id] || 0) - (daBan[a.id] || 0) || a.stock_quantity - b.stock_quantity;
+    });
+    document.getElementById("lblLowStock").innerHTML = "(" + ds.length + " sản phẩm còn ≤ 3 món)";
+    var html = "";
+    for(var j = 0; j < ds.length && j < 8; j++){
+        var anh = (ds[j].images && ds[j].images.length > 0) ? "<img src='" + asset(ds[j].images[0]) + "' alt=''>" : "";
+        html += "<tr><td>" + anh + "</td><td>" + safeText(ds[j].name) + "</td><td><span class='badge badge-out'>Còn " + ds[j].stock_quantity + "</span></td><td>" + (daBan[ds[j].id] || 0) + "</td></tr>";
+    }
+    if(html == "")
+        html = "<tr><td colspan='4' class='empty'>Không có sản phẩm nào sắp hết hàng.</td></tr>";
+    document.getElementById("tbLowStock").innerHTML = html;
 }

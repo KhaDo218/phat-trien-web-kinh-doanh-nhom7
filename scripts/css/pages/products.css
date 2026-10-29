@@ -55,7 +55,7 @@
     position:relative;
     overflow:hidden;
     background:#EEEEEC;
-    aspect-ratio:4/3;
+    aspect-ratio:1/1;
 }
 .product-card-img>a,.product-card-img img{
     display:block;

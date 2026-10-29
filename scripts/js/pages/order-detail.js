@@ -59,8 +59,8 @@ function showOrder(){
     html += "<div>";
     for(var i = 0; i < o.items.length; i++){
         var p = findById("products", o.items[i].product_id);
-        var ten = o.items[i].product_id;
-        var anh = "";
+        var ten = o.items[i].product_name || o.items[i].product_id;
+        var anh = o.items[i].product_image ? asset(o.items[i].product_image) : "";
         if(p != null){
             ten = p.name;
             if(p.images != null && p.images.length > 0)
@@ -135,7 +135,7 @@ function buildReviewHtml(o){
     html += "<h2 class='headline-section'>Đánh giá sản phẩm</h2>";
     for(var i = 0; i < o.items.length; i++){
         var p = findById("products", o.items[i].product_id);
-        var ten = (p == null) ? o.items[i].product_id : p.name;
+        var ten = (p == null) ? (o.items[i].product_name || o.items[i].product_id) : p.name;
         html += "<div class='card review-box'>";
         html += "  <p class='title-product'>" + safeText(ten) + "</p>";
         if(hasReviewed(userId, o.items[i].product_id)){

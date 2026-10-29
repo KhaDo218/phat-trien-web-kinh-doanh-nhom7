@@ -150,6 +150,16 @@ function renderAdminProductPagination(page, pageCount){
     if(pageCount <= 1)
         return;
     for(var i = 1; i <= pageCount; i++){
+        // 48 trang thì chỉ hiện trang đầu, trang cuối và 2 trang quanh trang đang xem
+        if(i != 1 && i != pageCount && Math.abs(i - page) > 2){
+            if(i == page - 3 || i == page + 3){
+                var dots = document.createElement("span");
+                dots.className = "catalog-page-dots";
+                dots.textContent = "...";
+                nav.appendChild(dots);
+            }
+            continue;
+        }
         var button = document.createElement("button");
         button.className = "catalog-page-link" + (i == page ? " active" : "");
         button.type = "button";

@@ -27,7 +27,8 @@ function renderHeader(mucDangMo){
     html += "      <input type='text' id='txtSearch' placeholder='Tìm kiếm sản phẩm, không gian sống...' onkeydown='searchKeyDown(event)'>";
     html += "    </div>";
     html += "    <div class='icons'>";
-    html += "      <a href='" + goc + "wishlist.html' title='Yêu thích'><span class='material-symbols-outlined'>favorite</span></a>";
+    html += "      <a href='" + goc + "wishlist.html' title='Yêu thích'><span class='material-symbols-outlined'>favorite</span>";
+    html += "        <span class='cart-count' id='wishCount'>0</span></a>";
     if(user == null){
         html += "  <a href='" + goc + "login.html' title='Đăng nhập'><span class='material-symbols-outlined'>person</span></a>";
     }
@@ -57,6 +58,7 @@ function renderHeader(mucDangMo){
     document.getElementById("header").innerHTML = html;
     document.getElementById("txtSearch").value = getParam("q");
     updateCartCount();
+    updateWishCount();
 }
 
 // Nhấn Enter trong ô tìm kiếm -> sang trang Sản phẩm kèm từ khóa
@@ -81,6 +83,26 @@ function updateCartCount(){
             tong = tong + Number(carts[maGio][i].quantity);
     }
     var o = document.getElementById("cartCount");
+    if(o == null)
+        return;
+    o.innerHTML = tong;
+    if(tong == 0)
+        o.style.display = "none";
+    else
+        o.style.display = "block";
+}
+
+// Số món trong danh sách Yêu thích (hiện trên icon trái tim)
+function updateWishCount(){
+    var session = getSession();
+    var ma = "guest";
+    if(session != null)
+        ma = session.user_id;
+    var wishlists = getObject("wishlists");
+    var tong = 0;
+    if(wishlists != null && wishlists[ma] != null)
+        tong = wishlists[ma].length;
+    var o = document.getElementById("wishCount");
     if(o == null)
         return;
     o.innerHTML = tong;

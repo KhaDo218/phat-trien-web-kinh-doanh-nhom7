@@ -118,6 +118,22 @@
 .cart-summary .btn{
     margin-top: 8px;
 }
+.sum-muted{
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+}
+.sum-notes{
+    margin: 0 0 16px;
+    padding: 12px 0 0 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+}
+.sum-notes b{
+    color: #D4B67C;
+    font-weight: 600;
+}
 .cart-summary .error-text{
     margin: 12px 0;
 }

@@ -4,7 +4,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 01",
     "image_url": "assets/rooms/bohemian/room-bohemian-4168521-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Bàn ăn, sofa, đồ trang trí và cây xanh phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4168521-01.jpg",
       "assets/rooms/bohemian/room-bohemian-4168521-02.jpg",
@@ -36,7 +36,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 02",
     "image_url": "assets/rooms/bohemian/room-bohemian-4177683-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Bàn trà, kệ tivi, ghế thư giãn và gối tựa phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4177683-01.jpg"
     ],
@@ -67,7 +67,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 03",
     "image_url": "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Tủ kệ, ghế thư giãn, sofa và gối tựa phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4189649-01.jpg",
       "assets/rooms/bohemian/room-bohemian-4189649-02.jpg",
@@ -113,7 +113,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 04",
     "image_url": "assets/rooms/bohemian/room-bohemian-4192274-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Bàn trà, kệ tivi, tủ kệ và gối tựa phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4192274-01.jpg",
       "assets/rooms/bohemian/room-bohemian-4192274-02.jpg",
@@ -164,7 +164,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 05",
     "image_url": "assets/rooms/bohemian/room-bohemian-4206259-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Ghế thư giãn, tủ kệ, rèm cửa và tranh treo tường phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4206259-01.jpg",
       "assets/rooms/bohemian/room-bohemian-4206259-02.jpg"
@@ -198,7 +198,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 06",
     "image_url": "assets/rooms/bohemian/room-bohemian-4211866-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Sofa, bàn trà, ghế thư giãn và rèm cửa phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4211866-01.jpg",
       "assets/rooms/bohemian/room-bohemian-4211866-02.jpg"
@@ -241,7 +241,7 @@
     "style_id": 1,
     "name": "Phòng Bohemian 07",
     "image_url": "assets/rooms/bohemian/room-bohemian-4236536-01.jpg",
-    "description": "Phóng khoáng, nhiều họa tiết và màu đất ấm; dùng nhiều chất liệu tự nhiên như mây, đay, gỗ và cây xanh.",
+    "description": "Bàn trà, ghế thư giãn, sofa và gối tựa phối sẵn theo tinh thần Bohemian: phóng khoáng, nhiều họa tiết và màu đất ấm.",
     "images": [
       "assets/rooms/bohemian/room-bohemian-4236536-01.jpg",
       "assets/rooms/bohemian/room-bohemian-4236536-02.jpg",
@@ -267,7 +267,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 01",
     "image_url": "assets/rooms/coastal/room-coastal-4173476-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Bàn ăn, tủ kệ, cây xanh và đồ trang trí phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4173476-01.jpg",
       "assets/rooms/coastal/room-coastal-4173476-02.jpg",
@@ -316,7 +316,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 02",
     "image_url": "assets/rooms/coastal/room-coastal-4178680-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Bàn ăn, cây xanh, đồ trang trí và tranh treo tường phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4178680-01.jpg",
       "assets/rooms/coastal/room-coastal-4178680-02.jpg"
@@ -341,7 +341,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 03",
     "image_url": "assets/rooms/coastal/room-coastal-4181734-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Giường, ghế thư giãn, sofa và tranh treo tường phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4181734-01.jpg",
       "assets/rooms/coastal/room-coastal-4181734-02.jpg"
@@ -375,7 +375,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 04",
     "image_url": "assets/rooms/coastal/room-coastal-4192177-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Ghế thư giãn, bàn làm việc, bàn trà và cây xanh phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4192177-01.jpg",
       "assets/rooms/coastal/room-coastal-4192177-02.jpg",
@@ -412,7 +412,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 05",
     "image_url": "assets/rooms/coastal/room-coastal-4195190-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Ghế thư giãn, thảm, đồ trang trí và đèn phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4195190-01.jpg",
       "assets/rooms/coastal/room-coastal-4195190-02.jpg"
@@ -441,7 +441,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 06",
     "image_url": "assets/rooms/coastal/room-coastal-4206259-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Ghế thư giãn, tủ kệ, rèm cửa và tranh treo tường phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4206259-01.jpg",
       "assets/rooms/coastal/room-coastal-4206259-02.jpg"
@@ -475,7 +475,7 @@
     "style_id": 2,
     "name": "Phòng Coastal 07",
     "image_url": "assets/rooms/coastal/room-coastal-4220292-01.jpg",
-    "description": "Cảm hứng từ biển với tông trắng, xanh dương và be cát; chất liệu nhẹ như lanh, mây và gỗ sáng màu.",
+    "description": "Bàn ăn, kệ tivi, ghế thư giãn và đồ trang trí phối sẵn theo tinh thần Coastal: cảm hứng từ biển với tông trắng, xanh dương và be cát.",
     "images": [
       "assets/rooms/coastal/room-coastal-4220292-01.jpg",
       "assets/rooms/coastal/room-coastal-4220292-02.jpg",
@@ -509,7 +509,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 01",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4181982-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Tủ kệ, đồ trang trí, cây xanh và tranh treo tường phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4181982-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4181982-02.jpg",
@@ -536,7 +536,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 02",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Kệ tivi, tủ kệ, ghế thư giãn và tranh treo tường phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4182339-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4182339-02.jpg",
@@ -576,7 +576,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 03",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Ghế thư giãn, bàn trà, bàn ăn và cây xanh phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4189945-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4189945-02.jpg",
@@ -622,7 +622,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 04",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Tủ kệ, bàn trà, ghế thư giãn và cây xanh phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4198168-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4198168-02.jpg"
@@ -659,7 +659,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 05",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4209217-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Bàn ăn, bàn trà, gối tựa và thảm phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4209217-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4209217-02.jpg"
@@ -723,7 +723,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 06",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4213376-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Bàn trà, ghế thư giãn, sofa và gối tựa phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4213376-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4213376-02.jpg",
@@ -768,7 +768,7 @@
     "style_id": 3,
     "name": "Phòng Farmhouse 07",
     "image_url": "assets/rooms/farmhouse/room-farmhouse-4221366-01.jpg",
-    "description": "Mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
+    "description": "Bàn trà, ghế thư giãn, kệ tivi và thảm phối sẵn theo tinh thần Farmhouse: mộc mạc kiểu nhà vườn: gỗ thô, tông trung tính ấm và các chi tiết cổ điển gần gũi.",
     "images": [
       "assets/rooms/farmhouse/room-farmhouse-4221366-01.jpg",
       "assets/rooms/farmhouse/room-farmhouse-4221366-02.jpg"
@@ -802,7 +802,7 @@
     "style_id": 4,
     "name": "Phòng Glam 01",
     "image_url": "assets/rooms/glam/room-glam-4190768-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Bàn trà, bàn ăn, giường và tranh treo tường phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4190768-01.jpg",
       "assets/rooms/glam/room-glam-4190768-02.jpg",
@@ -853,7 +853,7 @@
     "style_id": 4,
     "name": "Phòng Glam 02",
     "image_url": "assets/rooms/glam/room-glam-4192140-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Bàn ăn, đèn, cây xanh và đồ trang trí phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4192140-01.jpg",
       "assets/rooms/glam/room-glam-4192140-02.jpg"
@@ -872,7 +872,7 @@
     "style_id": 4,
     "name": "Phòng Glam 03",
     "image_url": "assets/rooms/glam/room-glam-4192177-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Ghế thư giãn, bàn làm việc, bàn trà và cây xanh phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4192177-01.jpg",
       "assets/rooms/glam/room-glam-4192177-02.jpg",
@@ -909,7 +909,7 @@
     "style_id": 4,
     "name": "Phòng Glam 04",
     "image_url": "assets/rooms/glam/room-glam-4193251-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Tủ kệ, kệ tivi, đồ trang trí và cây xanh phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4193251-01.jpg",
       "assets/rooms/glam/room-glam-4193251-02.jpg",
@@ -943,7 +943,7 @@
     "style_id": 4,
     "name": "Phòng Glam 05",
     "image_url": "assets/rooms/glam/room-glam-4194702-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Giường, đèn, thảm và tranh treo tường phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4194702-01.jpg",
       "assets/rooms/glam/room-glam-4194702-02.jpg",
@@ -964,7 +964,7 @@
     "style_id": 4,
     "name": "Phòng Glam 06",
     "image_url": "assets/rooms/glam/room-glam-4195020-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Bàn trà, ghế thư giãn, sofa và đồ trang trí phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4195020-01.jpg",
       "assets/rooms/glam/room-glam-4195020-02.jpg",
@@ -999,7 +999,7 @@
     "style_id": 4,
     "name": "Phòng Glam 07",
     "image_url": "assets/rooms/glam/room-glam-4256121-01.jpg",
-    "description": "Sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
+    "description": "Bàn ăn, ghế thư giãn, bàn trà và thảm phối sẵn theo tinh thần Glam: sang trọng, nổi bật với nhung, kim loại vàng đồng, gương và đá cẩm thạch.",
     "images": [
       "assets/rooms/glam/room-glam-4256121-01.jpg",
       "assets/rooms/glam/room-glam-4256121-02.jpg",
@@ -1050,7 +1050,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 01",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4224427-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Giường, ghế thư giãn, thảm và gối tựa phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4224427-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4224427-02.jpg",
@@ -1081,7 +1081,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 02",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4225046-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Tủ kệ và tủ kệ phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4225046-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4225046-02.jpg"
@@ -1096,7 +1096,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 03",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Ghế thư giãn, tủ kệ, bàn ăn và tranh treo tường phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4226979-02.jpg",
@@ -1133,7 +1133,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 04",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Ghế thư giãn, bàn trà, bàn làm việc và đèn phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4229562-02.jpg",
@@ -1177,7 +1177,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 05",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4234469-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Bàn ăn, tủ kệ, đèn và tranh treo tường phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4234469-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4234469-02.jpg",
@@ -1200,7 +1200,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 06",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Bàn trà, ghế thư giãn, sofa và gối tựa phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4236536-02.jpg",
@@ -1226,7 +1226,7 @@
     "style_id": 5,
     "name": "Phòng Mid-century Modern 07",
     "image_url": "assets/rooms/mid-century-modern/room-mid-century-modern-4236587-01.jpg",
-    "description": "Phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
+    "description": "Kệ tivi, bàn ăn, ghế thư giãn và đồ trang trí phối sẵn theo tinh thần Mid-century Modern: phong cách giữa thế kỷ 20: đường nét gọn, chân côn, gỗ óc chó và các mảng màu nhấn.",
     "images": [
       "assets/rooms/mid-century-modern/room-mid-century-modern-4236587-01.jpg",
       "assets/rooms/mid-century-modern/room-mid-century-modern-4236587-02.jpg"
@@ -1257,7 +1257,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 01",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Bàn trà, bàn ăn, sofa và đồ trang trí phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4225368-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4225368-02.jpg"
@@ -1308,7 +1308,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 02",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4225398-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Tủ kệ, sofa, cây xanh và đèn phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4225398-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4225398-02.jpg"
@@ -1340,7 +1340,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 03",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4226900-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Tủ kệ, ghế thư giãn, giường và tranh treo tường phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4226900-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4226900-02.jpg",
@@ -1367,7 +1367,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 04",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4232417-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Tủ kệ, giường, sofa và cây xanh phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4232417-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4232417-02.jpg"
@@ -1403,7 +1403,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 05",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4233177-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Ghế thư giãn, bàn trà, giường và đèn phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4233177-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4233177-02.jpg",
@@ -1429,7 +1429,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 06",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Giường, ghế thư giãn, bàn trà và cây xanh phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4237170-02.jpg"
@@ -1468,7 +1468,7 @@
     "style_id": 6,
     "name": "Phòng Scandinavian 07",
     "image_url": "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
-    "description": "Bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
+    "description": "Bàn ăn, tranh treo tường, đồ trang trí và gối tựa phối sẵn theo tinh thần Scandinavian: bắc Âu tối giản, sáng sủa: gỗ sáng màu, tông trắng xám và đề cao công năng.",
     "images": [
       "assets/rooms/scandinavian/room-scandinavian-4246550-01.jpg",
       "assets/rooms/scandinavian/room-scandinavian-4246550-02.jpg",
@@ -1520,7 +1520,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 01",
     "image_url": "assets/rooms/traditional/room-traditional-4223198-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Ghế thư giãn, sofa, tranh treo tường và đồ trang trí phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4223198-01.jpg",
       "assets/rooms/traditional/room-traditional-4223198-02.jpg",
@@ -1560,7 +1560,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 02",
     "image_url": "assets/rooms/traditional/room-traditional-4223911-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Tủ kệ, đồ trang trí, cây xanh và đèn phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4223911-01.jpg",
       "assets/rooms/traditional/room-traditional-4223911-02.jpg",
@@ -1580,7 +1580,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 03",
     "image_url": "assets/rooms/traditional/room-traditional-4228482-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Ghế thư giãn, kệ tivi, bàn trà và thảm phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4228482-01.jpg",
       "assets/rooms/traditional/room-traditional-4228482-02.jpg"
@@ -1608,7 +1608,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 04",
     "image_url": "assets/rooms/traditional/room-traditional-4233187-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Bàn trà, ghế thư giãn, giường và đồ trang trí phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4233187-01.jpg",
       "assets/rooms/traditional/room-traditional-4233187-02.jpg",
@@ -1637,7 +1637,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 05",
     "image_url": "assets/rooms/traditional/room-traditional-4240421-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Giường, bàn trà, ghế thư giãn và gối tựa phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4240421-01.jpg",
       "assets/rooms/traditional/room-traditional-4240421-02.jpg",
@@ -1676,7 +1676,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 06",
     "image_url": "assets/rooms/traditional/room-traditional-4242936-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Ghế thư giãn, bàn trà, sofa và cây xanh phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4242936-01.jpg",
       "assets/rooms/traditional/room-traditional-4242936-02.jpg",
@@ -1723,7 +1723,7 @@
     "style_id": 7,
     "name": "Phòng Traditional 07",
     "image_url": "assets/rooms/traditional/room-traditional-4257341-01.jpg",
-    "description": "Cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
+    "description": "Bàn trà, ghế thư giãn, sofa và cây xanh phối sẵn theo tinh thần Traditional: cổ điển và cân đối: gỗ tối màu, hoa văn tinh tế, vải bọc và chi tiết chạm khắc.",
     "images": [
       "assets/rooms/traditional/room-traditional-4257341-01.jpg",
       "assets/rooms/traditional/room-traditional-4257341-02.jpg",

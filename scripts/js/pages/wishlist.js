@@ -62,5 +62,6 @@ function removeWishlistProduct(productId){
     }
     wishlists[user.id] = updated;
     saveObject("wishlists", wishlists);
+    updateWishCount();
     renderWishlist();
 }

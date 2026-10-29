@@ -182,4 +182,5 @@ function toggleWishlistProduct(productId, btnElem){
         }
     }
     saveObject("wishlists", wishlists);
+    if(typeof updateWishCount == "function") updateWishCount();
 }

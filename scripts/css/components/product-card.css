@@ -135,8 +135,12 @@
 }
 .product-prices{
     display: flex;
+    flex-wrap: wrap;           /* thẻ hẹp (2 cột trên điện thoại): giá cũ xuống dòng, không tràn ngang */
     align-items: baseline;
-    gap: 8px;
+    gap: 0 8px;
+    min-width: 0;
+}
+.product-prices span{
     white-space: nowrap;
 }
 .product-prices .price{
@@ -151,4 +155,15 @@
 }
 .product-card-actions{
     margin-top: 4px;
+}
+
+/* Ảnh sản phẩm: hiện trọn món đồ trên nền trắng (không cắt mất chân bàn, mép ghế...).
+   Viết selector dài hơn để thắng các luật object-fit: cover riêng của từng trang. */
+.product-card .product-card-img{
+    background: #FFFFFF;
+    border-bottom: 1px solid #EEEEEC;
+}
+.product-card .product-card-img > a > img{
+    object-fit: contain;
+    padding: 10px;
 }

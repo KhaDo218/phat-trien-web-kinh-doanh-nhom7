@@ -139,7 +139,10 @@ function createOrder(thongTin){
     for(var i = 0; i < cart.length; i++){
         for(var j = 0; j < products.length; j++){
             if(products[j].id == cart[i].product_id){
-                items.push({ product_id: products[j].id, quantity: cart[i].quantity, unit_price: products[j].price });
+                // lưu kèm tên, ảnh lúc mua: sau này sản phẩm bị đổi tên / xóa thì đơn cũ vẫn hiện đúng
+                items.push({ product_id: products[j].id, product_name: products[j].name,
+                             product_image: (products[j].images && products[j].images.length > 0) ? products[j].images[0] : null,
+                             quantity: cart[i].quantity, unit_price: products[j].price });
                 tamTinh = tamTinh + products[j].price * cart[i].quantity;
                 products[j].stock_quantity = products[j].stock_quantity - cart[i].quantity;   // trừ tồn kho
             }

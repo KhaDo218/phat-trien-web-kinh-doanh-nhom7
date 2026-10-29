@@ -10,12 +10,13 @@
             @import url(../css/pages/admin-index.css);
         </style>
         <!-- Biểu đồ: Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+        <script src="../libs/chart.umd.min.js"></script>
         <script src="../js/core/utils.js"></script>
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
         <script src="../js/services/orders.js"></script>
+        <script src="../js/services/products.js"></script>
         <script src="../js/pages/admin-index.js"></script>
     </head>
     <body>
@@ -51,6 +52,14 @@
                         <tr><th>Sản phẩm</th><th>Tên</th><th>Đã bán</th><th>Doanh thu</th></tr>
                     </thead>
                     <tbody id="tbTopProducts"></tbody>
+                </table>
+
+                <h2 class="headline-section top-title">Sắp hết hàng <span class="text-secondary low-note" id="lblLowStock"></span></h2>
+                <table class="table">
+                    <thead>
+                        <tr><th>Sản phẩm</th><th>Tên</th><th>Còn lại</th><th>Đã bán (6 tháng)</th></tr>
+                    </thead>
+                    <tbody id="tbLowStock"></tbody>
                 </table>
 
             </main>

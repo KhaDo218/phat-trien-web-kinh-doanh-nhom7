@@ -45,3 +45,21 @@
 .table-wrap{
     overflow-x: auto;
 }
+
+/* Mã đơn bấm được để xem chi tiết */
+.order-id-link{
+    font-size: 14px;
+    letter-spacing: 0;
+    text-decoration: underline;
+}
+.order-info .overline{
+    margin: 14px 0 4px;
+}
+.order-info .sum-row{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #EEEEEC;
+    font-size: 14px;
+}

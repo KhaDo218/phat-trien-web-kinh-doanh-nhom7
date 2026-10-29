@@ -49,7 +49,7 @@
 .admin-product-actions{white-space:nowrap}
 .admin-product-actions .btn-link{margin-right:12px}
 .admin-pagination{margin:20px 0}
-.admin-pagination .catalog-page-link:disabled{opacity:.7}
+.admin-pagination .catalog-page-link:disabled{opacity:1;cursor:default}
 
 @media(max-width:760px){
     .admin-product-toolbar{align-items:stretch;flex-direction:column}

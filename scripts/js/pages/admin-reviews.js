@@ -113,6 +113,14 @@ function onSearchChange(){
     }, 200);
 }
 
+var reviewPage = 1;
+
+function goReviewPage(trang){
+    reviewPage = trang;
+    renderTable();
+    window.scrollTo(0, 0);
+}
+
 function renderTable(){
     var reviews = getTable("reviews");
     var products = getTable("products");
@@ -182,8 +190,12 @@ function renderTable(){
         return;
     }
     emptyDiv.classList.add("hidden");
+    // Đánh giá mới nhất lên đầu để admin kiểm duyệt kịp thời
+    filtered.sort(function(a, b){ return String(b.created_at).localeCompare(String(a.created_at)); });
+    reviewPage = fixAdminPage(reviewPage, filtered.length);
+    renderAdminPager("pgReviews", reviewPage, filtered.length, "goReviewPage");
 
-    for(var idx = 0; idx < filtered.length; idx++){
+    for(var idx = (reviewPage - 1) * ADMIN_PAGE_SIZE; idx < Math.min(reviewPage * ADMIN_PAGE_SIZE, filtered.length); idx++){
         var r = filtered[idx];
         var tr = document.createElement("tr");
 
