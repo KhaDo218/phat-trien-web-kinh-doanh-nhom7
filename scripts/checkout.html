@@ -17,6 +17,8 @@
         <script src="js/services/products.js"></script>
         <script src="js/services/cart.js"></script>
         <script src="js/services/orders.js"></script>
+        <script src="js/services/shipping.js"></script>
+        <script src="libs/qrcode.js"></script>
         <script src="js/pages/checkout.js"></script>
     </head>
     <body>
@@ -28,45 +30,86 @@
 
             <div class="checkout-layout">
                 <form name="frmCheckout" class="checkout-form" onsubmit="return placeOrder()">
+                    <!-- ===== 1. Người nhận ===== -->
                     <div class="card checkout-box">
                         <p class="overline">Bước 1</p>
-                        <h2 class="headline-section">Thông tin giao hàng</h2>
-                        <div class="form-group">
-                            <label for="txtName">Họ tên người nhận</label>
-                            <input class="input" type="text" id="txtName" placeholder="Nguyễn Văn A">
+                        <h2 class="headline-section">Thông tin người nhận</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="txtName">Họ tên người nhận <span class="req">*</span></label>
+                                <input class="input" type="text" id="txtName" placeholder="Nguyễn Văn A" maxlength="60">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPhone">Số điện thoại <span class="req">*</span></label>
+                                <input class="input" type="tel" id="txtPhone" placeholder="0901234567" maxlength="10">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="txtPhone">Số điện thoại</label>
-                            <input class="input" type="text" id="txtPhone" placeholder="0901234567">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtAddress">Địa chỉ giao hàng</label>
-                            <textarea class="input" id="txtAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea>
+                            <label for="txtEmail">Email nhận hóa đơn</label>
+                            <input class="input" type="email" id="txtEmail" placeholder="email@example.com">
                         </div>
                     </div>
 
+                    <!-- ===== 2. Địa chỉ ===== -->
                     <div class="card checkout-box">
                         <p class="overline">Bước 2</p>
-                        <h2 class="headline-section">Phương thức vận chuyển</h2>
+                        <h2 class="headline-section">Địa chỉ giao hàng</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cboProvince">Tỉnh / Thành phố <span class="req">*</span></label>
+                                <select class="input" id="cboProvince" onchange="onAddressChange()"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtWard">Phường / Xã <span class="req">*</span></label>
+                                <input class="input" type="text" id="txtWard" placeholder="Phường Linh Xuân">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtStreet">Số nhà, tên đường, tòa nhà <span class="req">*</span></label>
+                            <input class="input" type="text" id="txtStreet" placeholder="12 Đường số 5, Block B, căn 1205">
+                        </div>
+                        <div class="form-group">
+                            <label>Loại nhà <span class="req hidden" id="reqHouseType">*</span></label>
+                            <div class="house-types" id="divHouseType"></div>
+                            <p class="field-hint" id="lblHouseHint"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNote">Ghi chú cho người giao hàng</label>
+                            <input class="input" type="text" id="txtNote" placeholder="Gọi trước 30 phút, giao giờ hành chính..." maxlength="150">
+                        </div>
+                        <label class="check-line"><input type="checkbox" id="chkSaveAddress" checked> Lưu địa chỉ này cho lần mua sau</label>
+                    </div>
+
+                    <!-- ===== 3. Giao hàng ===== -->
+                    <div class="card checkout-box">
+                        <p class="overline">Bước 3</p>
+                        <h2 class="headline-section">Phương thức giao hàng</h2>
+                        <p class="ship-notice hidden" id="lblBulkyNotice"></p>
                         <div id="shippingList"></div>
                     </div>
 
+                    <!-- ===== 4. Thanh toán ===== -->
                     <div class="card checkout-box">
-                        <p class="overline">Bước 3</p>
-                        <h2 class="headline-section">Phương thức thanh toán</h2>
-                        <label class="option">
-                            <input type="radio" name="rdoPayment" value="COD" checked onclick="showPaymentNote()">
-                            <span>Thanh toán khi nhận hàng (COD)</span>
-                        </label>
-                        <label class="option">
-                            <input type="radio" name="rdoPayment" value="Bank Transfer" onclick="showPaymentNote()">
-                            <span>Chuyển khoản ngân hàng</span>
-                        </label>
-                        <label class="option">
-                            <input type="radio" name="rdoPayment" value="E-wallet" onclick="showPaymentNote()">
-                            <span>Ví điện tử</span>
-                        </label>
-                        <p class="payment-note" id="paymentNote"></p>
+                        <p class="overline">Bước 4</p>
+                        <h2 class="headline-section">Thanh toán</h2>
+                        <p class="field-label">Hình thức</p>
+                        <div id="planList"></div>
+                        <div id="divPrepay">
+                            <p class="field-label">Trả trước bằng</p>
+                            <label class="option">
+                                <input type="radio" name="rdoPayment" value="Bank Transfer" checked onclick="showPaymentDetail()">
+                                <span class="option-info">Chuyển khoản ngân hàng<small>Quét mã QR hoặc chuyển theo số tài khoản</small></span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="rdoPayment" value="E-wallet" onclick="showPaymentDetail()">
+                                <span class="option-info">Ví điện tử<small>Xác nhận thanh toán trên ứng dụng ví</small></span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="rdoPayment" value="Card" onclick="showPaymentDetail()">
+                                <span class="option-info">Thẻ tín dụng / ghi nợ<small>Visa, Mastercard, JCB, thẻ nội địa</small></span>
+                            </label>
+                        </div>
+                        <div id="divPaymentDetail"></div>
                     </div>
                 </form>
 
@@ -81,11 +124,13 @@
                     <p id="msgCoupon"></p>
 
                     <div class="sum-row"><span>Tạm tính</span><span id="sumSubtotal"></span></div>
-                    <div class="sum-row"><span>Phí vận chuyển</span><span id="sumShipping"></span></div>
+                    <div class="sum-row"><span id="lblShipping">Phí giao hàng</span><span id="sumShipping"></span></div>
                     <div class="sum-row"><span>Giảm giá</span><span id="sumDiscount"></span></div>
                     <div class="sum-row sum-total"><span>Tổng cộng</span><span id="sumTotal"></span></div>
+                    <div class="pay-split" id="divPaySplit"></div>
 
-                    <input class="btn btn-full" type="button" value="Đặt hàng" onclick="placeOrder()">
+                    <label class="check-line terms-line"><input type="checkbox" id="chkAgree"> <span>Tôi đã đọc và đồng ý với <a href="javascript:showTerms('dat-hang')">chính sách thanh toán</a>, <a href="javascript:showTerms('van-chuyen')">giao hàng</a> và <a href="javascript:showTerms('doi-tra')">đổi trả</a></span></label>
+                    <input class="btn btn-full" type="button" id="btnPlaceOrder" value="Đặt hàng" onclick="placeOrder()">
                     <p class="text-secondary summary-note">Thanh toán được mô phỏng, không phát sinh giao dịch thật.</p>
                 </aside>
             </div>

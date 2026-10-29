@@ -1,1182 +1,982 @@
 [
   {
     "id": 1,
-    "product_id": "product-bohemian-barcelos-light-brown-throw-pillow-with-down-alternative-inse-02",
-    "user_id": 121,
-    "rating": 4,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "product_id": "product-farmhouse-the-citizenry-ghama-suede-pillow-20-x-20-olive-02",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-05-07T12:58:40"
+    "created_at": "2026-05-09T07:39:36"
   },
   {
     "id": 2,
-    "product_id": "product-farmhouse-woven-cotton-slub-lumbar-pillow-with-applique-fringe-and-tas-05",
+    "product_id": "product-farmhouse-nanette-20-pillow-cover-02",
     "user_id": 101,
-    "rating": 4,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-05-14T20:18:48"
+    "created_at": "2026-05-12T13:07:20"
   },
   {
     "id": 3,
-    "product_id": "product-mid-century-modern-paria-green-wallpaper-03",
-    "user_id": 129,
-    "rating": 3,
-    "comment": "Ổn trong tầm giá, đóng gói có thể kỹ hơn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-15T12:05:58"
-  },
-  {
-    "id": 4,
-    "product_id": "product-farmhouse-kharaa-khr-005-18-l-x-18-w-pillow-cover-10",
-    "user_id": 129,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-15T12:05:58"
-  },
-  {
-    "id": 5,
-    "product_id": "product-traditional-panel-signature-velvet-merlot-20-x-20-14",
-    "user_id": 120,
-    "rating": 3,
-    "comment": "Ổn trong tầm giá, đóng gói có thể kỹ hơn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-21T04:25:07"
-  },
-  {
-    "id": 6,
-    "product_id": "product-bohemian-barcelos-light-brown-throw-pillow-with-down-alternative-inse-02",
-    "user_id": 102,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-22T21:15:55"
-  },
-  {
-    "id": 7,
-    "product_id": "product-mid-century-modern-verbrande-cotton-abstract-throw-pillow-04",
-    "user_id": 123,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-25T02:37:46"
-  },
-  {
-    "id": 8,
-    "product_id": "product-bohemian-rectangle-acacia-wood-cutting-board-tray-08",
-    "user_id": 123,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-25T05:37:46"
-  },
-  {
-    "id": 9,
-    "product_id": "product-mid-century-modern-the-citizenry-stonewashed-linen-duvet-cover-full-queen-duvet-02",
-    "user_id": 107,
-    "rating": 4,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-05-27T17:09:35"
-  },
-  {
-    "id": 10,
-    "product_id": "product-coastal-the-citizenry-padma-round-storage-basket-oversized-tan-03",
-    "user_id": 104,
-    "rating": 5,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-06T17:09:41"
-  },
-  {
-    "id": 11,
-    "product_id": "product-bohemian-xbase-pillow-23x23-feather-insert-10",
-    "user_id": 126,
-    "rating": 5,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-07T10:06:06"
-  },
-  {
-    "id": 12,
-    "product_id": "product-coastal-the-citizenry-padma-round-storage-basket-oversized-tan-03",
-    "user_id": 132,
-    "rating": 4,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-08T19:13:08"
-  },
-  {
-    "id": 13,
-    "product_id": "product-farmhouse-woven-cotton-slub-lumbar-pillow-with-applique-fringe-and-tas-05",
-    "user_id": 116,
-    "rating": 4,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-10T15:20:51"
-  },
-  {
-    "id": 14,
-    "product_id": "product-farmhouse-herb-planter-01",
-    "user_id": 126,
-    "rating": 4,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-10T15:40:01"
-  },
-  {
-    "id": 15,
-    "product_id": "product-bohemian-barcelos-light-brown-throw-pillow-with-down-alternative-inse-02",
-    "user_id": 126,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-15T19:40:01"
-  },
-  {
-    "id": 16,
-    "product_id": "product-coastal-capri-wallpaper-04",
-    "user_id": 126,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-16T00:40:01"
-  },
-  {
-    "id": 17,
-    "product_id": "product-glam-fraleigh-16-outdoor-lantern-black-safavieh-11",
-    "user_id": 129,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-17T03:30:54"
-  },
-  {
-    "id": 18,
-    "product_id": "product-coastal-gracie-oaks-terracotta-jute-vase-18",
-    "user_id": 120,
-    "rating": 5,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-20T15:10:01"
-  },
-  {
-    "id": 19,
-    "product_id": "product-bohemian-bayside-seed-stitch-throw-blanket-44-x-56-ivory-01",
-    "user_id": 122,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-21T03:24:54"
-  },
-  {
-    "id": 20,
-    "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
-    "user_id": 112,
-    "rating": 5,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-23T02:51:21"
-  },
-  {
-    "id": 21,
-    "product_id": "product-traditional-design-us-teal-cream-22-x22-pillow-01",
-    "user_id": 109,
-    "rating": 4,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-25T15:57:36"
-  },
-  {
-    "id": 22,
-    "product_id": "product-bohemian-outdoor-rattan-side-table-02",
-    "user_id": 122,
+    "product_id": "product-scandinavian-bear-woven-kids-hamper-with-handles-01",
+    "user_id": 101,
     "rating": 2,
     "comment": "Hàng giao bị trầy một góc, đã liên hệ shop để đổi.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-06-28T02:24:54"
+    "created_at": "2026-05-13T11:07:20"
   },
   {
-    "id": 23,
-    "product_id": "product-bohemian-terrill-27-brass-table-lamp-04",
-    "user_id": 135,
-    "rating": 5,
-    "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-29T06:14:20"
-  },
-  {
-    "id": 24,
-    "product_id": "product-glam-fraleigh-16-outdoor-lantern-black-safavieh-11",
-    "user_id": 102,
-    "rating": 5,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-06-29T15:17:57"
-  },
-  {
-    "id": 25,
-    "product_id": "product-glam-gray-abstract-mountain-minimalist-artwork-framed-prints-post-06",
-    "user_id": 105,
-    "rating": 5,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-01T02:18:32"
-  },
-  {
-    "id": 26,
-    "product_id": "product-farmhouse-colorado-painted-28-h-x-17-w-x-17-d-accent-table-lamp-02",
-    "user_id": 135,
-    "rating": 5,
-    "comment": "Ánh sáng vàng ấm, buổi tối đọc sách rất dễ chịu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-01T05:14:20"
-  },
-  {
-    "id": 27,
-    "product_id": "product-farmhouse-lola-ll-006-20-l-x-20-w-down-filled-pillow-12",
-    "user_id": 101,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-01T12:39:03"
-  },
-  {
-    "id": 28,
-    "product_id": "product-glam-modern-transparent-bubble-glass-and-metal-table-lamp-brushed-01",
-    "user_id": 102,
-    "rating": 4,
-    "comment": "Đèn đẹp, chất liệu tốt, lắp vào là dùng được ngay.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-01T15:17:57"
-  },
-  {
-    "id": 29,
-    "product_id": "product-glam-outdoor-14-x-20-lumbar-pillow-lavender-million-flowers-14-x--02",
-    "user_id": 116,
-    "rating": 4,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-02T10:33:40"
-  },
-  {
-    "id": 30,
-    "product_id": "product-bohemian-rectangle-acacia-wood-cutting-board-tray-08",
-    "user_id": 135,
-    "rating": 5,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-03T17:42:24"
-  },
-  {
-    "id": 31,
-    "product_id": "product-glam-rue-counter-stool-04",
-    "user_id": 116,
-    "rating": 5,
-    "comment": "Đóng gói cẩn thận, lắp khoảng 20 phút là xong.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-04T09:33:40"
-  },
-  {
-    "id": 32,
-    "product_id": "product-farmhouse-douglas-end-table-aged-bronze-05",
-    "user_id": 135,
-    "rating": 4,
-    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-06T19:42:24"
-  },
-  {
-    "id": 33,
-    "product_id": "product-coastal-icon-wood-8x10-black-wall-picture-frame-01",
-    "user_id": 111,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-12T01:32:50"
-  },
-  {
-    "id": 34,
-    "product_id": "product-mid-century-modern-zayan-blue-vases-set-2-01",
-    "user_id": 129,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-13T13:31:58"
-  },
-  {
-    "id": 35,
-    "product_id": "product-glam-possini-euro-houten-11-1-2-wide-soft-gold-3-light-glass-mini-02",
-    "user_id": 111,
-    "rating": 4,
-    "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-14T09:20:14"
-  },
-  {
-    "id": 36,
-    "product_id": "product-farmhouse-sophie-scalloped-lamp-shade-01",
-    "user_id": 111,
-    "rating": 4,
-    "comment": "Đèn đẹp, chất liệu tốt, lắp vào là dùng được ngay.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-14T10:32:50"
-  },
-  {
-    "id": 37,
-    "product_id": "product-mid-century-modern-biswas-woven-jute-1-light-pendant-01",
-    "user_id": 127,
-    "rating": 5,
-    "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-14T15:01:55"
-  },
-  {
-    "id": 38,
-    "product_id": "product-farmhouse-loloi-pillows-yellow-ivory-22-x-22-cover-w-poly-05",
-    "user_id": 111,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-16T08:32:50"
-  },
-  {
-    "id": 39,
-    "product_id": "product-bohemian-harlow-hrw-001-22-l-x-22-w-pillow-cover-02",
-    "user_id": 133,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-16T08:57:38"
-  },
-  {
-    "id": 40,
-    "product_id": "product-traditional-adler-bowl-rust-08",
-    "user_id": 129,
+    "id": 4,
+    "product_id": "product-scandinavian-corre-candleholder-large-11",
+    "user_id": 117,
     "rating": 4,
     "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-07-21T16:59:49"
+    "created_at": "2026-05-14T13:35:58"
   },
   {
-    "id": 41,
-    "product_id": "product-scandinavian-jabas-warm-white-woven-leather-throw-pillow-with-down-altern-07",
-    "user_id": 129,
-    "rating": 4,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-23T12:59:49"
-  },
-  {
-    "id": 42,
-    "product_id": "product-traditional-rounded-dual-handled-vase-12",
-    "user_id": 115,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-24T02:53:02"
-  },
-  {
-    "id": 43,
-    "product_id": "product-glam-vetro-8-wick-green-glass-citronella-candle-02",
-    "user_id": 114,
-    "rating": 4,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-07-24T17:01:09"
-  },
-  {
-    "id": 44,
-    "product_id": "product-glam-blossom-frosted-glass-flower-vanity-04",
-    "user_id": 126,
+    "id": 5,
+    "product_id": "product-glam-jenica-outdoor-string-lights-black-safavieh-04",
+    "user_id": 102,
     "rating": 5,
     "comment": "Đèn đẹp, chất liệu tốt, lắp vào là dùng được ngay.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-07-25T02:46:13"
+    "created_at": "2026-05-14T16:21:09"
   },
   {
-    "id": 45,
-    "product_id": "product-bohemian-rectangle-acacia-wood-cutting-board-tray-08",
-    "user_id": 114,
+    "id": 6,
+    "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
+    "user_id": 122,
     "rating": 5,
     "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-07-26T21:13:09"
+    "created_at": "2026-05-16T01:14:50"
   },
   {
-    "id": 46,
-    "product_id": "product-bohemian-safflower-saff-7194-18-l-x-18-w-pillow-cover-02",
-    "user_id": 138,
-    "rating": 5,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "id": 7,
+    "product_id": "product-glam-3pcs-framed-modern-neutral-abstract-wall-art-boho-minimalist-05",
+    "user_id": 140,
+    "rating": 4,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-07-31T20:35:28"
+    "created_at": "2026-05-26T03:39:27"
   },
   {
-    "id": 47,
-    "product_id": "product-farmhouse-alten-leather-wood-framed-upholstered-seat-counter-stool-03",
-    "user_id": 110,
+    "id": 8,
+    "product_id": "product-scandinavian-davis-48-zinc-wall-shelf-01",
+    "user_id": 114,
     "rating": 5,
-    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
+    "comment": "Thiết kế gọn, phòng ngủ nhìn ngăn nắp hơn hẳn.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-02T18:10:17"
+    "created_at": "2026-05-27T23:00:37"
   },
   {
-    "id": 48,
-    "product_id": "product-farmhouse-the-citizenry-isidora-pillow-12-x-20-olive-06",
-    "user_id": 130,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-06T14:02:21"
-  },
-  {
-    "id": 49,
-    "product_id": "product-glam-juniper-cream-velvet-barstool-11",
-    "user_id": 107,
-    "rating": 5,
-    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-06T14:17:00"
-  },
-  {
-    "id": 50,
-    "product_id": "product-glam-possini-euro-houten-11-1-2-wide-soft-gold-3-light-glass-mini-02",
-    "user_id": 129,
-    "rating": 5,
-    "comment": "Ánh sáng vàng ấm, buổi tối đọc sách rất dễ chịu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-10T15:21:53"
-  },
-  {
-    "id": 51,
-    "product_id": "product-farmhouse-nigel-2-door-1-drawer-chest-white-safavieh-01",
-    "user_id": 107,
-    "rating": 5,
-    "comment": "Tủ rộng, ngăn kéo trượt êm, đựng được rất nhiều đồ.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-14T05:17:00"
-  },
-  {
-    "id": 52,
-    "product_id": "product-bohemian-bayside-seed-stitch-throw-blanket-44-x-56-ivory-01",
-    "user_id": 126,
+    "id": 9,
+    "product_id": "product-bohemian-the-citizenry-kasni-pillow-22-x-22-stone-04",
+    "user_id": 139,
     "rating": 5,
     "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-17T14:17:09"
+    "created_at": "2026-05-29T13:51:46"
   },
   {
-    "id": 53,
-    "product_id": "product-bohemian-quantum-marble-metal-side-table-10",
-    "user_id": 127,
+    "id": 10,
+    "product_id": "product-coastal-the-citizenry-isidora-pillow-12-x-20-tan-04",
+    "user_id": 114,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-30T20:00:37"
+  },
+  {
+    "id": 11,
+    "product_id": "product-scandinavian-jabas-black-woven-leather-throw-pillow-with-feather-down-ins-06",
+    "user_id": 108,
+    "rating": 4,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-01T14:54:43"
+  },
+  {
+    "id": 12,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 109,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-03T18:09:41"
+  },
+  {
+    "id": 13,
+    "product_id": "product-bohemian-wonderful-wicker-natural-11-storage-basket-set-of-4-03",
+    "user_id": 125,
     "rating": 3,
     "comment": "Dùng được, nhưng hướng dẫn lắp ráp hơi khó hiểu.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-17T18:23:48"
+    "created_at": "2026-06-05T16:55:02"
   },
   {
-    "id": 54,
-    "product_id": "product-glam-possini-euro-houten-11-1-2-wide-soft-gold-3-light-glass-mini-02",
-    "user_id": 127,
-    "rating": 5,
-    "comment": "Ánh sáng vàng ấm, buổi tối đọc sách rất dễ chịu.",
+    "id": 14,
+    "product_id": "product-bohemian-picture-frame-13",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-19T18:23:48"
+    "created_at": "2026-06-11T18:19:33"
   },
   {
-    "id": 55,
-    "product_id": "product-scandinavian-faux-silver-dollar-eucalyptus-stem-03",
-    "user_id": 140,
+    "id": 15,
+    "product_id": "product-bohemian-above-by-kelly-ventura-for-artfully-walls-02",
+    "user_id": 124,
+    "rating": 5,
+    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-19T12:44:09"
+  },
+  {
+    "id": 16,
+    "product_id": "product-farmhouse-brooklyn-cut-velvet-spa-blue-ldc-20-x-20-cording-spa-blue-03",
+    "user_id": 135,
+    "rating": 5,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-23T01:50:09"
+  },
+  {
+    "id": 17,
+    "product_id": "product-scandinavian-mini-black-bowl-01",
+    "user_id": 119,
     "rating": 5,
     "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-20T12:59:51"
+    "created_at": "2026-06-24T07:11:41"
   },
   {
-    "id": 56,
-    "product_id": "product-coastal-emmett-bronze-taper-candle-holder-14-5-01",
-    "user_id": 140,
-    "rating": 4,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-20T19:59:51"
-  },
-  {
-    "id": 57,
-    "product_id": "product-farmhouse-bozeman-wool-blend-22-x15-arctic-ivory-throw-pillow-cover-02",
-    "user_id": 105,
+    "id": 18,
+    "product_id": "product-bohemian-parisa-pai-002-12-l-x-30-w-down-filled-pillow-09",
+    "user_id": 125,
     "rating": 5,
     "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-20T21:55:13"
+    "created_at": "2026-06-28T11:44:48"
   },
   {
-    "id": 58,
-    "product_id": "product-bohemian-layla-rug-red-navy-9-0-x-12-0-01",
-    "user_id": 128,
-    "rating": 4,
-    "comment": "Không bị rụng lông, hút bụi dễ, đúng kích thước.",
+    "id": 19,
+    "product_id": "product-mid-century-modern-the-citizenry-naveta-velvet-small-lumbar-pillow-12-x-20-blue-03",
+    "user_id": 101,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-21T13:40:58"
+    "created_at": "2026-07-01T11:40:43"
   },
   {
-    "id": 59,
-    "product_id": "product-traditional-velvet-bolster-pillow-in-brown-cognac-cover-only-09",
-    "user_id": 105,
+    "id": 20,
+    "product_id": "product-bohemian-jules-4-jul-tangerine-mist-9-6-x-14-02",
+    "user_id": 101,
+    "rating": 5,
+    "comment": "Hoa văn đẹp, trải phòng khách nhìn ấm cúng hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-04T09:40:43"
+  },
+  {
+    "id": 21,
+    "product_id": "product-bohemian-narvik-nrk-001-13-l-x-20-w-polyester-filled-pillow-12",
+    "user_id": 137,
+    "rating": 3,
+    "comment": "Sản phẩm ổn, đúng mô tả nhưng giao hơi chậm so với dự kiến.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-04T11:56:35"
+  },
+  {
+    "id": 22,
+    "product_id": "product-farmhouse-textured-faux-fur-70-x55-arctic-ivory-throw-blanket-01",
+    "user_id": 139,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-05T01:29:50"
+  },
+  {
+    "id": 23,
+    "product_id": "product-scandinavian-bear-woven-kids-hamper-with-handles-01",
+    "user_id": 123,
+    "rating": 3,
+    "comment": "Ổn trong tầm giá, đóng gói có thể kỹ hơn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-05T15:27:27"
+  },
+  {
+    "id": 24,
+    "product_id": "product-scandinavian-corre-candleholder-small-09",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-05T21:16:54"
+  },
+  {
+    "id": 25,
+    "product_id": "product-farmhouse-edelman-produce-bowl-01",
+    "user_id": 101,
+    "rating": 5,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-07T18:56:34"
+  },
+  {
+    "id": 26,
+    "product_id": "product-scandinavian-hudson-120-natural-linen-blend-woven-table-runner-09",
+    "user_id": 137,
+    "rating": 5,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-09T10:56:35"
+  },
+  {
+    "id": 27,
+    "product_id": "product-mid-century-modern-leather-linen-pillow-sonoma-butterscotch-02",
+    "user_id": 109,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-09T17:58:45"
+  },
+  {
+    "id": 28,
+    "product_id": "product-traditional-pal0024-black-white-13-x-35-cover-w-down-09",
+    "user_id": 108,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-14T21:10:07"
+  },
+  {
+    "id": 29,
+    "product_id": "product-farmhouse-nomad-leather-sofa-camel-top-grain-leather-oak-wood-arch-06",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Ngồi êm, đệm dày vừa phải, ngồi lâu không bị mỏi lưng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-15T08:02:31"
+  },
+  {
+    "id": 30,
+    "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-15T09:54:49"
+  },
+  {
+    "id": 31,
+    "product_id": "product-traditional-loloi-not-named-rust-ivory-22-x-22-cover-w-poly-pillow-04",
+    "user_id": 139,
     "rating": 4,
     "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-21T18:55:13"
+    "created_at": "2026-07-19T17:24:11"
   },
   {
-    "id": 60,
-    "product_id": "product-traditional-velvet-bolster-pillow-in-brown-cognac-cover-only-09",
+    "id": 32,
+    "product_id": "product-bohemian-mongolian-green-sheepskin-fur-throw-pillow-with-feather-down-13",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-20T12:02:31"
+  },
+  {
+    "id": 33,
+    "product_id": "product-scandinavian-bear-woven-kids-hamper-with-handles-01",
+    "user_id": 108,
+    "rating": 4,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-22T10:54:49"
+  },
+  {
+    "id": 34,
+    "product_id": "product-glam-3pcs-framed-modern-neutral-abstract-wall-art-boho-minimalist-05",
+    "user_id": 136,
+    "rating": 4,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-25T10:14:51"
+  },
+  {
+    "id": 35,
+    "product_id": "product-coastal-handcrafted-weathered-terracotta-vase-large-15-h-white-01",
+    "user_id": 136,
+    "rating": 4,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-26T07:14:51"
+  },
+  {
+    "id": 36,
+    "product_id": "product-glam-26-x-16-textured-lumbar-throw-pillow-beige-w-insert-01",
+    "user_id": 115,
+    "rating": 4,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-28T15:19:31"
+  },
+  {
+    "id": 37,
+    "product_id": "product-scandinavian-bear-woven-kids-hamper-with-handles-01",
+    "user_id": 140,
+    "rating": 5,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-01T22:08:42"
+  },
+  {
+    "id": 38,
+    "product_id": "product-scandinavian-faye-vase-small-white-06",
+    "user_id": 139,
+    "rating": 2,
+    "comment": "Giao trễ 4 ngày so với hẹn, sản phẩm thì bình thường.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-02T07:06:30"
+  },
+  {
+    "id": 39,
+    "product_id": "product-glam-minimalist-wave-by-bree-madden-framed-wall-art-basic-black-3-07",
+    "user_id": 134,
+    "rating": 3,
+    "comment": "Chất lượng tạm được, màu ngoài đời đậm hơn trong ảnh một chút.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-03T15:46:53"
+  },
+  {
+    "id": 40,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 115,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-03T16:19:31"
+  },
+  {
+    "id": 41,
+    "product_id": "product-traditional-pillar-bowl-03",
+    "user_id": 133,
+    "rating": 5,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-08T22:18:34"
+  },
+  {
+    "id": 42,
+    "product_id": "product-traditional-maximalist-geometric-03-by-the-old-art-studio-framed-wall-ar-02",
+    "user_id": 123,
+    "rating": 3,
+    "comment": "Sản phẩm ổn, đúng mô tả nhưng giao hơi chậm so với dự kiến.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-14T10:46:55"
+  },
+  {
+    "id": 43,
+    "product_id": "product-traditional-sadie-console-table-01",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Giao đúng hẹn, lắp đặt miễn phí, rất hài lòng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-14T13:05:04"
+  },
+  {
+    "id": 44,
+    "product_id": "product-bohemian-ollara-green-marble-picture-frame-8-x10-02",
+    "user_id": 124,
+    "rating": 4,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-14T23:47:24"
+  },
+  {
+    "id": 45,
+    "product_id": "product-coastal-throw-pillow-20-x-20-square-03",
+    "user_id": 103,
+    "rating": 5,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-17T09:22:24"
+  },
+  {
+    "id": 46,
+    "product_id": "product-glam-carefree-40-x30-natural-raw-wood-frame-matted-15",
+    "user_id": 135,
+    "rating": 5,
+    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-17T17:32:24"
+  },
+  {
+    "id": 47,
+    "product_id": "product-coastal-classic-storage-bench-ocean-classic-velvet-07",
+    "user_id": 129,
+    "rating": 4,
+    "comment": "Ngồi êm, đệm dày vừa phải, ngồi lâu không bị mỏi lưng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-18T11:08:46"
+  },
+  {
+    "id": 48,
+    "product_id": "product-farmhouse-lola-ll-006-20-l-x-20-w-down-filled-pillow-12",
+    "user_id": 136,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-18T15:43:33"
+  },
+  {
+    "id": 49,
+    "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
+    "user_id": 117,
+    "rating": 4,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-21T06:18:44"
+  },
+  {
+    "id": 50,
+    "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
     "user_id": 106,
     "rating": 1,
     "comment": "Inbox zalo 0987xxxxxx mua giá rẻ hơn web 30%!!!",
     "review_image_url": null,
     "is_hidden": true,
-    "created_at": "2026-08-21T18:55:13"
+    "created_at": "2026-08-21T06:18:44"
   },
   {
-    "id": 61,
-    "product_id": "product-bohemian-barcelos-light-brown-throw-pillow-with-down-alternative-inse-02",
-    "user_id": 113,
+    "id": 51,
+    "product_id": "product-mid-century-modern-sierra-noir-nightstand-02",
+    "user_id": 140,
     "rating": 5,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "comment": "Tủ rộng, ngăn kéo trượt êm, đựng được rất nhiều đồ.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-08-23T21:36:08"
+    "created_at": "2026-08-23T12:52:31"
   },
   {
-    "id": 62,
-    "product_id": "product-traditional-adler-bowl-rust-08",
-    "user_id": 134,
-    "rating": 5,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-26T10:30:46"
-  },
-  {
-    "id": 63,
-    "product_id": "product-bohemian-bayside-seed-stitch-throw-blanket-44-x-56-ivory-01",
-    "user_id": 111,
-    "rating": 4,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-27T13:53:26"
-  },
-  {
-    "id": 64,
-    "product_id": "product-glam-faux-potted-olive-tree-69-01",
-    "user_id": 107,
-    "rating": 4,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-27T16:38:57"
-  },
-  {
-    "id": 65,
-    "product_id": "product-farmhouse-charlise-basket-02",
-    "user_id": 127,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-08-29T14:38:32"
-  },
-  {
-    "id": 66,
-    "product_id": "product-farmhouse-chinese-peony-gold-lee-jofa-12-x-16-butterfly-flange-backord-05",
-    "user_id": 136,
-    "rating": 4,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-01T22:46:14"
-  },
-  {
-    "id": 67,
-    "product_id": "product-bohemian-lykan-white-vase-set-of-3-07",
-    "user_id": 110,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-04T04:12:26"
-  },
-  {
-    "id": 68,
-    "product_id": "product-scandinavian-sculptural-marble-decorative-objects-set-of-2-04",
-    "user_id": 109,
-    "rating": 5,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-05T11:43:37"
-  },
-  {
-    "id": 69,
-    "product_id": "product-glam-fraleigh-16-outdoor-lantern-black-safavieh-11",
-    "user_id": 138,
-    "rating": 4,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-06T12:35:45"
-  },
-  {
-    "id": 70,
-    "product_id": "product-bohemian-essential-percale-white-sheet-set-03",
-    "user_id": 109,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-07T17:43:37"
-  },
-  {
-    "id": 71,
-    "product_id": "product-glam-mischa-indoor-outdoor-pillow-09",
-    "user_id": 117,
-    "rating": 4,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-08T17:19:52"
-  },
-  {
-    "id": 72,
-    "product_id": "product-mid-century-modern-the-citizenry-chand-lumbar-pillow-latte-01",
-    "user_id": 117,
-    "rating": 4,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-08T18:19:52"
-  },
-  {
-    "id": 73,
-    "product_id": "product-traditional-pbr0015-natural-charcoal-pillow-11",
-    "user_id": 139,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-09T17:05:02"
-  },
-  {
-    "id": 74,
-    "product_id": "product-bohemian-lykan-white-vase-set-of-3-07",
-    "user_id": 109,
-    "rating": 4,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-14T01:30:43"
-  },
-  {
-    "id": 75,
-    "product_id": "product-coastal-icon-wood-5x5-black-picture-frame-02",
-    "user_id": 128,
-    "rating": 5,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-14T23:58:57"
-  },
-  {
-    "id": 76,
-    "product_id": "product-bohemian-barcelos-light-brown-throw-pillow-with-down-alternative-inse-02",
-    "user_id": 110,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-15T13:58:33"
-  },
-  {
-    "id": 77,
-    "product_id": "product-mid-century-modern-linen-curtain-antique-white-linen-50-x-84-blackout-07",
-    "user_id": 122,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-15T16:14:36"
-  },
-  {
-    "id": 78,
-    "product_id": "product-bohemian-barcelos-light-brown-throw-pillow-with-down-alternative-inse-02",
-    "user_id": 119,
-    "rating": 5,
-    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-16T19:51:31"
-  },
-  {
-    "id": 79,
-    "product_id": "product-bohemian-amara-aaa-1000-29-h-x-14-w-x-1-d-wall-hanging-02",
-    "user_id": 106,
-    "rating": 4,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-17T11:23:29"
-  },
-  {
-    "id": 80,
-    "product_id": "product-glam-monday-blues-matte-brass-frame-40-x-30-12",
-    "user_id": 119,
-    "rating": 3,
-    "comment": "Sản phẩm ổn, đúng mô tả nhưng giao hơi chậm so với dự kiến.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-17T12:51:31"
-  },
-  {
-    "id": 81,
-    "product_id": "product-farmhouse-20-inches-square-stonewashed-linen-pillow-with-fringe-olive-08",
-    "user_id": 122,
-    "rating": 4,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-17T14:14:36"
-  },
-  {
-    "id": 82,
-    "product_id": "product-traditional-new-approach-artwork-02",
-    "user_id": 103,
-    "rating": 3,
-    "comment": "Sản phẩm ổn, đúng mô tả nhưng giao hơi chậm so với dự kiến.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-18T20:44:57"
-  },
-  {
-    "id": 83,
-    "product_id": "product-bohemian-rectangle-acacia-wood-cutting-board-tray-08",
-    "user_id": 115,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-21T07:53:20"
-  },
-  {
-    "id": 84,
-    "product_id": "product-mid-century-modern-interval-hand-tufted-pillow-cover-02",
-    "user_id": 134,
-    "rating": 4,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-21T15:16:18"
-  },
-  {
-    "id": 85,
-    "product_id": "product-glam-aurora-gold-metal-taper-candle-holder-medium-04",
-    "user_id": 102,
-    "rating": 5,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-22T05:39:22"
-  },
-  {
-    "id": 86,
-    "product_id": "product-bohemian-rectangle-acacia-wood-cutting-board-tray-08",
-    "user_id": 136,
-    "rating": 4,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-22T21:07:14"
-  },
-  {
-    "id": 87,
-    "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
-    "user_id": 123,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-24T08:56:17"
-  },
-  {
-    "id": 88,
-    "product_id": "product-mid-century-modern-jenna-machine-washable-rug-01",
-    "user_id": 138,
-    "rating": 5,
-    "comment": "Thảm dày, mềm chân, màu trầm dễ phối với sofa.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-24T16:30:09"
-  },
-  {
-    "id": 89,
-    "product_id": "product-bohemian-parisa-pai-002-12-l-x-30-w-down-filled-pillow-09",
-    "user_id": 133,
-    "rating": 4,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-09-29T12:34:23"
-  },
-  {
-    "id": 90,
-    "product_id": "product-glam-stacked-glass-base-table-lamp-with-cotton-drum-shade-white-03",
-    "user_id": 115,
-    "rating": 4,
-    "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-01T05:56:54"
-  },
-  {
-    "id": 91,
-    "product_id": "product-farmhouse-riviera-20-x20-savannah-yellow-throw-pillow-with-feather-ins-04",
-    "user_id": 134,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-01T23:32:05"
-  },
-  {
-    "id": 92,
-    "product_id": "product-scandinavian-weston-black-mid-century-modern-chandelier-light-45-01",
-    "user_id": 115,
+    "id": 52,
+    "product_id": "product-mid-century-modern-rhea-table-lamp-01",
+    "user_id": 120,
     "rating": 5,
     "comment": "Đèn đẹp, chất liệu tốt, lắp vào là dùng được ngay.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-03T00:56:54"
+    "created_at": "2026-08-24T18:14:54"
   },
   {
-    "id": 93,
-    "product_id": "product-traditional-loloi-hathaway-navy-multi-9-0-x-12-0-01",
-    "user_id": 104,
+    "id": 53,
+    "product_id": "product-scandinavian-dimension-i-by-coup-d-esprit-vertical-grain-2-5-white-oak-01",
+    "user_id": 140,
     "rating": 5,
-    "comment": "Thảm dày, mềm chân, màu trầm dễ phối với sofa.",
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-03T07:43:01"
+    "created_at": "2026-08-25T03:52:31"
   },
   {
-    "id": 94,
-    "product_id": "product-mid-century-modern-the-citizenry-chand-lumbar-pillow-latte-01",
+    "id": 54,
+    "product_id": "product-glam-design-us-gold-silver-13-x21-pillow-02",
+    "user_id": 109,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-27T17:22:53"
+  },
+  {
+    "id": 55,
+    "product_id": "product-bohemian-nordic-style-plastic-faux-ceramics-striped-vase-desktop-deco-06",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-02T08:51:09"
+  },
+  {
+    "id": 56,
+    "product_id": "product-traditional-wood-bowl-15",
+    "user_id": 135,
+    "rating": 1,
+    "comment": "Màu khác khá nhiều so với ảnh, hơi thất vọng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-04T13:42:09"
+  },
+  {
+    "id": 57,
+    "product_id": "product-farmhouse-riviera-20-x20-savannah-yellow-throw-pillow-with-feather-ins-04",
+    "user_id": 121,
+    "rating": 5,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-08T09:32:01"
+  },
+  {
+    "id": 58,
+    "product_id": "product-mid-century-modern-helene-9-high-matte-gold-and-gray-decorative-vase-07",
     "user_id": 134,
+    "rating": 5,
+    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-10T01:02:18"
+  },
+  {
+    "id": 59,
+    "product_id": "product-glam-icon-wood-3-piece-11x14-black-gallery-wall-frame-set-04",
+    "user_id": 139,
+    "rating": 5,
+    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-13T11:54:09"
+  },
+  {
+    "id": 60,
+    "product_id": "product-coastal-daphne-upholstered-chair-04",
+    "user_id": 117,
+    "rating": 5,
+    "comment": "Màu vải ngoài đời đẹp hơn trong ảnh, phòng khách nhìn sang hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-14T15:23:24"
+  },
+  {
+    "id": 61,
+    "product_id": "product-bohemian-lykan-white-vase-set-of-3-07",
+    "user_id": 106,
+    "rating": 5,
+    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-14T16:53:39"
+  },
+  {
+    "id": 62,
+    "product_id": "product-coastal-possini-euro-milan-64-gold-finish-modern-floor-lamp-with-mar-02",
+    "user_id": 134,
+    "rating": 5,
+    "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-14T23:19:20"
+  },
+  {
+    "id": 63,
+    "product_id": "product-mid-century-modern-moza-mza-004-18-l-x-18-w-polyester-filled-pillow-02",
+    "user_id": 137,
     "rating": 4,
     "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-09T18:26:45"
+    "created_at": "2026-09-17T09:22:49"
   },
   {
-    "id": 95,
-    "product_id": "product-coastal-ciro-vase-small-08",
+    "id": 64,
+    "product_id": "product-bohemian-bayside-seed-stitch-throw-blanket-44-x-56-ivory-01",
+    "user_id": 117,
+    "rating": 1,
+    "comment": "Màu khác khá nhiều so với ảnh, hơi thất vọng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-17T15:23:24"
+  },
+  {
+    "id": 65,
+    "product_id": "product-glam-carefree-40-x30-natural-raw-wood-frame-matted-15",
     "user_id": 129,
-    "rating": 2,
-    "comment": "Hàng giao bị trầy một góc, đã liên hệ shop để đổi.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-10T01:40:04"
-  },
-  {
-    "id": 96,
-    "product_id": "product-bohemian-daukas-47-dining-table-01",
-    "user_id": 106,
     "rating": 4,
-    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-11T17:53:39"
+    "created_at": "2026-09-17T18:31:55"
   },
   {
-    "id": 97,
-    "product_id": "product-glam-aurora-gold-metal-taper-candle-holder-medium-04",
+    "id": 66,
+    "product_id": "product-coastal-throw-pillow-20-x-20-square-03",
+    "user_id": 132,
+    "rating": 5,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-22T16:04:07"
+  },
+  {
+    "id": 67,
+    "product_id": "product-bohemian-kutztown-42-kitchen-island-04",
+    "user_id": 112,
+    "rating": 5,
+    "comment": "Giao đúng hẹn, lắp đặt miễn phí, rất hài lòng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-23T21:54:15"
+  },
+  {
+    "id": 68,
+    "product_id": "product-mid-century-modern-interval-hand-tufted-pillow-cover-02",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-24T21:16:37"
+  },
+  {
+    "id": 69,
+    "product_id": "product-bohemian-xbase-pillow-23x23-feather-insert-10",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-28T16:16:37"
+  },
+  {
+    "id": 70,
+    "product_id": "product-coastal-tana-outdoor-stool-natural-teak-01",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Bàn đẹp, hoàn thiện kỹ, cạnh bo tròn an toàn cho trẻ nhỏ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-29T08:35:16"
+  },
+  {
+    "id": 71,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 127,
+    "rating": 3,
+    "comment": "Chất lượng tạm được, màu ngoài đời đậm hơn trong ảnh một chút.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-29T11:16:52"
+  },
+  {
+    "id": 72,
+    "product_id": "product-bohemian-crosby-black-and-ivory-alpaca-lumbar-pillow-with-feather-dow-08",
+    "user_id": 128,
+    "rating": 4,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-29T19:11:14"
+  },
+  {
+    "id": 73,
+    "product_id": "product-traditional-labyrinth-velvet-navy-thibaut-20-x-20-cording-calypso-blue-05",
+    "user_id": 103,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-04T12:56:35"
+  },
+  {
+    "id": 74,
+    "product_id": "product-glam-ferris-bar-counter-stool-thames-cream-09",
+    "user_id": 132,
+    "rating": 4,
+    "comment": "Kích thước đúng như mô tả, đặt trong phòng khách rất hợp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-05T11:17:06"
+  },
+  {
+    "id": 75,
+    "product_id": "product-coastal-derry-vase-short-05",
+    "user_id": 140,
+    "rating": 4,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-05T23:35:59"
+  },
+  {
+    "id": 76,
+    "product_id": "product-farmhouse-brayden-arch-metal-mirror-02",
+    "user_id": 108,
+    "rating": 4,
+    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-06T03:31:31"
+  },
+  {
+    "id": 77,
+    "product_id": "product-glam-fraleigh-20-outdoor-lantern-black-safavieh-12",
     "user_id": 2,
     "rating": 4,
     "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-13T04:18:56"
+    "created_at": "2026-10-08T00:28:50"
   },
   {
-    "id": 98,
-    "product_id": "product-farmhouse-emmett-bronze-taper-candle-holders-set-of-3-03",
-    "user_id": 110,
-    "rating": 4,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-13T13:43:33"
-  },
-  {
-    "id": 99,
-    "product_id": "product-farmhouse-toril-dining-chair-black-safavieh-04",
-    "user_id": 117,
-    "rating": 4,
-    "comment": "Kích thước đúng như mô tả, đặt trong phòng khách rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-14T21:46:43"
-  },
-  {
-    "id": 100,
-    "product_id": "product-glam-fraleigh-16-outdoor-lantern-black-safavieh-11",
+    "id": 78,
+    "product_id": "product-scandinavian-the-citizenry-hansa-vase-set-of-2-black-09",
     "user_id": 122,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
+    "rating": 1,
+    "comment": "Giao trễ 4 ngày so với hẹn, sản phẩm thì bình thường.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-16T23:59:36"
+    "created_at": "2026-10-08T15:41:33"
   },
   {
-    "id": 101,
-    "product_id": "product-coastal-bodine-cane-back-dining-chair-06",
-    "user_id": 127,
-    "rating": 5,
-    "comment": "Đóng gói cẩn thận, lắp khoảng 20 phút là xong.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-17T14:59:51"
-  },
-  {
-    "id": 102,
-    "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
-    "user_id": 117,
+    "id": 79,
+    "product_id": "product-scandinavian-ferraro-vase-folded-black-13",
+    "user_id": 108,
     "rating": 4,
     "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-18T00:00:59"
+    "created_at": "2026-10-09T07:31:31"
   },
   {
-    "id": 103,
-    "product_id": "product-farmhouse-the-citizenry-mercado-storage-baskets-round-medium-tan-03",
-    "user_id": 109,
-    "rating": 4,
-    "comment": "Hàng đẹp, đóng gói rất kỹ, không bị trầy xước.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-18T12:07:04"
-  },
-  {
-    "id": 104,
-    "product_id": "product-coastal-artesia-natural-rattan-bowl-with-handles-16",
-    "user_id": 117,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-19T01:00:59"
-  },
-  {
-    "id": 105,
-    "product_id": "product-bohemian-safflower-saff-7196-22-l-x-22-w-pillow-cover-06",
-    "user_id": 107,
-    "rating": 5,
-    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-19T05:47:28"
-  },
-  {
-    "id": 106,
-    "product_id": "product-traditional-ivory-tray-05",
-    "user_id": 110,
-    "rating": 4,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-20T09:43:33"
-  },
-  {
-    "id": 107,
-    "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
-    "user_id": 129,
-    "rating": 5,
-    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-20T11:46:29"
-  },
-  {
-    "id": 108,
-    "product_id": "product-glam-caine-outdoor-side-table-04",
-    "user_id": 134,
-    "rating": 3,
-    "comment": "Ổn trong tầm giá, đóng gói có thể kỹ hơn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-21T15:31:25"
-  },
-  {
-    "id": 109,
-    "product_id": "product-traditional-braided-natural-jute-pouf-small-19-01",
-    "user_id": 117,
-    "rating": 5,
-    "comment": "Kích thước vừa khít góc phòng, chất vải mềm, dễ vệ sinh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-21T23:00:59"
-  },
-  {
-    "id": 110,
-    "product_id": "product-bohemian-rectangle-acacia-wood-cutting-board-tray-08",
-    "user_id": 117,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-22T09:40:03"
-  },
-  {
-    "id": 111,
-    "product_id": "product-farmhouse-metal-framed-photo-frames-set-of-3-05",
-    "user_id": 106,
-    "rating": 5,
-    "comment": "Giá hợp lý, chất lượng tốt, giao nhanh.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-22T18:26:35"
-  },
-  {
-    "id": 112,
-    "product_id": "product-bohemian-narvik-nrk-001-13-l-x-20-w-polyester-filled-pillow-12",
-    "user_id": 109,
-    "rating": 3,
-    "comment": "Ổn trong tầm giá, đóng gói có thể kỹ hơn.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-23T05:49:06"
-  },
-  {
-    "id": 113,
-    "product_id": "product-scandinavian-reeded-bowl-08",
-    "user_id": 107,
-    "rating": 5,
-    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-23T09:10:07"
-  },
-  {
-    "id": 114,
-    "product_id": "product-farmhouse-throw-pillow-cover-18-french-yellow-everyday-linen-18-x-18-06",
-    "user_id": 109,
-    "rating": 5,
-    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-23T10:49:06"
-  },
-  {
-    "id": 115,
-    "product_id": "product-scandinavian-loloi-layla-red-navy-9-0-x-12-0-01",
-    "user_id": 134,
-    "rating": 5,
-    "comment": "Thảm dày, mềm chân, màu trầm dễ phối với sofa.",
-    "review_image_url": null,
-    "is_hidden": false,
-    "created_at": "2026-10-23T18:56:54"
-  },
-  {
-    "id": 116,
-    "product_id": "product-farmhouse-fanimation-kwad-52-dark-bronze-ceiling-fan-with-reversible-b-04",
-    "user_id": 134,
+    "id": 80,
+    "product_id": "product-farmhouse-june-gray-weathered-24-h-x-12-w-x-12-d-accent-table-lamp-02",
+    "user_id": 139,
     "rating": 4,
     "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-23T21:58:31"
+    "created_at": "2026-10-09T19:23:38"
   },
   {
-    "id": 117,
-    "product_id": "product-bohemian-rectangle-no-pattern-cotton-table-runner-03",
-    "user_id": 106,
+    "id": 81,
+    "product_id": "product-farmhouse-murphy-mpy-004-18-l-x-18-w-polyester-filled-pillow-05",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-10T03:31:31"
+  },
+  {
+    "id": 82,
+    "product_id": "product-farmhouse-baron-side-chair-07",
+    "user_id": 117,
+    "rating": 5,
+    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-11T17:19:24"
+  },
+  {
+    "id": 83,
+    "product_id": "product-farmhouse-harriet-round-savannah-yellow-velvet-kids-throw-pillow-07",
+    "user_id": 135,
+    "rating": 5,
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-14T03:24:08"
+  },
+  {
+    "id": 84,
+    "product_id": "product-farmhouse-black-boucle-throw-pillow-cover-18-x18-13",
+    "user_id": 136,
+    "rating": 5,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-14T16:28:17"
+  },
+  {
+    "id": 85,
+    "product_id": "product-scandinavian-silves-black-performance-boucle-outdoor-throw-pillow-20-x20-03",
+    "user_id": 136,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-14T19:28:17"
+  },
+  {
+    "id": 86,
+    "product_id": "product-bohemian-schauer-glass-05",
+    "user_id": 131,
     "rating": 4,
     "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-25T14:17:54"
+    "created_at": "2026-10-14T20:19:51"
   },
   {
-    "id": 118,
-    "product_id": "product-scandinavian-sonneman-stix-6-light-led-chandelier-06",
-    "user_id": 134,
+    "id": 87,
+    "product_id": "product-mid-century-modern-yamanik-striped-white-beige-pillow-cover-13-x21-lumbar-04",
+    "user_id": 108,
     "rating": 5,
-    "comment": "Đèn đẹp, chất liệu tốt, lắp vào là dùng được ngay.",
+    "comment": "Vải mềm, mát, giặt máy không bị phai màu.",
     "review_image_url": null,
     "is_hidden": false,
-    "created_at": "2026-10-28T17:56:54"
+    "created_at": "2026-10-15T02:43:54"
+  },
+  {
+    "id": 88,
+    "product_id": "product-traditional-shyam-table-clocks-01",
+    "user_id": 136,
+    "rating": 3,
+    "comment": "Sản phẩm ổn, đúng mô tả nhưng giao hơi chậm so với dự kiến.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-15T12:17:32"
+  },
+  {
+    "id": 89,
+    "product_id": "product-mid-century-modern-jennibelle-marble-and-mirror-drink-table-10",
+    "user_id": 134,
+    "rating": 4,
+    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-15T17:26:06"
+  },
+  {
+    "id": 90,
+    "product_id": "product-mid-century-modern-helene-9-high-matte-gold-and-gray-decorative-vase-07",
+    "user_id": 101,
+    "rating": 5,
+    "comment": "Món đồ nhỏ nhưng làm góc phòng xinh hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-17T15:44:08"
+  },
+  {
+    "id": 91,
+    "product_id": "product-farmhouse-tuck-green-linen-throw-pillow-cover-20-x20-07",
+    "user_id": 131,
+    "rating": 3,
+    "comment": "Chất lượng tạm được, màu ngoài đời đậm hơn trong ảnh một chút.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-17T20:46:09"
+  },
+  {
+    "id": 92,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 133,
+    "rating": 4,
+    "comment": "Đường may kỹ, màu đúng như ảnh, sẽ mua thêm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-18T10:25:29"
+  },
+  {
+    "id": 93,
+    "product_id": "product-bohemian-floor-lamp-01",
+    "user_id": 131,
+    "rating": 5,
+    "comment": "Ánh sáng vàng ấm, buổi tối đọc sách rất dễ chịu.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-18T21:13:35"
+  },
+  {
+    "id": 94,
+    "product_id": "product-scandinavian-woven-rope-flushmount-ivory-01",
+    "user_id": 103,
+    "rating": 5,
+    "comment": "Thiết kế tinh tế, bật lên phòng có điểm nhấn hẳn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-20T13:22:40"
+  },
+  {
+    "id": 95,
+    "product_id": "product-farmhouse-gino-end-table-raw-black-03",
+    "user_id": 107,
+    "rating": 4,
+    "comment": "Mặt bàn chắc, vân gỗ đẹp, chân không bị chênh.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-20T14:20:22"
+  },
+  {
+    "id": 96,
+    "product_id": "product-traditional-torrington-sideboard-umber-oak-veneer-03",
+    "user_id": 133,
+    "rating": 5,
+    "comment": "Gỗ chắc, màu đúng ảnh, xem 3D trước khi mua nên rất yên tâm.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-23T12:02:08"
+  },
+  {
+    "id": 97,
+    "product_id": "product-traditional-panel-signature-velvet-merlot-20-x-20-14",
+    "user_id": 110,
+    "rating": 5,
+    "comment": "Chất liệu dễ chịu, nằm rất thích, đóng gói đẹp để làm quà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-23T12:36:13"
+  },
+  {
+    "id": 98,
+    "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
+    "user_id": 127,
+    "rating": 5,
+    "comment": "Đúng như ảnh, phối với kệ tivi rất hợp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-27T08:44:56"
   }
 ]

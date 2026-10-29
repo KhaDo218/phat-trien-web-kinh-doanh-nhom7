@@ -119,3 +119,11 @@
         display: block;
     }
 }
+
+/* Địa chỉ mặc định 2 cấp + phần mật khẩu tùy chọn của tài khoản Google */
+.addr-title{
+    margin: 8px 0 12px;
+}
+#divNoPassword .btn{
+    margin-top: 16px;
+}

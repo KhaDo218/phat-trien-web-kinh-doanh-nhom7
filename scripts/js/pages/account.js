@@ -41,27 +41,35 @@ function showAccount(){
     document.getElementById("txtFullName").value = user.full_name;
     document.getElementById("txtEmail").value = user.email;
     document.getElementById("txtPhone").value = "";
-    document.getElementById("txtAddress").value = "";
     if(user.phone != null)
         document.getElementById("txtPhone").value = user.phone;
-    if(user.default_address != null)
-        document.getElementById("txtAddress").value = user.default_address;
+    // Địa chỉ 2 cấp: Tỉnh/Thành -> Phường/Xã -> Số nhà (danh sách tỉnh ở js/services/shipping.js)
+    document.getElementById("cboProvince").innerHTML = getProvinceOptions(user.default_province || "");
+    document.getElementById("txtWard").value = user.default_ward || "";
+    document.getElementById("txtStreet").value = user.default_street || "";
+    var loaiNha = "<option value=''>-- Chọn loại nhà --</option>";
+    for(var i = 0; i < HOUSE_TYPES.length; i++)
+        loaiNha += "<option value='" + HOUSE_TYPES[i] + "'" + (user.default_house_type == HOUSE_TYPES[i] ? " selected" : "") + ">" + HOUSE_TYPES[i] + "</option>";
+    document.getElementById("cboHouseType").innerHTML = loaiNha;
     if(user.google_id != null)
         document.getElementById("lblGoogle").innerHTML = "✓ Đã liên kết đăng nhập Google";
     else
         document.getElementById("lblGoogle").innerHTML = "Chưa liên kết Google (đăng nhập bằng Google với cùng email để liên kết)";
 
     // Mật khẩu: tài khoản tạo bằng Google chưa có mật khẩu -> ẩn ô mật khẩu hiện tại
+    // Tài khoản Google chưa có mật khẩu: mật khẩu là tùy chọn, form ẩn cho tới khi bấm "Thêm mật khẩu"
     if(user.password_hash == null){
-        document.getElementById("lblPasswordTitle").innerHTML = "Tạo mật khẩu";
-        document.getElementById("lblMenuPassword").innerHTML = "Tạo mật khẩu";
-        document.getElementById("lblNoPassword").className = "text-secondary small";
+        document.getElementById("lblPasswordTitle").innerHTML = "Đăng nhập bằng email";
+        document.getElementById("lblMenuPassword").innerHTML = "Đăng nhập & bảo mật";
+        document.getElementById("divNoPassword").className = "";
+        document.getElementById("frmPassword").className = "hidden";
         document.getElementById("divOldPassword").className = "form-group hidden";
     }
     else{
         document.getElementById("lblPasswordTitle").innerHTML = "Đổi mật khẩu";
         document.getElementById("lblMenuPassword").innerHTML = "Đổi mật khẩu";
-        document.getElementById("lblNoPassword").className = "text-secondary small hidden";
+        document.getElementById("divNoPassword").className = "hidden";
+        document.getElementById("frmPassword").className = "";
         document.getElementById("divOldPassword").className = "form-group";
     }
 }
@@ -92,10 +100,20 @@ function countWishlist(userId){
     return wishlists[userId].length;
 }
 
+function showPasswordForm(){
+    document.getElementById("divNoPassword").className = "hidden";
+    document.getElementById("frmPassword").className = "";
+    document.getElementById("lblPasswordTitle").innerHTML = "Thêm mật khẩu";
+    document.getElementById("txtNewPassword").focus();
+}
+
 function saveProfile(){
     var ten = document.getElementById("txtFullName").value.trim();
     var sdt = document.getElementById("txtPhone").value.trim();
-    var diaChi = document.getElementById("txtAddress").value.trim();
+    var tinh = document.getElementById("cboProvince").value;
+    var phuong = document.getElementById("txtWard").value.trim();
+    var soNha = document.getElementById("txtStreet").value.trim();
+    var loaiNha = document.getElementById("cboHouseType").value;
     var user = getCurrentUser();
     document.getElementById("msgProfile").innerHTML = "";
 
@@ -104,9 +122,32 @@ function saveProfile(){
         document.getElementById("txtFullName").focus();
         return false;
     }
+    if(checkFullName(ten) == false){
+        alert("Họ tên chỉ gồm chữ cái và có ít nhất 2 chữ!");
+        document.getElementById("txtFullName").focus();
+        return false;
+    }
+    // Địa chỉ: để trống hết, hoặc điền đủ Tỉnh/Thành, Phường/Xã, Số nhà
+    if(tinh != "" || phuong != "" || soNha != ""){
+        if(tinh == ""){
+            alert("Vui lòng chọn Tỉnh / Thành phố!");
+            document.getElementById("cboProvince").focus();
+            return false;
+        }
+        if(phuong.length < 3){
+            alert("Vui lòng nhập Phường / Xã!");
+            document.getElementById("txtWard").focus();
+            return false;
+        }
+        if(soNha.length < 5){
+            alert("Vui lòng nhập số nhà, tên đường (ít nhất 5 ký tự)!");
+            document.getElementById("txtStreet").focus();
+            return false;
+        }
+    }
     if(sdt != ""){
-        if(checkPhone(sdt) == false){
-            alert("Số điện thoại phải gồm 10 số và bắt đầu bằng số 0!");
+        if(checkMobilePhone(sdt) == false){
+            alert("Số điện thoại phải gồm 10 chữ số, bắt đầu bằng 03, 05, 07, 08 hoặc 09!");
             document.getElementById("txtPhone").focus();
             return false;
         }
@@ -122,12 +163,12 @@ function saveProfile(){
     for(var i = 0; i < users.length; i++){
         if(users[i].id == user.id){
             users[i].full_name = ten;
-            users[i].phone = null;
-            users[i].default_address = null;
-            if(sdt != "")
-                users[i].phone = sdt;
-            if(diaChi != "")
-                users[i].default_address = diaChi;
+            users[i].phone = sdt != "" ? sdt : null;
+            users[i].default_province = tinh || null;
+            users[i].default_ward = phuong || null;
+            users[i].default_street = soNha || null;
+            users[i].default_house_type = loaiNha || null;
+            users[i].default_address = tinh != "" ? composeAddress(soNha, phuong, tinh) : null;
         }
     }
     saveTable("users", users);

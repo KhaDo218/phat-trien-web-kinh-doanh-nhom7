@@ -118,3 +118,164 @@
         position: static;
     }
 }
+
+/* ---------- Bổ sung: địa chỉ 2 cấp, loại nhà, giao đồ lớn, cọc 30%, QR, thẻ ---------- */
+.checkout-box .form-row{
+    display: flex;
+    gap: 16px;
+}
+.checkout-box .form-row .form-group{
+    flex: 1;
+    min-width: 0;
+}
+.req{
+    color: #8C3B2D;
+}
+.field-label{
+    margin: 4px 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+#divPrepay .field-label{
+    margin-top: 20px;
+}
+.field-hint{
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #686868;
+}
+.house-types{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.chip-radio{
+    position: relative;
+    cursor: pointer;
+}
+.chip-radio input{
+    position: absolute;
+    opacity: 0;
+}
+.chip-radio span{
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #DADAD7;
+    background: #FFFFFF;
+    font-size: 13px;
+}
+.chip-radio input:checked + span{
+    background: #202020;
+    border-color: #202020;
+    color: #FFFFFF;
+}
+.chip-radio input:focus-visible + span{
+    outline: 2px solid #202020;
+    outline-offset: 2px;
+}
+.check-line{
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+    cursor: pointer;
+}
+.check-line input{
+    margin-top: 3px;
+    accent-color: #202020;
+}
+.check-line a{
+    text-decoration: underline;
+}
+.terms-line{
+    margin: 16px 0;
+    font-size: 12.5px;
+    line-height: 19px;
+}
+.ship-notice{
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #EEEEEC;
+    font-size: 13px;
+}
+.ship-notice .material-symbols-outlined{
+    font-size: 20px;
+}
+.option-disabled{
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+.option-disabled:hover{
+    border-color: #DADAD7;
+}
+.option .price{
+    white-space: nowrap;
+}
+.pay-split{
+    margin: -8px 0 4px;
+    font-size: 13px;
+    color: #383838;
+}
+.pay-split .sum-row{
+    padding: 6px 0;
+    border-bottom: 1px dashed #DADAD7;
+}
+.bank-box{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #DADAD7;
+    background: #FFFFFF;
+}
+.bank-qr{
+    text-align: center;
+    flex-shrink: 0;
+}
+.bank-qr img{
+    display: block;
+    width: 148px;
+    height: 148px;
+    image-rendering: pixelated;
+}
+.bank-qr small{
+    font-size: 11px;
+    color: #686868;
+}
+.bank-info{
+    flex: 1;
+    font-size: 13px;
+}
+.bank-info div{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid #EEEEEC;
+}
+.bank-info span{
+    color: #686868;
+}
+.card-form{
+    margin-top: 16px;
+}
+@media (max-width: 600px){
+    .checkout-box{
+        padding: 20px;
+    }
+    .checkout-box .form-row{
+        flex-direction: column;
+        gap: 0;
+    }
+    .bank-box{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .bank-qr img{
+        margin: 0 auto;
+    }
+}

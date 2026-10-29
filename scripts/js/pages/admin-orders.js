@@ -39,7 +39,7 @@ function showOrders(){
         html += "  <td class='items-text'>" + buildItemsText(o) + "</td>";
         html += "  <td>" + formatDate(o.created_at) + "</td>";
         html += "  <td>" + formatVND(o.total_amount) + "</td>";
-        html += "  <td>" + getPaymentText(o.payment_method) + "</td>";
+        html += "  <td>" + getPaymentText(o.payment_method) + "<br><span class='text-secondary' style='font-size:12px'>" + safeText(getPaymentStatusText(o)) + "</span></td>";
         html += "  <td><span class='status status-" + o.status + "'>" + getStatusText(o.status) + "</span></td>";
         html += "  <td><div class='action-cell'>";
         var tiep = getNextStatus(o.status);
@@ -73,7 +73,10 @@ function buildItemsText(order){
 function changeStatus(orderId, trangThai){
     var cauHoi = "Chuyển đơn #" + orderId + " sang \"" + getStatusText(trangThai) + "\"?";
     if(trangThai == "Cancelled")
-        cauHoi = "Hủy đơn #" + orderId + "? Số lượng sản phẩm sẽ được hoàn lại kho.";
+        cauHoi = "Hủy đơn #" + orderId + "? Số lượng sản phẩm sẽ được hoàn lại kho, tiền khách đã trả trước (nếu có) được ghi nhận hoàn lại.";
+    var don = findById("orders", orderId);
+    if(trangThai == "Delivered" && don != null && Number(don.amount_due) > 0)
+        cauHoi = "Xác nhận đơn #" + orderId + " đã giao và đã thu " + formatVND(don.amount_due) + " còn lại?";
     if(confirm(cauHoi) == false)
         return;
     var loi = updateOrderStatus(orderId, trangThai);

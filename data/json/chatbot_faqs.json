@@ -80,7 +80,7 @@
     "id": 12,
     "topic": "POLICY",
     "keywords": "thanh toán, phương thức thanh toán, cod, chuyển khoản, momo, vnpay",
-    "answer": "RoomCraft hỗ trợ đa dạng phương thức thanh toán: Thanh toán khi nhận hàng (COD), Chuyển khoản ngân hàng qua mã VietQR tự động và Ví điện tử (MoMo / VNPay). Mọi giao dịch đều được mã hóa bảo mật chuẩn SSL.",
+    "answer": "RoomCraft nhận thanh toán khi nhận hàng (COD) cho đơn đến 10 triệu, chuyển khoản ngân hàng (quét mã QR), ví điện tử và thẻ tín dụng / ghi nợ. Đơn trên 10 triệu cần thanh toán trước toàn bộ hoặc đặt cọc 30%, phần còn lại trả khi nhận hàng. Thanh toán trên website là mô phỏng, không phát sinh giao dịch thật.",
     "is_active": true
   },
   {
@@ -101,7 +101,7 @@
     "id": 15,
     "topic": "SHIPPING",
     "keywords": "vận chuyển, phí ship, giao hàng, bao lâu thì nhận được",
-    "answer": "RoomCraft có 2 phương thức vận chuyển, chọn ở trang Thanh toán: Giao hàng tiêu chuẩn phí 50.000 ₫, nhận hàng trong 3–5 ngày; Giao hàng nhanh phí 120.000 ₫, nhận hàng trong 1–2 ngày. Phí vận chuyển được cộng vào tổng đơn hàng.",
+    "answer": "Phí giao tính theo loại hàng và nơi nhận. Đồ trang trí, gối, chăn ga, đèn, thảm: giao tiêu chuẩn 3–5 ngày, 35.000 ₫ nội thành TP. Hồ Chí Minh, Hà Nội, Đà Nẵng, 50.000 ₫ tỉnh khác, miễn phí cho đơn từ 2 triệu; giao nhanh 1–2 ngày 80.000 ₫ (chỉ nội thành). Nội thất cỡ lớn được giao và lắp đặt tận nơi trong 3–7 ngày: 300.000 ₫ nội thành (miễn phí cho đơn từ 15 triệu), 600.000 ₫ tỉnh lân cận, 1.200.000 ₫ tỉnh xa. Phí chính xác hiện ở trang Thanh toán khi bạn chọn Tỉnh/Thành phố.",
     "is_active": true
   },
   {

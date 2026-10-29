@@ -16,7 +16,7 @@
      resetData()                 xóa hết dữ liệu localStorage, nạp lại từ JSON
    ===================================================================== */
 
-var DATA_VERSION = "11";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
+var DATA_VERSION = "12";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
 var DATA_FILES = ["products", "used_products", "categories", "styles", "rooms", "room_hotspots",
                   "users", "roles", "shipping_methods", "coupons", "chatbot_faqs",
                   "orders", "reviews"];

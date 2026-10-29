@@ -14,6 +14,7 @@
         <script src="components/header.js"></script>
         <script src="components/footer.js"></script>
         <script src="components/chatbot.js"></script>
+        <script src="js/services/shipping.js"></script>
         <script src="js/pages/account.js"></script>
     </head>
     <body>
@@ -63,9 +64,26 @@
                                     <input class="input" type="text" id="txtPhone" maxlength="10" placeholder="0901234567">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="txtAddress">Địa chỉ giao hàng mặc định</label>
-                                <textarea class="input" id="txtAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+                            <p class="overline addr-title">Địa chỉ giao hàng mặc định</p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cboProvince">Tỉnh / Thành phố</label>
+                                    <select class="input" id="cboProvince"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtWard">Phường / Xã</label>
+                                    <input class="input" type="text" id="txtWard" placeholder="Phường Linh Xuân">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="txtStreet">Số nhà, tên đường, tòa nhà</label>
+                                    <input class="input" type="text" id="txtStreet" placeholder="12 Đường số 5, Block B, căn 1205">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cboHouseType">Loại nhà</label>
+                                    <select class="input" id="cboHouseType"></select>
+                                </div>
                             </div>
                             <p class="text-secondary small" id="lblGoogle"></p>
                             <p class="success-text" id="msgProfile"></p>
@@ -77,8 +95,11 @@
                     <section class="card account-card" id="matKhau">
                         <p class="overline">Bảo mật</p>
                         <h2 class="headline-section" id="lblPasswordTitle">Đổi mật khẩu</h2>
-                        <p class="text-secondary small hidden" id="lblNoPassword">Tài khoản của bạn đăng ký bằng Google nên chưa có mật khẩu. Tạo mật khẩu để có thể đăng nhập bằng email.</p>
-                        <form name="frmPassword" onsubmit="return changePassword()">
+                        <div class="hidden" id="divNoPassword">
+                            <p class="text-secondary small">Bạn đang đăng nhập bằng Google nên không cần mật khẩu. Nếu muốn đăng nhập bằng email trên máy khác, bạn có thể thêm mật khẩu (không bắt buộc).</p>
+                            <input class="btn btn-outline" type="button" value="Thêm mật khẩu" onclick="showPasswordForm()">
+                        </div>
+                        <form name="frmPassword" id="frmPassword" onsubmit="return changePassword()">
                             <div class="form-group" id="divOldPassword">
                                 <label for="txtOldPassword">Mật khẩu hiện tại</label>
                                 <input class="input" type="password" id="txtOldPassword">

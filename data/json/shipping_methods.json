@@ -2,15 +2,44 @@
   {
     "id": 1,
     "name": "Giao hàng tiêu chuẩn",
-    "fee": 50000,
+    "kind": "PARCEL",
+    "description": "Đồ trang trí, gối, chăn ga, đèn, thảm, rèm",
+    "fee_city": 35000,
+    "fee_province": 50000,
+    "free_from": 2000000,
+    "city_only": false,
+    "days_min": 3,
+    "days_max": 5,
     "estimated_time": "3–5 ngày",
     "is_active": true
   },
   {
     "id": 2,
     "name": "Giao hàng nhanh",
-    "fee": 120000,
+    "kind": "PARCEL",
+    "description": "Chỉ nội thành TP. Hồ Chí Minh, Hà Nội, Đà Nẵng",
+    "fee_city": 80000,
+    "fee_province": 80000,
+    "free_from": null,
+    "city_only": true,
+    "days_min": 1,
+    "days_max": 2,
     "estimated_time": "1–2 ngày",
+    "is_active": true
+  },
+  {
+    "id": 3,
+    "name": "Giao và lắp đặt tận nơi",
+    "kind": "BULKY",
+    "description": "Nội thất cỡ lớn: xe tải chuyên dụng, 2 nhân viên khiêng và lắp đặt, hẹn khung giờ trước khi giao",
+    "fee_city": 300000,
+    "fee_near": 600000,
+    "fee_far": 1200000,
+    "free_from": 15000000,
+    "city_only": false,
+    "days_min": 3,
+    "days_max": 7,
+    "estimated_time": "3–7 ngày",
     "is_active": true
   }
 ]
