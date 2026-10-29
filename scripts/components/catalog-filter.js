@@ -331,34 +331,7 @@ function filterProductList(ds, state){
     return kq;
 }
 
-// Số lượng đã bán của từng sản phẩm (đơn không bị hủy)
-function getSoldMap(){
-    var orders = getTable("orders");
-    var daBan = {};
-    for(var i = 0; i < orders.length; i++){
-        if(orders[i].status == "Cancelled") continue;
-        var items = orders[i].items || [];
-        for(var j = 0; j < items.length; j++)
-            daBan[items[j].product_id] = (daBan[items[j].product_id] || 0) + Number(items[j].quantity);
-    }
-    return daBan;
-}
-
-// Điểm đánh giá trung bình và số lượt đánh giá (bỏ đánh giá bị ẩn).
-// "score" cộng thêm 2 lượt ảo 4 sao để món 1 lượt 5 sao không xếp trên món 20 lượt 4,8 sao.
-function getRatingMap(){
-    var reviews = getTable("reviews");
-    var tong = {}, dem = {};
-    for(var i = 0; i < reviews.length; i++){
-        if(reviews[i].is_hidden) continue;
-        var id = reviews[i].product_id;
-        tong[id] = (tong[id] || 0) + Number(reviews[i].rating);
-        dem[id] = (dem[id] || 0) + 1;
-    }
-    var kq = {};
-    for(var pid in dem) kq[pid] = { avg: tong[pid] / dem[pid], count: dem[pid], score: (tong[pid] + 8) / (dem[pid] + 2) };
-    return kq;
-}
+// getSoldMap() và getRatingMap() nằm ở js/services/products.js (dùng chung cho thẻ sản phẩm)
 
 // sort: default | newest | bestseller | rating | price-asc | price-desc | name-asc | grade
 // Món hết hàng luôn xếp cuối để khách thấy món mua được trước.
