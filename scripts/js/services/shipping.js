@@ -58,6 +58,68 @@ var PROVINCES = [
 
 var HOUSE_TYPES = ["Chung cư có thang máy", "Nhà phố / nhà riêng", "Văn phòng / cửa hàng"];
 
+var wardsData = null;
+var wardsDataPromise = null;
+
+function loadWardsData(){
+    if(wardsDataPromise == null){
+        wardsDataPromise = fetch("../data/json/wards.json")
+            .then(function(response){
+                if(!response.ok)
+                    throw new Error("Không tải được danh sách Phường/Xã (" + response.status + ").");
+                return response.json();
+            })
+            .then(function(data){
+                if(!Array.isArray(data))
+                    throw new Error("Dữ liệu wards.json không đúng định dạng.");
+                wardsData = data;
+                return wardsData;
+            });
+    }
+    return wardsDataPromise;
+}
+
+function normalizeProvinceName(name){
+    return String(name || "")
+        .replace(/^TP\.\s*/, "")
+        .replace(/^(Thành phố|Tỉnh)\s+/, "")
+        .trim();
+}
+
+function renderWardOptions(selectElement, provinceName, selectedWard){
+    selectElement.innerHTML = "";
+    var defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "Chọn Phường/Xã";
+    selectElement.appendChild(defaultOption);
+
+    var matchedProvince = null;
+    for(var i = 0; wardsData && i < wardsData.length; i++){
+        if(normalizeProvinceName(wardsData[i].name) == normalizeProvinceName(provinceName)){
+            matchedProvince = wardsData[i];
+            break;
+        }
+    }
+
+    var province = matchedProvince && wardsData.find(function(item){
+        return String(item.code) == String(matchedProvince.code);
+    });
+    if(!province){
+        selectElement.disabled = true;
+        return;
+    }
+
+    for(var i = 0; i < province.wards.length; i++){
+        var ward = province.wards[i];
+        var option = document.createElement("option");
+        option.value = ward.name;
+        option.textContent = ward.name;
+        option.selected = ward.name == selectedWard;
+        selectElement.appendChild(option);
+    }
+    selectElement.disabled = false;
+}
+
 function getProvinceZone(tenTinh){
     for(var i = 0; i < PROVINCES.length; i++){
         if(PROVINCES[i].name == tenTinh) return PROVINCES[i].zone;

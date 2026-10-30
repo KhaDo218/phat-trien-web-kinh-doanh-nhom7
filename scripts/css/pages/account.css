@@ -35,7 +35,7 @@
     background: #202020;
     color: #FFFFFF;
     border-radius: 50%;
-    font-family: var(--font-display);
+    font-family: "EB Garamond", Georgia, serif;
     font-size: 22px;
 }
 .avatar img{

@@ -21,6 +21,7 @@
         <script src="js/services/products.js"></script>
         <script src="js/services/cart.js"></script>
         <script src="js/services/orders.js"></script>
+        <script src="js/services/shipping.js"></script>
         <script src="js/pages/product-detail.js"></script>
     </head>
     <body>
@@ -42,18 +43,18 @@
                             <div id="divModelViewer" class="detail-3d-box hidden"></div>
                         </div>
 
-                        <!-- Danh sách ảnh thu nhỏ thumbnails -->
-                        <div class="detail-thumbs" id="divThumbnails"></div>
-
                         <!-- Nút chuyển đổi chế độ Ảnh / Xem 3D nếu có model -->
                         <div id="divMediaSwitcher" class="detail-switcher hidden">
                             <button type="button" id="btnShowPhoto" class="chip active" onclick="switchMediaMode('photo')">
                                 <span class="material-symbols-outlined">photo</span> Ảnh chụp thực tế
                             </button>
-                            <button type="button" id="btnShow3D" class="chip" onclick="switchMediaMode('3d')">
+                            <button type="button" id="btnShow3D" class="chip hidden" onclick="switchMediaMode('3d')">
                                 <span class="material-symbols-outlined">view_in_ar</span> Xem mô hình 3D
                             </button>
                         </div>
+
+                        <!-- Danh sách ảnh thu nhỏ thumbnails -->
+                        <div class="detail-thumbs" id="divThumbnails"></div>
                     </div>
 
                     <!-- Cột phải: Thông tin sản phẩm & Tình trạng đồ cũ -->
@@ -71,6 +72,17 @@
                             <span class="detail-price-old hidden" id="lblOldPrice"></span>
                             <span class="badge badge-sale hidden" id="lblSalePercent"></span>
                         </div>
+
+                        <div class="detail-stock" id="divStockStatus" aria-live="polite">
+                            <span id="lblStockQuantity"></span>
+                            <strong id="lblStockWarning" class="hidden"></strong>
+                        </div>
+
+                        <section class="detail-shipping card" aria-labelledby="shippingInfoTitle">
+                            <h2 id="shippingInfoTitle">Thông tin giao hàng</h2>
+                            <p><span>Phí vận chuyển:</span> <strong id="lblShippingFee">Đang cập nhật</strong></p>
+                            <p><span>Ngày giao dự kiến:</span> <strong id="lblDeliveryDates"></strong></p>
+                        </section>
 
                         <!-- Khung thông tin đồ cũ (Hiện khi product_type = 'USED') -->
                         <div id="usedProductInfoBox" class="used-info-card card hidden">

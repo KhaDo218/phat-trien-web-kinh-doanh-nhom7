@@ -44,10 +44,12 @@ function createProductCard(product){
         badgeGrade.className = "badge " + gradeCls;
         badgeGrade.innerHTML = product.condition_grade || "Đồ cũ";
         badgesBox.appendChild(badgeGrade);
-    } else if(product.model_3d_url){
+    }
+    if(typeof product.model_3d_url === "string" && product.model_3d_url.trim() !== ""){
         var badge3d = document.createElement("span");
         badge3d.className = "badge badge-3d";
-        badge3d.innerHTML = "<span class='material-symbols-outlined' style='font-size:12px;vertical-align:-1px;margin-right:2px;'>view_in_ar</span>3D";
+        badge3d.innerHTML = "<span class='material-symbols-outlined' aria-hidden='true'>view_in_ar</span> Có hình 3D";
+        badge3d.setAttribute("aria-label", "Sản phẩm có hình ảnh 3D");
         badgesBox.appendChild(badge3d);
     }
 
