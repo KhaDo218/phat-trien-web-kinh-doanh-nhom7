@@ -11,6 +11,8 @@ function initPage(){
         return;
     renderAdminSidebar("products");
     populateProductFormOptions();
+    populateCatalogGroupOptions("cboProductMaterialGroup", MATERIAL_GROUPS);
+    populateCatalogGroupOptions("cboProductColorGroup", COLOR_GROUPS);
     renderAdminProducts();
 }
 
@@ -201,7 +203,9 @@ function openProductForm(productId){
         document.getElementById("txtProductStock").value = product.stock_quantity;
         document.getElementById("txtProductDimensions").value = product.dimensions || "";
         document.getElementById("txtProductMaterial").value = product.material || "";
+        document.getElementById("cboProductMaterialGroup").value = getCatalogMaterialGroup(product);
         document.getElementById("txtProductColor").value = product.color || "";
+        document.getElementById("cboProductColorGroup").value = getCatalogColorGroup(product);
         document.getElementById("txtProductImages").value = (product.images || []).join("\n");
         document.getElementById("txtProductModel").value = product.model_3d_url || "";
         document.getElementById("txtProductDescription").value = product.description || "";
@@ -298,7 +302,9 @@ function saveAdminProduct(event){
     product.stock_quantity = Number(document.getElementById("txtProductStock").value);
     product.dimensions = document.getElementById("txtProductDimensions").value.trim();
     product.material = document.getElementById("txtProductMaterial").value.trim();
+    product.material_group = document.getElementById("cboProductMaterialGroup").value;
     product.color = document.getElementById("txtProductColor").value.trim();
+    product.color_group = document.getElementById("cboProductColorGroup").value;
     product.images = images;
     product.model_3d_url = document.getElementById("txtProductModel").value.trim() || null;
     product.description = document.getElementById("txtProductDescription").value.trim();

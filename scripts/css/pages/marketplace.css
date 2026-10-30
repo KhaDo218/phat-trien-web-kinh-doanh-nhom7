@@ -308,13 +308,6 @@
         min-height: 520px;
         padding: 48px 40px 168px;
     }
-    .market-layout{
-        flex-direction: column;
-    }
-    .market-sidebar{
-        width: 100%;
-        position: static;
-    }
     .market-steps{
         grid-template-columns: repeat(2, 1fr);
     }

@@ -37,6 +37,76 @@ var COLOR_GROUPS = [
 ];
 
 var FILTER_PAGE_SIZE = 12;
+var appliedFilterState = null;
+
+function getCatalogMaterialGroup(product){
+    if(product.material_group && MATERIAL_GROUPS.indexOf(product.material_group) >= 0)
+        return product.material_group;
+    var material = String(product.material || "").toLowerCase();
+    if(/đá|bê tông|xi măng|marble|granite|concrete|cement|stone/.test(material))
+        return "Đá & bê tông";
+    if(/gốm|sứ|đất nung|ceramic|porcelain|terracotta/.test(material))
+        return "Gốm sứ";
+    if(/thủy tinh|kính|glass|mirror/.test(material))
+        return "Thủy tinh";
+    if(/mây|tre|cói|wicker|rattan|bamboo|cane|seagrass/.test(material))
+        return "Mây, tre, cói";
+    if(/gỗ|wood|oak|walnut|maple|mango|teak|acacia|pine|plywood|mdf/.test(material))
+        return "Gỗ";
+    if(/da bò|da thật|da nhân tạo|da tổng hợp|da lộn|leather|leatherette|faux leather/.test(material))
+        return "Da";
+    if(/kim loại|thép|sắt|nhôm|đồng|inox|thau|metal|steel|iron|aluminum|aluminium|brass|copper|chrome/.test(material))
+        return "Kim loại";
+    if(/vải|sợi|cotton|linen|polyester|canvas|nhung|len|nỉ|velvet|wool|textile|fabric|chenille|acrylic/.test(material))
+        return "Vải & sợi";
+    return "Khác";
+}
+
+function getCatalogColorGroup(product){
+    var validGroups = COLOR_GROUPS.map(function(group){ return group.name; });
+    if(product.color_group && validGroups.indexOf(product.color_group) >= 0)
+        return product.color_group;
+    var color = boDau(product.color);
+    if(color == "")
+        return "";
+    if(/^(chon mau sau|100% len|vai canvas)$/.test(color))
+        return "";
+    if(/nhieu mau|multicolor|multicolour|pattern|hoa tiet|moi chiec moi khac|loang/.test(color))
+        return "Nhiều màu";
+    if(/trang|kem|ivory|white|cream|xuong|bone|ecru|pearl|sang mau|phu trang/.test(color))
+        return "Trắng & kem";
+    if(/den|black|muc in/.test(color))
+        return "Đen";
+    if(/xam|gray|grey|charcoal|graphite|than chi|silver|bac|khoi|suong|xi mang|ximang|nhom|sat cu|mau soi/.test(color))
+        return "Xám";
+    if(/xanh la|xanh reu|xanh quan doi|xanh la co|xanh spa|xanh oc dao|xanh diu|xanh thuong xuan|xanh dam lay|green|olive|o liu|moss|sage|mint|forest|rung|bot bien|mong ket|ngoc/.test(color))
+        return "Xanh lá";
+    if(/xanh duong|xanh dam pha|xanh cham|xanh lan|xanh bien|xanh thuy tinh bien|xanh vu tru|xanh bui|xanh chuon chuon|blue|navy|indigo|lagoon|ocean|dai duong|pacific|royal|teal|turquoise/.test(color))
+        return "Xanh dương";
+    if(/vang|dong|gold|brass|bronze|champagne|sampanh|sam panh|honey|mat ong|mustard/.test(color))
+        return "Vàng & đồng";
+    if(/hong|do|cam|pink|red|orange|coral|rust|gi set|cinnamon|cider|berry|plum|tim|mulberry|dau tam|mau que/.test(color))
+        return "Hồng, đỏ & cam";
+    if(/be|nau|brown|beige|tan|cognac|walnut|natural|tu nhien|go|mocha|caramel|straw|trung tinh|tong dat|sand|cat|latte|sa thach|da voi|da travertine|mau da|taupe|sung|trong suot/.test(color))
+        return "Be & nâu";
+    return "";
+}
+
+function populateCatalogGroupOptions(selectId, groups, selectedValue){
+    var select = document.getElementById(selectId);
+    select.innerHTML = "";
+    var placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Chọn nhóm";
+    select.appendChild(placeholder);
+    for(var i = 0; i < groups.length; i++){
+        var option = document.createElement("option");
+        option.value = typeof groups[i] == "string" ? groups[i] : groups[i].name;
+        option.textContent = option.value;
+        select.appendChild(option);
+    }
+    select.value = selectedValue || "";
+}
 
 /* ---------------- Tìm kiếm tiếng Việt không dấu ---------------- */
 
@@ -77,7 +147,7 @@ function diemTimKiem(product, tuKhoa){
     var cumTuKhoa = dsTuKhoa.join(" ");
     var tuTen = tachTu(product.name);
     var tenBoDau = tuTen.join(" ");
-    var tuKhac = tachTu([product.brand, product.material, product.color, product.material_group, product.color_group].join(" "));
+    var tuKhac = tachTu([product.brand, product.material, product.color, getCatalogMaterialGroup(product), getCatalogColorGroup(product)].join(" "));
 
     var trongTen = true, trongTatCa = true;
     for(var i = 0; i < dsTuKhoa.length; i++){
@@ -106,25 +176,25 @@ function renderFilterPanel(containerId, dsGoc, htmlRieng){
 
     // Mức giá
     html += "<div class='filter-group'><h4 class='filter-group-title'>Mức giá (VND)</h4><div class='filter-radios'>";
-    html += "<label class='radio-label'><input type='radio' name='radPrice' value='' checked onchange='onFilterChange()'><span>Tất cả mức giá</span></label>";
+    html += "<label class='radio-label'><input type='radio' name='radPrice' value='' checked><span>Tất cả mức giá</span></label>";
     for(var i = 0; i < PRICE_RANGES.length; i++){
         var soMon = demTheoGia(dsGoc, PRICE_RANGES[i].value);
         if(soMon == 0) continue;
-        html += "<label class='radio-label'><input type='radio' name='radPrice' value='" + PRICE_RANGES[i].value + "' onchange='onFilterChange()'>"
+        html += "<label class='radio-label'><input type='radio' name='radPrice' value='" + PRICE_RANGES[i].value + "'>"
              + "<span>" + PRICE_RANGES[i].label + "</span><em class='filter-count'>" + soMon + "</em></label>";
     }
     html += "</div></div>";
 
     // Danh mục (cha trước, con thụt vào dưới cha)
     html += "<div class='filter-group'><h4 class='filter-group-title'>Danh mục</h4>";
-    html += "<select id='cboFilterCategory' class='input' onchange='onFilterChange()'>" + taoOptionDanhMuc(dsGoc) + "</select></div>";
+    html += "<select id='cboFilterCategory' class='input'>" + taoOptionDanhMuc() + "</select></div>";
 
     // Chất liệu
     html += "<div class='filter-group'><h4 class='filter-group-title'>Chất liệu</h4><div class='filter-checks' id='divFilterMaterial'>";
     for(var j = 0; j < MATERIAL_GROUPS.length; j++){
         var soChatLieu = demTheoTruong(dsGoc, "material_group", MATERIAL_GROUPS[j]);
         if(soChatLieu == 0) continue;
-        html += "<label class='checkbox-label'><input type='checkbox' value='" + MATERIAL_GROUPS[j] + "' onchange='onFilterChange()'>"
+        html += "<label class='checkbox-label'><input type='checkbox' value='" + MATERIAL_GROUPS[j] + "'>"
              + "<span>" + MATERIAL_GROUPS[j] + "</span><em class='filter-count'>" + soChatLieu + "</em></label>";
     }
     html += "</div></div>";
@@ -135,7 +205,7 @@ function renderFilterPanel(containerId, dsGoc, htmlRieng){
         var soMau = demTheoTruong(dsGoc, "color_group", COLOR_GROUPS[k].name);
         if(soMau == 0) continue;
         html += "<label class='color-label' title='" + COLOR_GROUPS[k].name + " (" + soMau + ")'>"
-             + "<input type='checkbox' value='" + COLOR_GROUPS[k].name + "' onchange='onFilterChange()'>"
+             + "<input type='checkbox' value='" + COLOR_GROUPS[k].name + "'>"
              + "<span class='color-swatch' style='background:" + COLOR_GROUPS[k].swatch + "'></span>"
              + "<span class='color-name'>" + COLOR_GROUPS[k].name + "</span></label>";
     }
@@ -143,11 +213,12 @@ function renderFilterPanel(containerId, dsGoc, htmlRieng){
 
     // Thương hiệu
     html += "<div class='filter-group'><h4 class='filter-group-title'>Thương hiệu</h4>";
-    html += "<select id='cboFilterBrand' class='input' onchange='onFilterChange()'>" + taoOptionThuongHieu(dsGoc) + "</select></div>";
+    html += "<select id='cboFilterBrand' class='input'>" + taoOptionThuongHieu(dsGoc) + "</select></div>";
 
     // Còn hàng
     html += "<div class='filter-group filter-group-last'><label class='checkbox-label'>";
-    html += "<input type='checkbox' id='chkFilterInStock' onchange='onFilterChange()'><span>Chỉ hiện sản phẩm còn hàng</span></label></div>";
+    html += "<input type='checkbox' id='chkFilterInStock'><span>Chỉ hiện sản phẩm còn hàng</span></label></div>";
+    html += "<button type='button' class='btn btn-outline btn-full filter-apply-button' onclick='applyFilterPanel()'>Áp dụng bộ lọc</button>";
 
     document.getElementById(containerId).innerHTML = html;
 }
@@ -169,33 +240,21 @@ function trongKhoangGia(gia, khoang){
 function demTheoTruong(ds, truong, giaTri){
     var dem = 0;
     for(var i = 0; i < ds.length; i++){
-        if(ds[i][truong] == giaTri) dem++;
+        var giaTriSanPham = ds[i][truong];
+        if(truong == "material_group")
+            giaTriSanPham = getCatalogMaterialGroup(ds[i]);
+        else if(truong == "color_group")
+            giaTriSanPham = getCatalogColorGroup(ds[i]);
+        if(giaTriSanPham == giaTri) dem++;
     }
     return dem;
 }
 
-function taoOptionDanhMuc(ds){
+function taoOptionDanhMuc(){
     var categories = getTable("categories");
     var html = "<option value=''>Tất cả danh mục</option>";
     for(var i = 0; i < categories.length; i++){
-        var cha = categories[i];
-        if(cha.parent_id != null && cha.parent_id !== "") continue;
-        var dsCon = [];
-        var tongCha = 0;
-        for(var j = 0; j < categories.length; j++){
-            if(categories[j].parent_id == cha.id){
-                var soCon = demTheoTruong(ds, "category_id", categories[j].id);
-                if(soCon > 0){
-                    dsCon.push({ id: categories[j].id, name: categories[j].name, so: soCon });
-                    tongCha += soCon;
-                }
-            }
-        }
-        tongCha += demTheoTruong(ds, "category_id", cha.id);
-        if(tongCha == 0) continue;
-        html += "<option value='" + cha.id + "'>" + cha.name + " (" + tongCha + ")</option>";
-        for(var k = 0; k < dsCon.length; k++)
-            html += "<option value='" + dsCon[k].id + "'>&nbsp;&nbsp;&nbsp;&nbsp;" + dsCon[k].name + " (" + dsCon[k].so + ")</option>";
+        html += "<option value='" + categories[i].id + "'>" + categories[i].name + "</option>";
     }
     return html;
 }
@@ -247,7 +306,35 @@ function getFilterState(){
     };
 }
 
+function copyFilterState(state){
+    return {
+        q: state.q || "",
+        price: state.price || "",
+        category: state.category || "",
+        materials: (state.materials || []).slice(),
+        colors: (state.colors || []).slice(),
+        brand: state.brand || "",
+        inStock: state.inStock == true,
+        sort: state.sort || ""
+    };
+}
+
+function getAppliedFilterState(){
+    return copyFilterState(appliedFilterState || getFilterState());
+}
+
+function commitFilterState(){
+    appliedFilterState = copyFilterState(getFilterState());
+}
+
+function applyFilterPanel(){
+    onFilterChange();
+    if(window.matchMedia("(max-width: 900px)").matches)
+        document.getElementById("filterPanel").classList.remove("open");
+}
+
 function setFilterState(state){
+    appliedFilterState = copyFilterState(state);
     document.getElementById("txtFilterSearch").value = state.q || "";
     var radios = document.getElementsByName("radPrice");
     var coGia = false;
@@ -316,8 +403,8 @@ function filterProductList(ds, state){
         var p = ds[i];
         if(!trongKhoangGia(p.price, state.price)) continue;
         if(state.category && dsDanhMuc.indexOf(String(p.category_id)) < 0) continue;
-        if(state.materials.length > 0 && state.materials.indexOf(p.material_group) < 0) continue;
-        if(state.colors.length > 0 && state.colors.indexOf(p.color_group) < 0) continue;
+        if(state.materials.length > 0 && state.materials.indexOf(getCatalogMaterialGroup(p)) < 0) continue;
+        if(state.colors.length > 0 && state.colors.indexOf(getCatalogColorGroup(p)) < 0) continue;
         if(state.brand && p.brand != state.brand) continue;
         if(state.inStock && !(Number(p.stock_quantity) > 0)) continue;
         if(state.q){

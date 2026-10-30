@@ -8,6 +8,7 @@
    ===================================================================== */
 
 var currentCondition = "";
+var draftCondition = "";
 var currentPage = 1;
 var CONDITIONS = [
     { value: "Like New", label: "Like New (>95%)" },
@@ -26,6 +27,7 @@ function initPage(){
     if(!state.sort) state.sort = "newest";
     setFilterState(state);
     currentCondition = getParam("condition");
+    draftCondition = currentCondition;
     currentPage = Number(getParam("page")) || 1;
     updateConditionChipsUI();
     renderMarketplace();
@@ -53,15 +55,14 @@ function taoHtmlTinhTrang(){
 }
 
 function setConditionFilter(grade){
-    currentCondition = grade;
+    draftCondition = grade;
     updateConditionChipsUI();
-    onFilterChange();
 }
 
 function updateConditionChipsUI(){
     var chips = document.getElementById("filterGradeChips").getElementsByTagName("button");
     for(var i = 0; i < chips.length; i++){
-        if(chips[i].getAttribute("data-value") == currentCondition)
+        if(chips[i].getAttribute("data-value") == draftCondition)
             chips[i].classList.add("active");
         else
             chips[i].classList.remove("active");
@@ -71,12 +72,15 @@ function updateConditionChipsUI(){
 // Khung lọc dùng chung gọi hàm này khi khách bấm "Đặt lại"
 function resetPageFilters(){
     currentCondition = "";
+    draftCondition = "";
     document.getElementById("cboFilterSort").value = "newest";
     updateConditionChipsUI();
 }
 
 // Khung lọc dùng chung gọi hàm này mỗi khi khách đổi một lựa chọn
 function onFilterChange(){
+    currentCondition = draftCondition;
+    commitFilterState();
     currentPage = 1;
     renderMarketplace();
 }
@@ -88,7 +92,7 @@ function goToFilterPage(page){
 }
 
 function renderMarketplace(){
-    var state = getFilterState();
+    var state = getAppliedFilterState();
     var list = filterProductList(getUsedProducts(), state);
     if(currentCondition != ""){
         var theoTinhTrang = [];
@@ -107,7 +111,7 @@ function renderMarketplace(){
 
     var nhanRieng = [];
     if(currentCondition != "")
-        nhanRieng.push({ label: "Tình trạng: " + currentCondition, remove: "currentCondition=\"\";updateConditionChipsUI()" });
+        nhanRieng.push({ label: "Tình trạng: " + currentCondition, remove: "currentCondition=\"\";draftCondition=\"\";updateConditionChipsUI()" });
     renderActiveFilterTags("divActiveTags", state, nhanRieng);
 
     // Ghi bộ lọc lên địa chỉ trang để tải lại / gửi link vẫn giữ nguyên
