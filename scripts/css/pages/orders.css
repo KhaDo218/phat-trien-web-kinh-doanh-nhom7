@@ -35,7 +35,7 @@
     background: #F7F3EC;
 }
 .orders-table td:first-child{
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 20px;
 }
 .orders-table td:nth-child(4){

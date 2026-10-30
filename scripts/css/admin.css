@@ -23,7 +23,7 @@
 }
 #sidebar .logo{
     padding: 0 28px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 26px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -149,7 +149,7 @@
 }
 .stat-card .value{
     margin-top: 8px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 34px;
     line-height: 42px;
 }

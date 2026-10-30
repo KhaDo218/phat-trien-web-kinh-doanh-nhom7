@@ -114,7 +114,7 @@
 }
 .ar-title-style{
     margin-left: 8px;
-    font-family: "Inter", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;

@@ -177,7 +177,7 @@ function initHomeMotion(){
         observer.observe(revealItems[n]);
 }
 
-// Bỏ qua phần tiêu đề ở 8 giây đầu và 5 giây cuối khi phát video hero.
+// Bỏ qua 2 giây đầu và 2 giây cuối khi phát video hero.
 function initHeroVideoTrim(){
     var video = document.querySelector("#hero .hero-video");
     if(!video)

@@ -13,8 +13,8 @@
      #2C6B3F / #E8F3EB  nhãn "Còn hàng"
 
    FONT
-     EB Garamond: logo, tiêu đề, tên sản phẩm
-     Inter: chữ giao diện (menu, nút, nội dung)
+     Cormorant Garamond: logo, tiêu đề, tên sản phẩm
+     Noto Sans: chữ giao diện, menu, nút và nội dung
 
    QUY TẮC
      - Không bo góc (border-radius: 0), trừ chấm hotspot và nhãn tròn.
@@ -22,8 +22,14 @@
      - Lề trang: 64px máy tính, 40px tablet, 20px điện thoại.
    ===================================================================== */
 
-@import url(fonts.css);         /* font chữ + icon để sẵn trong repo, demo không cần mạng */
+@import url(https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans:wght@300;400;500;600&subset=vietnamese&display=swap);
 @import url(components/chatbot.css);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=swap);
+
+:root{
+    --font-display: "Cormorant Garamond", "Times New Roman", serif;
+    --font-body: "Noto Sans", "Segoe UI", Arial, sans-serif;
+}
 
 /* ---------- 1. Đặt lại mặc định ---------- */
 *{
@@ -34,9 +40,14 @@
 body{
     background: #F7F7F5;
     color: #202020;
-    font-family: "Inter", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 15px;
     line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 a{
     color: #202020;
@@ -50,8 +61,10 @@ ul{
     list-style: none;
 }
 input, select, textarea, button{
-    font-family: "Inter", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0;
     color: #202020;
 }
 /* Icon: <span class="material-symbols-outlined">favorite</span> (tra tên icon ở fonts.google.com/icons) */
@@ -95,33 +108,42 @@ input, select, textarea, button{
 
 /* ---------- 3. Chữ ---------- */
 .display{
-    font-family: "EB Garamond", Georgia, serif;
-    font-size: 80px;
-    line-height: 88px;
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 78px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+body:has(.catalog-heading),
+body:has(.rooms-heading),
+body:has(.market-header){
+    overflow-x:clip;
+}
+.headline-page{
+    font-family: var(--font-display);
+    font-size: 48px;
+    line-height: 56px;
     font-weight: 400;
     letter-spacing: -0.02em;
 }
-.headline-page{
-    font-family: "EB Garamond", Georgia, serif;
-    font-size: 52px;
-    line-height: 60px;
-    font-weight: 400;
-}
 .headline-section{
-    font-family: "EB Garamond", Georgia, serif;
-    font-size: 34px;
-    line-height: 42px;
+    font-family: var(--font-display);
+    font-size: 31px;
+    line-height: 39px;
     font-weight: 400;
+    letter-spacing: -0.015em;
 }
 .title-product{
-    font-family: "EB Garamond", Georgia, serif;
-    font-size: 20px;
-    line-height: 26px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 25px;
     font-weight: 400;
+    letter-spacing: -0.01em;
 }
 .lead{
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 17px;
+    line-height: 27px;
+    font-weight: 400;
     color: #686868;
 }
 .overline{
@@ -133,6 +155,7 @@ input, select, textarea, button{
 }
 .text-secondary{
     color: #686868;
+    font-weight: 400;
 }
 .price{
     font-size: 15px;
@@ -204,45 +227,6 @@ input, select, textarea, button{
     letter-spacing: 0.08em;
     text-transform: uppercase;
     border-bottom: 1px solid transparent;
-}
-button.btn-link{
-    padding: 0;
-    background: none;
-    border: 0;
-    font-family: inherit;
-    color: inherit;
-    cursor: pointer;
-}
-/* Nút phân trang dùng chung (trang Sản phẩm, Đồ cũ, admin) */
-.catalog-page-link{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 36px;
-    height: 36px;
-    padding: 0 10px;
-    border: 1px solid #DADAD7;
-    background: #FFFFFF;
-    color: #202020;
-    font-family: inherit;
-    font-size: 13px;
-    cursor: pointer;
-}
-.catalog-page-link:hover, .catalog-page-link.active{
-    background: #202020;
-    border-color: #202020;
-    color: #FFFFFF;
-}
-.catalog-page-dots{
-    color: #686868;
-}
-.catalog-pagination{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-top: 32px;
 }
 .btn-link:hover{
     border-bottom-color: #202020;
@@ -397,6 +381,31 @@ main.subpage .card{
     border-color: #DDD8CF;
     box-shadow: 0 18px 46px rgba(43, 37, 29, 0.07);
 }
+main.subpage > .breadcrumb{
+    animation: subpage-rise .45s ease both;
+}
+main.subpage > .headline-page{
+    animation: subpage-rise .6s .06s ease both;
+}
+main.subpage > .headline-page ~ *{
+    animation: subpage-rise .7s .13s ease both;
+}
+main.subpage .btn{
+    transition: transform .25s ease, background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+main.subpage .btn:hover{
+    transform: translateY(-2px);
+}
+@keyframes subpage-rise{
+    from{
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 main.subpage .empty{
     position: relative;
     max-width: 760px;
@@ -443,8 +452,6 @@ main.subpage .empty .empty-copy{
     line-height: 24px;
 }
 .auth-page{
-    position: relative;
-    overflow: hidden;          /* chữ ROOMCRAFT chìm không làm trang bị cuộn ngang */
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -457,13 +464,11 @@ main.subpage .empty .empty-copy{
     right: -20px;
     bottom: 20px;
     color: rgba(32, 32, 32, 0.035);
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: clamp(90px, 14vw, 230px);
     white-space: nowrap;
 }
 .auth-page .auth-box{
-    width: 100%;
-    max-width: 640px;          /* Đăng nhập, Đăng ký, Quên mật khẩu cùng một độ rộng */
     box-shadow: 0 28px 70px rgba(43, 37, 29, 0.12);
 }
 
@@ -483,7 +488,7 @@ main.subpage .empty .empty-copy{
     height: 64px;
 }
 #header .logo, #footer .logo{
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 32px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -553,15 +558,22 @@ main.subpage .empty .empty-copy{
     padding-bottom: 12px;
 }
 #header .menu a{
-    padding: 4px 0;
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    display:inline-flex;
+    align-items:center;
+    min-height:28px;
+    padding: 3px 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.075em;
     text-transform: uppercase;
     color: #686868;
     border-bottom: 1px solid transparent;
 }
 #header .menu a:hover, #header .menu a.active{
     color: #202020;
+    font-size: 12px;
+    font-weight: 400;
     border-bottom-color: #202020;
 }
 
@@ -842,13 +854,11 @@ main.subpage .empty .empty-copy{
         gap: 2px;
     }
     #header .menu{
-        justify-content: space-between;   /* 4 mục chia đều, không bị cắt chữ trên điện thoại */
-        gap: 12px;
+        gap: 20px;
         overflow-x: auto;
     }
     #header .menu a{
         font-size: 11px;
-        letter-spacing: 0.03em;
         white-space: nowrap;
     }
     #footer .footer-top, #footer .columns, #footer .footer-bottom{
@@ -870,6 +880,17 @@ main.subpage .empty .empty-copy{
     }
     .terms-toc{
         column-count: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    main.subpage > .breadcrumb,
+    main.subpage > .headline-page,
+    main.subpage > .headline-page ~ *{
+        animation: none;
+    }
+    main.subpage .btn{
+        transition: none;
     }
 }
 @media (max-width: 480px){
