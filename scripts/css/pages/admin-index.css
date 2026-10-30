@@ -29,7 +29,7 @@
     margin: 40px 0 16px;
 }
 .low-note{
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-body);
     font-size: 13px;
 }
 @media (max-width: 1024px){

@@ -16,7 +16,7 @@
      resetData()                 xóa hết dữ liệu localStorage, nạp lại từ JSON
    ===================================================================== */
 
-var DATA_VERSION = "13";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
+var DATA_VERSION = "14";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
 var DATA_FILES = ["products", "used_products", "categories", "styles", "rooms", "room_hotspots",
                   "users", "roles", "shipping_methods", "coupons", "chatbot_faqs",
                   "orders", "reviews"];
@@ -89,10 +89,14 @@ function saveAllData(duLieu){
 
 // ---------------------------------------------------------------------
 // Khi tăng DATA_VERSION: gộp dữ liệu đang có trên máy vào dữ liệu JSON mới
-//   - users: tài khoản đã có trong JSON (cùng email) thì giữ bản trên máy,
-//            tài khoản đăng ký thêm thì thêm vào (trùng id thì cấp id mới)
-//   - orders, reviews: dòng trùng id và trùng created_at là cùng 1 dòng -> giữ bản trên máy,
-//            dòng tạo trên máy mà trùng id với JSON thì cấp id mới
+//   Chỉ giữ những gì TẠO TRÊN MÁY NÀY (đăng ký, đặt hàng, đánh giá khi dùng web).
+//   Dữ liệu mẫu của phiên bản cũ thì bỏ, lấy bản mới trong JSON -> không bị nhân đôi.
+//   Cách nhận biết: dòng tạo khi dùng web có created_at kiểu new Date().toISOString()
+//   (kết thúc bằng "Z"), dòng mẫu trong data/json thì không có "Z".
+//   - users: tài khoản có trong JSON (cùng email) thì giữ bản trên máy (vd. đã đổi tên),
+//            tài khoản tự đăng ký thì thêm vào (trùng id thì cấp id mới)
+//   - orders, reviews: dòng trùng id và trùng created_at với JSON -> giữ bản trên máy
+//            (vd. admin đã đổi trạng thái), dòng tạo trên máy -> thêm vào (trùng id thì cấp id mới)
 // ---------------------------------------------------------------------
 function keepLocalData(duLieu){
     var usersCu = getTable("users");
@@ -111,7 +115,7 @@ function keepLocalData(duLieu){
             usersCu[i].id = users[viTri].id;
             users[viTri] = usersCu[i];
         }
-        else{
+        else if(isLocalRow(usersCu[i])){
             if(findIn(users, usersCu[i].id) != null){
                 var idMoi = getMaxId(users) + 1;
                 changeUserId(ordersCu, reviewsCu, usersCu[i].id, idMoi);
@@ -128,13 +132,19 @@ function keepLocalData(duLieu){
     mergeRows(duLieu["reviews"], reviewsCu);
 }
 
+// Dòng được tạo khi dùng web trên máy này (không phải dữ liệu mẫu trong data/json)
+function isLocalRow(dong){
+    var t = String(dong.created_at || "");
+    return t.charAt(t.length - 1) == "Z";
+}
+
 function mergeRows(mangMoi, mangCu){
     for(var i = 0; i < mangCu.length; i++){
         var dong = findIn(mangMoi, mangCu[i].id);
         if(dong != null && dong.created_at == mangCu[i].created_at){
             mangMoi[mangMoi.indexOf(dong)] = mangCu[i];
         }
-        else{
+        else if(isLocalRow(mangCu[i])){
             if(dong != null)
                 mangCu[i].id = getMaxId(mangMoi) + 1;
             mangMoi.push(mangCu[i]);
