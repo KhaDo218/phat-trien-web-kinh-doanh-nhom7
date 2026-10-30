@@ -23,48 +23,197 @@
         <div id="admin">
             <div id="sidebar"></div>
             <main class="admin-main">
-                <div class="admin-head">
-                    <p class="overline">Quản trị</p>
-                    <h1 class="headline-section">Dashboard</h1>
+                <div class="dashboard-shell">
+                    <header class="dashboard-header">
+                        <div>
+                            <h1 class="headline-section">Tổng quan</h1>
+                            <p class="dashboard-subtitle">Cập nhật theo dữ liệu đơn hàng</p>
+                        </div>
+                        <div class="dashboard-header-tools">
+                            <time class="dashboard-date" id="dashboardToday"></time>
+                            <button class="dashboard-filter-placeholder" type="button" disabled>
+                                <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+                                Bộ lọc thời gian
+                            </button>
+                        </div>
+                    </header>
+
+                    <section class="dashboard-grid dashboard-stat-grid" aria-label="Chỉ số tổng quan">
+                        <div class="dashboard-card stat-card">
+                            <p class="overline">Doanh thu (đơn đã giao)</p>
+                            <span class="material-symbols-outlined stat-icon stat-icon-revenue" aria-hidden="true">payments</span>
+                            <p class="value" id="statRevenue">0 <span class="stat-currency">₫</span></p>
+                            <p class="stat-note" id="statRevenueNote"></p>
+                            <p class="stat-comparison" id="statRevenueComparison"></p>
+                        </div>
+                        <div class="dashboard-card stat-card">
+                            <p class="overline">Số đơn hàng</p>
+                            <span class="material-symbols-outlined stat-icon" aria-hidden="true">shopping_bag</span>
+                            <p class="value" id="statOrders">0</p>
+                            <p class="stat-note" id="statOrdersNote"></p>
+                            <p class="stat-comparison" id="statOrdersComparison"></p>
+                        </div>
+                        <div class="dashboard-card stat-card">
+                            <p class="overline">Người dùng</p>
+                            <span class="material-symbols-outlined stat-icon stat-icon-users" aria-hidden="true">group</span>
+                            <p class="value" id="statUsers">0</p>
+                            <p class="stat-note" id="statUsersNote"></p>
+                            <p class="stat-comparison" id="statUsersComparison"></p>
+                        </div>
+                        <div class="dashboard-card stat-card">
+                            <p class="overline">Đơn chờ xử lý</p>
+                            <span class="material-symbols-outlined stat-icon stat-icon-pending" aria-hidden="true">pending_actions</span>
+                            <p class="value" id="statPending">0</p>
+                            <p class="stat-note" id="statPendingNote"></p>
+                            <p class="stat-comparison" id="statPendingComparison"></p>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-grid dashboard-primary-charts" aria-label="Biểu đồ chính">
+                        <div class="dashboard-card chart-card chart-card-revenue">
+                            <p class="overline">Doanh thu 6 tháng gần nhất (theo ngày giao thành công)</p>
+                            <canvas id="chartRevenue"></canvas>
+                        </div>
+                        <div class="dashboard-card chart-card chart-card-status">
+                            <p class="overline">Đơn hàng theo trạng thái</p>
+                            <div class="status-chart-layout">
+                                <div class="status-chart-canvas">
+                                    <canvas id="chartStatus"></canvas>
+                                </div>
+                                <div class="chart-status-legend" id="chartStatusLegend" aria-label="Số đơn theo trạng thái"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-grid dashboard-secondary-charts" aria-label="Biểu đồ phân tích">
+                        <div class="dashboard-card chart-card chart-card-payment" id="paymentMethodsCard">
+                            <p class="overline">Phương thức thanh toán</p>
+                            <div class="payment-chart-layout">
+                                <div class="payment-chart-canvas">
+                                    <canvas id="chartPaymentMethods"></canvas>
+                                </div>
+                                <div class="chart-status-legend" id="chartPaymentLegend" aria-label="Số đơn và tỷ lệ theo phương thức thanh toán"></div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card chart-card chart-card-daily-orders" id="dailyOrdersCard">
+                            <p class="overline">Đơn hàng 30 ngày gần nhất</p>
+                            <p class="chart-description">Cập nhật theo ngày tạo đơn hàng.</p>
+                            <div class="daily-orders-chart-canvas">
+                                <canvas id="chartDailyOrders"></canvas>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-flow-section" aria-labelledby="orderFlowHeading">
+                        <div class="dashboard-section-heading">
+                            <h2 class="dashboard-section-title" id="orderFlowHeading">Luồng đơn hàng &amp; chuyển đổi</h2>
+                            <p class="dashboard-section-description">Theo dõi số đơn qua các bước xử lý và chuyển đổi sang giao thành công.</p>
+                        </div>
+                        <div class="dashboard-grid dashboard-flow-grid">
+                            <div class="dashboard-card chart-card order-funnel-card">
+                                <p class="overline">Tiến trình đơn hàng</p>
+                                <p class="chart-description">Tầng đầu là tổng đơn; các tầng sau tính số đơn đã đạt trạng thái đó. Dữ liệu không có trạng thái chờ xác nhận riêng.</p>
+                                <div class="order-funnel" id="orderFunnel" aria-label="Phễu tiến trình đơn hàng"></div>
+                            </div>
+                            <div class="dashboard-card chart-card monthly-status-card">
+                                <p class="overline">Đơn hàng theo trạng thái qua các tháng</p>
+                                <p class="chart-description">Nhóm theo tháng tạo đơn và trạng thái hiện tại; dữ liệu không lưu lịch sử chuyển trạng thái.</p>
+                                <div class="monthly-status-chart-canvas">
+                                    <canvas id="chartMonthlyOrderStatus" aria-label="Biểu đồ đơn hàng theo trạng thái trong sáu tháng gần nhất"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-flow-section" aria-labelledby="productCategoryHeading">
+                        <div class="dashboard-section-heading">
+                            <h2 class="dashboard-section-title" id="productCategoryHeading">Sản phẩm &amp; danh mục</h2>
+                            <p class="dashboard-section-description">So sánh số đơn và doanh thu theo danh mục trên các đơn đã giao.</p>
+                        </div>
+                        <div class="dashboard-grid dashboard-product-category-grid">
+                            <div class="dashboard-card chart-card category-sales-card" id="categorySalesCard">
+                                <p class="overline">Số đơn và doanh thu theo danh mục</p>
+                                <p class="chart-description">Doanh thu hiển thị theo triệu đồng (tr).</p>
+                                <div class="category-sales-chart-canvas">
+                                    <canvas id="chartCategorySales"></canvas>
+                                </div>
+                            </div>
+                            <div class="dashboard-card chart-card revenue-share-card" id="revenueShareCard">
+                                <p class="overline">Tỷ trọng doanh thu theo danh mục</p>
+                                <p class="chart-description">Các danh mục ngoài 4 nhóm doanh thu cao nhất được gộp thành “Khác”.</p>
+                                <div class="revenue-share-layout">
+                                    <div class="revenue-share-chart-canvas">
+                                        <canvas id="chartRevenueShare"></canvas>
+                                    </div>
+                                    <div class="chart-status-legend revenue-share-legend" id="revenueShareLegend" aria-label="Tỷ trọng doanh thu theo danh mục"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-flow-section" id="customerReviewSection" aria-labelledby="customerReviewHeading">
+                        <div class="dashboard-section-heading">
+                            <h2 class="dashboard-section-title" id="customerReviewHeading">Khách hàng &amp; đánh giá</h2>
+                            <p class="dashboard-section-description">Theo dõi đăng ký khách hàng và chất lượng đánh giá sản phẩm.</p>
+                        </div>
+                        <div class="dashboard-grid dashboard-customer-review-grid">
+                            <div class="dashboard-card chart-card customer-chart-card" id="newUsersCard">
+                                <p class="overline">Người dùng mới theo tháng</p>
+                                <p class="chart-description">Khách hàng đăng ký mới trong 6 tháng gần nhất.</p>
+                                <div class="new-users-chart-canvas">
+                                    <canvas id="chartNewUsers"></canvas>
+                                </div>
+                            </div>
+                            <div class="dashboard-card chart-card customer-chart-card" id="reviewRatingsCard">
+                                <div class="review-chart-heading">
+                                    <p class="overline">Đánh giá theo số sao</p>
+                                    <div class="review-average" id="reviewAverage" aria-label="Điểm đánh giá trung bình"></div>
+                                </div>
+                                <p class="chart-description">Phân bố lượt đánh giá đang hiển thị.</p>
+                                <div class="review-ratings-chart-canvas">
+                                    <canvas id="chartReviewRatings"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-grid dashboard-table-row" aria-label="Sản phẩm và tồn kho">
+                        <div class="dashboard-card dashboard-table-card top-products-card">
+                            <p class="overline">Sản phẩm bán chạy</p>
+                            <div class="top-products-table-wrap">
+                                <table class="table top-products-table">
+                                    <thead>
+                                        <tr><th class="top-products-rank">#</th><th class="top-products-image">Sản phẩm</th><th>Tên</th><th class="top-products-number">Đã bán</th><th class="top-products-number">Doanh thu</th></tr>
+                                    </thead>
+                                    <tbody id="tbTopProducts"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="dashboard-card dashboard-table-card low-stock-card">
+                            <p class="overline">Sắp hết hàng <span class="text-secondary low-note" id="lblLowStock"></span></p>
+                            <div class="low-stock-table-wrap">
+                                <table class="table">
+                                    <thead>
+                                        <tr><th>Sản phẩm</th><th>Tên</th><th>Còn lại</th><th>Đã bán (6 tháng)</th></tr>
+                                    </thead>
+                                    <tbody id="tbLowStock"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-
-                <div class="grid-4 stat-grid">
-                    <div class="stat-card"><p class="overline">Doanh thu (đơn đã giao)</p><p class="value" id="statRevenue">0 ₫</p><p class="stat-note" id="statRevenueNote"></p></div>
-                    <div class="stat-card"><p class="overline">Số đơn hàng</p><p class="value" id="statOrders">0</p><p class="stat-note" id="statOrdersNote"></p></div>
-                    <div class="stat-card"><p class="overline">Người dùng</p><p class="value" id="statUsers">0</p><p class="stat-note" id="statUsersNote"></p></div>
-                    <div class="stat-card"><p class="overline">Đơn chờ xử lý</p><p class="value" id="statPending">0</p><p class="stat-note" id="statPendingNote"></p></div>
-                </div>
-
-                <div class="chart-row">
-                    <div class="card chart-box">
-                        <p class="overline">Doanh thu 6 tháng gần nhất (theo ngày giao thành công)</p>
-                        <canvas id="chartRevenue"></canvas>
-                    </div>
-                    <div class="card chart-box">
-                        <p class="overline">Đơn hàng theo trạng thái</p>
-                        <canvas id="chartStatus"></canvas>
-                    </div>
-                </div>
-
-                <h2 class="headline-section top-title">Sản phẩm bán chạy</h2>
-                <table class="table">
-                    <thead>
-                        <tr><th>Sản phẩm</th><th>Tên</th><th>Đã bán</th><th>Doanh thu</th></tr>
-                    </thead>
-                    <tbody id="tbTopProducts"></tbody>
-                </table>
-
-                <h2 class="headline-section top-title">Sắp hết hàng <span class="text-secondary low-note" id="lblLowStock"></span></h2>
-                <table class="table">
-                    <thead>
-                        <tr><th>Sản phẩm</th><th>Tên</th><th>Còn lại</th><th>Đã bán (6 tháng)</th></tr>
-                    </thead>
-                    <tbody id="tbLowStock"></tbody>
-                </table>
-
             </main>
         </div>
 
+        <script>
+            (function(){
+                var today = new Date();
+                var day = String(today.getDate()).padStart(2, "0");
+                var month = String(today.getMonth() + 1).padStart(2, "0");
+                document.getElementById("dashboardToday").textContent =
+                    day + "/" + month + "/" + today.getFullYear();
+            })();
+        </script>
         <script>
             loadData(initPage);
         </script>
