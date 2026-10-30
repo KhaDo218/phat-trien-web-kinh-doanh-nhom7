@@ -18,12 +18,13 @@ phat-trien-web-kinh-doanh-nhom7/
 │   ├── css/
 │   │   ├── base.css            ← màu, font, nút, form, header, footer dùng chung (Kha)
 │   │   ├── admin.css           ← khung trang quản trị: sidebar, bảng, thẻ số liệu (Kha)
+│   │   ├── components/         ← CSS của thành phần dùng chung: product-card.css (Khôi), room.css (Duy), chatbot.css (Huyền)
 │   │   └── pages/<trang>.css   ← CSS riêng từng trang (trang admin: pages/admin-<trang>.css)
 │   ├── js/
 │   │   ├── core/               ← utils.js, store.js, auth.js dùng chung (Kha)
 │   │   ├── services/           ← products.js (Khôi), cart.js, orders.js (Phương Anh)
 │   │   └── pages/<trang>.js    ← JS riêng từng trang (trang admin: pages/admin-<trang>.js)
-│   └── components/             ← header.js, footer.js, admin-sidebar.js (Kha), product-card.js (Khôi), chatbot.js (Huyền)
+│   └── components/             ← header.js, footer.js, admin-sidebar.js (Kha), product-card.js (Khôi), room-card.js (Duy), chatbot.js (Huyền)
 ├── data/
 │   ├── json/                   ← DỮ LIỆU WEB ĐỌC (đã dịch tiếng Việt, giá VND)
 │   ├── masterdata_vi.csv       ← cùng dữ liệu, dạng bảng để xem bằng Excel / làm mockup
@@ -207,8 +208,9 @@ Hiển thị trên trang chi tiết sản phẩm (Khôi làm) chỉ cần thẻ 
 
 `data/json/room_hotspots.json`:
 ```json
-[{ "room_id": "room-glam-4190768", "product_id": "product-glam-....-01", "position_x": 42.5, "position_y": 63 }]
+[{ "room_id": "room-glam-4190768", "image_url": "assets/rooms/glam/room-glam-4190768-02.jpg", "product_id": "product-glam-....-01", "position_x": 42.5, "position_y": 63 }]
 ```
+`image_url` là góc chụp (1 ảnh trong `images` của phòng) mà điểm được gắn lên; mỗi góc gắn điểm riêng, 1 sản phẩm có thể gắn ở nhiều góc. Nên gắn bằng trang `admin/rooms.html` (chọn góc, bấm lên ảnh), xong bấm Xuất JSON để chép vào file.
 Sửa JSON xong, mở bằng https://jsonlint.com (hoặc VS Code báo đỏ) để chắc chắn không sai dấu phẩy, ngoặc.
 
 ---

@@ -205,6 +205,8 @@ function saveUsedProduct(e){
     var name = document.getElementById("txtName").value.trim();
     var brand = document.getElementById("txtBrand").value.trim();
     var catId = Number(document.getElementById("slCategory").value);
+    var catObj = findById("categories", catId);
+    var parentCatId = (catObj && catObj.parent_id) ? catObj.parent_id : catId;   // danh mục cha của danh mục đã chọn
     var styleId = Number(document.getElementById("slStyle").value);
     var grade = document.getElementById("slGrade").value;
     var price = Number(document.getElementById("txtPrice").value);
@@ -226,8 +228,20 @@ function saveUsedProduct(e){
         var s = rawImgs[i].trim();
         if(s) images.push(s);
     }
+    if(price <= 0){
+        alert("Giá bán phải lớn hơn 0!");
+        document.getElementById("txtPrice").focus();
+        return false;
+    }
+    if(origPrice != null && origPrice <= price){
+        alert("Giá gốc phải lớn hơn giá bán (để trống nếu không có)!");
+        document.getElementById("txtOriginalPrice").focus();
+        return false;
+    }
     if(images.length === 0){
-        images.push("assets/marketplace/used-001-01.jpg");
+        alert("Vui lòng nhập ít nhất một đường dẫn ảnh!");
+        document.getElementById("txtImages").focus();
+        return false;
     }
 
     var allProducts = getTable("products");
@@ -239,6 +253,7 @@ function saveUsedProduct(e){
                 allProducts[j].name = name;
                 allProducts[j].brand = brand;
                 allProducts[j].category_id = catId;
+                allProducts[j].parent_category_id = parentCatId;
                 allProducts[j].style_id = styleId;
                 allProducts[j].style_ids = [styleId];
                 allProducts[j].condition_grade = grade;
@@ -291,10 +306,11 @@ function saveUsedProduct(e){
             is_active: isActive,
             images: images,
             style_ids: [styleId],
-            parent_category_id: 1,
+            parent_category_id: parentCatId,
             condition_grade: grade,
             usage_time: usageTime,
-            condition_note: condNote
+            condition_note: condNote,
+            created_at: new Date().toISOString()
         };
         allProducts.push(newItem);
         alert("Đã thêm món đồ cũ mới với mã: " + newId + "!");

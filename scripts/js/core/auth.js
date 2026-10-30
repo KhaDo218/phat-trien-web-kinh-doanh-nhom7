@@ -8,6 +8,7 @@
      loginWithGoogle(credential) -> giống login(), dùng cho nút "Đăng nhập bằng Google"
      logout()
      getSession(), getCurrentUser(), isLoggedIn(), isAdmin()
+     mergeGuestData(userId)  gộp giỏ hàng / yêu thích lúc chưa đăng nhập vào tài khoản (tự gọi khi đăng nhập)
      findUserByEmail(email), findUserByPhone(sdt)   không có trả về null
      createVerificationCode(email, mucDich)    tạo mã OTP 6 số (mô phỏng gửi email), trả về mã
      checkVerificationCode(email, mucDich, ma) -> "" nếu mã đúng, ngược lại trả về câu báo lỗi
@@ -44,6 +45,49 @@ function login(email, matKhau){
 function saveSession(user){
     var role = findById("roles", user.role_id);
     saveObject("session", { user_id: user.id, role: role.name });
+    mergeGuestData(user.id);
+}
+
+// Khách chưa đăng nhập vẫn thêm được vào giỏ / yêu thích (lưu ở khóa "guest").
+// Đăng nhập xong thì chuyển sang tài khoản để không mất (số lượng không vượt tồn kho).
+function mergeGuestData(userId){
+    var carts = getObject("carts");
+    if(carts != null && carts["guest"] != null){
+        var gio = carts[userId];
+        if(gio == null)
+            gio = [];
+        for(var i = 0; i < carts["guest"].length; i++){
+            var mon = carts["guest"][i];
+            var p = findById("products", mon.product_id);
+            var daCo = null;
+            for(var j = 0; j < gio.length; j++){
+                if(gio[j].product_id == mon.product_id)
+                    daCo = gio[j];
+            }
+            if(daCo == null)
+                gio.push({ product_id: mon.product_id, quantity: Number(mon.quantity) });
+            else
+                daCo.quantity = Number(daCo.quantity) + Number(mon.quantity);
+            if(daCo != null && p != null && daCo.quantity > p.stock_quantity)
+                daCo.quantity = p.stock_quantity;
+        }
+        carts[userId] = gio;
+        delete carts["guest"];
+        saveObject("carts", carts);
+    }
+    var wishlists = getObject("wishlists");
+    if(wishlists != null && wishlists["guest"] != null){
+        var ds = wishlists[userId];
+        if(ds == null)
+            ds = [];
+        for(var i = 0; i < wishlists["guest"].length; i++){
+            if(ds.indexOf(wishlists["guest"][i]) < 0)
+                ds.push(wishlists["guest"][i]);
+        }
+        wishlists[userId] = ds;
+        delete wishlists["guest"];
+        saveObject("wishlists", wishlists);
+    }
 }
 
 // Google trả về credential là chuỗi JWT gồm 3 phần "header.payload.chữ ký".
@@ -104,11 +148,15 @@ function getSession(){
     return getObject("session");
 }
 
+// Tài khoản bị Admin khóa trong lúc đang đăng nhập thì coi như đã đăng xuất
 function getCurrentUser(){
     var session = getSession();
     if(session == null)
         return null;
-    return findById("users", session.user_id);
+    var user = findById("users", session.user_id);
+    if(user == null || user.is_active == false)
+        return null;
+    return user;
 }
 
 function isLoggedIn(){
@@ -117,13 +165,20 @@ function isLoggedIn(){
 
 function isAdmin(){
     var session = getSession();
-    return session != null && session.role == "Admin";
+    return session != null && session.role == "Admin" && getCurrentUser() != null;
 }
 
 // Chưa đăng nhập -> chuyển sang trang đăng nhập, đăng nhập xong quay lại trang cũ
 function requireLogin(){
     if(isLoggedIn() == false){
-        alert("Vui lòng đăng nhập để tiếp tục!");
+        var session = getSession();
+        var user = (session == null) ? null : findById("users", session.user_id);
+        if(user != null && user.is_active == false){
+            localStorage.removeItem("rc_session");
+            alert("Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!");
+        }
+        else
+            alert("Vui lòng đăng nhập để tiếp tục!");
         var trangCu = encodeURIComponent(window.location.href);
         window.location.href = getRoot() + "scripts/login.html?redirect=" + trangCu;
         return false;
@@ -134,7 +189,11 @@ function requireLogin(){
 function requireAdmin(){
     if(isAdmin() == false){
         alert("Bạn không có quyền truy cập trang quản trị!");
-        window.location.href = getRoot() + "scripts/login.html";
+        // đã đăng nhập bằng tài khoản khách thì về trang chủ, chưa đăng nhập thì sang trang đăng nhập
+        if(isLoggedIn())
+            window.location.href = getRoot() + "scripts/index.html";
+        else
+            window.location.href = getRoot() + "scripts/login.html";
         return false;
     }
     return true;

@@ -6,11 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             @import url(css/base.css);
+            @import url(css/components/product-card.css);
             @import url(css/components/room.css);
             @import url(css/pages/room-detail.css);
         </style>
         <!-- Thư viện xem 3D của Google (README mục 5) -->
-        <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+        <script type="module" src="libs/model-viewer.min.js"></script>
         <script src="js/core/utils.js"></script>
         <script src="js/core/store.js"></script>
         <script src="js/core/auth.js"></script>
@@ -97,7 +98,7 @@
                     <div class="section-head">
                         <div>
                             <p class="overline">Trong cùng bộ sưu tập</p>
-                            <h2 class="headline-section" id="otherTitle">Các món khác trong phòng</h2>
+                            <h2 class="headline-section" id="otherTitle">Phối thêm cùng bộ sưu tập</h2>
                         </div>
                     </div>
                     <div class="grid-4" id="otherProducts"></div>

@@ -4,13 +4,15 @@
    Việc: thêm / sửa / xóa phòng (UC7.2), gắn sản phẩm vào phòng bằng cách bấm lên ảnh,
          tọa độ lưu theo % (UC7.3). Dữ liệu: rc_rooms, rc_room_hotspots (store.js).
    Bảng rooms: {id, style_id, name, image_url, description, images[], product_ids[]}
-   Bảng room_hotspots: {room_id, product_id, position_x, position_y}  (khóa: room_id + product_id)
+   Bảng room_hotspots: {room_id, image_url, product_id, position_x, position_y}  (khóa: room_id + image_url + product_id)
+   Mỗi góc chụp (ảnh trong images[]) gắn hotspot riêng; 1 sản phẩm có thể gắn ở nhiều góc.
    ===================================================================== */
 
 var productMap = {};          // id -> sản phẩm (đọc 1 lần cho nhanh)
 var editingRoomId = "";       // "" = đang thêm phòng mới
 var hotspotRoomId = "";       // phòng đang gắn hotspot
-var editingProductId = "";    // hotspot đang sửa ("" = thêm mới)
+var hotspotImageUrl = "";     // góc chụp (ảnh) đang gắn hotspot
+var editingProductId = "";    // hotspot đang sửa trên ảnh hiện tại ("" = thêm mới)
 var imageCheckId = 0;         // chống kết quả kiểm tra ảnh cũ ghi đè kết quả mới
 
 // Gọi sau khi loadData() nạp xong dữ liệu
@@ -55,6 +57,32 @@ function getHotspotsOf(roomId){
             kq.push(tatCa[i]);
     }
     return kq;
+}
+
+// Ảnh mà hotspot được gắn lên (dữ liệu cũ chưa có image_url thì là ảnh chính của phòng)
+function getImageOf(h, r){
+    if(h.image_url == null || h.image_url == "")
+        return r.image_url;
+    return h.image_url;
+}
+
+// Hotspot của phòng đang mở, chỉ lấy các điểm trên ảnh đang chọn
+function getEditorHotspots(){
+    var r = findById("rooms", hotspotRoomId);
+    var tatCa = getHotspotsOf(hotspotRoomId);
+    var kq = [];
+    for(var i = 0; i < tatCa.length; i++){
+        if(getImageOf(tatCa[i], r) == hotspotImageUrl)
+            kq.push(tatCa[i]);
+    }
+    return kq;
+}
+
+// Hotspot h có phải điểm (productId) trên ảnh đang chọn của phòng đang mở không
+function isEditorHotspot(h, productId){
+    if(h.room_id != hotspotRoomId || h.product_id != productId)
+        return false;
+    return getImageOf(h, findById("rooms", hotspotRoomId)) == hotspotImageUrl;
 }
 
 function fillStyleSelects(){
@@ -272,9 +300,28 @@ function writeRoom(){
         r = { id: ma, style_id: styleId, name: "", image_url: "", description: "", images: [], product_ids: [] };
         rooms.push(r);
     }
-    else if(r.image_url != anhChinh && getHotspotsOf(r.id).length > 0){
-        if(confirm("Bạn đổi ảnh chính của phòng. Các hotspot cũ có thể không còn đúng vị trí trên ảnh mới. Vẫn lưu?") == false)
+    var hsMat = [];      // hotspot nằm trên ảnh vừa bị bỏ khỏi phòng
+    if(laThemMoi == false){
+        var hsCu = getHotspotsOf(r.id);
+        for(var i = 0; i < hsCu.length; i++){
+            if(anh.indexOf(getImageOf(hsCu[i], r)) < 0)
+                hsMat.push(hsCu[i]);
+        }
+        if(hsMat.length > 0 && confirm("Có " + hsMat.length + " hotspot nằm trên ảnh bạn vừa bỏ khỏi phòng, các điểm này sẽ bị xóa. Vẫn lưu?") == false)
             return;
+        // ghi rõ ảnh cho hotspot cũ trước khi đổi ảnh chính
+        var tatCaHs = getTable("room_hotspots");
+        var conLaiHs = [];
+        for(var i = 0; i < tatCaHs.length; i++){
+            var h = tatCaHs[i];
+            if(h.room_id == r.id){
+                h.image_url = getImageOf(h, r);
+                if(anh.indexOf(h.image_url) < 0)
+                    continue;
+            }
+            conLaiHs.push(h);
+        }
+        saveTable("room_hotspots", conLaiHs);
     }
     r.name = document.getElementById("txtRoomName").value.trim();
     r.style_id = styleId;
@@ -333,12 +380,14 @@ function openHotspotEditor(roomId){
     }
     closeRoomForm();
     hotspotRoomId = roomId;
+    hotspotImageUrl = r.image_url;
     document.getElementById("hotspotTitle").innerHTML = adminEscape(r.name) + " <span class='ar-title-style'>" + adminEscape(getStyleName(r.style_id)) + "</span>";
     document.getElementById("lnkViewRoom").href = "../room-detail.html?id=" + encodeURIComponent(r.id);
     var img = document.getElementById("editorImage");
-    img.src = asset(r.image_url);
+    img.src = asset(hotspotImageUrl);
     img.alt = r.name;
     document.getElementById("hotspotPanel").className = "card ar-panel";
+    showEditorImages();
     resetHotspotForm();
     showHotspotList();
     document.getElementById("hotspotPanel").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -347,14 +396,45 @@ function openHotspotEditor(roomId){
 function closeHotspotEditor(){
     document.getElementById("hotspotPanel").className = "card ar-panel hidden";
     hotspotRoomId = "";
+    hotspotImageUrl = "";
     editingProductId = "";
+}
+
+// Hàng ảnh nhỏ để chọn góc chụp cần gắn, kèm số điểm đã gắn trên từng ảnh
+function showEditorImages(){
+    var r = findById("rooms", hotspotRoomId);
+    var anh = r.images || [];
+    if(anh.indexOf(r.image_url) < 0)
+        anh = [r.image_url].concat(anh);
+    var tatCa = getHotspotsOf(hotspotRoomId);
+    var html = "";
+    for(var i = 0; i < anh.length; i++){
+        var dem = 0;
+        for(var j = 0; j < tatCa.length; j++){
+            if(getImageOf(tatCa[j], r) == anh[i])
+                dem = dem + 1;
+        }
+        var lop = "ar-image-tab";
+        if(anh[i] == hotspotImageUrl)
+            lop += " active";
+        html += "<button type='button' class='" + lop + "' onclick=\"selectEditorImage('" + anh[i] + "')\" title='Góc " + (i + 1) + "'>"
+              + "<img src='" + asset(anh[i]) + "' alt=''><span>Góc " + (i + 1) + " · " + dem + " điểm</span></button>";
+    }
+    document.getElementById("editorImages").innerHTML = html;
+}
+
+function selectEditorImage(anh){
+    hotspotImageUrl = anh;
+    document.getElementById("editorImage").src = asset(anh);
+    showEditorImages();
+    resetHotspotForm();
 }
 
 // Danh sách chọn sản phẩm: món trong phòng chưa gắn + món khác cùng phong cách
 function fillProductSelect(){
     var r = findById("rooms", hotspotRoomId);
     var daGan = [];
-    var hs = getHotspotsOf(hotspotRoomId);
+    var hs = getEditorHotspots();
     for(var i = 0; i < hs.length; i++){
         if(hs[i].product_id != editingProductId)
             daGan.push(hs[i].product_id);
@@ -398,7 +478,7 @@ function showPickedProduct(){
 }
 
 function showHotspotList(){
-    var hs = getHotspotsOf(hotspotRoomId);
+    var hs = getEditorHotspots();
     var stage = document.getElementById("editorStage");
     // xóa chấm cũ (giữ ảnh và chấm tạm)
     var cu = stage.getElementsByClassName("hotspot");
@@ -471,7 +551,7 @@ function movePendingMarker(){
 }
 
 function editHotspot(productId){
-    var hs = getHotspotsOf(hotspotRoomId);
+    var hs = getEditorHotspots();
     for(var i = 0; i < hs.length; i++){
         if(hs[i].product_id != productId)
             continue;
@@ -531,28 +611,29 @@ function saveHotspot(){
 
     var tatCa = getTable("room_hotspots");
     var soDiemPhong = 0;
-    // (room_id, product_id) là khóa chính: 1 sản phẩm chỉ gắn 1 lần trong 1 phòng
+    // (room_id, image_url, product_id) là khóa chính: 1 sản phẩm chỉ gắn 1 lần trên 1 ảnh
     for(var i = 0; i < tatCa.length; i++){
-        if(tatCa[i].room_id != hotspotRoomId)
+        if(isEditorHotspot(tatCa[i], tatCa[i].product_id) == false)
             continue;
         soDiemPhong = soDiemPhong + 1;
         if(tatCa[i].product_id == cbo.value && cbo.value != editingProductId){
-            alert("Sản phẩm này đã được gắn trong phòng, hãy chọn sản phẩm khác hoặc sửa hotspot có sẵn!");
+            alert("Sản phẩm này đã được gắn trên ảnh này, hãy chọn sản phẩm khác hoặc sửa hotspot có sẵn!");
             cbo.focus();
             return false;
         }
     }
     if(editingProductId == "" && soDiemPhong >= 7){
-        if(confirm("Phòng đã có " + soDiemPhong + " hotspot (khuyến nghị 3 - 7 điểm để ảnh không bị rối). Vẫn thêm?") == false)
+        if(confirm("Ảnh này đã có " + soDiemPhong + " hotspot (khuyến nghị 3 - 7 điểm để ảnh không bị rối). Vẫn thêm?") == false)
             return false;
     }
 
     if(editingProductId == ""){
-        tatCa.push({ room_id: hotspotRoomId, product_id: cbo.value, position_x: x, position_y: y });
+        tatCa.push({ room_id: hotspotRoomId, image_url: hotspotImageUrl, product_id: cbo.value, position_x: x, position_y: y });
     }
     else{
         for(var i = 0; i < tatCa.length; i++){
-            if(tatCa[i].room_id == hotspotRoomId && tatCa[i].product_id == editingProductId){
+            if(isEditorHotspot(tatCa[i], editingProductId)){
+                tatCa[i].image_url = hotspotImageUrl;
                 tatCa[i].product_id = cbo.value;
                 tatCa[i].position_x = x;
                 tatCa[i].position_y = y;
@@ -574,6 +655,7 @@ function saveHotspot(){
     saveTable("rooms", rooms);
 
     resetHotspotForm();
+    showEditorImages();
     showStats();
     showRoomTable();
     return false;
@@ -587,11 +669,12 @@ function deleteHotspot(productId){
     var tatCa = getTable("room_hotspots");
     var conLai = [];
     for(var i = 0; i < tatCa.length; i++){
-        if(!(tatCa[i].room_id == hotspotRoomId && tatCa[i].product_id == productId))
+        if(isEditorHotspot(tatCa[i], productId) == false)
             conLai.push(tatCa[i]);
     }
     saveTable("room_hotspots", conLai);
     resetHotspotForm();
+    showEditorImages();
     showStats();
     showRoomTable();
 }

@@ -24,6 +24,7 @@
                         <p class="overline">Hệ thống & Tài khoản</p>
                         <h1 class="headline-section">Quản lý người dùng</h1>
                     </div>
+                    <button type="button" class="btn btn-outline" onclick="openExport()"><span class="material-symbols-outlined">data_object</span>Xuất JSON</button>
                 </div>
 
                 <!-- Thống kê tài khoản -->
@@ -83,11 +84,42 @@
                 </div>
 
                 <!-- Thông báo trống -->
+                <div class="admin-pager" id="pgUsers"></div>
                 <div id="divEmpty" class="empty card hidden" style="margin-top:20px;">
                     <span class="material-symbols-outlined" style="font-size:36px;">person_search</span>
                     <p style="margin-top:8px;">Không tìm thấy người dùng nào phù hợp với điều kiện tìm kiếm.</p>
                 </div>
             </main>
         </div>
+
+        <!-- ===== Xuất JSON để chép vào data/json ===== -->
+        <div class="modal hidden" id="exportModal" onclick="closeExportOutside(event)">
+            <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+                <div class="modal-head">
+                    <div>
+                        <p class="overline">Dữ liệu đang lưu trong trình duyệt</p>
+                        <h2 class="headline-section" id="exportTitle">Xuất JSON</h2>
+                    </div>
+                    <button type="button" class="btn-icon" onclick="closeExport()" aria-label="Đóng"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-secondary au-export-note">Tài khoản đăng ký trên web chỉ lưu trong trình duyệt của máy này. Muốn máy khác cũng đăng nhập được, chép nội dung dưới đây
+                        đè vào file tương ứng trong <b>data/json/</b>, tăng DATA_VERSION trong store.js rồi commit.</p>
+                    <div class="au-inline">
+                        <select class="input" id="cboExport" onchange="fillExport()">
+                            <option value="users">users.json</option>
+                            <option value="orders">orders.json</option>
+                            <option value="reviews">reviews.json</option>
+                        </select>
+                        <button type="button" class="btn" onclick="copyExport()"><span class="material-symbols-outlined">content_copy</span>Sao chép</button>
+                    </div>
+                    <textarea class="input au-export" id="txtExport" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            loadData(initPage);
+        </script>
     </body>
 </html>

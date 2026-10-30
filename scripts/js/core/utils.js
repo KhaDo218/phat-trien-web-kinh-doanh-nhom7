@@ -9,6 +9,8 @@
      formatDate(chuoi)  -> "19/10/2026"
      checkEmail(email), checkPhone(sdt) -> true / false
      checkPasswordRule(matKhau) -> "" nếu đạt, ngược lại trả về câu báo lỗi
+     showPasswordRules(idO, idKhung) -> hiện danh sách quy tắc mật khẩu (đỏ = chưa đạt, xanh = đạt)
+     showConfirmMatch(idO, idNhapLai, idThongBao) -> báo mật khẩu nhập lại đã khớp chưa
      sha256(chuoi)      -> mã băm mật khẩu (giống cột password_hash)
    ===================================================================== */
 
@@ -77,15 +79,109 @@ function checkPhone(sdt){
     return mau.test(sdt);
 }
 
-// Mật khẩu: ít nhất 8 ký tự, có cả chữ và số
+// Quy tắc mật khẩu mạnh (dùng chung cho Đăng ký, Quên mật khẩu, Đổi mật khẩu)
+var PASSWORD_RULES = [
+    { ma: "doDai",   ten: "Ít nhất 8 ký tự" },
+    { ma: "chuHoa",  ten: "Có chữ in hoa (A–Z)" },
+    { ma: "chuThuong", ten: "Có chữ thường (a–z)" },
+    { ma: "so",      ten: "Có chữ số (0–9)" },
+    { ma: "kyTu",    ten: "Có ký tự đặc biệt (! @ # $ % ...)" },
+    { ma: "khoangTrang", ten: "Không chứa khoảng trắng" }
+];
+
+// Kiểm tra 1 quy tắc, trả về true nếu mật khẩu đạt
+function checkPasswordItem(ma, matKhau){
+    if(ma == "doDai")
+        return matKhau.length >= 8;
+    if(ma == "chuHoa")
+        return /[A-Z]/.test(matKhau);
+    if(ma == "chuThuong")
+        return /[a-z]/.test(matKhau);
+    if(ma == "so")
+        return /[0-9]/.test(matKhau);
+    if(ma == "kyTu")
+        return /[^A-Za-z0-9\s]/.test(matKhau);
+    if(ma == "khoangTrang")
+        return matKhau.length > 0 && /\s/.test(matKhau) == false;
+    return false;
+}
+
 function checkPasswordRule(matKhau){
-    if(matKhau.length < 8)
-        return "Mật khẩu phải có ít nhất 8 ký tự!";
-    var coChu = /[a-zA-Z]/;
-    var coSo = /[0-9]/;
-    if(coChu.test(matKhau) == false || coSo.test(matKhau) == false)
-        return "Mật khẩu phải có cả chữ và số!";
+    for(var i = 0; i < PASSWORD_RULES.length; i++){
+        if(checkPasswordItem(PASSWORD_RULES[i].ma, matKhau) == false)
+            return "Mật khẩu chưa đạt yêu cầu: " + PASSWORD_RULES[i].ten + "!";
+    }
     return "";
+}
+
+// Gọi ở oninput của ô mật khẩu: vẽ thanh độ mạnh + danh sách quy tắc trong khung idKhung
+function showPasswordRules(idO, idKhung){
+    var matKhau = document.getElementById(idO).value;
+    var khung = document.getElementById(idKhung);
+    var soDat = 0;
+    var html = "";
+    for(var i = 0; i < PASSWORD_RULES.length; i++){
+        var dat = checkPasswordItem(PASSWORD_RULES[i].ma, matKhau);
+        var lop = "pw-rule";
+        var icon = "radio_button_unchecked";
+        if(matKhau != "" && dat){
+            lop = "pw-rule ok";
+            icon = "check_circle";
+            soDat = soDat + 1;
+        }
+        else if(matKhau != ""){
+            lop = "pw-rule bad";
+            icon = "cancel";
+        }
+        html += "<li class='" + lop + "'><span class='material-symbols-outlined'>" + icon + "</span>" + PASSWORD_RULES[i].ten + "</li>";
+    }
+
+    // Độ mạnh: 0-2 quy tắc = Yếu, 3-4 = Trung bình, 5 = Khá, đủ 6 = An toàn
+    var mucDo = "";
+    var lopMuc = "";
+    if(matKhau == ""){
+        mucDo = "Nhập mật khẩu để kiểm tra độ mạnh";
+    }
+    else if(soDat == PASSWORD_RULES.length){
+        mucDo = "<span class='material-symbols-outlined'>verified_user</span> Mật khẩu an toàn";
+        lopMuc = "level-4";
+    }
+    else if(soDat >= 5){
+        mucDo = "Khá - còn thiếu 1 điều kiện";
+        lopMuc = "level-3";
+    }
+    else if(soDat >= 3){
+        mucDo = "Trung bình";
+        lopMuc = "level-2";
+    }
+    else{
+        mucDo = "Yếu";
+        lopMuc = "level-1";
+    }
+
+    khung.className = "pw-box " + lopMuc;
+    khung.innerHTML = "<div class='pw-meter'><span></span><span></span><span></span><span></span></div>"
+        + "<p class='pw-level'>" + mucDo + "</p>"
+        + "<ul class='pw-rules'>" + html + "</ul>";
+}
+
+// Gọi ở oninput của ô nhập lại mật khẩu (và của ô mật khẩu)
+function showConfirmMatch(idO, idNhapLai, idThongBao){
+    var matKhau = document.getElementById(idO).value;
+    var nhapLai = document.getElementById(idNhapLai).value;
+    var o = document.getElementById(idThongBao);
+    if(nhapLai == ""){
+        o.className = "pw-match";
+        o.innerHTML = "";
+    }
+    else if(matKhau == nhapLai){
+        o.className = "pw-match ok";
+        o.innerHTML = "<span class='material-symbols-outlined'>check_circle</span> Mật khẩu nhập lại đã khớp";
+    }
+    else{
+        o.className = "pw-match bad";
+        o.innerHTML = "<span class='material-symbols-outlined'>cancel</span> Mật khẩu nhập lại chưa khớp";
+    }
 }
 
 // SHA-256 viết bằng JavaScript thuần (dùng để so mật khẩu với password_hash).

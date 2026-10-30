@@ -102,6 +102,7 @@ function doVerify(){
     daXacMinh = true;
     showStep(3);
     clearInterval(dongHo);
+    checkPasswordLive();
     document.getElementById("txtNewPassword").focus();
     return false;
 }
@@ -142,4 +143,10 @@ function showPassword(){
         kieu = "text";
     document.getElementById("txtNewPassword").type = kieu;
     document.getElementById("txtConfirm").type = kieu;
+}
+
+// Kiểm tra mật khẩu ngay khi gõ: quy tắc đỏ/xanh + báo nhập lại đã khớp chưa
+function checkPasswordLive(){
+    showPasswordRules("txtNewPassword", "divPasswordRules");
+    showConfirmMatch("txtNewPassword", "txtConfirm", "msgConfirm");
 }

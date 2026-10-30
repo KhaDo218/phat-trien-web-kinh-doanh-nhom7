@@ -9,6 +9,163 @@
     margin: 64px auto 96px;
     padding: 48px;
 }
+
+/* Trang đăng nhập: bố cục editorial hai mảng */
+.login-page{
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(430px, .8fr);
+    align-items: stretch;
+    gap: 0;
+    max-width: 1560px;
+    min-height: 760px;
+    padding-top: 48px;
+    padding-bottom: 80px;
+}
+.login-page::before{
+    height: 100%;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(197, 167, 118, .22), transparent 27%),
+        linear-gradient(125deg, #E7DFD3 0%, #F4F0E9 52%, #DED5C7 100%);
+}
+.login-page::after{
+    content: "";
+}
+.login-showcase{
+    position: relative;
+    min-height: 680px;
+    padding: 42px 46px;
+    overflow: hidden;
+    background:
+        linear-gradient(to top, rgba(15, 15, 13, .88) 0%, rgba(15, 15, 13, .18) 62%, rgba(15, 15, 13, .1) 100%),
+        url("../../../assets/rooms/traditional/room-traditional-4240421-01.jpg") center / cover no-repeat;
+    color: #FFFFFF;
+    box-shadow: 0 32px 70px rgba(39, 32, 23, .22);
+}
+.login-showcase::before{
+    content: "";
+    position: absolute;
+    top: 10%;
+    right: -120px;
+    width: 360px;
+    height: 360px;
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 50%;
+    box-shadow: 0 0 0 54px rgba(255, 255, 255, .035), 0 0 0 108px rgba(255, 255, 255, .02);
+    animation: login-orbit 12s ease-in-out infinite alternate;
+}
+.login-showcase::after{
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    pointer-events: none;
+}
+.login-showcase-top{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+.login-showcase-copy{
+    position: absolute;
+    z-index: 2;
+    right: 56px;
+    bottom: 104px;
+    left: 56px;
+    max-width: 680px;
+}
+.login-showcase-copy .overline{
+    margin-bottom: 16px;
+    color: #D9BE8B;
+    font-weight: 600;
+}
+.login-showcase-copy h2{
+    max-width: 620px;
+    margin-bottom: 20px;
+    font-family: var(--font-display);
+    font-size: clamp(48px, 4vw, 72px);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -.025em;
+}
+.login-showcase-copy > p:last-child{
+    max-width: 590px;
+    color: rgba(255, 255, 255, .76);
+    line-height: 26px;
+}
+.login-page .auth-box{
+    align-self: center;
+    width: calc(100% + 28px);
+    max-width: 540px;
+    margin: 0 0 0 -28px;
+    padding: 58px 62px;
+    border: 0;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 32px 72px rgba(39, 32, 23, .18);
+    backdrop-filter: blur(18px);
+}
+.login-page .auth-box .overline{
+    color: #9A7440;
+    font-weight: 600;
+}
+.login-page .auth-box h1{
+    font-size: 48px;
+    line-height: 1;
+}
+.login-page .input{
+    height: 54px;
+    border-color: #D5CEC3;
+    background: #F8F5EF;
+    transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.login-page .input:focus{
+    border-color: #9A7440;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(154, 116, 64, .1);
+}
+.login-page .btn-full{
+    height: 54px;
+    margin-top: 8px;
+    transition: transform .25s ease, background-color .25s ease;
+}
+.login-page .btn-full:hover{
+    transform: translateY(-2px);
+}
+@keyframes login-orbit{
+    to{ transform: translate(-24px, 18px) rotate(12deg); }
+}
+
+/* Đăng ký / quên mật khẩu: ảnh chỉ làm nền, không tạo ô giả nút. */
+.auth-page:not(.login-page){
+    justify-content: flex-start;
+    min-height: 780px;
+    padding-top: 64px;
+}
+.auth-page:not(.login-page)::before{
+    height: 100%;
+    background:
+        linear-gradient(90deg, #EEE8DD 0%, rgba(246, 243, 237, .97) 48%, rgba(28, 27, 23, .14) 72%, rgba(18, 18, 16, .42) 100%),
+        url("../../../assets/rooms/scandinavian/room-scandinavian-4237170-01.jpg") center right / cover no-repeat;
+}
+.auth-page:not(.login-page)::after{
+    right: 30px;
+    bottom: 5px;
+    color: rgba(255, 255, 255, .12);
+}
+.auth-page:not(.login-page) .auth-box{
+    width: min(100%, 680px);
+    margin: 0 0 80px;
+    border: 0;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 30px 74px rgba(42, 35, 26, .18);
+    backdrop-filter: blur(16px);
+}
 .auth-box .overline{
     margin-bottom: 8px;
 }
@@ -62,5 +219,60 @@
     .auth-box{
         margin: 32px auto 64px;
         padding: 32px 20px;
+    }
+}
+
+@media (max-width: 1024px){
+    .login-page{
+        grid-template-columns: 1fr;
+        padding-top: 28px;
+    }
+    .login-showcase{
+        min-height: 430px;
+    }
+    .login-showcase-copy{
+        bottom: 74px;
+    }
+    .login-showcase-copy h2{
+        font-size: clamp(40px, 7vw, 58px);
+    }
+    .login-page .auth-box{
+        width: calc(100% - 48px);
+        max-width: 620px;
+        margin: -38px auto 0;
+        padding: 48px;
+    }
+}
+
+@media (max-width: 600px){
+    .login-page{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .login-showcase{
+        min-height: 390px;
+        padding: 28px;
+    }
+    .login-showcase-copy{
+        right: 34px;
+        bottom: 66px;
+        left: 34px;
+    }
+    .login-showcase-copy h2{
+        font-size: 38px;
+    }
+    .login-showcase-copy > p:last-child{
+        display: none;
+    }
+    .login-page .auth-box{
+        width: calc(100% - 24px);
+        margin-top: -26px;
+        padding: 38px 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .login-showcase::before{
+        animation: none;
     }
 }

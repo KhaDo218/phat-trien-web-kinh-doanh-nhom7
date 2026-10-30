@@ -96,3 +96,11 @@
         gap: 0;
     }
 }
+
+/* Form nằm giữa modal-box và modal-body: cho phần thân cuộn, nút Lưu luôn hiện ở đáy */
+#frmUsedProduct{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}

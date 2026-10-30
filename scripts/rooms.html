@@ -7,7 +7,7 @@
         <style type="text/css">
             @import url(css/base.css);
             @import url(css/components/room.css);
-            @import url(css/pages/rooms.css);
+            @import url("css/pages/rooms.css?v=20261029-3");
         </style>
         <script src="js/core/utils.js"></script>
         <script src="js/core/store.js"></script>
@@ -28,7 +28,7 @@
                 <div>
                     <p class="overline">Bộ sưu tập không gian</p>
                     <h1 class="headline-page" id="pageTitle">Không gian mẫu</h1>
-                    <p class="lead" id="pageLead">Chọn một căn phòng để xem từng món nội thất trong ảnh, xoay mô hình 3D và mua ngay.</p>
+                    <p class="lead" id="pageLead">Bắt đầu từ cảm hứng thay vì từ danh mục: chạm vào từng món trong những căn phòng đã được bày sẵn, xoay mô hình 3D để nhìn rõ mọi góc và mang cả không gian ấy về nhà chỉ trong vài bước.</p>
                 </div>
                 <p class="rooms-count" id="roomCount"></p>
             </div>
@@ -37,10 +37,6 @@
             <div class="rooms-filter" role="group" aria-label="Lọc theo phong cách" id="styleFilter"></div>
 
             <div class="rooms-toolbar">
-                <label class="rooms-check">
-                    <input type="checkbox" id="chkShopTheRoom" onclick="changeOption()">
-                    Chỉ hiện phòng có Shop the Room
-                </label>
                 <label class="rooms-sort">
                     <span class="overline">Sắp xếp</span>
                     <select class="input" id="cboSort" onchange="changeOption()">

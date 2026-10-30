@@ -10,12 +10,13 @@
             @import url(../css/pages/admin-index.css);
         </style>
         <!-- Biểu đồ: Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+        <script src="../libs/chart.umd.min.js"></script>
         <script src="../js/core/utils.js"></script>
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
         <script src="../js/services/orders.js"></script>
+        <script src="../js/services/products.js"></script>
         <script src="../js/pages/admin-index.js"></script>
     </head>
     <body>
@@ -28,15 +29,15 @@
                 </div>
 
                 <div class="grid-4 stat-grid">
-                    <div class="stat-card"><p class="overline">Doanh thu</p><p class="value" id="statRevenue">0 ₫</p></div>
-                    <div class="stat-card"><p class="overline">Số đơn hàng</p><p class="value" id="statOrders">0</p></div>
-                    <div class="stat-card"><p class="overline">Người dùng</p><p class="value" id="statUsers">0</p></div>
-                    <div class="stat-card"><p class="overline">Đơn chờ xử lý</p><p class="value" id="statPending">0</p></div>
+                    <div class="stat-card"><p class="overline">Doanh thu (đơn đã giao)</p><p class="value" id="statRevenue">0 ₫</p><p class="stat-note" id="statRevenueNote"></p></div>
+                    <div class="stat-card"><p class="overline">Số đơn hàng</p><p class="value" id="statOrders">0</p><p class="stat-note" id="statOrdersNote"></p></div>
+                    <div class="stat-card"><p class="overline">Người dùng</p><p class="value" id="statUsers">0</p><p class="stat-note" id="statUsersNote"></p></div>
+                    <div class="stat-card"><p class="overline">Đơn chờ xử lý</p><p class="value" id="statPending">0</p><p class="stat-note" id="statPendingNote"></p></div>
                 </div>
 
                 <div class="chart-row">
                     <div class="card chart-box">
-                        <p class="overline">Doanh thu 6 tháng gần nhất</p>
+                        <p class="overline">Doanh thu 6 tháng gần nhất (theo ngày giao thành công)</p>
                         <canvas id="chartRevenue"></canvas>
                     </div>
                     <div class="card chart-box">
@@ -51,6 +52,14 @@
                         <tr><th>Sản phẩm</th><th>Tên</th><th>Đã bán</th><th>Doanh thu</th></tr>
                     </thead>
                     <tbody id="tbTopProducts"></tbody>
+                </table>
+
+                <h2 class="headline-section top-title">Sắp hết hàng <span class="text-secondary low-note" id="lblLowStock"></span></h2>
+                <table class="table">
+                    <thead>
+                        <tr><th>Sản phẩm</th><th>Tên</th><th>Còn lại</th><th>Đã bán (6 tháng)</th></tr>
+                    </thead>
+                    <tbody id="tbLowStock"></tbody>
                 </table>
 
             </main>

@@ -1,0 +1,169 @@
+/* =====================================================================
+   ROOMCRAFT - product-card.css (thẻ sản phẩm dùng chung)
+   Người phụ trách: Nguyên Khôi
+   Đi kèm components/product-card.js (createProductCard). Trang nào dùng thẻ sản phẩm
+   thì nạp file này ngay sau base.css: index, products, product-detail, wishlist,
+   marketplace, room-detail.
+   ===================================================================== */
+
+.product-card{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;          /* thẻ nằm trong lưới không bị chữ dài đẩy tràn màn hình */
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    background: #FFFFFF;
+}
+.product-card:hover{
+    transform: translateY(-3px);
+    border-color: #202020;
+}
+.product-card-img{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #EEEEEC;
+}
+.product-card-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.product-card:hover .product-card-img img{
+    transform: scale(1.03);
+}
+.product-card-badges{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+}
+.badge-grade-likenew{
+    background: #E8F3EB;
+    color: #2C6B3F;
+    border: 1px solid #C4E2CB;
+}
+.badge-grade-good{
+    background: #EAF1F8;
+    color: #2B5876;
+    border: 1px solid #C4D9EC;
+}
+.badge-grade-fair{
+    background: #FBF5EB;
+    color: #875A18;
+    border: 1px solid #E9D5B8;
+}
+.badge-3d{
+    background: #202020;
+    color: #FFFFFF;
+}
+.btn-wishlist{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.15s, transform 0.15s;
+    outline: none;
+}
+.btn-wishlist:hover{
+    background: #F7F7F5;
+    transform: scale(1.1);
+}
+.btn-wishlist .material-symbols-outlined{
+    font-size: 18px;
+    color: #202020;
+}
+.product-card-body{
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.product-card-body .overline{
+    margin-bottom: 6px;
+    font-size: 10.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.product-card-body .title-product{
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 48px;
+}
+.product-card-body .title-product a:hover{
+    text-decoration: underline;
+}
+.product-used-meta{
+    font-size: 12px;
+    color: #686868;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.product-card-price-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #DADAD7;
+}
+.product-card-price-row{
+    flex-wrap: wrap;           /* thiếu chỗ thì nhãn kho xuống hàng, giá không bị bẻ */
+    gap: 6px 8px;
+}
+.product-prices{
+    display: flex;
+    flex-wrap: wrap;           /* thẻ hẹp (2 cột trên điện thoại): giá cũ xuống dòng, không tràn ngang */
+    align-items: baseline;
+    gap: 0 8px;
+    min-width: 0;
+}
+.product-prices span{
+    white-space: nowrap;
+}
+.product-prices .price{
+    font-size: 16px;
+    font-weight: 600;
+}
+.product-prices .price-old{
+    margin-left: 0;
+}
+.product-card-price-row .badge{
+    white-space: nowrap;
+}
+.product-card-actions{
+    margin-top: 4px;
+}
+
+/* Ảnh sản phẩm: hiện trọn món đồ trên nền trắng (không cắt mất chân bàn, mép ghế...).
+   Viết selector dài hơn để thắng các luật object-fit: cover riêng của từng trang. */
+.product-card .product-card-img{
+    background: #FFFFFF;
+    border-bottom: 1px solid #EEEEEC;
+}
+.product-card .product-card-img > a > img{
+    object-fit: contain;
+    padding: 10px;
+}

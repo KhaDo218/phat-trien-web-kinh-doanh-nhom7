@@ -21,6 +21,14 @@ function onSearchChange(){
     }, 200);
 }
 
+var userPage = 1;
+
+function goUserPage(trang){
+    userPage = trang;
+    renderTable();
+    window.scrollTo(0, 0);
+}
+
 function renderTable(){
     var users = getTable("users");
     var roles = getTable("roles");
@@ -85,8 +93,10 @@ function renderTable(){
         return;
     }
     emptyDiv.classList.add("hidden");
+    userPage = fixAdminPage(userPage, filtered.length);
+    renderAdminPager("pgUsers", userPage, filtered.length, "goUserPage");
 
-    for(var idx = 0; idx < filtered.length; idx++){
+    for(var idx = (userPage - 1) * ADMIN_PAGE_SIZE; idx < Math.min(userPage * ADMIN_PAGE_SIZE, filtered.length); idx++){
         var user = filtered[idx];
         var tr = document.createElement("tr");
 
@@ -168,4 +178,40 @@ function toggleLockUser(userId, makeActive){
 
     alert("Đã " + (makeActive ? "mở khóa" : "khóa") + " tài khoản '" + targetName + "' thành công!");
     renderTable();
+}
+
+// ===================== Xuất JSON =====================
+function openExport(){
+    document.getElementById("exportModal").className = "modal";
+    fillExport();
+}
+
+function fillExport(){
+    var bang = document.getElementById("cboExport").value;
+    document.getElementById("txtExport").value = JSON.stringify(getTable(bang), null, 2);
+}
+
+function copyExport(){
+    var o = document.getElementById("txtExport");
+    o.select();
+    if(navigator.clipboard != null){
+        navigator.clipboard.writeText(o.value).then(function(){
+            alert("Đã sao chép " + document.getElementById("cboExport").value + ".json");
+        }, function(){
+            document.execCommand("copy");
+        });
+    }
+    else{
+        document.execCommand("copy");
+        alert("Đã sao chép.");
+    }
+}
+
+function closeExport(){
+    document.getElementById("exportModal").className = "modal hidden";
+}
+
+function closeExportOutside(e){
+    if(e.target.id == "exportModal")
+        closeExport();
 }

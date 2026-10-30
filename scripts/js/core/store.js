@@ -16,10 +16,10 @@
      resetData()                 xóa hết dữ liệu localStorage, nạp lại từ JSON
    ===================================================================== */
 
-var DATA_VERSION = "2";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
+var DATA_VERSION = "14";     // tăng số này khi data/json thay đổi để mọi máy nạp lại
 var DATA_FILES = ["products", "used_products", "categories", "styles", "rooms", "room_hotspots",
-
-                  "users", "roles", "shipping_methods", "coupons", "chatbot_faqs"];
+                  "users", "roles", "shipping_methods", "coupons", "chatbot_faqs",
+                  "orders", "reviews"];
 
 // Đọc 1 file JSON bằng XMLHttpRequest
 function readJsonFile(ten, hamXuLy){
@@ -63,6 +63,9 @@ function readFileAt(viTri, duLieu, hamTiepTheo){
 }
 
 function saveAllData(duLieu){
+    // Giữ lại tài khoản, đơn hàng, đánh giá đã tạo trên máy này (không bị JSON ghi đè)
+    keepLocalData(duLieu);
+
     // Đồ cũ (used_products) được gộp chung vào bảng products, phân biệt bằng product_type = "USED"
     var products = duLieu["products"];
     var usedProducts = duLieu["used_products"];
@@ -75,10 +78,6 @@ function saveAllData(duLieu){
             saveTable(ten, duLieu[ten]);
     }
     // Các bảng sinh ra khi dùng web
-    if(localStorage.getItem("rc_orders") == null)
-        saveTable("orders", []);
-    if(localStorage.getItem("rc_reviews") == null)
-        saveTable("reviews", []);
     if(localStorage.getItem("rc_verification_codes") == null)
         saveTable("verification_codes", []);
     if(localStorage.getItem("rc_carts") == null)
@@ -86,6 +85,103 @@ function saveAllData(duLieu){
     if(localStorage.getItem("rc_wishlists") == null)
         saveObject("wishlists", {});
     localStorage.setItem("rc_version", DATA_VERSION);
+}
+
+// ---------------------------------------------------------------------
+// Khi tăng DATA_VERSION: gộp dữ liệu đang có trên máy vào dữ liệu JSON mới
+//   Chỉ giữ những gì TẠO TRÊN MÁY NÀY (đăng ký, đặt hàng, đánh giá khi dùng web).
+//   Dữ liệu mẫu của phiên bản cũ thì bỏ, lấy bản mới trong JSON -> không bị nhân đôi.
+//   Cách nhận biết: dòng tạo khi dùng web có created_at kiểu new Date().toISOString()
+//   (kết thúc bằng "Z"), dòng mẫu trong data/json thì không có "Z".
+//   - users: tài khoản có trong JSON (cùng email) thì giữ bản trên máy (vd. đã đổi tên),
+//            tài khoản tự đăng ký thì thêm vào (trùng id thì cấp id mới)
+//   - orders, reviews: dòng trùng id và trùng created_at với JSON -> giữ bản trên máy
+//            (vd. admin đã đổi trạng thái), dòng tạo trên máy -> thêm vào (trùng id thì cấp id mới)
+// ---------------------------------------------------------------------
+function keepLocalData(duLieu){
+    var usersCu = getTable("users");
+    var ordersCu = getTable("orders");
+    var reviewsCu = getTable("reviews");
+    var users = duLieu["users"];
+
+    for(var i = 0; i < usersCu.length; i++){
+        var viTri = -1;
+        for(var j = 0; j < users.length; j++){
+            if(users[j].email.toLowerCase() == usersCu[i].email.toLowerCase())
+                viTri = j;
+        }
+        if(viTri >= 0){
+            changeUserId(ordersCu, reviewsCu, usersCu[i].id, users[viTri].id);
+            usersCu[i].id = users[viTri].id;
+            users[viTri] = usersCu[i];
+        }
+        else if(isLocalRow(usersCu[i])){
+            if(findIn(users, usersCu[i].id) != null){
+                var idMoi = getMaxId(users) + 1;
+                changeUserId(ordersCu, reviewsCu, usersCu[i].id, idMoi);
+                usersCu[i].id = idMoi;
+            }
+            users.push(usersCu[i]);
+        }
+    }
+    for(var i = 0; i < ordersCu.length; i++)
+        delete ordersCu[i].daDoiId;
+    for(var i = 0; i < reviewsCu.length; i++)
+        delete reviewsCu[i].daDoiId;
+    mergeRows(duLieu["orders"], ordersCu);
+    mergeRows(duLieu["reviews"], reviewsCu);
+}
+
+// Dòng được tạo khi dùng web trên máy này (không phải dữ liệu mẫu trong data/json)
+function isLocalRow(dong){
+    var t = String(dong.created_at || "");
+    return t.charAt(t.length - 1) == "Z";
+}
+
+function mergeRows(mangMoi, mangCu){
+    for(var i = 0; i < mangCu.length; i++){
+        var dong = findIn(mangMoi, mangCu[i].id);
+        if(dong != null && dong.created_at == mangCu[i].created_at){
+            mangMoi[mangMoi.indexOf(dong)] = mangCu[i];
+        }
+        else if(isLocalRow(mangCu[i])){
+            if(dong != null)
+                mangCu[i].id = getMaxId(mangMoi) + 1;
+            mangMoi.push(mangCu[i]);
+        }
+    }
+}
+
+// Đổi user_id trong đơn hàng và đánh giá (chỉ đổi dòng chưa đổi lần nào)
+function changeUserId(orders, reviews, idCu, idMoi){
+    if(idCu == idMoi)
+        return;
+    var cacMang = [orders, reviews];
+    for(var k = 0; k < cacMang.length; k++){
+        for(var i = 0; i < cacMang[k].length; i++){
+            if(cacMang[k][i].user_id == idCu && cacMang[k][i].daDoiId != true){
+                cacMang[k][i].user_id = idMoi;
+                cacMang[k][i].daDoiId = true;
+            }
+        }
+    }
+}
+
+function findIn(mang, id){
+    for(var i = 0; i < mang.length; i++){
+        if(mang[i].id == id)
+            return mang[i];
+    }
+    return null;
+}
+
+function getMaxId(mang){
+    var max = 0;
+    for(var i = 0; i < mang.length; i++){
+        if(Number(mang[i].id) > max)
+            max = Number(mang[i].id);
+    }
+    return max;
 }
 
 function getTable(ten){
@@ -96,17 +192,37 @@ function getTable(ten){
 }
 
 function saveTable(ten, mang){
-    localStorage.setItem("rc_" + ten, JSON.stringify(mang));
+    try{
+        localStorage.setItem("rc_" + ten, JSON.stringify(mang));
+    }
+    catch(e){
+        // Trình duyệt chỉ cho mỗi trang khoảng 5MB localStorage
+        alert("Bộ nhớ trình duyệt đã đầy, chưa lưu được dữ liệu \"" + ten + "\". Hãy dùng nút Xuất JSON để lưu lại thay đổi.");
+    }
+    delete bangDaDoc[ten];
 }
 
+// findById được gọi rất nhiều lần (vd. trang admin đơn hàng: mỗi món trong 150 đơn).
+// Nếu lần nào cũng JSON.parse cả bảng products (~2MB) thì rất chậm, nên đọc 1 lần rồi
+// lập sẵn mục lục id -> dòng. Gọi saveTable() là mục lục của bảng đó được làm mới.
+var bangDaDoc = {};
+
 function findById(ten, id){
-    var mang = getTable(ten);
-    for(var i = 0; i < mang.length; i++){
-        if(mang[i].id == id)
-            return mang[i];
+    if(bangDaDoc[ten] == null){
+        var mang = getTable(ten);
+        var mucLuc = {};
+        for(var i = 0; i < mang.length; i++)
+            mucLuc[String(mang[i].id)] = mang[i];
+        bangDaDoc[ten] = mucLuc;
     }
-    return null;
+    var dong = bangDaDoc[ten][String(id)];
+    return dong == null ? null : dong;
 }
+
+// Tab khác đổi dữ liệu thì bỏ mục lục cũ
+window.addEventListener("storage", function(){
+    bangDaDoc = {};
+});
 
 function getNextId(ten){
     var mang = getTable(ten);

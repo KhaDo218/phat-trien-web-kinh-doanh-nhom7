@@ -13,6 +13,7 @@
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
+        <script src="../js/services/orders.js"></script>
         <script src="../js/pages/admin-reviews.js"></script>
     </head>
     <body>
@@ -86,11 +87,16 @@
                 </div>
 
                 <!-- Khung trống khi không tìm thấy -->
+                <div class="admin-pager" id="pgReviews"></div>
                 <div id="divEmpty" class="empty card hidden" style="margin-top:20px;">
                     <span class="material-symbols-outlined" style="font-size:36px;">reviews</span>
                     <p style="margin-top:8px;">Không tìm thấy đánh giá nào phù hợp với bộ lọc.</p>
                 </div>
             </main>
         </div>
+
+        <script>
+            loadData(initPage);
+        </script>
     </body>
 </html>

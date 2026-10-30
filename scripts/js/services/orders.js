@@ -12,6 +12,7 @@
      calcDiscount(coupon, tamTinh)  -> số tiền được giảm
      checkStockForCart()            -> "" nếu đủ hàng, ngược lại là câu báo lỗi
      createOrder(thongTin)          -> tạo đơn Confirmed, trừ tồn kho, xóa giỏ, trả về id đơn
+                                       (phí giao, cọc/còn thu tính bằng js/services/shipping.js)
      cancelOrder(orderId)           -> "" nếu hủy được (hoàn lại tồn kho), ngược lại là câu báo lỗi
      updateOrderStatus(orderId, trangThai) -> "" hoặc câu báo lỗi (dùng cho trang admin)
      getOrdersByUser(userId), getAllOrders()  (đơn mới nhất xếp trước)
@@ -43,6 +44,8 @@ function getPaymentText(phuongThuc){
         return "Chuyển khoản ngân hàng";
     if(phuongThuc == "E-wallet")
         return "Ví điện tử";
+    if(phuongThuc == "Card")
+        return "Thẻ tín dụng / ghi nợ";
     return phuongThuc;
 }
 
@@ -122,8 +125,10 @@ function checkStockForCart(){
     return "";
 }
 
-// thongTin = { shipping_name, shipping_phone, shipping_address, payment_method,
-//              shipping_method_id, coupon_code (có thể để "") }
+// thongTin = { shipping_name, shipping_phone, shipping_email, shipping_province, shipping_ward,
+//              shipping_street, house_type, shipping_note, payment_method, payment_plan ("COD"|"FULL"|"DEPOSIT"),
+//              shipping_method_id, coupon_code (có thể để ""), card_last4 }
+// Phí giao và số tiền đã trả / còn thu được tính lại ở đây, không tin số do trang gửi lên.
 function createOrder(thongTin){
     var user = getCurrentUser();
     var cart = getCart();
@@ -134,7 +139,10 @@ function createOrder(thongTin){
     for(var i = 0; i < cart.length; i++){
         for(var j = 0; j < products.length; j++){
             if(products[j].id == cart[i].product_id){
-                items.push({ product_id: products[j].id, quantity: cart[i].quantity, unit_price: products[j].price });
+                // lưu kèm tên, ảnh lúc mua: sau này sản phẩm bị đổi tên / xóa thì đơn cũ vẫn hiện đúng
+                items.push({ product_id: products[j].id, product_name: products[j].name,
+                             product_image: (products[j].images && products[j].images.length > 0) ? products[j].images[0] : null,
+                             quantity: cart[i].quantity, unit_price: products[j].price });
                 tamTinh = tamTinh + products[j].price * cart[i].quantity;
                 products[j].stock_quantity = products[j].stock_quantity - cart[i].quantity;   // trừ tồn kho
             }
@@ -142,10 +150,13 @@ function createOrder(thongTin){
     }
 
     var ship = findById("shipping_methods", thongTin.shipping_method_id);
+    var phiShip = calcShippingFee(ship, getProvinceZone(thongTin.shipping_province), tamTinh);
     var coupon = null;
     if(thongTin.coupon_code != "")
         coupon = findCouponByCode(thongTin.coupon_code);
     var giam = calcDiscount(coupon, tamTinh);
+    var tong = tamTinh + phiShip - giam;
+    var tien = calcPaymentSplit(thongTin.payment_plan, tong);
     var bayGio = new Date().toISOString();
 
     var order = {
@@ -155,13 +166,24 @@ function createOrder(thongTin){
         coupon_id: (coupon == null) ? null : coupon.id,
         shipping_name: thongTin.shipping_name,
         shipping_phone: thongTin.shipping_phone,
-        shipping_address: thongTin.shipping_address,
+        shipping_email: thongTin.shipping_email || null,
+        shipping_province: thongTin.shipping_province,
+        shipping_ward: thongTin.shipping_ward,
+        shipping_street: thongTin.shipping_street,
+        shipping_address: composeAddress(thongTin.shipping_street, thongTin.shipping_ward, thongTin.shipping_province),
+        house_type: thongTin.house_type || null,
+        shipping_note: thongTin.shipping_note || null,
         payment_method: thongTin.payment_method,
+        payment_plan: thongTin.payment_plan,
+        card_last4: thongTin.card_last4 || null,
         status: "Confirmed",
         subtotal: tamTinh,
-        shipping_fee: ship.fee,
+        shipping_fee: phiShip,
         discount_amount: giam,
-        total_amount: tamTinh + ship.fee - giam,
+        total_amount: tong,
+        paid_amount: tien.paid,
+        amount_due: tien.due,
+        refund_amount: 0,
         created_at: bayGio,
         updated_at: bayGio,
         items: items
@@ -196,6 +218,8 @@ function cancelOrder(orderId){
         }
     }
     order.status = "Cancelled";
+    order.refund_amount = Number(order.paid_amount) || 0;     // tiền đã trả trước / tiền cọc được hoàn lại
+    order.amount_due = 0;
     order.updated_at = new Date().toISOString();
     saveTable("products", products);
     saveTable("orders", orders);
@@ -211,6 +235,10 @@ function updateOrderStatus(orderId, trangThai){
             if(getNextStatus(orders[i].status) != trangThai)
                 return "Chỉ được chuyển sang trạng thái kế tiếp: " + getStatusText(getNextStatus(orders[i].status)) + "!";
             orders[i].status = trangThai;
+            if(trangThai == "Delivered"){          // giao xong: shipper đã thu nốt phần còn lại
+                orders[i].paid_amount = orders[i].total_amount;
+                orders[i].amount_due = 0;
+            }
             orders[i].updated_at = new Date().toISOString();
             saveTable("orders", orders);
             return "";

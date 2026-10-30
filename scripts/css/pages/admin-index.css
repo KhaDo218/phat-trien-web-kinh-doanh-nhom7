@@ -26,7 +26,11 @@
     max-height: 320px;
 }
 .top-title{
-    margin-bottom: 16px;
+    margin: 40px 0 16px;
+}
+.low-note{
+    font-family: var(--font-body);
+    font-size: 13px;
 }
 @media (max-width: 1024px){
     .chart-row{

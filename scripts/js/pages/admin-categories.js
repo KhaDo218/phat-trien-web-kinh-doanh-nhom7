@@ -100,6 +100,15 @@ function createCategoryRow(category, categories, products){
         editCategory(category.id);
     };
     actions.appendChild(editButton);
+
+    var deleteButton = document.createElement("button");
+    deleteButton.className = "btn-link";
+    deleteButton.type = "button";
+    deleteButton.textContent = "Xóa";
+    deleteButton.onclick = function(){
+        deleteCategory(category.id);
+    };
+    actions.appendChild(deleteButton);
     row.appendChild(actions);
     return row;
 }
@@ -188,9 +197,50 @@ function saveCategory(event){
     }
 
     saveTable("categories", categories);
+
+    // cập nhật lại danh mục cha của các sản phẩm thuộc danh mục này
+    var newParent = category.parent_id == null ? category.id : category.parent_id;
+    var changed = false;
+    for(var i = 0; i < products.length; i++){
+        if(products[i].category_id == category.id && products[i].parent_category_id != newParent){
+            products[i].parent_category_id = newParent;
+            changed = true;
+        }
+    }
+    if(changed)
+        saveTable("products", products);
+
     renderCategories();
     renderParentCategoryOptions();
     resetCategoryForm();
     alert("Đã lưu danh mục.");
     return false;
+}
+
+// Chỉ cho xóa danh mục trống: không còn danh mục con và không còn sản phẩm nào
+function deleteCategory(categoryId){
+    var categories = getTable("categories");
+    var products = getTable("products");
+    for(var i = 0; i < categories.length; i++){
+        if(categories[i].parent_id == categoryId){
+            alert("Danh mục còn danh mục con, hãy xóa hoặc chuyển danh mục con trước!");
+            return;
+        }
+    }
+    for(var i = 0; i < products.length; i++){
+        if(products[i].category_id == categoryId){
+            alert("Danh mục còn sản phẩm, không thể xóa!");
+            return;
+        }
+    }
+    if(confirm("Bạn có chắc muốn xóa danh mục này?") == false)
+        return;
+    var conLai = [];
+    for(var i = 0; i < categories.length; i++){
+        if(categories[i].id != categoryId)
+            conLai.push(categories[i]);
+    }
+    saveTable("categories", conLai);
+    resetCategoryForm();
+    renderCategories();
 }

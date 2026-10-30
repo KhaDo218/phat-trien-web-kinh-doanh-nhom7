@@ -80,28 +80,28 @@
     "id": 12,
     "topic": "POLICY",
     "keywords": "thanh toán, phương thức thanh toán, cod, chuyển khoản, momo, vnpay",
-    "answer": "RoomCraft hỗ trợ đa dạng phương thức thanh toán: Thanh toán khi nhận hàng (COD), Chuyển khoản ngân hàng qua mã VietQR tự động và Ví điện tử (MoMo / VNPay). Mọi giao dịch đều được mã hóa bảo mật chuẩn SSL.",
+    "answer": "RoomCraft nhận thanh toán khi nhận hàng (COD) cho đơn đến 10 triệu, chuyển khoản ngân hàng (quét mã QR), ví điện tử và thẻ tín dụng / ghi nợ. Đơn trên 10 triệu cần thanh toán trước toàn bộ hoặc đặt cọc 30%, phần còn lại trả khi nhận hàng. Thanh toán trên website là mô phỏng, không phát sinh giao dịch thật.",
     "is_active": true
   },
   {
     "id": 13,
     "topic": "POLICY",
     "keywords": "hóa đơn, vat, hóa đơn đỏ, hóa đơn điện tử",
-    "answer": "RoomCraft hỗ trợ xuất hóa đơn GTGT (VAT) điện tử hợp pháp cho mọi đơn hàng cá nhân và doanh nghiệp. Quý khách chỉ cần tích chọn 'Yêu cầu xuất hóa đơn VAT' và nhập thông tin công ty / mã số thuế tại bước thanh toán Checkout.",
+    "answer": "RoomCraft hỗ trợ xuất hóa đơn GTGT (VAT) điện tử cho đơn hàng cá nhân và doanh nghiệp. Sau khi đặt hàng, quý khách gửi mã đơn hàng cùng tên công ty và mã số thuế cho bộ phận hỗ trợ để được xuất hóa đơn.",
     "is_active": true
   },
   {
     "id": 14,
     "topic": "POLICY",
     "keywords": "mã giảm giá, coupon, voucher, khuyến mãi, cách dùng coupon",
-    "answer": "Bạn có thể nhập mã giảm giá tại ô 'Mã giảm giá' ở trang Giỏ hàng hoặc Thanh toán. Ví dụ mã WELCOME10 giảm 10% cho đơn hàng đầu tiên (áp dụng đơn từ 2 triệu), FREESHIP miễn phí vận chuyển nội thành. Hệ thống sẽ tự động trừ số tiền giảm vào tổng thanh toán.",
+    "answer": "Bạn nhập mã vào ô 'Mã giảm giá' ở trang Thanh toán rồi bấm Áp dụng. Mã đang có: ROOMCRAFT10 giảm 10% cho đơn từ 2.000.000 ₫, GIAM200K giảm 200.000 ₫ cho đơn từ 5.000.000 ₫. Mỗi đơn dùng một mã, hệ thống tự trừ vào tổng thanh toán.",
     "is_active": true
   },
   {
     "id": 15,
     "topic": "SHIPPING",
     "keywords": "vận chuyển, phí ship, giao hàng, bao lâu thì nhận được",
-    "answer": "Thời gian giao hàng tiêu chuẩn là từ 2-4 ngày làm việc đối với khu vực TP.HCM & Hà Nội, và 4-7 ngày làm việc đối với các tỉnh thành khác. Phí vận chuyển được tính dựa trên phương thức bạn chọn tại trang Thanh toán: Giao hàng tiêu chuẩn (50.000 ₫) hoặc Giao hàng nhanh kèm hỗ trợ bốc xếp (150.000 ₫). Đơn hàng từ 10.000.000 ₫ được miễn phí vận chuyển.",
+    "answer": "Phí giao tính theo loại hàng và nơi nhận. Đồ trang trí, gối, chăn ga, đèn, thảm: giao tiêu chuẩn 3–5 ngày, 35.000 ₫ nội thành TP. Hồ Chí Minh, Hà Nội, Đà Nẵng, 50.000 ₫ tỉnh khác, miễn phí cho đơn từ 2 triệu; giao nhanh 1–2 ngày 80.000 ₫ (chỉ nội thành). Nội thất cỡ lớn được giao và lắp đặt tận nơi trong 3–7 ngày: 300.000 ₫ nội thành (miễn phí cho đơn từ 15 triệu), 600.000 ₫ tỉnh lân cận, 1.200.000 ₫ tỉnh xa. Phí chính xác hiện ở trang Thanh toán khi bạn chọn Tỉnh/Thành phố.",
     "is_active": true
   },
   {

@@ -28,19 +28,13 @@ function findStyleBySlug(slug){
     return null;
 }
 
-// Chip "Tất cả" + 1 chip mỗi phong cách, kèm số phòng
+// Chip "Tất cả" + 1 chip mỗi phong cách (số phòng đã hiện ở góc phải nên chip không ghi số)
 function showStyleFilter(){
     var styles = getTable("styles");
-    var rooms = getTable("rooms");
-    var html = "<button type='button' class='chip' id='chip-all' onclick=\"filterStyle('')\">Tất cả <span>" + rooms.length + "</span></button>";
+    var html = "<button type='button' class='chip' id='chip-all' onclick=\"filterStyle('')\">Tất cả</button>";
     for(var i = 0; i < styles.length; i++){
-        var dem = 0;
-        for(var j = 0; j < rooms.length; j++){
-            if(rooms[j].style_id == styles[i].id)
-                dem = dem + 1;
-        }
         html += "<button type='button' class='chip' id='chip-" + styles[i].slug + "' onclick=\"filterStyle('" + styles[i].slug + "')\">"
-              + roomEscape(styles[i].name) + " <span>" + dem + "</span></button>";
+              + roomEscape(styles[i].name) + "</button>";
     }
     document.getElementById("styleFilter").innerHTML = html;
 }
@@ -75,7 +69,7 @@ function showRooms(){
     // tiêu đề theo phong cách
     if(style == null){
         document.getElementById("pageTitle").innerHTML = "Không gian mẫu";
-        document.getElementById("pageLead").innerHTML = "Chọn một căn phòng để xem từng món nội thất trong ảnh, xoay mô hình 3D và mua ngay.";
+        document.getElementById("pageLead").innerHTML = "Bắt đầu từ cảm hứng thay vì từ danh mục: chạm vào từng món trong những căn phòng đã được bày sẵn, xoay mô hình 3D để nhìn rõ mọi góc và mang cả không gian ấy về nhà chỉ trong vài bước.";
         document.getElementById("crumbStyle").innerHTML = "Không gian mẫu";
         document.title = "Không gian mẫu - RoomCraft";
     }
@@ -87,14 +81,10 @@ function showRooms(){
     }
 
     // lọc
-    var chiCoHotspot = document.getElementById("chkShopTheRoom").checked;
-    var demHotspot = countHotspotsByRoom();
     var rooms = getTable("rooms");
     var ketQua = [];
     for(var i = 0; i < rooms.length; i++){
         if(style != null && rooms[i].style_id != style.id)
-            continue;
-        if(chiCoHotspot && !(demHotspot[rooms[i].id] > 0))
             continue;
         ketQua.push(rooms[i]);
     }
@@ -106,7 +96,7 @@ function showRooms(){
     }
     else if(cachXep == "most"){
         ketQua.sort(function(a, b){
-            return getRoomProducts(b).length - getRoomProducts(a).length;
+            return getHotspotProductIds(getRoomHotspots(b.id)).length - getHotspotProductIds(getRoomHotspots(a.id)).length;
         });
     }
     else if(cachXep == "name"){
@@ -130,6 +120,5 @@ function showRooms(){
 }
 
 function clearFilter(){
-    document.getElementById("chkShopTheRoom").checked = false;
     filterStyle("");
 }

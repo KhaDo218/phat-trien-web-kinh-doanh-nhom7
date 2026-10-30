@@ -1,0 +1,280 @@
+/* =====================================================================
+   ROOMCRAFT - chatbot.css (khung chat ở góc phải mọi trang khách hàng)
+   Người phụ trách: Như Huyền
+   Đi kèm components/chatbot.js; được nạp sẵn trong base.css nên trang không cần @import thêm.
+   ===================================================================== */
+#rcChatbotWrapper{
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    font-family: var(--font-body);
+}
+.rc-chat-toggle-btn{
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #202020;
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+    outline: none;
+}
+.rc-chat-toggle-btn:hover{
+    background: #383838;
+    transform: scale(1.05);
+}
+.rc-chat-toggle-btn .material-symbols-outlined{
+    font-size: 26px;
+    color: #FFFFFF;
+}
+.rc-chat-badge{
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #8C3B2D;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    border: 2px solid #FFFFFF;
+}
+.rc-chat-box{
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    height: 530px;
+    max-height: calc(100vh - 120px);
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.rc-chat-box.rc-chat-hidden{
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    pointer-events: none;
+    visibility: hidden;
+}
+.rc-chat-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #202020;
+    color: #FFFFFF;
+}
+.rc-chat-header-info{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.rc-chat-avatar{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #383838;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rc-chat-avatar .material-symbols-outlined{
+    font-size: 20px;
+    color: #F7F7F5;
+}
+.rc-chat-title{
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+.rc-chat-status{
+    font-size: 11px;
+    color: #DADAD7;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.rc-status-dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #485238;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(72,82,56,0.3);
+}
+.rc-chat-close-btn{
+    background: transparent;
+    border: none;
+    color: #DADAD7;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+.rc-chat-close-btn:hover{
+    color: #FFFFFF;
+    background: rgba(255,255,255,0.1);
+}
+.rc-chat-messages{
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #F7F7F5;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13.5px;
+    line-height: 20px;
+}
+.rc-msg{
+    display: flex;
+    flex-direction: column;
+    max-width: 86%;
+}
+.rc-msg-bot{
+    align-self: flex-start;
+}
+.rc-msg-user{
+    align-self: flex-end;
+    align-items: flex-end;
+}
+.rc-msg-bubble{
+    padding: 10px 14px;
+    border: 1px solid #DADAD7;
+    word-wrap: break-word;
+}
+.rc-msg-bot .rc-msg-bubble{
+    background: #FFFFFF;
+    color: #202020;
+}
+.rc-msg-user .rc-msg-bubble{
+    background: #202020;
+    color: #FFFFFF;
+    border-color: #202020;
+}
+.rc-msg-time{
+    font-size: 10px;
+    color: #686868;
+    margin-top: 3px;
+    padding: 0 2px;
+}
+.rc-chat-suggestions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+.rc-suggestion-chip{
+    display: inline-block;
+    padding: 5px 10px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+    font-size: 11.5px;
+    color: #202020;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.rc-suggestion-chip:hover{
+    background: #202020;
+    color: #FFFFFF;
+    border-color: #202020;
+}
+.rc-chat-footer{
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #FFFFFF;
+    border-top: 1px solid #DADAD7;
+    align-items: center;
+}
+.rc-chat-input{
+    flex: 1;
+    height: 38px;
+    padding: 0 12px;
+    background: #F7F7F5;
+    border: 1px solid #DADAD7;
+    font-size: 13px;
+    outline: none;
+    border-radius: 0;
+}
+.rc-chat-input:focus{
+    border-color: #202020;
+    background: #FFFFFF;
+}
+.rc-chat-send-btn{
+    width: 38px;
+    height: 38px;
+    background: #202020;
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.rc-chat-send-btn:hover{
+    background: #383838;
+}
+.rc-chat-send-btn .material-symbols-outlined{
+    font-size: 18px;
+}
+.rc-typing-bubble{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 14px;
+    background: #FFFFFF;
+    border: 1px solid #DADAD7;
+}
+.rc-typing-bubble span{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #686868;
+    animation: rcBlink 1.2s infinite ease-in-out both;
+}
+.rc-typing-bubble span:nth-child(1){
+    animation-delay: -0.32s;
+}
+.rc-typing-bubble span:nth-child(2){
+    animation-delay: -0.16s;
+}
+@keyframes rcBlink{
+    0%, 80%, 100%{
+        transform: scale(0);
+        opacity: 0.3;
+    }
+    40%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@media (max-width: 480px){
+    .rc-chat-box{
+        width: 100vw;
+        height: calc(100vh - 80px);
+        max-height: none;
+        right: -12px;
+        bottom: 64px;
+    }
+}

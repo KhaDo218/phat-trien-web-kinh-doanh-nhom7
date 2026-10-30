@@ -35,7 +35,7 @@
     background: #202020;
     color: #FFFFFF;
     border-radius: 50%;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 22px;
 }
 .avatar img{
@@ -118,4 +118,12 @@
     .form-row{
         display: block;
     }
+}
+
+/* Địa chỉ mặc định 2 cấp + phần mật khẩu tùy chọn của tài khoản Google */
+.addr-title{
+    margin: 8px 0 12px;
+}
+#divNoPassword .btn{
+    margin-top: 16px;
 }

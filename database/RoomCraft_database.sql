@@ -199,11 +199,12 @@ CREATE TABLE IF NOT EXISTS rooms (
 
 CREATE TABLE IF NOT EXISTS room_hotspots (
   room_id     VARCHAR(100) NOT NULL,
+  image_url   VARCHAR(500) NOT NULL,   -- góc chụp (ảnh của phòng) mà điểm được gắn lên
   product_id  VARCHAR(100) NOT NULL,
   position_x  FLOAT        NOT NULL,   -- % theo chiều ngang ảnh phòng
   position_y  FLOAT        NOT NULL,   -- % theo chiều dọc ảnh phòng
 
-  CONSTRAINT pk_room_hotspots PRIMARY KEY (room_id, product_id),
+  CONSTRAINT pk_room_hotspots PRIMARY KEY (room_id, image_url, product_id),
   CONSTRAINT chk_room_hotspots_x CHECK (position_x >= 0 AND position_x <= 100),
   CONSTRAINT chk_room_hotspots_y CHECK (position_y >= 0 AND position_y <= 100),
 

@@ -43,7 +43,7 @@
 }
 .rd-total{
     margin: 4px 0 2px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 30px;
     line-height: 38px;
 }
@@ -215,6 +215,7 @@
     }
 }
 .rd-thumb{
+    position: relative;
     flex-shrink: 0;
     width: 112px;
     height: 84px;
@@ -235,6 +236,17 @@
 }
 .rd-thumb.active{
     outline: 1px solid #202020;
+}
+/* số điểm đã gắn trên từng góc chụp */
+.rd-thumb-count{
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    padding: 1px 6px;
+    background: #202020;
+    color: #FFFFFF;
+    font-size: 10px;
+    line-height: 16px;
 }
 
 /* ----- Các mục bên dưới ----- */
@@ -260,8 +272,9 @@
 /* nhãn "Điểm n" trên ảnh thẻ sản phẩm */
 .rd-point{
     position: absolute;
-    left: 16px;
-    top: 16px;
+    left: 12px;
+    bottom: 12px;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     gap: 4px;

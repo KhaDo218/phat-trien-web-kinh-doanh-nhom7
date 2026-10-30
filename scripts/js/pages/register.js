@@ -18,6 +18,7 @@ function initPage(){
         window.location.href = "account.html";
         return;
     }
+    checkPasswordLive();
     document.getElementById("txtFullName").focus();
 }
 
@@ -172,4 +173,10 @@ function showPassword(){
         kieu = "text";
     document.getElementById("txtPassword").type = kieu;
     document.getElementById("txtConfirm").type = kieu;
+}
+
+// Kiểm tra mật khẩu ngay khi gõ: quy tắc đỏ/xanh + báo nhập lại đã khớp chưa
+function checkPasswordLive(){
+    showPasswordRules("txtPassword", "divPasswordRules");
+    showConfirmMatch("txtPassword", "txtConfirm", "msgConfirm");
 }

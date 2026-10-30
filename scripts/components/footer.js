@@ -49,7 +49,7 @@ function renderFooter(){
    ĐIỀU KHOẢN DỊCH VỤ (hiện dạng popup)
    Mỗi mục: ma (để cuộn tới), tieuDe, noiDung (mảng các đoạn)
    --------------------------------------------------------------------- */
-var TERMS_UPDATED = "21/10/2026";
+var TERMS_UPDATED = "29/10/2026";
 var TERMS = [
     { ma: "gioi-thieu", tieuDe: "1. Giới thiệu và chấp nhận điều khoản", noiDung: [
         "RoomCraft là nền tảng thương mại điện tử nội thất lấy không gian sống làm trung tâm: bạn khám phá các căn phòng mẫu, xem từng món đồ trong phòng, xoay mô hình 3D và đặt mua trực tuyến.",
@@ -74,12 +74,14 @@ var TERMS = [
     { ma: "dat-hang", tieuDe: "5. Đặt hàng và thanh toán", noiDung: [
         "Đơn hàng được ghi nhận khi bạn hoàn tất bước Thanh toán. Trạng thái đơn lần lượt là: Đã xác nhận, Đang đóng gói, Đang giao, Đã giao. Bạn theo dõi trạng thái tại mục Đơn hàng của tôi.",
         "Bạn có thể hủy đơn khi đơn chưa chuyển sang trạng thái Đang giao. Đơn đã hủy không thể khôi phục.",
-        "Phương thức thanh toán: thanh toán khi nhận hàng (COD), chuyển khoản ngân hàng hoặc ví điện tử (mô phỏng).",
+        "Phương thức thanh toán: thanh toán khi nhận hàng (COD), chuyển khoản ngân hàng, ví điện tử hoặc thẻ tín dụng / ghi nợ (mô phỏng).",
+        "COD chỉ áp dụng cho đơn từ 10.000.000 ₫ trở xuống. Đơn trên 10.000.000 ₫ cần thanh toán trước toàn bộ hoặc đặt cọc 30% giá trị đơn, phần còn lại thanh toán khi nhận hàng. Khi hủy đơn, tiền đã trả trước hoặc tiền cọc được hoàn lại đầy đủ trong 3–5 ngày làm việc.",
         "Mã giảm giá áp dụng theo điều kiện riêng của từng mã (giá trị đơn tối thiểu, thời hạn). Mỗi đơn hàng chỉ dùng được một mã."
     ]},
     { ma: "van-chuyen", tieuDe: "6. Vận chuyển và giao hàng", noiDung: [
-        "Giao hàng tiêu chuẩn: phí 50.000 ₫, nhận hàng trong 3–5 ngày. Giao hàng nhanh: phí 120.000 ₫, nhận hàng trong 1–2 ngày.",
-        "Thời gian giao được tính từ khi đơn chuyển sang trạng thái Đang giao, không tính Chủ nhật và ngày lễ. Đồ nội thất cỡ lớn có thể được hẹn lịch giao riêng.",
+        "Đồ trang trí, gối, chăn ga, đèn, thảm, rèm: giao tiêu chuẩn 3–5 ngày, phí 35.000 ₫ nội thành TP. Hồ Chí Minh, Hà Nội, Đà Nẵng và 50.000 ₫ các tỉnh khác, miễn phí cho đơn từ 2.000.000 ₫. Giao nhanh 1–2 ngày phí 80.000 ₫, chỉ áp dụng nội thành.",
+        "Nội thất cỡ lớn (sofa, giường, tủ, bàn ghế, kệ...): giao bằng xe tải và lắp đặt tận nơi trong 3–7 ngày, nhân viên gọi hẹn khung giờ trước khi giao. Phí 300.000 ₫ nội thành (miễn phí cho đơn từ 15.000.000 ₫), 600.000 ₫ tỉnh lân cận, 1.200.000 ₫ tỉnh xa. Đơn có cả nội thất lớn và đồ nhỏ được giao chung một chuyến.",
+        "Nhà phố không có thang máy, giao từ tầng 3 trở lên có thể phát sinh phí khuân vác; nhân viên sẽ báo trước khi giao. Thời gian giao không tính Chủ nhật và ngày lễ.",
         "Vui lòng kiểm tra tình trạng kiện hàng khi nhận. Nếu sản phẩm bị móp, vỡ do vận chuyển, hãy chụp ảnh và báo cho RoomCraft trong vòng 48 giờ."
     ]},
     { ma: "doi-tra", tieuDe: "7. Đổi trả và bảo hành", noiDung: [

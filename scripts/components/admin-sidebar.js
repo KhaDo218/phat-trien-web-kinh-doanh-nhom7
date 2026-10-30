@@ -38,3 +38,47 @@ function renderAdminSidebar(mucDangMo){
     html += "</div>";
     document.getElementById("sidebar").innerHTML = html;
 }
+
+// ---------------------------------------------------------------------
+// Phân trang dùng chung cho các bảng admin (đơn hàng, người dùng, đánh giá...)
+//   renderAdminPager("pgOrders", trang, tongSoDong, "goOrderPage")
+//   -> vẽ "Hiển thị 1–20 / 150" + các nút trang; bấm nút gọi goOrderPage(soTrang)
+// ---------------------------------------------------------------------
+var ADMIN_PAGE_SIZE = 20;
+
+function renderAdminPager(containerId, trang, tongSoDong, tenHam){
+    var box = document.getElementById(containerId);
+    if(box == null)
+        return;
+    var soTrang = Math.max(1, Math.ceil(tongSoDong / ADMIN_PAGE_SIZE));
+    if(tongSoDong == 0){
+        box.innerHTML = "";
+        return;
+    }
+    var tu = (trang - 1) * ADMIN_PAGE_SIZE + 1;
+    var den = Math.min(trang * ADMIN_PAGE_SIZE, tongSoDong);
+    var html = "<span>Hiển thị " + tu + "–" + den + " / " + tongSoDong + "</span>";
+    if(soTrang > 1){
+        html += "<div class='pager-links'>";
+        if(trang > 1)
+            html += "<button type='button' class='catalog-page-link' onclick='" + tenHam + "(" + (trang - 1) + ")'>Trước</button>";
+        for(var i = 1; i <= soTrang; i++){
+            if(i == 1 || i == soTrang || Math.abs(i - trang) <= 1)
+                html += "<button type='button' class='catalog-page-link" + (i == trang ? " active" : "") + "' onclick='" + tenHam + "(" + i + ")'>" + i + "</button>";
+            else if(i == trang - 2 || i == trang + 2)
+                html += "<span class='catalog-page-dots'>...</span>";
+        }
+        if(trang < soTrang)
+            html += "<button type='button' class='catalog-page-link' onclick='" + tenHam + "(" + (trang + 1) + ")'>Tiếp</button>";
+        html += "</div>";
+    }
+    box.innerHTML = html;
+}
+
+// Trang hợp lệ (1..số trang) sau khi lọc làm danh sách ngắn lại
+function fixAdminPage(trang, tongSoDong){
+    var soTrang = Math.max(1, Math.ceil(tongSoDong / ADMIN_PAGE_SIZE));
+    if(trang > soTrang) return soTrang;
+    if(trang < 1) return 1;
+    return trang;
+}

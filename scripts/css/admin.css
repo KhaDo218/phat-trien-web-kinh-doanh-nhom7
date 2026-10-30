@@ -23,7 +23,7 @@
 }
 #sidebar .logo{
     padding: 0 28px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 26px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -85,9 +85,12 @@
     gap: 16px;
     margin-bottom: 32px;
 }
-.admin-head .overline{
+.admin-head > .overline{
     width: 100%;
     margin-bottom: -12px;
+}
+.admin-head div > .overline{          /* overline nằm chung khối với tiêu đề */
+    margin-bottom: 6px;
 }
 .toolbar{
     display: flex;
@@ -128,6 +131,9 @@
 .table tr:hover td{
     background: #F7F7F5;
 }
+.table td.nowrap, .table .price{
+    white-space: nowrap;
+}
 .table img{
     width: 56px;
     height: 56px;
@@ -143,9 +149,14 @@
 }
 .stat-card .value{
     margin-top: 8px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 34px;
     line-height: 42px;
+}
+.stat-card .stat-note{
+    margin-top: 6px;
+    font-size: 12px;
+    color: #686868;
 }
 
 @media (max-width: 1024px){
@@ -165,5 +176,51 @@
     }
     .admin-main{
         padding: 32px 20px;
+    }
+}
+
+/* ----- Phân trang bảng admin (dùng chung: renderAdminPager trong components/admin-sidebar.js) ----- */
+.admin-pager{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0 8px;
+    font-size: 13px;
+    color: #686868;
+}
+.admin-pager .pager-links{
+    display: flex;
+    gap: 6px;
+}
+
+/* ----- Điện thoại: bảng cuộn ngang trong khung, thẻ số liệu 1 cột ----- */
+@media (max-width: 760px){
+    .admin-main{
+        padding: 24px 16px;
+    }
+    .table{
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .table td, .table th{
+        white-space: normal;
+        min-width: 90px;
+    }
+    .stat-grid, .grid-4.stat-grid{
+        grid-template-columns: 1fr 1fr !important;
+    }
+    .toolbar{
+        flex-wrap: wrap;
+    }
+    .toolbar .input{
+        max-width: none;
+    }
+}
+@media (max-width: 480px){
+    .stat-grid, .grid-4.stat-grid{
+        grid-template-columns: 1fr !important;
     }
 }

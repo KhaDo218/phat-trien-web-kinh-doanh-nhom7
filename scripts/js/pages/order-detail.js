@@ -38,7 +38,8 @@ function showOrder(){
 
     // Thanh theo dõi trạng thái
     if(o.status == "Cancelled"){
-        html += "<p class='cancel-note'>Đơn hàng này đã bị hủy. Số lượng sản phẩm đã được hoàn lại kho.</p>";
+        var hoan = Number(o.refund_amount) > 0 ? " RoomCraft hoàn lại " + formatVND(o.refund_amount) + " bạn đã trả trước trong 3–5 ngày làm việc." : "";
+        html += "<p class='cancel-note'>Đơn hàng này đã bị hủy." + hoan + "</p>";
     }
     else{
         var viTri = ORDER_FLOW.indexOf(o.status);
@@ -58,8 +59,8 @@ function showOrder(){
     html += "<div>";
     for(var i = 0; i < o.items.length; i++){
         var p = findById("products", o.items[i].product_id);
-        var ten = o.items[i].product_id;
-        var anh = "";
+        var ten = o.items[i].product_name || o.items[i].product_id;
+        var anh = o.items[i].product_image ? asset(o.items[i].product_image) : "";
         if(p != null){
             ten = p.name;
             if(p.images != null && p.images.length > 0)
@@ -80,12 +81,24 @@ function showOrder(){
     html += "  <p>" + safeText(o.shipping_name) + " · " + safeText(o.shipping_phone) + "</p>";
     html += "  <p class='overline'>Địa chỉ giao hàng</p>";
     html += "  <p>" + safeText(o.shipping_address) + "</p>";
+    if(o.house_type || o.shipping_note)
+        html += "  <p class='text-secondary'>" + safeText([o.house_type, o.shipping_note].filter(function(x){ return x; }).join(" · ")) + "</p>";
+    var ship = findById("shipping_methods", o.shipping_method_id);
+    if(ship != null){
+        html += "  <p class='overline'>Giao hàng</p>";
+        html += "  <p>" + safeText(ship.name) + " (" + safeText(ship.estimated_time) + ")</p>";
+    }
     html += "  <p class='overline'>Thanh toán</p>";
-    html += "  <p style='margin-bottom:16px'>" + getPaymentText(o.payment_method) + "</p>";
+    html += "  <p>" + getPaymentText(o.payment_method) + (o.card_last4 ? " ···· " + safeText(o.card_last4) : "") + "</p>";
+    html += "  <p class='text-secondary' style='margin-bottom:16px'>" + safeText(getPaymentPlanText(o)) + (getPaymentStatusText(o) ? " · " + getPaymentStatusText(o) : "") + "</p>";
     html += "  <div class='sum-row'><span>Tạm tính</span><span>" + formatVND(o.subtotal) + "</span></div>";
     html += "  <div class='sum-row'><span>Phí vận chuyển</span><span>" + formatVND(o.shipping_fee) + "</span></div>";
     html += "  <div class='sum-row'><span>Giảm giá</span><span>- " + formatVND(o.discount_amount) + "</span></div>";
     html += "  <div class='sum-row sum-total'><span>Tổng cộng</span><span>" + formatVND(o.total_amount) + "</span></div>";
+    if(o.paid_amount != null && o.status != "Cancelled"){
+        html += "  <div class='sum-row'><span>Đã thanh toán</span><span>" + formatVND(o.paid_amount) + "</span></div>";
+        html += "  <div class='sum-row'><span>Còn phải trả khi nhận</span><span>" + formatVND(o.amount_due) + "</span></div>";
+    }
     html += "</aside>";
     html += "</div>";
 
@@ -122,7 +135,7 @@ function buildReviewHtml(o){
     html += "<h2 class='headline-section'>Đánh giá sản phẩm</h2>";
     for(var i = 0; i < o.items.length; i++){
         var p = findById("products", o.items[i].product_id);
-        var ten = (p == null) ? o.items[i].product_id : p.name;
+        var ten = (p == null) ? (o.items[i].product_name || o.items[i].product_id) : p.name;
         html += "<div class='card review-box'>";
         html += "  <p class='title-product'>" + safeText(ten) + "</p>";
         if(hasReviewed(userId, o.items[i].product_id)){

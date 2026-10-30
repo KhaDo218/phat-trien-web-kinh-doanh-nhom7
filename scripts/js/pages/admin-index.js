@@ -2,7 +2,9 @@
    ROOMCRAFT - Dashboard (admin/index.html)
    Người phụ trách: Phương Anh
    Việc cần làm: Doanh thu, số đơn, sản phẩm bán chạy, số người dùng (Chart.js).
-   Quy ước: doanh thu = tổng total_amount của các đơn KHÔNG bị hủy.
+   Quy ước: doanh thu chỉ tính đơn ĐÃ GIAO (Delivered) - tiền đã thu về thật.
+            Đơn mới đặt / đang đóng gói / đang giao chưa tính, hiện riêng là "đang chờ giao".
+            Đơn bị hủy không tính. Biểu đồ doanh thu xếp theo tháng giao thành công (updated_at).
    ===================================================================== */
 
 // Gọi sau khi loadData() nạp xong dữ liệu
@@ -12,8 +14,9 @@ function initPage(){
     renderAdminSidebar("dashboard");
     showStats();
     showTopProducts();
+    showLowStock();
     if(typeof Chart == "undefined"){
-        alert("Không tải được thư viện Chart.js (cần có mạng Internet) nên chưa vẽ được biểu đồ!");
+        alert("Không tải được thư viện Chart.js (scripts/libs/chart.umd.min.js) nên chưa vẽ được biểu đồ!");
         return;
     }
     drawRevenueChart();
@@ -31,31 +34,56 @@ function getValidOrders(){
     return ketQua;
 }
 
-function showStats(){
-    var hopLe = getValidOrders();
-    var doanhThu = 0;
-    for(var i = 0; i < hopLe.length; i++)
-        doanhThu = doanhThu + Number(hopLe[i].total_amount);
-
-    var choXuLy = 0;
+// Các đơn đã giao thành công
+function getDeliveredOrders(){
+    var ketQua = [];
     var orders = getTable("orders");
     for(var i = 0; i < orders.length; i++){
-        if(orders[i].status == "Confirmed")
-            choXuLy = choXuLy + 1;
+        if(orders[i].status == "Delivered")
+            ketQua.push(orders[i]);
+    }
+    return ketQua;
+}
+
+function showStats(){
+    var orders = getTable("orders");
+    var doanhThu = 0, choGiao = 0, soChoGiao = 0, soDaGiao = 0, soHuy = 0, choXuLy = 0, soDangGiao = 0;
+    for(var i = 0; i < orders.length; i++){
+        var st = orders[i].status;
+        if(st == "Delivered"){
+            doanhThu = doanhThu + Number(orders[i].total_amount);
+            soDaGiao = soDaGiao + 1;
+        } else if(st == "Cancelled"){
+            soHuy = soHuy + 1;
+        } else {
+            choGiao = choGiao + Number(orders[i].total_amount);
+            soChoGiao = soChoGiao + 1;
+            if(st == "Confirmed" || st == "Packing")
+                choXuLy = choXuLy + 1;
+            else
+                soDangGiao = soDangGiao + 1;
+        }
     }
 
     // Người dùng thường (role_id = 1), không đếm Admin
-    var soUser = 0;
+    var soUser = 0, soKhoa = 0;
     var users = getTable("users");
     for(var i = 0; i < users.length; i++){
-        if(users[i].role_id == 1)
+        if(users[i].role_id == 1){
             soUser = soUser + 1;
+            if(users[i].is_active == false)
+                soKhoa = soKhoa + 1;
+        }
     }
 
     document.getElementById("statRevenue").innerHTML = formatVND(doanhThu);
+    document.getElementById("statRevenueNote").innerHTML = "+ " + formatVND(choGiao) + " đang chờ giao (" + soChoGiao + " đơn)";
     document.getElementById("statOrders").innerHTML = orders.length;
+    document.getElementById("statOrdersNote").innerHTML = soDaGiao + " đã giao · " + soChoGiao + " đang xử lý · " + soHuy + " đã hủy";
     document.getElementById("statUsers").innerHTML = soUser;
+    document.getElementById("statUsersNote").innerHTML = soKhoa > 0 ? soKhoa + " tài khoản đang bị khóa" : "Khách hàng đã đăng ký";
     document.getElementById("statPending").innerHTML = choXuLy;
+    document.getElementById("statPendingNote").innerHTML = "Chờ xác nhận / đóng gói · " + soDangGiao + " đơn đang giao";
 }
 
 // ---------- Sản phẩm bán chạy: gộp số lượng theo product_id rồi lấy 5 món cao nhất ----------
@@ -106,13 +134,13 @@ function drawRevenueChart(){
         nhan.push((d.getMonth() + 1) + "/" + d.getFullYear());
         giaTri.push(0);
     }
-    var hopLe = getValidOrders();
-    for(var i = 0; i < hopLe.length; i++){
-        var ngay = new Date(hopLe[i].created_at);
+    var daGiao = getDeliveredOrders();
+    for(var i = 0; i < daGiao.length; i++){
+        var ngay = new Date(daGiao[i].updated_at || daGiao[i].created_at);   // ngày giao thành công
         var nhanDon = (ngay.getMonth() + 1) + "/" + ngay.getFullYear();
         for(var k = 0; k < nhan.length; k++){
             if(nhan[k] == nhanDon)
-                giaTri[k] = giaTri[k] + Number(hopLe[i].total_amount);
+                giaTri[k] = giaTri[k] + Number(daGiao[i].total_amount);
         }
     }
     new Chart(document.getElementById("chartRevenue"), {
@@ -121,7 +149,13 @@ function drawRevenueChart(){
             labels: nhan,
             datasets: [{ label: "Doanh thu (VND)", data: giaTri, backgroundColor: "#202020" }]
         },
-        options: { plugins: { legend: { display: false } } }
+        options: {
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(ctx){ return formatVND(ctx.parsed.y); } } }
+            },
+            scales: { y: { ticks: { callback: function(giaTri){ return (giaTri / 1000000) + " tr"; } } } }
+        }
     });
 }
 
@@ -147,4 +181,30 @@ function drawStatusChart(){
             datasets: [{ data: giaTri, backgroundColor: ["#202020", "#686868", "#DADAD7", "#2C6B3F", "#8C3B2D"] }]
         }
     });
+}
+
+// ---------- Sắp hết hàng: sản phẩm mới đang bán còn từ 1 đến 3 món, món bán chạy xếp trước ----------
+function showLowStock(){
+    var products = getTable("products");
+    var daBan = getSoldMap();
+    var ds = [];
+    for(var i = 0; i < products.length; i++){
+        var p = products[i];
+        if(p.product_type == "USED" || p.is_active == false)
+            continue;
+        if(p.stock_quantity > 0 && p.stock_quantity <= 3)
+            ds.push(p);
+    }
+    ds.sort(function(a, b){
+        return (daBan[b.id] || 0) - (daBan[a.id] || 0) || a.stock_quantity - b.stock_quantity;
+    });
+    document.getElementById("lblLowStock").innerHTML = "(" + ds.length + " sản phẩm còn ≤ 3 món)";
+    var html = "";
+    for(var j = 0; j < ds.length && j < 8; j++){
+        var anh = (ds[j].images && ds[j].images.length > 0) ? "<img src='" + asset(ds[j].images[0]) + "' alt=''>" : "";
+        html += "<tr><td>" + anh + "</td><td>" + safeText(ds[j].name) + "</td><td><span class='badge badge-out'>Còn " + ds[j].stock_quantity + "</span></td><td>" + (daBan[ds[j].id] || 0) + "</td></tr>";
+    }
+    if(html == "")
+        html = "<tr><td colspan='4' class='empty'>Không có sản phẩm nào sắp hết hàng.</td></tr>";
+    document.getElementById("tbLowStock").innerHTML = html;
 }
