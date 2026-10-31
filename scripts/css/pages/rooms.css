@@ -164,6 +164,13 @@
 .rooms-empty{
     grid-column: 1 / -1;
 }
+/* Phân trang 12 phòng/trang (nút dùng chung .catalog-page-link trong base.css) */
+.rooms-pagination{
+    margin: -56px 0 96px;
+}
+.rooms-pagination:empty{
+    display: none;
+}
 .rooms-empty .title-product{
     margin-bottom: 8px;
     color: #202020;
@@ -222,6 +229,9 @@
     }
     .rooms-grid{
         margin-bottom: 64px;
+    }
+    .rooms-pagination{
+        margin: -32px 0 64px;
     }
 }
 @media (max-width: 560px){
