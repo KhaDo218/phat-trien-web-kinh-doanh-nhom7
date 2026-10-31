@@ -25,5 +25,8 @@ data/export/
 # Khóa bí mật Google (không bao giờ đưa lên GitHub)
 client_secret*.json
 
+# Output công cụ hỗ trợ code (không đưa lên GitHub)
+Claude outputs/
+
 # Log chạy Kaggle (không đưa lên GitHub)
 assets/models/logs/
