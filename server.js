@@ -39,7 +39,7 @@ const DEEPSEEK_BASE_URL = (process.env.DEEPSEEK_BASE_URL || 'https://api-cdn.dep
 const DEEPSEEK_MODEL = process.env.DEEPSEEK_MODEL || 'deepseek-ai/deepseek-v4.1-flash-1017';
 // Agent tái sử dụng kết nối TCP/ TLS (keepAlive): các câu hỏi sau không phải bắt tay lại
 const httpsAgent = new https.Agent({ keepAlive: true, maxSockets: 4 });
-// Chỉ số biến thể reasoning đang dùng (0 = reasoning_effort low; tăng nếu API chặn 400)
+// Chỉ số biến thể reasoning đang dùng (0 = tắt suy nghĩ; tăng nếu API chặn 400)
 let reasoningIndex = 0;
 
 // Rate Limiting: 30 requests / 60 seconds / IP
@@ -352,9 +352,10 @@ function sanitizeReply(reply, relevantProducts) {
     for (const phi of SHIPPING_FEES) dung.add(phi);
 
     // Tách cụm tiền: "3.250.000 ₫", "5 triệu", "800k", "2tr"...
-    const cacTien = reply.match(/(\d[\d.,]*)\s*(₫|đ\b|vnd|triệu|tr\b|k\b)?/g) || [];
+    // Chỉ xét số có đơn vị tiền (tránh bắt nhầm năm 2026, kích thước 1200 mm...)
+    const cacTien = reply.match(/(\d[\d.,]*)\s*(₫|đ|vnd|VND|triệu|tr\b|k\b)/g) || [];
     for (const cum of cacTien) {
-        const m = cum.match(/(\d[\d.,]*)\s*(₫|đ\b|vnd|triệu|tr\b|k\b)?/);
+        const m = cum.match(/(\d[\d.,]*)\s*(₫|đ|vnd|VND|triệu|tr\b|k\b)/);
         if (!m) continue;
         const chuoiSo = m[1].replace(/[.,]/g, '');
         if (!/^\d+$/.test(chuoiSo)) continue;
@@ -478,52 +479,23 @@ function generateFallbackResponse(message, products) {
     return 'Hiện mình chưa tìm thấy sản phẩm phù hợp với yêu cầu này trong danh mục RoomCraft. Bạn muốn tham khảo thêm danh mục hoặc mức giá khác không?';
 }
 
-function callGemini(message, history, productContext, relevantProducts = []) {
+// Gọi DeepSeek (chuẩn OpenAI chat.completions).
+// Vì sao trước đây "lúc được lúc không":
+//  - max_tokens 300 dùng chung cho phần "suy nghĩ" (reasoning) và câu trả lời -> model nghĩ dài
+//    là hết token, content rỗng -> báo lỗi. Nay tắt suy nghĩ (reasoning_effort: none), tăng max_tokens.
+//  - Mạng/ máy chủ AI chập chờn 1 lần là hỏng câu đó -> nay thử lại 1 lần (lỗi mạng, hết giờ, 429, 5xx).
+const REASONING_VARIANTS = [
+    { reasoning_effort: 'none' },
+    { reasoning_effort: 'low' },
+    {}
+];
+const AI_TIMEOUT_MS = 30000;   // mỗi lần gọi; chatbot.js chờ tối đa 65 giây cho 2 lần
+
+function postDeepSeek(payloadObj, apiKey) {
     return new Promise((resolve) => {
-        const apiKey = process.env.DEEPSEEK_API_KEY || '';
-        if (!apiKey) {
-            return resolve({
-                reply: generateFallbackResponse(message, relevantProducts),
-                hasError: false
-            });
-        }
-
-        // Các biến thể tham số tắt reasoning, thử lần lượt nếu API chặn tham số lạ.
-        // Bắt đầu với "reasoning_effort: low" (thấp nhất), nếu API chặn thì thử biến thể khác
-        const reasoningVariants = [
-            { reasoning_effort: 'low' },
-            {},
-            { enable_thinking: false },
-            { chat_template_kwargs: { thinking: false } }
-        ];
-
-        // Chuẩn OpenAI chat.completions: system + lịch sử + câu hỏi hiện tại
-        const messages = [{
-            role: 'system',
-            content: `${SYSTEM_PROMPT}\n\nDỮ LIỆU SẢN PHẨM LIÊN QUAN TRONG KHO ROOMCRAFT:\n${productContext}`
-        }];
-
-        const recentHistory = (history || []).slice(-3);
-        for (const h of recentHistory) {
-            const role = h.role === 'assistant' ? 'assistant' : (h.role === 'user' ? 'user' : 'assistant');
-            let text = h.content || (h.parts && h.parts[0] && h.parts[0].text) || '';
-            if (text.length > 200) text = text.substring(0, 200);  // cắt lịch sử ngắn lại
-            if (text) messages.push({ role, content: text });
-        }
-
-        messages.push({ role: 'user', content: `[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: ${message}` });
-
-        const payload = JSON.stringify({
-            model: DEEPSEEK_MODEL,
-            messages,
-            temperature: 0.5,
-            max_tokens: 300,
-            // Thử tắt chế độ suy luận (reasoning) — model hỗ trợ thì trả lời nhanh hơn hẳn,
-            // không hỗ trợ thì API sẽ báo lỗi nhỏ, thử lần lượt từng biến thể
-            ...(reasoningVariants[reasoningIndex] || {})
-        });
-
+        const payload = JSON.stringify(payloadObj);
         const apiUrl = new URL(DEEPSEEK_BASE_URL + '/chat/completions');
+        const batDau = Date.now();
         const req = https.request({
             hostname: apiUrl.hostname,
             port: apiUrl.port || 443,
@@ -535,55 +507,79 @@ function callGemini(message, history, productContext, relevantProducts = []) {
                 'Authorization': 'Bearer ' + apiKey,
                 'Content-Length': Buffer.byteLength(payload)
             },
-            timeout: 45000
+            timeout: AI_TIMEOUT_MS
         }, (res) => {
             let data = '';
             res.on('data', chunk => data += chunk);
-            res.on('end', () => {
-                try {
-                    const parsed = JSON.parse(data);
-                    const choices = parsed.choices || [];
-                    if (choices.length && choices[0].message && choices[0].message.content) {
-                        // Biến thể reasoning hiện tại hoạt động -> giữ cố định cho các câu sau
-                        if (reasoningIndex > 0) console.log('[DeepSeek] Dùng biến thể reasoning #' + reasoningIndex);
-                        return resolve({ reply: choices[0].message.content.trim() });
-                    }
-                    // Lỗi 400 có thể do API chặn tham số tắt reasoning -> thử biến thể kế tiếp
-                    if (res.statusCode == 400 && reasoningIndex < reasoningVariants.length - 1) {
-                        console.error('[DeepSeek] 400 với biến thể #' + reasoningIndex + ', thử biến thể kế tiếp');
-                        reasoningIndex++;
-                        return callGemini(message, history, productContext, relevantProducts).then(resolve);
-                    }
-                    // Không có choices -> log ngắn gọn để chẩn đoán (không in nội dung dài)
-                    console.error('[DeepSeek] Phản hồi thiếu choices, status ' + res.statusCode);
-                } catch (e) {
-                    console.error('[DeepSeek] Lỗi đọc phản hồi:', String(data).substring(0, 200));
-                }
-                resolve({
-                    error: 'API_RESPONSE_ERROR',
-                    reply: 'Hiện tại hệ thống AI đang tạm thời gián đoạn kết nối. Bạn vui lòng thử lại sau giây lát hoặc liên hệ hotline 1900 6868 nhé!'
-                });
-            });
+            res.on('end', () => resolve({ status: res.statusCode, body: data, ms: Date.now() - batDau }));
+            res.on('error', () => resolve({ status: 0, body: '', error: 'NETWORK_ERROR', ms: Date.now() - batDau }));
         });
-
-        req.on('error', () => {
-            resolve({
-                error: 'NETWORK_ERROR',
-                reply: 'Hiện tại hệ thống AI đang tạm thời gián đoạn kết nối. Bạn vui lòng thử lại sau giây lát hoặc liên hệ hotline 1900 6868 nhé!'
-            });
-        });
-
-        req.on('timeout', () => {
-            req.destroy();
-            resolve({
-                error: 'TIMEOUT',
-                reply: 'Hết thời gian kết nối AI. Bạn vui lòng thử lại sau giây lát nhé!'
-            });
-        });
-
+        req.on('error', (e) => resolve({ status: 0, body: '', error: 'NETWORK_ERROR', detail: e.code, ms: Date.now() - batDau }));
+        req.on('timeout', () => { req.destroy(); resolve({ status: 0, body: '', error: 'TIMEOUT', ms: Date.now() - batDau }); });
         req.write(payload);
         req.end();
     });
+}
+
+async function callGemini(message, history, productContext, relevantProducts = []) {
+    const apiKey = process.env.DEEPSEEK_API_KEY || '';
+    if (!apiKey) {
+        return { reply: generateFallbackResponse(message, relevantProducts), hasError: false };
+    }
+
+    // system + lịch sử ngắn + câu hỏi hiện tại
+    const messages = [{
+        role: 'system',
+        content: `${SYSTEM_PROMPT}\n\nDỮ LIỆU SẢN PHẨM LIÊN QUAN TRONG KHO ROOMCRAFT:\n${productContext}`
+    }];
+    for (const h of (history || []).slice(-4)) {
+        const role = h.role === 'user' ? 'user' : 'assistant';
+        let text = h.content || (h.parts && h.parts[0] && h.parts[0].text) || '';
+        if (text.length > 300) text = text.substring(0, 300);
+        if (text) messages.push({ role, content: text });
+    }
+    messages.push({ role: 'user', content: `[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: ${message}` });
+
+    let loiCuoi = 'API_RESPONSE_ERROR';
+    for (let lan = 1; lan <= 2; lan++) {
+        const payload = Object.assign({
+            model: DEEPSEEK_MODEL,
+            messages,
+            temperature: 0.4,
+            max_tokens: 800
+        }, REASONING_VARIANTS[reasoningIndex] || {});
+
+        const kq = await postDeepSeek(payload, apiKey);
+        let parsed = null;
+        try { parsed = JSON.parse(kq.body); } catch (e) { parsed = null; }
+        const choice = parsed && parsed.choices && parsed.choices[0];
+        const content = choice && choice.message && choice.message.content;
+
+        if (kq.status === 200 && content && content.trim()) {
+            console.log(`[DeepSeek] OK ${kq.ms}ms (lần ${lan}, finish=${choice.finish_reason})`);
+            return { reply: content.trim() };
+        }
+
+        // Ghi log ngắn để biết vì sao lỗi (không in API key)
+        console.error(`[DeepSeek] Lỗi lần ${lan}: status=${kq.status} ${kq.error || ''} ${kq.detail || ''} ${kq.ms}ms`
+            + (choice ? ` finish=${choice.finish_reason}` : '') + ` ${String(kq.body).substring(0, 160)}`);
+
+        // 400: API không nhận tham số reasoning hiện tại -> đổi biến thể rồi thử lại
+        if (kq.status === 400 && reasoningIndex < REASONING_VARIANTS.length - 1) {
+            reasoningIndex++;
+            lan--;               // đổi tham số không tính là 1 lần thử
+            continue;
+        }
+        if (kq.status === 401 || kq.status === 405) { loiCuoi = 'API_KEY_OR_BALANCE'; break; }   // sai key / hết tiền: thử lại vô ích
+        loiCuoi = kq.error || ('HTTP_' + kq.status);
+        // Hết token vì model vẫn "suy nghĩ" -> chuyển biến thể kế tiếp cho lần sau
+        if (choice && choice.finish_reason === 'length' && reasoningIndex < REASONING_VARIANTS.length - 1) reasoningIndex++;
+        if (lan < 2) await new Promise(r => setTimeout(r, 800));
+    }
+    return {
+        error: loiCuoi,
+        reply: 'Hiện tại trợ lý AI đang bận. Bạn vui lòng thử lại sau giây lát nhé!'
+    };
 }
 
 const MIME_TYPES = {

@@ -364,8 +364,9 @@ def sanitize_reply(reply, relevant_prods):
     if not reply:
         return reply
 
+    # Dữ liệu thật = toàn bộ sản phẩm trong kho (giống server.js), không chỉ vài món ứng viên
     dung = set()
-    for p in relevant_prods or []:
+    for p in (PRODUCTS or []) + list(relevant_prods or []):
         if p.get("price"):
             dung.add(int(p["price"]))
         if p.get("original_price"):
@@ -374,7 +375,8 @@ def sanitize_reply(reply, relevant_prods):
         dung.add(m)
 
     # Tách các cụm tiền: "3.250.000 ₫", "5 triệu", "800k", "2tr"...
-    cac_tien = re.findall(r"(\d[\d.,]*)\s*(₫|đ\b|vnd|triệu|tr\b|k\b)?", reply)
+    # Chỉ xét số có đơn vị tiền (tránh bắt nhầm năm, kích thước)
+    cac_tien = re.findall(r"(\d[\d.,]*)\s*(₫|đ|vnd|VND|triệu|tr\b|k\b)", reply)
     for so, don_vi in cac_tien:
         chuoi_so = so.replace(".", "").replace(",", "")
         if not chuoi_so.isdigit():
@@ -387,6 +389,9 @@ def sanitize_reply(reply, relevant_prods):
         # Bỏ qua số nhỏ < 1000 (số thứ tự, số lượng, %)
         if gia_tri < 1000:
             continue
+        # Số tròn trăm nghìn là ngân sách khách/ AI nêu, không phải giá bịa
+        if gia_tri % 100000 == 0:
+            continue
         if gia_tri not in dung:
             return ("Mình vừa nhận câu trả lời từ trợ lý AI nhưng chưa khớp số liệu trong kho, "
                     "nên dùng câu trả lời chuẩn của RoomCraft. Bạn hỏi cụ thể loại đồ "
@@ -394,7 +399,7 @@ def sanitize_reply(reply, relevant_prods):
 
     # Link sản phẩm phải tồn tại
     cac_ma = re.findall(r"product-detail\.html\?id=([a-z0-9-]+)", reply)
-    ids_hop_le = {str(p.get("id")) for p in relevant_prods or []}
+    ids_hop_le = {str(p.get("id")) for p in (PRODUCTS or []) + list(relevant_prods or [])}
     for ma in cac_ma:
         if ma not in ids_hop_le:
             return ("Câu trả lời AI có liên kết sản phẩm không có trong kho, mình dùng dữ liệu thật thay thế. "
@@ -562,57 +567,47 @@ def call_gemini(message, history, product_context, relevant_prods=None):
 
     messages.append({"role": "user", "content": f"[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: {message}"})
 
-    payload = {
-        "model": DEEPSEEK_MODEL,
-        "messages": messages,
-        "temperature": 0.5,
-        "max_tokens": 300,
-        # Thử tắt chế độ suy luận (reasoning) — model hỗ trợ thì trả lời nhanh hơn hẳn
-        "reasoning_effort": "low"
-    }
-    data_bytes = json.dumps(payload).encode("utf-8")
+    # Tắt "suy nghĩ" (reasoning_effort none) + max_tokens 800: trước đây max_tokens 300 bị phần
+    # suy nghĩ ăn hết nên content rỗng -> lúc được lúc không. Lỗi mạng/ 429/ 5xx thì thử lại 1 lần.
+    variants = [{"reasoning_effort": "none"}, {"reasoning_effort": "low"}, {}]
     url = DEEPSEEK_BASE_URL + "/chat/completions"
-    req = urllib.request.Request(url, data=data_bytes, headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + api_key
-    })
-
-    try:
-        with urllib.request.urlopen(req, timeout=45) as response:
-            res_body = response.read().decode("utf-8")
-            res_json = json.loads(res_body)
-            choices = res_json.get("choices", [])
-            if choices:
-                text = choices[0].get("message", {}).get("content", "").strip()
-                return {"reply": text, "model": DEEPSEEK_MODEL}
-    except urllib.error.HTTPError as e:
-        err_body = e.read().decode("utf-8", errors="ignore")
-        # Lỗi 400 có thể do API chặn tham số reasoning_effort -> thử lại không tham số
-        if e.code == 400:
-            print("[!] 400 với reasoning_effort, thử lại không tham số")
-            payload.pop("reasoning_effort", None)
-            data_bytes = json.dumps(payload).encode("utf-8")
-            req = urllib.request.Request(url, data=data_bytes, headers={
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + api_key
-            })
-            try:
-                with urllib.request.urlopen(req, timeout=45) as response:
-                    res_json = json.loads(response.read().decode("utf-8"))
-                    choices = res_json.get("choices", [])
-                    if choices:
-                        text = choices[0].get("message", {}).get("content", "").strip()
-                        return {"reply": text, "model": DEEPSEEK_MODEL}
-            except Exception as e2:
-                print(f"[!] Thử lại cũng lỗi: {e2}")
-        else:
-            print(f"[!] Lỗi gọi DeepSeek: HTTP {e.code}: {err_body}")
-    except Exception as e:
-        print(f"[!] Lỗi kết nối DeepSeek: {e}")
+    vi_tri = 0
+    lan = 1
+    while lan <= 2:
+        payload = {"model": DEEPSEEK_MODEL, "messages": messages, "temperature": 0.4, "max_tokens": 800}
+        payload.update(variants[vi_tri])
+        req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + api_key
+        })
+        try:
+            with urllib.request.urlopen(req, timeout=30) as response:
+                res_json = json.loads(response.read().decode("utf-8"))
+                choices = res_json.get("choices") or []
+                text = ((choices[0].get("message") or {}).get("content") or "").strip() if choices else ""
+                if text:
+                    return {"reply": text, "model": DEEPSEEK_MODEL}
+                finish = choices[0].get("finish_reason") if choices else None
+                print(f"[!] DeepSeek trả nội dung rỗng (finish={finish}), lần {lan}")
+                if finish == "length" and vi_tri < len(variants) - 1:
+                    vi_tri += 1
+        except urllib.error.HTTPError as e:
+            err_body = e.read().decode("utf-8", errors="ignore")[:160]
+            print(f"[!] Lỗi gọi DeepSeek lần {lan}: HTTP {e.code}: {err_body}")
+            if e.code == 400 and vi_tri < len(variants) - 1:
+                vi_tri += 1
+                continue          # đổi tham số không tính là 1 lần thử
+            if e.code in (401, 405):
+                break             # sai key / hết tiền: thử lại vô ích
+        except Exception as e:
+            print(f"[!] Lỗi kết nối DeepSeek lần {lan}: {e}")
+        lan += 1
+        if lan <= 2:
+            time.sleep(0.8)
 
     return {
         "error": "API_CALL_FAILED",
-        "reply": "Hiện tại hệ thống AI đang tạm thời gián đoạn kết nối. Bạn vui lòng thử lại sau giây lát hoặc liên hệ hotline 1900 6868 nhé!"
+        "reply": "Hiện tại trợ lý AI đang bận. Bạn vui lòng thử lại sau giây lát nhé!"
     }
 
 # HTTP Handler
