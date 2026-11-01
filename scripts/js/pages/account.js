@@ -5,12 +5,19 @@
    liên kết tới Đơn hàng và Wishlist.
    ===================================================================== */
 
-function initPage(){
+async function initPage(){
     if(requireLogin() == false)
         return;
     renderHeader("");
     renderFooter();
     renderChatbot();
+    try {
+        await loadWardsData();
+    } catch(error) {
+        console.error("Không thể tải danh sách Phường/Xã:", error);
+        alert("Không tải được danh sách Phường/Xã. Vui lòng tải lại trang và thử lại.");
+        return;
+    }
     showAccount();
 }
 
@@ -45,7 +52,7 @@ function showAccount(){
         document.getElementById("txtPhone").value = user.phone;
     // Địa chỉ 2 cấp: Tỉnh/Thành -> Phường/Xã -> Số nhà (danh sách tỉnh ở js/services/shipping.js)
     document.getElementById("cboProvince").innerHTML = getProvinceOptions(user.default_province || "");
-    document.getElementById("txtWard").value = user.default_ward || "";
+    renderWardOptions(document.getElementById("txtWard"), user.default_province || "", user.default_ward || "");
     document.getElementById("txtStreet").value = user.default_street || "";
     var loaiNha = "<option value=''>-- Chọn loại nhà --</option>";
     for(var i = 0; i < HOUSE_TYPES.length; i++)
@@ -72,6 +79,14 @@ function showAccount(){
         document.getElementById("frmPassword").className = "";
         document.getElementById("divOldPassword").className = "form-group";
     }
+}
+
+function onAccountProvinceChange(){
+    renderWardOptions(
+        document.getElementById("txtWard"),
+        document.getElementById("cboProvince").value,
+        ""
+    );
 }
 
 // "Nguyễn Văn An" -> "NA" (chữ đầu của họ và tên)

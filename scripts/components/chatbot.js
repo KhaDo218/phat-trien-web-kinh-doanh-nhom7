@@ -215,7 +215,8 @@ function handleQuickTopic(topicText){
    ===================================================================== */
 
 var CHAT_API_URL = "http://localhost:3000/api/chat";
-var chatApiState = null;      // null: chưa thử, true: dùng được, false: tắt cho cả phiên
+var chatApiState = null;      // null: chưa thử, true: dùng được, false: vừa lỗi
+var chatApiNghiDen = 0;       // lỗi kết nối -> tạm không gọi AI tới thời điểm này (ms), sau đó thử lại
 var chatIndex = null;         // dữ liệu đã chuẩn hóa, dựng ở tin nhắn đầu cho khỏi chậm trang
 var chatLastContext = null;   // ngữ cảnh câu trước, để hiểu "còn mẫu khác không?"
 var chatShownIds = [];        // mã sản phẩm đã gợi ý, để "xem thêm" không lặp lại
@@ -668,6 +669,10 @@ function chatDetectCategory(qn, chiSoTruoc){
     }
     // Catch-all "nội thất": chỉ bật khi câu THẬT SỰ trống tín hiệu — không có phòng /
     // phong cách / đối tượng cụ thể. Có tín hiệu khác thì không bật (kẻo nuốt hết tín hiệu).
+    // Chỉ nói "ghế" chung chung (không kèm ghế ăn/ ghế đơn/ sofa...) -> các danh mục có ghế
+    if(ids.length == 0 && chatHasPhrase(qn, "ghe")){
+        ids.push(5); ids.push(7); ids.push(13);
+    }
     if(ids.length == 0 && chatHasPhrase(qn, "noi that")
        && chiSoTruoc.room == "" && chiSoTruoc.styleIds.length == 0 && chiSoTruoc.object == null){
         for(var c = 5; c <= 13; c++) ids.push(c);
@@ -855,7 +860,9 @@ function chatBuildFilter(qn, question){
         boLoc.keywords.push(tu);
     }
     // Đồ cũ
-    if(chatHasPhrase(qn, "do cu") || chatHasPhrase(qn, "marketplace"))
+    if(chatHasPhrase(qn, "do cu") || chatHasPhrase(qn, "marketplace")
+       || chatHasPhrase(qn, "qua su dung") || chatHasPhrase(qn, "thanh ly")
+       || (chatHasPhrase(qn, "cu") && !chatHasPhrase(qn, "dung cu")))
         boLoc.usedOnly = true;
     // Đã có tín hiệu cụ thể (đối tượng/ danh mục/ phong cách/ đồ cũ/ phòng/ màu/ chất liệu)
     // thì bỏ từ khóa rác — độ phù hợp chấm bằng các tín hiệu đó, từ khóa chỉ dùng khi câu mơ hồ
@@ -878,8 +885,11 @@ function chatBuildFilter(qn, question){
         if(boLoc.object == null && chatLastContext.object) boLoc.object = chatLastContext.object;
         if(boLoc.want3d == false && chatLastContext.want3d == true) boLoc.want3d = true;
         if(boLoc.khoaLoaiDo == null && chatLastContext.khoaLoaiDo) boLoc.khoaLoaiDo = chatLastContext.khoaLoaiDo;
-        if(hoiRe) boLoc.budget.max = chatLastContext.budget.max != null
-            ? Math.round(chatLastContext.budget.max * 0.7) : null;
+        if(hoiRe){
+            if(chatLastContext.giaThapNhat != null) boLoc.budget.max = chatLastContext.giaThapNhat - 1;
+            else if(chatLastContext.budget.max != null) boLoc.budget.max = Math.round(chatLastContext.budget.max * 0.7);
+            boLoc.budget.min = null;
+        }
     }
     return boLoc;
 }
@@ -987,13 +997,24 @@ function chatAnswerProducts(boLoc){
 // Ghi ngữ cảnh + mã đã hiện để "xem thêm" không lặp
 function chatGhiNhoNguCanh(boLoc, sp){
     chatLastContext = boLoc;
+    boLoc.giaThapNhat = chatGiaThapNhat(sp);
     for(var i = 0; i < sp.length; i++)
         chatShownIds.push(sp[i].id);
 }
 
 // Phần còn lại của chatAnswerProducts: dựng lời dẫn từ ngữ cảnh hiện có
+// Giá thấp nhất trong các món vừa hiện (để "Rẻ hơn" tìm món dưới mức này)
+function chatGiaThapNhat(sp){
+    var min = null;
+    for(var i = 0; i < sp.length; i++){
+        if(min == null || sp[i].price < min) min = sp[i].price;
+    }
+    return min;
+}
+
 function chatDungLoiDan(boLoc, sp, ghiChuNoi){
     chatLastContext = boLoc;
+    boLoc.giaThapNhat = chatGiaThapNhat(sp);
     for(var i = 0; i < sp.length; i++)
         chatShownIds.push(sp[i].id);
 
@@ -1008,6 +1029,19 @@ function chatDungLoiDan(boLoc, sp, ghiChuNoi){
             dau = "Kho không còn món nào trong tầm " + formatVND(boLoc.budget.max)
                 + ". Dưới đây là các mẫu gần nhất (giá cao hơn) để bạn tham khảo:\n";
         }
+    }
+    // Màu khách hỏi nằm chung nhóm với màu khác (vd. hồng/ đỏ/ cam) -> nói rõ nếu không có đúng màu
+    var MAU_CHUNG_NHOM = ["hồng", "đỏ", "cam", "trắng", "kem", "nâu", "be"];
+    if(dau == "" && boLoc.color != null && chatInList(MAU_CHUNG_NHOM, boLoc.color.label)){
+        var coDungMau = false;
+        for(var m = 0; m < sp.length; m++){
+            for(var w = 0; w < boLoc.color.words.length; w++){
+                if(chatHasPhrase(sp[m].color, boLoc.color.words[w]) || chatHasPhrase(sp[m].nameNorm, boLoc.color.words[w]))
+                    coDungMau = true;
+            }
+        }
+        if(!coDungMau)
+            dau = "Kho chưa có mẫu đúng màu " + boLoc.color.label + ", đây là các mẫu cùng tông gần nhất:\n";
     }
     if(dau == "" && boLoc.usedOnly){
         dau = "Đồ cũ tuyển chọn trên Marketplace (mỗi món duy nhất 1 chiếc):\n";
@@ -1046,20 +1080,29 @@ function chatGoiYSapNganSach(soTien){
     return { text: "Các món dưới " + formatVND(soTien) + " đang có trong kho:", sp: chon };
 }
 
-// Vài món bán chạy (còn hàng, giá giảm nếu có) để gợi ý khi câu hỏi chưa rõ
-function chatTopBanChay(soLuong){
+// Vài món bán chạy (còn hàng) để gợi ý khi câu hỏi chưa rõ.
+// catIds (không bắt buộc): chỉ lấy trong các danh mục này
+function chatTopBanChay(soLuong, catIds){
     var idx = chatBuildIndex();
+    // Số lượng đã bán = tổng quantity trong các đơn không bị hủy
+    var daBan = {};
+    var orders = getTable("orders");
+    for(var o = 0; o < orders.length; o++){
+        if(orders[o].status == "Cancelled") continue;
+        var items = orders[o].items || [];
+        for(var it = 0; it < items.length; it++)
+            daBan[items[it].product_id] = (daBan[items[it].product_id] || 0) + Number(items[it].quantity || 0);
+    }
     var mang = [];
     for(var i = 0; i < idx.products.length; i++){
         var s = idx.products[i];
-        if(s.raw.is_active == false || s.usedUp) continue;
+        if(s.raw.is_active == false || s.usedUp || s.stock <= 0) continue;
+        if(catIds != null && catIds.length > 0 && !chatInList(catIds, s.catId)) continue;
         mang.push(s);
     }
-    // Ưu tiên món có giá gốc cao hơn giá bán (đang giảm) rồi đến giá thấp
     mang.sort(function(a, b){
-        var gA = (a.origPrice > a.price && a.origPrice > 0) ? 1 : 0;
-        var gB = (b.origPrice > b.price && b.origPrice > 0) ? 1 : 0;
-        if(gB != gA) return gB - gA;
+        var bA = daBan[a.id] || 0, bB = daBan[b.id] || 0;
+        if(bB != bA) return bB - bA;
         return a.price - b.price;
     });
     return mang.slice(0, soLuong);
@@ -1082,8 +1125,17 @@ function chatAnswerFaq(boLoc){
     var rawFaqs = getTable("chatbot_faqs");
     var qn = boLoc.qn;
     // Cụm từ bổ sung ánh xạ thẳng vào FAQ (không sửa chatbot_faqs.json nên không cần tăng DATA_VERSION)
+    // Hỏi phí giao/ lắp đặt -> tính từ bảng shipping_methods (số liệu thật)
+    var hoiPhi = chatHasPhrase(qn, "phi") || chatHasPhrase(qn, "gia") || chatHasPhrase(qn, "bao nhieu")
+              || chatHasPhrase(qn, "mien phi") || chatHasPhrase(qn, "tien ship");
+    if(hoiPhi && (qn.indexOf("giao") >= 0 || qn.indexOf("ship") >= 0 || qn.indexOf("van chuyen") >= 0
+       || qn.indexOf("lap") >= 0)){
+        var traLoiPhi = chatPhiGiaoText(boLoc);
+        if(traLoiPhi != "")
+            return { text: traLoiPhi, products: [], chips: ["Chính sách đổi trả", "Thanh toán", "Mã giảm giá", "Sofa dưới 10 triệu"] };
+    }
     var faqExtra = [
-        ["giao lap", 16], ["phi lap dat", 16], ["giao va lap", 16], ["lap dat", 16],
+        ["giao lap", 16], ["phi lap dat", 15], ["giao va lap", 16], ["lap dat", 16],
         ["chi phi giao", 15], ["phi giao", 15], ["ban chay", -1], ["ban tot", -1]
     ];
     for(var e = 0; e < faqExtra.length; e++){
@@ -1132,6 +1184,81 @@ function chatAnswerFaq(boLoc){
     return { text: text, products: [], chips: ["Sofa dưới 10 triệu", "Bàn ăn gỗ", "Xem 3D", "Đồ cũ Marketplace"] };
 }
 
+// Phí giao hàng lấy từ shipping_methods.json; nêu được tên tỉnh thì nói luôn khu vực.
+// Hàm getProvinceZone() ở services/shipping.js chỉ có trên vài trang -> kiểm tra trước khi dùng.
+function chatPhiGiaoText(boLoc){
+    var methods = getTable("shipping_methods");
+    var nho = null, nhanh = null, lon = null;
+    for(var i = 0; i < methods.length; i++){
+        if(methods[i].is_active == false) continue;
+        if(methods[i].kind == "BULKY") lon = methods[i];
+        else if(methods[i].city_only) nhanh = methods[i];
+        else nho = methods[i];
+    }
+    if(nho == null && lon == null) return "";
+
+    // Khu vực theo tên tỉnh trong câu hỏi
+    var cauDau = chatLower(boLoc.question);
+    var tinh = "", zone = "";
+    var thanhPho = [["hà nội", "TP. Hà Nội"], ["hồ chí minh", "TP. Hồ Chí Minh"], ["sài gòn", "TP. Hồ Chí Minh"],
+                    ["hcm", "TP. Hồ Chí Minh"], ["tphcm", "TP. Hồ Chí Minh"], ["đà nẵng", "TP. Đà Nẵng"]];
+    for(var t = 0; t < thanhPho.length; t++){
+        if(cauDau.indexOf(thanhPho[t][0]) >= 0){ tinh = thanhPho[t][1]; zone = "city"; }
+    }
+    if(tinh == "" && typeof PROVINCES != "undefined"){
+        for(var p = 0; p < PROVINCES.length; p++){
+            var ten = PROVINCES[p].name.toLowerCase().replace("tp. ", "");
+            if(cauDau.indexOf(ten) >= 0){ tinh = PROVINCES[p].name; zone = PROVINCES[p].zone; }
+        }
+    }
+    // Hỏi về đồ lớn (sofa, giường, tủ, bàn...) hay đồ nhỏ
+    var doLon = false;
+    for(var c = 0; c < boLoc.catIds.length; c++){
+        var so = Number(boLoc.catIds[c]);
+        if(so >= 5 && so <= 13) doLon = true;
+    }
+    if(chatHasPhrase(boLoc.qn, "lap") || chatHasPhrase(boLoc.qn, "lap dat")) doLon = true;
+
+    var text = "";
+    if(tinh != "" && zone == "city"){
+        text = tinh + " thuộc khu vực nội thành. ";
+        if(lon != null) text += "Nội thất cỡ lớn được giao và lắp đặt tận nơi: " + formatVND(lon.fee_city)
+                              + " (miễn phí cho đơn từ " + formatVND(lon.free_from) + "), " + lon.estimated_time + ". ";
+        if(nho != null) text += "Đồ trang trí, gối, đèn, thảm: " + formatVND(nho.fee_city)
+                              + " (miễn phí cho đơn từ " + formatVND(nho.free_from) + ")";
+        if(nhanh != null) text += ", giao nhanh " + nhanh.estimated_time + " " + formatVND(nhanh.fee_city);
+        text += ".";
+        return text;
+    }
+    if(tinh != "" && zone != ""){
+        var tenVung = zone == "near" ? "tỉnh lân cận" : "tỉnh xa";
+        text = tinh + " thuộc nhóm " + tenVung + ". ";
+        if(lon != null) text += "Nội thất cỡ lớn giao và lắp đặt: " + formatVND(zone == "near" ? lon.fee_near : lon.fee_far)
+                              + ", " + lon.estimated_time + ". ";
+        if(nho != null) text += "Đồ trang trí, gối, đèn, thảm: " + formatVND(nho.fee_province)
+                              + " (miễn phí cho đơn từ " + formatVND(nho.free_from) + ").";
+        return text;
+    }
+    // Không rõ tỉnh -> bảng phí đầy đủ
+    if(lon != null && doLon){
+        text = "Nội thất cỡ lớn (sofa, giường, tủ, bàn...) được giao và lắp đặt tận nơi, " + lon.estimated_time + ": "
+             + formatVND(lon.fee_city) + " nội thành TP. Hồ Chí Minh, Hà Nội, Đà Nẵng (miễn phí cho đơn từ "
+             + formatVND(lon.free_from) + "), " + formatVND(lon.fee_near) + " tỉnh lân cận, "
+             + formatVND(lon.fee_far) + " tỉnh xa. ";
+        if(nho != null) text += "Đồ trang trí, gối, đèn, thảm: " + formatVND(nho.fee_city) + " nội thành, "
+                              + formatVND(nho.fee_province) + " tỉnh khác. ";
+    } else {
+        if(nho != null) text = "Đồ trang trí, gối, đèn, thảm giao tiêu chuẩn " + nho.estimated_time + ": "
+                             + formatVND(nho.fee_city) + " nội thành TP. Hồ Chí Minh, Hà Nội, Đà Nẵng, "
+                             + formatVND(nho.fee_province) + " tỉnh khác (miễn phí cho đơn từ " + formatVND(nho.free_from) + ")"
+                             + (nhanh != null ? "; giao nhanh " + nhanh.estimated_time + " " + formatVND(nhanh.fee_city) + " (chỉ nội thành)" : "") + ". ";
+        if(lon != null) text += "Nội thất cỡ lớn được giao và lắp đặt tận nơi: " + formatVND(lon.fee_city) + " nội thành (miễn phí cho đơn từ "
+                              + formatVND(lon.free_from) + "), " + formatVND(lon.fee_near) + " tỉnh lân cận, " + formatVND(lon.fee_far) + " tỉnh xa. ";
+    }
+    text += "Bạn cho mình biết Tỉnh/Thành phố nhận hàng để mình báo phí chính xác nhé!";
+    return text;
+}
+
 // Định tuyến câu hỏi: chào hỏi -> FAQ -> sản phẩm -> API
 function chatDecideRoute(boLoc){
     var qn = boLoc.qn;
@@ -1146,8 +1273,11 @@ function chatDecideRoute(boLoc){
                     "giam gia", "voucher", "coupon", "theo doi don", "trang thai don",
                     "chi phi giao", "lap dat", "boc xep", "khuyen mai",
                     "xuat xu", "nguon goc", "kich thuoc", "hoa don do"];
+    var coLoaiDo = boLoc.catIds.length > 0 || boLoc.khoaLoaiDo != null || boLoc.object != null;
     for(var i = 0; i < faqWords.length; i++){
-        if(qn.indexOf(faqWords[i]) >= 0) return "faq";
+        if(qn.indexOf(faqWords[i]) < 0) continue;
+        if(coLoaiDo && faqWords[i] == "kich thuoc") continue;   // "giường kích thước 160" là tìm sản phẩm
+        return "faq";
     }
     if(chatFilterHasSignal(boLoc)){
         // Câu "xem thêm mẫu khác"/ "rẻ hơn" khi ĐÃ có ngữ cảnh: luôn tra sản phẩm,
@@ -1212,6 +1342,7 @@ var CHAT_KHOA_LOAI = {
     "ghe an":         { dau: ["ghe"], nhan: "ghế ăn" },
     "ghe don":        { dau: ["ghe"], nhan: "ghế đơn" },
     "ghe thu gian":   { dau: ["ghe"], nhan: "ghế thư giãn" },
+    "ghe":            { dau: ["ghe"], nhan: "ghế" },
     "sofa goc":       { dau: ["sofa", "manh", "ghe"], nhan: "sofa góc" },
     "sofa giuong":    { dau: ["sofa"], co: ["giuong"], nhan: "sofa giường" },
     "sofa":           { dau: ["sofa", "manh", "ghe"], nhan: "sofa" },
@@ -1506,6 +1637,12 @@ function chatScoreItem(sp, boLoc, qn){
             if(chatInList(phongCach.avoid, sp.catId)) diem -= 40;
         }
     }
+    // Chỉ hỏi phong cách (không nêu loại đồ) -> ưu tiên nội thất chính (danh mục 5–13)
+    if(boLoc.styleIds.length > 0 && boLoc.catIds.length == 0 && boLoc.khoaLoaiDo == null
+       && boLoc.object == null && boLoc.room == ""){
+        var soDm = Number(sp.catId);
+        if(soDm >= 5 && soDm <= 13) diem += 20;
+    }
     // Đồ cũ / 3D
     if(boLoc.usedOnly && sp.used) diem += 20;
     if(boLoc.want3d && sp.has3d) diem += 10;
@@ -1552,6 +1689,17 @@ function chatSearch(boLoc, soLuong){
         if(b.diem != a.diem) return b.diem - a.diem;
         return a.sp.price - b.sp.price;
     });
+    // Có món nằm trong ngân sách -> bỏ các món ngoài ngân sách (trước đây vẫn lẫn món vượt giá)
+    if(boLoc.budget.max != null || boLoc.budget.min != null){
+        var trongTam = [];
+        for(var b = 0; b < ketQua.length; b++){
+            var gia = ketQua[b].sp.price;
+            if((boLoc.budget.max == null || gia <= boLoc.budget.max)
+               && (boLoc.budget.min == null || gia >= boLoc.budget.min))
+                trongTam.push(ketQua[b]);
+        }
+        if(trongTam.length > 0) ketQua = trongTam;
+    }
     // Đưa món đã gợi ý xuống cuối thay vì loại hẳn (phòng khi không còn món nào khác)
     var moi = [], cu = [];
     for(var j = 0; j < ketQua.length; j++){
@@ -1560,8 +1708,21 @@ function chatSearch(boLoc, soLuong){
     }
     var hopLe = moi.concat(cu);
     var chon = [];
-    for(var k = 0; k < hopLe.length && chon.length < soLuong; k++)
-        chon.push(hopLe[k].sp);
+    // Hỏi nội thất cho cả một không gian ("nội thất quán cafe", "phòng khách") mà không nêu loại đồ
+    // -> mỗi loại đồ một món để gợi ý đủ bộ, thay vì 3 cái ghế giống nhau
+    var chiaLoai = boLoc.room != "" && boLoc.khoaLoaiDo == null && boLoc.object == null
+                   && (boLoc.catIds.length == 0 || boLoc.catIds.laCatchAll);
+    if(chiaLoai){
+        var daCo = [];
+        for(var d = 0; d < hopLe.length && chon.length < soLuong; d++){
+            if(chatInList(daCo, hopLe[d].sp.catId)) continue;
+            daCo.push(hopLe[d].sp.catId);
+            chon.push(hopLe[d].sp);
+        }
+    }
+    for(var k = 0; k < hopLe.length && chon.length < soLuong; k++){
+        if(chon.indexOf(hopLe[k].sp) < 0) chon.push(hopLe[k].sp);
+    }
     return chon;
 }
 
@@ -1569,20 +1730,22 @@ function chatSearch(boLoc, soLuong){
 function chatCallApi(question, boLoc, context, callback){
     // Tương thích chỗ gọi cũ: nếu không truyền context thì đặt callback về vị trí cũ
     if(callback == null){ callback = context; context = { candidates: [], relaxed: [] }; }
-    if(chatApiState == false){
-        callback({ text: chatApiFallbackText(), products: [], chips: chatSuggestChips() });
+    // Lần trước không kết nối được máy chủ -> nghỉ 30 giây rồi mới thử lại (không tắt hẳn cả phiên)
+    if(chatApiState == false && Date.now() < chatApiNghiDen){
+        callback(null);
         return;
     }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", CHAT_API_URL, true);
     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-    xhr.timeout = 50000;
+    xhr.timeout = 65000;   // server thử tối đa 2 lần x 30 giây
     xhr.onreadystatechange = function(){
         if(xhr.readyState != 4) return;
         if(xhr.status == 200){
             try{
                 var data = JSON.parse(xhr.responseText);
-                if(data && data.reply){
+                // hasError: server đã gọi AI nhưng AI lỗi/ hết giờ -> coi như chưa trả lời được
+                if(data && data.reply && !data.hasError){
                     chatApiState = true;
                     var reply = chatCheckAiReply(String(data.reply), boLoc);
                     // CHỈ hiện thẻ khi AI thật sự nhắc link sản phẩm trong câu trả lời.
@@ -1592,12 +1755,18 @@ function chatCallApi(question, boLoc, context, callback){
                     return;
                 }
             } catch(e){}
+            // Máy chủ chạy nhưng AI trả lỗi: lần sau vẫn thử lại bình thường
+            callback(null);
+            return;
         }
-        chatApiState = false;
-        callback({ text: chatApiFallbackText(), products: [], chips: chatSuggestChips() });
+        // status 0 = không kết nối được localhost:3000 (chưa bật server) -> nghỉ 30 giây
+        if(xhr.status == 0){
+            chatApiState = false;
+            chatApiNghiDen = Date.now() + 30000;
+        }
+        callback(null);
     };
-    xhr.ontimeout = function(){ chatApiState = false; callback(null); };
-    xhr.onerror = function(){ chatApiState = false; callback(null); };
+    xhr.ontimeout = function(){ callback(null); };
 
     var payload = {
         message: question,
@@ -1622,8 +1791,8 @@ function chatTheTuReply(reply){
 
 // Câu dự phòng khi API không bật
 function chatApiFallbackText(){
-    return "Mình chưa kết nối được trợ lý AI ở máy chủ (chưa chạy server.js/ server.py). "
-         + "Bạn vẫn có thể hỏi mình về giá, tồn kho, đồ cũ, mã giảm giá hoặc phí giao hàng nhé! "
+    return "Câu này mình chưa trả lời ngay được. RoomCraft chuyên nội thất và đồ trang trí, "
+         + "bạn có thể hỏi mình về sản phẩm, giá, tồn kho, đồ cũ, mã giảm giá hoặc phí giao hàng nhé! "
          + "Ví dụ: \"sofa dưới 10 triệu\", \"mã giảm giá\", \"phí giao hàng về Đồng Nai\".";
 }
 
@@ -1650,7 +1819,15 @@ function chatCandidateBriefs(boLoc, soLuong){
 function chatCheckAiReply(reply, boLoc){
     var idx = chatBuildIndex();
     var dung = [];
-    for(var i = 0; i < idx.products.length; i++) dung.push(idx.products[i].price);
+    for(var i = 0; i < idx.products.length; i++){
+        dung.push(idx.products[i].price);
+        if(idx.products[i].origPrice > 0) dung.push(idx.products[i].origPrice);
+    }
+    var coupons = getTable("coupons");
+    for(var cp = 0; cp < coupons.length; cp++){
+        dung.push(Number(coupons[cp].discount_value || 0));
+        dung.push(Number(coupons[cp].min_order_value || 0));
+    }
     var methods = getTable("shipping_methods");
     for(var m = 0; m < methods.length; m++){
         dung.push(Number(methods[m].fee_city || 0));
@@ -1666,6 +1843,8 @@ function chatCheckAiReply(reply, boLoc){
         var giaTri = Number(so);
         if(/tr\b|triệu/.test(cacTien[t])) giaTri = giaTri * 1000000;
         if(/k\b/.test(cacTien[t])) giaTri = giaTri * 1000;
+        // Số tròn trăm nghìn (ngân sách "dưới 10 triệu", "15 triệu") là mức giá khách/ AI nói, không phải giá bịa
+        if(giaTri < 1000 || giaTri % 100000 == 0) continue;
         if(dung.indexOf(giaTri) < 0)
             return "Mình vừa nhận câu trả lời từ trợ lý AI nhưng chưa khớp số liệu trong kho, nên dùng câu trả lời chuẩn của RoomCraft. "
                  + "Bạn hỏi cụ thể loại đồ (vd: \"sofa dưới 10 triệu\") để mình tra dữ liệu thật nhé!";
@@ -1733,7 +1912,7 @@ function chatReply(question, callback){
         if(spTraLoi.products.length == 0 && qn.split(" ").length <= 2 && qn.length <= 6){
             var banChay = chatTopBanChay(6);
             if(banChay.length > 0){
-                callback({ text: "Bạn muốn tìm " + qn + " loại nào? Dưới đây là vài món đang có trong kho:", products: banChay, chips: chatSuggestChips() });
+                callback({ text: "Bạn muốn tìm " + question.trim().toLowerCase() + " loại nào? Dưới đây là vài món bán chạy:", products: banChay, chips: chatSuggestChips() });
                 return;
             }
         }
@@ -1742,12 +1921,17 @@ function chatReply(question, callback){
     }
     if(route == "api"){
         // Câu chỉ có ngân sách ("cái gì dưới 500k") hoặc 1 từ chung chung -> vẫn tra được
-        if(boLoc.budget.max != null || (qn.split(" ").length <= 2 && qn.length <= 6)){
+        if(boLoc.budget.max != null){
+            var goiYNganSach = chatGoiYSapNganSach(boLoc.budget.max);
+            callback({ text: goiYNganSach.text, products: goiYNganSach.sp, chips: chatSuggestChips() });
+            return;
+        }
+        if(qn.split(" ").length <= 2 && qn.length <= 6){
             var banChayNgan = chatTopBanChay(6);
             if(banChayNgan.length > 0){
                 var dan = boLoc.budget.max != null
                     ? "Các món dưới " + formatVND(boLoc.budget.max) + " đang có trong kho:"
-                    : "Bạn muốn tìm " + qn + " loại nào? Dưới đây là vài món đang có trong kho:";
+                    : "Bạn muốn tìm " + question.trim().toLowerCase() + " loại nào? Dưới đây là vài món bán chạy:";
                 callback({ text: dan, products: banChayNgan, chips: chatSuggestChips() });
                 return;
             }

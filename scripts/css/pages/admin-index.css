@@ -6,34 +6,657 @@
    file này chỉ viết phần riêng của trang.
    ===================================================================== */
 
-.stat-grid{
+.dashboard-shell{
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.dashboard-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
     margin-bottom: 32px;
 }
-.chart-row{
+.dashboard-header .headline-section{
+    margin: 0;
+    font-size: 36px;
+}
+.dashboard-subtitle{
+    margin-top: 8px;
+    color: #686868;
+    font-size: 13px;
+}
+.dashboard-header-tools{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    min-width: 300px;
+}
+.dashboard-date{
+    color: #686868;
+    font-size: 13px;
+    white-space: nowrap;
+}
+.dashboard-filter-placeholder{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 176px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #DADAD7;
+    border-radius: 8px;
+    background: #EEEEEC;
+    color: #686868;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 1;
+}
+.dashboard-filter-placeholder:disabled{
+    cursor: default;
+}
+.dashboard-grid{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 24px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
-.chart-box{
+.dashboard-card{
+    min-width: 0;
     padding: 24px;
+    border: 1px solid #DADAD7;
+    border-radius: 12px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(32, 32, 32, 0.04);
+    transition: box-shadow 150ms ease;
+    animation: dashboard-card-enter 360ms ease both;
 }
-.chart-box .overline{
+.dashboard-card:hover{
+    box-shadow: 0 4px 12px rgba(32, 32, 32, 0.08);
+}
+.dashboard-stat-grid > .dashboard-card:nth-child(2){
+    animation-delay: 40ms;
+}
+.dashboard-stat-grid > .dashboard-card:nth-child(3){
+    animation-delay: 80ms;
+}
+.dashboard-stat-grid > .dashboard-card:nth-child(4){
+    animation-delay: 120ms;
+}
+.dashboard-primary-charts > .dashboard-card:nth-child(1){
+    animation-delay: 160ms;
+}
+.dashboard-primary-charts > .dashboard-card:nth-child(2){
+    animation-delay: 200ms;
+}
+.dashboard-secondary-charts > .dashboard-card:nth-child(1){
+    animation-delay: 240ms;
+}
+.dashboard-secondary-charts > .dashboard-card:nth-child(2){
+    animation-delay: 280ms;
+}
+.dashboard-secondary-charts > .dashboard-card:nth-child(3){
+    animation-delay: 320ms;
+}
+.dashboard-flow-grid > .dashboard-card:nth-child(1){
+    animation-delay: 400ms;
+}
+.dashboard-flow-grid > .dashboard-card:nth-child(2){
+    animation-delay: 440ms;
+}
+.dashboard-product-category-grid > .dashboard-card:nth-child(1){
+    animation-delay: 480ms;
+}
+.dashboard-product-category-grid > .dashboard-card:nth-child(2){
+    animation-delay: 520ms;
+}
+.dashboard-customer-review-grid > .dashboard-card:nth-child(1){
+    animation-delay: 560ms;
+}
+.dashboard-customer-review-grid > .dashboard-card:nth-child(2){
+    animation-delay: 600ms;
+}
+.dashboard-table-row > .dashboard-card:nth-child(1){
+    animation-delay: 640ms;
+}
+.dashboard-table-row > .dashboard-card:nth-child(2){
+    animation-delay: 680ms;
+}
+@keyframes dashboard-card-enter{
+    from{
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dashboard-stat-grid{
+    align-items: stretch;
+}
+.dashboard-stat-grid .stat-card{
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    min-height: 196px;
+    grid-column: span 3;
+}
+.dashboard-stat-grid .overline{
+    max-width: calc(100% - 28px);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+.dashboard-stat-grid .value{
+    align-self: center;
+    min-width: 0;
+    margin: 0;
+    font-size: clamp(32px, 3vw, 36px);
+    line-height: 1.15;
+}
+#statRevenue{
+    font-size: clamp(20px, 3vw, 34px);
+    white-space: nowrap;
+}
+.stat-currency{
+    font-size: 0.58em;
+    white-space: nowrap;
+}
+.dashboard-stat-grid .stat-note{
+    align-self: end;
+    min-height: 20px;
+    margin: 0;
+    color: #686868;
+    font-size: 13px;
+    line-height: 20px;
+}
+.stat-comparison{
+    display: grid;
+    gap: 8px;
+    min-height: 40px;
+    margin: 8px 0 0;
+    font-size: 12px;
+    line-height: 16px;
+}
+.stat-comparison-trend{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+}
+.stat-comparison-trend .material-symbols-outlined{
+    font-size: 16px;
+}
+.stat-comparison-good{
+    color: #2C6B3F;
+}
+.stat-comparison-bad{
+    color: #8C3B2D;
+}
+.stat-comparison-neutral,
+.stat-comparison-period{
+    color: #686868;
+}
+.stat-icon{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #EEEEEC;
+    color: #202020;
+    font-size: 18px;
+}
+.stat-icon-revenue{
+    color: #2C6B3F;
+}
+.stat-icon-users{
+    color: #485238;
+}
+.stat-icon-pending{
+    color: #8C3B2D;
+}
+.chart-card{
+    grid-column: span 6;
+}
+.chart-card .overline{
+    margin-bottom: 16px;
+    color: #686868;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+.chart-description{
+    margin: -8px 0 16px;
+    color: #686868;
+    font-size: 13px;
+    line-height: 18px;
+}
+.chart-card canvas{
+    width: 100%;
+}
+.chart-card-revenue{
+    grid-column: span 8;
+}
+.chart-card-status{
+    grid-column: span 4;
+}
+.payment-chart-layout{
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(150px, 1.1fr);
+    align-items: center;
+    gap: 16px;
+}
+.payment-chart-canvas{
+    position: relative;
+    min-width: 0;
+    height: 220px;
+}
+.daily-orders-chart-canvas,
+.review-ratings-chart-canvas,
+.new-users-chart-canvas{
+    position: relative;
+    min-width: 0;
+    height: 260px;
+}
+.review-chart-heading{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+.review-chart-heading .overline{
     margin-bottom: 16px;
 }
-.chart-box canvas{
+.review-average{
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin-top: -7px;
+    text-align: right;
+}
+.review-average-score{
+    color: #202020;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 32px;
+    line-height: 34px;
+}
+.review-average-caption{
+    color: #686868;
+    font-size: 11px;
+    line-height: 15px;
+    white-space: nowrap;
+}
+.chart-card-revenue canvas{
+    height: 260px !important;
+}
+.status-chart-layout{
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(130px, 0.8fr);
+    align-items: center;
+    gap: 16px;
+}
+.status-chart-canvas{
+    position: relative;
+    min-width: 0;
+    height: 220px;
+}
+.chart-status-legend{
+    display: grid;
+    gap: 8px;
+}
+.chart-status-legend-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 18px;
+    color: #686868;
+}
+.chart-status-legend-dot{
+    flex: 0 0 9px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+.dashboard-flow-section{
+    margin-bottom: 24px;
+}
+.dashboard-section-heading{
+    margin-bottom: 16px;
+}
+.dashboard-section-title{
+    margin: 0;
+    color: #202020;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+.dashboard-section-description{
+    margin: 8px 0 0;
+    color: #686868;
+    font-size: 13px;
+    line-height: 18px;
+}
+.dashboard-flow-grid{
+    align-items: stretch;
+}
+.order-funnel-card{
+    grid-column: span 4;
+}
+.monthly-status-card{
+    grid-column: span 8;
+}
+.order-funnel{
+    display: grid;
+    gap: 8px;
+    padding: 4px 0;
+}
+.order-funnel-row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+.order-funnel-stage{
+    height: 18px;
+    clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+    transition: filter 150ms ease;
+}
+.order-funnel-stage:hover{
+    filter: brightness(1.12);
+}
+.order-funnel-caption{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
     width: 100%;
-    max-height: 320px;
+    min-width: 0;
+}
+.order-funnel-label{
+    overflow: hidden;
+    max-width: 100%;
+    color: #202020;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.order-funnel-value{
+    flex: 0 0 auto;
+    color: #686868;
+    font-size: 11px;
+    line-height: 14px;
+    white-space: nowrap;
+}
+.monthly-status-chart-canvas{
+    position: relative;
+    min-width: 0;
+    height: 300px;
+}
+.monthly-status-chart-canvas canvas{
+    width: 100%;
+    height: 100%;
+}
+.monthly-status-card .chart-description{
+    margin-top: -8px;
+}
+.category-sales-card{
+    grid-column: span 8;
+}
+.revenue-share-card{
+    grid-column: span 4;
+}
+.category-sales-chart-canvas{
+    position: relative;
+    min-width: 0;
+    height: 340px;
+}
+.revenue-share-layout{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 0.9fr);
+    align-items: center;
+    gap: 12px;
+}
+.revenue-share-chart-canvas{
+    position: relative;
+    min-width: 0;
+    height: 240px;
+}
+.revenue-share-legend{
+    gap: 10px;
+}
+.revenue-share-legend .chart-status-legend-item{
+    gap: 6px;
+}
+.revenue-share-legend-name{
+    overflow: hidden;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.revenue-share-legend-percent{
+    flex: 0 0 auto;
+    margin-left: auto;
+    color: #202020;
+    font-weight: 600;
+}
+.customer-chart-card{
+    grid-column: span 6;
+}
+.dashboard-table-card{
+    grid-column: span 6;
+}
+.top-products-card{
+    grid-column: span 8;
+}
+.low-stock-card{
+    grid-column: span 4;
+}
+.dashboard-table-card > .overline{
+    margin-bottom: 16px;
+    color: #686868;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+.top-products-table-wrap,
+.low-stock-table-wrap{
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+}
+.low-stock-card .table{
+    min-width: 480px;
 }
 .top-title{
     margin: 40px 0 16px;
+    font-size: 24px;
+    line-height: 32px;
+}
+.top-product-thumbnail{
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+.top-products-table-wrap{
+    border-radius: 8px;
+}
+.top-products-table{
+    min-width: 640px;
+    border: 0;
+}
+.top-products-table th{
+    border-bottom: 1px solid #DADAD7;
+}
+.top-products-table tbody tr:nth-child(even) td{
+    background: #F7F7F5;
+}
+.top-products-table tbody tr:hover td{
+    background: #EEEEEC;
+}
+.top-products-table .top-products-rank{
+    width: 56px;
+    text-align: center;
+}
+.top-products-table .top-products-image{
+    width: 88px;
+}
+.top-products-table .top-products-number{
+    width: 150px;
+    text-align: right;
+    white-space: nowrap;
+}
+.top-products-table th.top-products-number{
+    text-align: right;
+}
+.top-products-table .top-product-name{
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    line-height: 20px;
+    overflow-wrap: anywhere;
+}
+.top-product-sales{
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.top-product-progress{
+    display: inline-block;
+    width: 64px;
+    height: 5px;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #EEEEEC;
+    vertical-align: middle;
+}
+.top-product-progress span{
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #2C6B3F;
 }
 .low-note{
-    font-family: var(--font-body);
+    font-family: "Inter", sans-serif;
     font-size: 13px;
+    color: #686868;
 }
-@media (max-width: 1024px){
-    .chart-row{
+.low-stock-card .table img{
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+}
+@media (max-width: 1100px){
+    .dashboard-grid{
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .dashboard-grid > *,
+    .dashboard-grid > .chart-card,
+    .dashboard-grid > .dashboard-table-card{
+        grid-column: 1;
+    }
+    .dashboard-stat-grid > .stat-card{
+        grid-column: auto;
+    }
+    .dashboard-stat-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 600px){
+    .admin-main{
+        padding: 24px 16px;
+    }
+    .dashboard-header{
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .dashboard-header-tools{
+        justify-content: space-between;
+        width: 100%;
+        min-width: 0;
+    }
+    .dashboard-stat-grid{
         grid-template-columns: 1fr;
+    }
+    .dashboard-card{
+        padding: 20px;
+    }
+    .dashboard-header .headline-section{
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .dashboard-subtitle,
+    .dashboard-date,
+    .chart-description,
+    .dashboard-stat-grid .stat-note{
+        color: #686868;
+    }
+    .status-chart-layout{
+        grid-template-columns: 1fr;
+    }
+    @media (prefers-reduced-motion: reduce){
+        .dashboard-card{
+            animation: none;
+            transition: none;
+        }
+    }
+    .status-chart-canvas{
+        max-width: 280px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .payment-chart-layout{
+        grid-template-columns: 1fr;
+    }
+    .payment-chart-canvas{
+        max-width: 240px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .revenue-share-layout{
+        grid-template-columns: 1fr;
+    }
+    .revenue-share-chart-canvas{
+        max-width: 280px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .revenue-share-legend{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .review-average-score{
+        font-size: 28px;
+        line-height: 30px;
+    }
+    .dashboard-section-title{
+        font-size: 24px;
+    }
+    .monthly-status-chart-canvas{
+        height: 260px;
+    }
+}
+@media (max-width: 760px){
+    .top-products-table{
+        display: table;
+        overflow: visible;
+        white-space: normal;
     }
 }

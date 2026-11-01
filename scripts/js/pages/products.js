@@ -51,6 +51,7 @@ function resetPageFilters(){
 
 // Khung lọc dùng chung gọi hàm này mỗi khi khách đổi một lựa chọn
 function onFilterChange(){
+    commitFilterState();
     currentPage = 1;
     renderProducts();
 }
@@ -62,7 +63,7 @@ function goToFilterPage(page){
 }
 
 function renderProducts(){
-    var state = getFilterState();
+    var state = getAppliedFilterState();
     var products = currentStyle != "" ? getProductsByStyle(currentStyle) : getNewProducts();
     products = filterProductList(products, state);
     sortProductList(products, state.sort, state.q);
@@ -119,7 +120,7 @@ function renderEmptySuggestions(total){
         return;
     }
     section.classList.remove("hidden");
-    var state = getFilterState();
+    var state = getAppliedFilterState();
     var products = currentStyle != "" ? getProductsByStyle(currentStyle) : getNewProducts();
     if(state.category != ""){
         var cungDanhMuc = filterProductList(products, { q: "", price: "", category: state.category, materials: [], colors: [], brand: "", inStock: true });
