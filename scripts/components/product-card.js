@@ -5,6 +5,8 @@
    tên (font Garamond, class title-product), giá + giá gốc gạch ngang (price, price-old),
    nhãn "Còn hàng" (badge badge-stock), nút "Xem chi tiết" (btn btn-full).
    Ảnh: asset(product.images[0]); giá: formatVND(product.price)
+   Số sao đánh giá (Bảo Duy): dòng sao dưới tên, lấy điểm từ getRatingMap() trong services/products.js.
+   Bấm tim: hiện thông báo "Đã lưu / Đã bỏ" bằng showRoomToast() trong components/room-card.js.
    ===================================================================== */
 
 function createProductCard(product){
@@ -87,6 +89,10 @@ function createProductCard(product){
     titleLink.textContent = product.name;
     title.appendChild(titleLink);
     body.appendChild(title);
+
+    // Số sao đánh giá (chỉ sản phẩm mới; đồ cũ là món độc bản nên không có đánh giá)
+    if(product.product_type !== "USED")
+        body.appendChild(createRatingRow(product.id));
 
     // Thời gian sử dụng & ghi chú nếu là đồ cũ
     if(product.product_type === "USED"){
@@ -185,4 +191,53 @@ function toggleWishlistProduct(productId, btnElem){
     }
     saveObject("wishlists", wishlists);
     if(typeof updateWishCount == "function") updateWishCount();
+    showWishlistToast(productId, idx < 0);
+}
+
+// Thông báo nhỏ sau khi bấm tim (BPMN 5). Trang nào chưa nạp room-card.js thì bỏ qua, không báo lỗi.
+function showWishlistToast(productId, daLuu){
+    if(typeof showRoomToast != "function")
+        return;
+    var sp = findById("products", productId);
+    var ten = sp ? roomEscape(sp.name) : "Sản phẩm";
+    if(daLuu)
+        showRoomToast("<span class='material-symbols-outlined'>favorite</span>Đã lưu \"" + ten + "\" vào yêu thích"
+            + " <a href='" + getRoot() + "scripts/wishlist.html'>Xem danh sách</a>");
+    else
+        showRoomToast("<span class='material-symbols-outlined'>heart_minus</span>Đã bỏ \"" + ten + "\" khỏi yêu thích");
+}
+
+/* ----- Số sao đánh giá trên thẻ ----- */
+// getRatingMap() đọc cả bảng reviews, nên chỉ gọi 1 lần cho mỗi lần tải trang rồi dùng lại
+var cardRatingMap = null;
+
+function getCardRating(productId){
+    if(cardRatingMap == null)
+        cardRatingMap = (typeof getRatingMap == "function") ? getRatingMap() : {};
+    return cardRatingMap[productId] || null;
+}
+
+// Gọi lại hàm này sau khi khách vừa gửi đánh giá để thẻ hiện điểm mới
+function resetCardRating(){
+    cardRatingMap = null;
+}
+
+// <div class="product-card-rating"> ★★★★★ 4,6 (12) </div>; chưa có đánh giá thì ghi "Chưa có đánh giá"
+function createRatingRow(productId){
+    var row = document.createElement("div");
+    row.className = "product-card-rating";
+    var rating = getCardRating(productId);
+    if(rating == null){
+        row.className += " no-rating";
+        row.innerHTML = "<span class='stars' style='--rating:0' aria-hidden='true'>★★★★★</span>"
+                      + "<span class='rating-text'>Chưa có đánh giá</span>";
+        return row;
+    }
+    var diem = Math.round(rating.avg * 10) / 10;
+    var chuDiem = diem.toFixed(1).replace(".", ",");
+    row.title = chuDiem + " trên 5 sao, " + rating.count + " đánh giá";
+    row.innerHTML = "<span class='stars' style='--rating:" + diem + "' aria-hidden='true'>★★★★★</span>"
+                  + "<span class='rating-text'><b>" + chuDiem + "</b> (" + rating.count + ")</span>"
+                  + "<span class='sr-only'>" + row.title + "</span>";
+    return row;
 }

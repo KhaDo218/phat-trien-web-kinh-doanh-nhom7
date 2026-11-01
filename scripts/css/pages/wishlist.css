@@ -45,6 +45,20 @@
 }
 .product-prices{display:flex;flex-wrap:wrap;align-items:center}
 .product-card-actions .btn{height:40px}
+/* Bảo Duy: 2 nút Xem chi tiết / Thêm vào giỏ nằm cạnh nhau, thẻ hẹp thì xếp chồng */
+.wishlist-actions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:8px;
+}
+.wishlist-actions .btn{
+    width:100%;
+    padding:0 10px;
+    font-size:12px;
+    white-space:nowrap;
+}
+.wishlist-actions .btn .material-symbols-outlined{font-size:18px}
+.wishlist-actions .btn:disabled{cursor:not-allowed;opacity:.75}
 .wishlist-empty{margin:40px 0}
 .wishlist-empty .material-symbols-outlined{font-size:36px;margin-bottom:16px}
 .wishlist-empty .headline-section{margin-bottom:8px;color:#202020}

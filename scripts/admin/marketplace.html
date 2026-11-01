@@ -13,6 +13,7 @@
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
+        <script src="../components/admin-export.js"></script>
         <script src="../components/catalog-filter.js"></script>
         <script src="../js/pages/admin-marketplace.js"></script>
     </head>
@@ -25,7 +26,8 @@
                         <p class="overline">Quản trị nội dung</p>
                         <h1 class="headline-section">Quản lý đồ cũ Marketplace</h1>
                     </div>
-                    <div>
+                    <div class="admin-head-actions" style="display:flex;flex-wrap:wrap;gap:12px;">
+                        <button type="button" class="btn btn-outline" onclick="openJsonExport(['used_products'])"><span class="material-symbols-outlined">data_object</span>Xuất JSON</button>
                         <button type="button" class="btn" onclick="openAddModal()">
                             <span class="material-symbols-outlined">add</span> Thêm món đồ cũ
                         </button>
