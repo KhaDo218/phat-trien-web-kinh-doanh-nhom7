@@ -60,6 +60,17 @@
 .badge-3d{
     background: #202020;
     color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    padding: 4px 7px;
+    font-size: 10px;
+    line-height: 1.2;
+}
+.badge-3d .material-symbols-outlined{
+    font-size: 13px;
+    line-height: 1;
 }
 .btn-wishlist{
     position: absolute;
