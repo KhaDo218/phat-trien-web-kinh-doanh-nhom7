@@ -12,6 +12,8 @@ function initPage(){
 
     renderAdminSidebar("marketplace");
     populateModalDropdowns();
+    populateCatalogGroupOptions("slMaterialGroup", MATERIAL_GROUPS);
+    populateCatalogGroupOptions("slColorGroup", COLOR_GROUPS);
     renderTable();
 }
 
@@ -182,7 +184,9 @@ function editProduct(id){
     document.getElementById("txtConditionNote").value = p.condition_note || "";
     document.getElementById("txtDimensions").value = p.dimensions || "";
     document.getElementById("txtMaterial").value = p.material || "";
+    document.getElementById("slMaterialGroup").value = getCatalogMaterialGroup(p);
     document.getElementById("txtColor").value = p.color || "";
+    document.getElementById("slColorGroup").value = getCatalogColorGroup(p);
     document.getElementById("txtImages").value = (p.images || []).join("\n");
     document.getElementById("txtDescription").value = p.description || "";
     document.getElementById("chkIsActive").checked = (p.is_active !== false);
@@ -212,7 +216,9 @@ function saveUsedProduct(e){
     var condNote = document.getElementById("txtConditionNote").value.trim();
     var dims = document.getElementById("txtDimensions").value.trim();
     var mat = document.getElementById("txtMaterial").value.trim();
+    var matGroup = document.getElementById("slMaterialGroup").value;
     var col = document.getElementById("txtColor").value.trim();
+    var colGroup = document.getElementById("slColorGroup").value;
     var desc = document.getElementById("txtDescription").value.trim();
     var isActive = document.getElementById("chkIsActive").checked;
 
@@ -258,7 +264,9 @@ function saveUsedProduct(e){
                 allProducts[j].condition_note = condNote;
                 allProducts[j].dimensions = dims;
                 allProducts[j].material = mat;
+                allProducts[j].material_group = matGroup;
                 allProducts[j].color = col;
+                allProducts[j].color_group = colGroup;
                 allProducts[j].images = images;
                 allProducts[j].description = desc;
                 allProducts[j].is_active = isActive;
@@ -288,7 +296,9 @@ function saveUsedProduct(e){
             original_price: origPrice,
             dimensions: dims,
             material: mat,
+            material_group: matGroup,
             color: col,
+            color_group: colGroup,
             description: desc,
             model_3d_url: null,
             stock_quantity: stock,
