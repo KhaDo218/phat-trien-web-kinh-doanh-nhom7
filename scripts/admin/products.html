@@ -13,6 +13,7 @@
         <script src="../js/core/store.js"></script>
         <script src="../js/core/auth.js"></script>
         <script src="../components/admin-sidebar.js"></script>
+        <script src="../components/catalog-filter.js"></script>
         <script src="../js/pages/admin-products.js"></script>
     </head>
     <body>
@@ -89,8 +90,16 @@
                                 <input class="input" type="text" id="txtProductMaterial">
                             </div>
                             <div class="form-group">
+                                <label for="cboProductMaterialGroup">Nhóm chất liệu <span class="req">*</span></label>
+                                <select class="input" id="cboProductMaterialGroup" required></select>
+                            </div>
+                            <div class="form-group">
                                 <label for="txtProductColor">Màu sắc</label>
                                 <input class="input" type="text" id="txtProductColor">
+                            </div>
+                            <div class="form-group">
+                                <label for="cboProductColorGroup">Nhóm màu <span class="req">*</span></label>
+                                <select class="input" id="cboProductColorGroup" required></select>
                             </div>
                             <div class="form-group admin-form-wide">
                                 <label for="txtProductImages">Đường dẫn ảnh (mỗi dòng một ảnh) <span class="req">*</span></label>
