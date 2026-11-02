@@ -106,13 +106,18 @@
 .rd-counter.hidden{
     display: none;
 }
-/* chấm sáng lên khi rê chuột vào thẻ sản phẩm tương ứng */
-.hotspot.glow{
-    background: #202020;
-    transform: scale(1.2);
+/* chấm sáng lên khi rê chuột vào thẻ sản phẩm tương ứng (giống trạng thái đang chọn) */
+.hotspot.glow::after{
+    animation: none;
+    opacity: 1;
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.95);
 }
 .hotspot.glow::before{
-    background: #FFFFFF;
+    width: 8px;
+    height: 8px;
+    background: #202020;
+    box-shadow: none;
 }
 
 /* Popup sản phẩm cạnh chấm */

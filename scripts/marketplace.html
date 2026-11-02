@@ -31,40 +31,52 @@
             <a href="index.html">Trang chủ</a><span>/</span>Đồ cũ tuyển chọn
         </div>
 
-        <!-- Header phần Marketplace -->
-        <div class="market-header">
-            <div>
-                <p class="overline">Curated Marketplace • Độc bản</p>
-                <h1 class="headline-page">Đồ cũ tuyển chọn</h1>
+        <!-- Banner trang Đồ cũ: chữ bên trái, ảnh phòng + thẻ món độc bản + con dấu kiểm định bên phải -->
+        <section class="market-header">
+            <div class="market-copy">
+                <p class="overline">Curated Marketplace</p>
+                <h1 class="headline-page">Đồ cũ<br><em>tuyển chọn</em></h1>
                 <p class="lead">
                     Bộ sưu tập nội thất secondhand độc bản, tuyển chọn kỹ lưỡng theo các phong cách thiết kế đặc trưng.
                     Mỗi sản phẩm đều được kiểm định chất lượng, mô tả chân thực và tiết kiệm đến 65% so với giá gốc.
                 </p>
+                <a class="market-cta" href="#marketList">Xem các món đang có <span class="material-symbols-outlined">arrow_downward</span></a>
             </div>
+
+            <div class="market-visual" aria-hidden="true">
+                <img class="market-room" src="../assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg" alt="">
+                <figure class="market-piece">
+                    <img src="../assets/marketplace/used-004-01.jpg" alt="">
+                    <figcaption><span>Độc bản</span>Ghế bành Julius</figcaption>
+                </figure>
+                <!-- Con dấu tròn: chữ chạy theo đường tròn, xoay chậm -->
+                <svg class="market-seal" viewBox="0 0 120 120">
+                    <defs><path id="sealPath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+                    <circle cx="60" cy="60" r="57" />
+                    <text><textPath href="#sealPath" textLength="272" lengthAdjust="spacing">KIỂM ĐỊNH 100% / ĐỘC BẢN / SỐNG XANH /</textPath></text>
+                    <text class="market-seal-mark" x="60" y="67" text-anchor="middle">RC</text>
+                </svg>
+            </div>
+
+            <!-- 3 cam kết -->
             <div class="market-trust-badges">
                 <div class="trust-badge-item">
-                    <span class="material-symbols-outlined">verified</span>
-                    <div><strong>Kiểm định 100%</strong>
-                        <p>Chuyên viên thẩm định</p>
-                    </div>
+                    <strong>100%</strong>
+                    <div><b>Kiểm định</b><p>Chuyên viên thẩm định từng món</p></div>
                 </div>
                 <div class="trust-badge-item">
-                    <span class="material-symbols-outlined">recycling</span>
-                    <div><strong>Nội thất xanh</strong>
-                        <p>Tiết kiệm & bền vững</p>
-                    </div>
+                    <strong>65%</strong>
+                    <div><b>Tiết kiệm đến</b><p>So với giá gốc, nội thất xanh &amp; bền vững</p></div>
                 </div>
                 <div class="trust-badge-item">
-                    <span class="material-symbols-outlined">local_shipping</span>
-                    <div><strong>Kiểm tra tận nhà</strong>
-                        <p>Xem hàng trước khi nhận</p>
-                    </div>
+                    <strong>Tận nhà</strong>
+                    <div><b>Kiểm tra</b><p>Xem hàng trước khi nhận</p></div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Bố cục lọc và danh sách sản phẩm (khung lọc dùng chung: components/catalog-filter.js) -->
-        <div class="filter-layout">
+        <div class="filter-layout" id="marketList">
             <aside class="filter-sidebar" aria-label="Bộ lọc đồ cũ">
                 <button type="button" class="btn btn-outline btn-filter-toggle" onclick="toggleFilterPanel()">
                     <span class="material-symbols-outlined">tune</span> Bộ lọc

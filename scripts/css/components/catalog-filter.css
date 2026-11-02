@@ -40,6 +40,16 @@
     font-weight: 500;
     margin: 0;
 }
+/* nút "Đặt lại" là thẻ <button>: bỏ viền và nền mặc định của trình duyệt */
+.filter-header .btn-link{
+    border: none;
+    border-bottom: 1px solid transparent;
+    background: none;
+    cursor: pointer;
+}
+.filter-header .btn-link:hover{
+    border-bottom-color: #202020;
+}
 .filter-group{
     margin-bottom: 24px;
 }

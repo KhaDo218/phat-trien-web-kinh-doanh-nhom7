@@ -4,106 +4,206 @@
    Phong cách: "Atelier Gallery" theo mockup Stitch của nhóm
    ===================================================================== */
 
-/* ----- Header phần Marketplace ----- */
+/* ----- Banner: chữ bên trái, ảnh phòng + thẻ món độc bản + con dấu bên phải ----- */
 .market-header{
-    position: relative;
-    display: block;
-    width: 100vw;
-    max-width: none;
-    min-height: 460px;
-    margin: 4px calc(50% - 50vw) 40px;
-    padding: 58px max(56px, calc((100vw - 1312px) / 2 + 64px)) 148px;
-    overflow: hidden;
-    background:
-        linear-gradient(90deg, rgba(20, 19, 16, .94) 0%, rgba(20, 19, 16, .82) 42%, rgba(20, 19, 16, .2) 74%, rgba(20, 19, 16, .08) 100%),
-        url("../../../assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg") center / cover no-repeat;
-    color: #FFFFFF;
-    box-shadow: 0 30px 68px rgba(39, 32, 23, .16);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: 72px;
+    margin: 24px 0 64px;
 }
-.market-header::before{
-    content: "";
-    position: absolute;
-    inset: 18px;
-    border: 1px solid rgba(255, 255, 255, .17);
-    pointer-events: none;
-}
-.market-header::after{
-    content: "CURATED / REUSE / LIVE WELL";
-    position: absolute;
-    top: 38px;
-    right: 42px;
-    color: rgba(255, 255, 255, .58);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: .16em;
-    writing-mode: vertical-rl;
-    text-transform: uppercase;
-}
-.market-header > div:first-child{
-    position: relative;
-    z-index: 2;
-    max-width: 720px;
+.market-copy{
+    animation: marketIn .9s ease both;
 }
 .market-header .overline{
-    margin-bottom: 14px;
-    color: #D9BE8B;
-    font-weight: 600;
-}
-.market-header .headline-page{
-    margin-bottom: 20px;
-    color: #FFFFFF;
-    font-size: clamp(54px, 5.6vw, 84px);
-    line-height: .95;
-}
-.market-header .lead{
-    max-width: 680px;
-    margin-top: 0;
-    color: rgba(255, 255, 255, .76);
-    font-size: 17px;
-    line-height: 28px;
-}
-.market-trust-badges{
-    position: absolute;
-    z-index: 3;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border-top: 1px solid rgba(255, 255, 255, .2);
-    background: rgba(17, 17, 15, .66);
-    backdrop-filter: blur(12px);
-}
-.trust-badge-item{
     display: flex;
     align-items: center;
     gap: 14px;
-    min-height: 94px;
-    padding: 20px 30px;
-    border-right: 1px solid rgba(255, 255, 255, .16);
-    background: transparent;
-    font-size: 13px;
+    margin-bottom: 24px;
+    color: #9A7440;
+    font-weight: 500;
+    letter-spacing: .2em;
 }
-.trust-badge-item:last-child{border-right:0}
-.trust-badge-item .material-symbols-outlined{
-    font-size: 27px;
-    color: #D9BE8B;
+.market-header .overline::before{
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: #9A7440;
 }
-.trust-badge-item strong{
+.market-header .headline-page{
+    margin-bottom: 30px;
+    color: #202020;
+    font-size: clamp(56px, 6.4vw, 104px);
+    line-height: 1;
+    letter-spacing: -.025em;
+}
+.market-header .headline-page em{
+    font-style: italic;
+    color: #8A6A3E;
+}
+.market-header .lead{
+    max-width: 500px;
+    margin: 0 0 36px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(32, 32, 32, .14);
+    color: #686868;
+    font-size: 16px;
+    line-height: 1.75;
+}
+.market-cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #202020;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    transition: gap .35s ease, color .35s ease, border-color .35s ease;
+}
+.market-cta .material-symbols-outlined{
+    font-size: 16px;
+}
+.market-cta:hover{
+    gap: 14px;
+    color: #8A6A3E;
+    border-color: #8A6A3E;
+}
+
+/* Ảnh phòng + thẻ món đồ chồng lên góc dưới + con dấu ở góc trên */
+.market-visual{
+    position: relative;
+    padding: 0 0 56px 56px;
+    animation: marketIn .9s .15s ease both;
+}
+.market-room{
+    width: 100%;
+    height: clamp(380px, 36vw, 520px);
+    object-fit: cover;
+    filter: saturate(.85);
+    transition: filter .8s ease;
+}
+.market-visual:hover .market-room{
+    filter: saturate(1);
+}
+.market-piece{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40%;
+    margin: 0;
+    padding: 14px 14px 18px;
+    background: #FFFFFF;
+    box-shadow: 0 24px 50px rgba(32, 28, 22, .16);
+    transition: transform .6s ease;
+}
+.market-visual:hover .market-piece{
+    transform: translateY(-8px);
+}
+.market-piece img{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+.market-piece figcaption{
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.3;
+}
+.market-piece figcaption span{
     display: block;
     margin-bottom: 2px;
-    color: #FFFFFF;
-    font-size: 13px;
-    font-weight: 600;
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #9A7440;
+}
+.market-seal{
+    position: absolute;
+    top: -40px;
+    right: -28px;
+    width: 128px;
+    height: 128px;
+    animation: marketSeal 30s linear infinite;
+}
+.market-seal circle{
+    fill: #F7F7F5;
+    stroke: #9A7440;
+    stroke-width: 1;
+}
+.market-seal text{
+    fill: #8A6A3E;
+    font-family: var(--font-body);
+    font-size: 8.6px;
+    font-weight: 500;
+    letter-spacing: .14em;
+}
+.market-seal .market-seal-mark{
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-style: italic;
+    letter-spacing: 0;
+}
+@keyframes marketSeal{
+    to{ transform: rotate(360deg); }
+}
+@keyframes marketIn{
+    from{ opacity: 0; transform: translateY(20px); }
+    to{ opacity: 1; transform: none; }
+}
+
+/* 3 cam kết: số lớn kiểu chữ có chân + chú thích nhỏ */
+.market-trust-badges{
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #DADAD7;
+    border-bottom: 1px solid #DADAD7;
+}
+.trust-badge-item{
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 30px 32px;
+    border-left: 1px solid #DADAD7;
+}
+.trust-badge-item:first-child{
+    padding-left: 0;
+    border-left: 0;
+}
+.trust-badge-item strong{
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1;
+    color: #202020;
+    white-space: nowrap;
+    font-variant-numeric: lining-nums;
+}
+.trust-badge-item b{
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #202020;
 }
 .trust-badge-item p{
-    font-size: 11.5px;
-    color: rgba(255, 255, 255, .6);
     margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #686868;
 }
 
 /* ----- Bố cục Lọc + Sản phẩm ----- */
+/* bấm "Xem các món đang có": dừng dưới header dính, không bị che */
+#marketList{
+    scroll-margin-top: 140px;
+}
 .market-layout{
     display: flex;
     gap: 32px;
@@ -305,8 +405,11 @@
 /* Responsive */
 @media (max-width: 1024px){
     .market-header{
-        min-height: 520px;
-        padding: 48px 40px 168px;
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+    .market-visual{
+        padding-left: 40px;
     }
     .market-layout{
         flex-direction: column;
@@ -321,27 +424,49 @@
 }
 @media (max-width: 768px){
     .market-header{
-        min-height: 650px;
-        padding: 38px 20px 284px;
-        background-position: 62% center;
+        margin-top: 8px;
     }
     .market-header .headline-page{
-        font-size: 50px;
+        font-size: 52px;
     }
     .market-header .lead{
         font-size: 15px;
-        line-height: 25px;
+    }
+    .market-visual{
+        padding: 0 0 40px 24px;
+    }
+    .market-room{
+        height: 300px;
+    }
+    .market-piece{
+        width: 46%;
+        padding: 10px 10px 12px;
+    }
+    .market-piece figcaption{
+        font-size: 16px;
+    }
+    .market-seal{
+        top: -30px;
+        right: -6px;
+        width: 92px;
+        height: 92px;
     }
     .market-trust-badges{
         grid-template-columns: 1fr;
     }
-    .trust-badge-item{
-        min-height: 78px;
-        padding: 14px 24px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, .13);
+    .trust-badge-item,
+    .trust-badge-item:first-child{
+        padding: 20px 0;
+        border-left: 0;
+        border-top: 1px solid #DADAD7;
     }
-    .trust-badge-item:last-child{border-bottom:0}
+    .trust-badge-item:first-child{
+        border-top: 0;
+    }
+    .trust-badge-item strong{
+        min-width: 110px;
+        font-size: 34px;
+    }
     .market-toolbar{
         flex-direction: column;
         align-items: flex-start;
@@ -359,5 +484,11 @@
     }
     .market-steps{
         grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .market-copy, .market-visual, .market-seal{
+        animation: none;
     }
 }

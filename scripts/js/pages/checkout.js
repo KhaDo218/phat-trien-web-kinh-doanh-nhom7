@@ -119,7 +119,7 @@ function showShippingMethods(){
             daChon = true;
         }
         var phi = !tinh ? "—" : (op.available ? (op.fee == 0 ? "Miễn phí" : formatVND(op.fee)) : "Không áp dụng");
-        var moTa = op.available ? "Dự kiến giao " + getDeliveryRange(op.method) + " · " + op.method.description : op.reason;
+        var moTa = op.available ? "Dự kiến giao " + getDeliveryRange(op.method) + ". " + op.method.description : op.reason;
         html += "<label class='option" + (op.available ? "" : " option-disabled") + "'>";
         html += "  <input type='radio' name='rdoShipping' value='" + op.method.id + "'" + check + (op.available ? "" : " disabled") + " onclick='updateSummary()'>";
         html += "  <span class='option-info'>" + safeText(op.method.name) + "<small>" + safeText(moTa) + "</small></span>";

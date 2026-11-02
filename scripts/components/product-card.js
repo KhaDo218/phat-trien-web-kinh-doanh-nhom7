@@ -1,7 +1,7 @@
 /* =====================================================================
    ROOMCRAFT - product-card.js (Thẻ sản phẩm dùng chung)
    Người phụ trách: Nguyên Khôi (dùng ở: products, wishlist, marketplace, room-detail, product-detail)
-   Mẫu thẻ theo mockup: ảnh nền #EEEEEC + nút tim góc phải, dòng "THƯƠNG HIỆU • DANH MỤC",
+   Mẫu thẻ theo mockup: ảnh nền #EEEEEC + nút tim góc phải, dòng "THƯƠNG HIỆU / DANH MỤC",
    tên (font Garamond, class title-product), giá + giá gốc gạch ngang (price, price-old),
    nhãn "Còn hàng" (badge badge-stock), nút "Xem chi tiết" (btn btn-full).
    Ảnh: asset(product.images[0]); giá: formatVND(product.price)
@@ -71,10 +71,10 @@ function createProductCard(product){
     var body = document.createElement("div");
     body.className = "product-card-body";
 
-    // Overline: THƯƠNG HIỆU • DANH MỤC
+    // Overline: THƯƠNG HIỆU / DANH MỤC
     var overline = document.createElement("p");
     overline.className = "overline";
-    overline.textContent = brandName.toUpperCase() + " • " + catName.toUpperCase();
+    overline.textContent = brandName.toUpperCase() + " / " + catName.toUpperCase();
     body.appendChild(overline);
 
     // Tên sản phẩm
@@ -92,7 +92,7 @@ function createProductCard(product){
         usedMeta.className = "product-used-meta";
         var timeText = product.usage_time ? "Đã dùng " + product.usage_time : "Đã qua sử dụng";
         if(product.stock_quantity > 0)
-            timeText += " · Duy nhất 1 món";
+            timeText += ", duy nhất 1 món";
         usedMeta.innerHTML = "<span class='material-symbols-outlined' style='font-size:14px;vertical-align:-2px;'>history</span> " + timeText;
         body.appendChild(usedMeta);
     }

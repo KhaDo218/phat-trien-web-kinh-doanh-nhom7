@@ -10,135 +10,229 @@
     padding: 48px;
 }
 
-/* Trang đăng nhập: bố cục editorial hai mảng */
-.login-page{
+/* ===== Trang đăng nhập: ảnh căn phòng tràn màn hình + khung kính mờ (glassmorphism) =====
+   - main.login-page tràn hết chiều ngang, ::before là ảnh nền (zoom chậm), ::after là lớp tối
+   - .auth-box là tấm kính: nền trắng trong suốt + backdrop-filter làm nhòe ảnh phía sau */
+main.login-page{
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(430px, .8fr);
-    align-items: stretch;
-    gap: 0;
-    max-width: 1560px;
-    min-height: 760px;
-    padding-top: 48px;
-    padding-bottom: 80px;
+    grid-template-columns: minmax(0, 1fr) minmax(440px, 560px);
+    align-items: center;
+    gap: 72px;
+    max-width: none;
+    min-height: calc(100vh - 115px);
+    min-height: calc(100svh - 115px);
+    padding: 56px max(64px, calc((100vw - 1360px) / 2));
+    overflow: hidden;           /* không cho ảnh nền zoom làm tràn ngang trang */
+    color: #FFFFFF;
 }
-.login-page::before{
+main.login-page::before{
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background:
-        radial-gradient(circle at 88% 18%, rgba(197, 167, 118, .22), transparent 27%),
-        linear-gradient(125deg, #E7DFD3 0%, #F4F0E9 52%, #DED5C7 100%);
+    border: 0;
+    background: url("../../../assets/rooms/traditional/room-traditional-4240421-01.jpg") center 40% / cover no-repeat;
+    transform: none;
+    animation: login-kenburns 24s ease-in-out infinite alternate;
 }
-.login-page::after{
+main.login-page::after{
     content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(12, 12, 11, .78) 0%, rgba(12, 12, 11, .45) 48%, rgba(12, 12, 11, .3) 100%),
+        linear-gradient(to top, rgba(12, 12, 11, .55) 0%, transparent 45%);
 }
+@keyframes login-kenburns{
+    from{ transform: scale(1.12) translate(-1.5%, 0); }
+    to{ transform: scale(1) translate(0, 0); }
+}
+
+/* Chữ bên trái */
 .login-showcase{
     position: relative;
-    min-height: 680px;
-    padding: 42px 46px;
-    overflow: hidden;
-    background:
-        linear-gradient(to top, rgba(15, 15, 13, .88) 0%, rgba(15, 15, 13, .18) 62%, rgba(15, 15, 13, .1) 100%),
-        url("../../../assets/rooms/traditional/room-traditional-4240421-01.jpg") center / cover no-repeat;
-    color: #FFFFFF;
-    box-shadow: 0 32px 70px rgba(39, 32, 23, .22);
-}
-.login-showcase::before{
-    content: "";
-    position: absolute;
-    top: 10%;
-    right: -120px;
-    width: 360px;
-    height: 360px;
-    border: 1px solid rgba(255, 255, 255, .24);
-    border-radius: 50%;
-    box-shadow: 0 0 0 54px rgba(255, 255, 255, .035), 0 0 0 108px rgba(255, 255, 255, .02);
-    animation: login-orbit 12s ease-in-out infinite alternate;
-}
-.login-showcase::after{
-    content: "";
-    position: absolute;
-    inset: 18px;
-    border: 1px solid rgba(255, 255, 255, .18);
-    pointer-events: none;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 48px;
+    animation: login-rise .9s ease both;
 }
 .login-showcase-top{
-    position: relative;
-    z-index: 2;
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    color: rgba(255, 255, 255, .75);
-    font-size: 10px;
+    gap: 32px;
+    color: rgba(255, 255, 255, .6);
+    font-size: 10.5px;
     font-weight: 500;
-    letter-spacing: .14em;
+    letter-spacing: .2em;
     text-transform: uppercase;
 }
-.login-showcase-copy{
-    position: absolute;
-    z-index: 2;
-    right: 56px;
-    bottom: 104px;
-    left: 56px;
-    max-width: 680px;
+.login-showcase-top span + span::before{
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    margin-right: 32px;
+    vertical-align: middle;
+    background: rgba(255, 255, 255, .4);
 }
 .login-showcase-copy .overline{
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     color: #D9BE8B;
-    font-weight: 600;
+    font-weight: 500;
+    letter-spacing: .22em;
 }
 .login-showcase-copy h2{
-    max-width: 620px;
-    margin-bottom: 20px;
+    max-width: 640px;
+    margin-bottom: 28px;
     font-family: var(--font-display);
-    font-size: clamp(48px, 4vw, 72px);
+    font-size: clamp(48px, 4.6vw, 74px);
     font-weight: 400;
     line-height: .98;
     letter-spacing: -.025em;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, .3);
 }
 .login-showcase-copy > p:last-child{
-    max-width: 590px;
-    color: rgba(255, 255, 255, .76);
-    line-height: 26px;
+    max-width: 480px;
+    color: rgba(255, 255, 255, .78);
+    font-size: 16px;
+    line-height: 1.75;
 }
-.login-page .auth-box{
-    align-self: center;
-    width: calc(100% + 28px);
-    max-width: 540px;
-    margin: 0 0 0 -28px;
-    padding: 58px 62px;
-    border: 0;
-    background: rgba(255, 255, 255, .96);
-    box-shadow: 0 32px 72px rgba(39, 32, 23, .18);
-    backdrop-filter: blur(18px);
+
+/* Tấm kính đăng nhập */
+main.login-page .auth-box{
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 64px 60px 52px;
+    overflow: hidden;
+    color: #FFFFFF;
+    /* kính khói tối: vẫn thấy ảnh nhòe phía sau nhưng tông màu tách hẳn khỏi ảnh */
+    background: linear-gradient(160deg, rgba(24, 23, 21, .82) 0%, rgba(14, 14, 13, .74) 100%);
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-top: 2px solid #C6AE87;
+    border-radius: 2px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, .55);
+    -webkit-backdrop-filter: blur(26px) saturate(120%);
+    backdrop-filter: blur(26px) saturate(120%);
+    animation: login-rise .9s .15s ease both;
 }
-.login-page .auth-box .overline{
-    color: #9A7440;
-    font-weight: 600;
+/* vệt sáng lướt qua mặt kính một lần khi mở trang */
+main.login-page .auth-box::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, .22) 50%, transparent 100%);
+    transform: skewX(-12deg);
+    animation: login-sheen 1.6s .9s ease both;
+    pointer-events: none;
 }
-.login-page .auth-box h1{
-    font-size: 48px;
+@keyframes login-sheen{
+    from{ left: -60%; }
+    to{ left: 130%; }
+}
+@keyframes login-rise{
+    from{ opacity: 0; transform: translateY(24px); }
+    to{ opacity: 1; transform: none; }
+}
+main.login-page .auth-box .overline{
+    color: #D9BE8B;
+    font-weight: 500;
+    letter-spacing: .2em;
+}
+main.login-page .auth-box h1{
+    margin-bottom: 40px;
+    font-size: 60px;
     line-height: 1;
 }
-.login-page .input{
-    height: 54px;
-    border-color: #D5CEC3;
-    background: #F8F5EF;
-    transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+main.login-page .form-group label{
+    color: rgba(255, 255, 255, .8);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
-.login-page .input:focus{
-    border-color: #9A7440;
-    background: #FFFFFF;
-    box-shadow: 0 0 0 3px rgba(154, 116, 64, .1);
+/* ô nhập trong suốt trên kính */
+main.login-page .input{
+    height: 56px;
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .22);
+    transition: border-color .3s ease, background-color .3s ease;
 }
-.login-page .btn-full{
-    height: 54px;
+main.login-page .input::placeholder{
+    color: rgba(255, 255, 255, .5);
+}
+main.login-page .input:hover{
+    border-color: rgba(255, 255, 255, .5);
+}
+main.login-page .input:focus{
+    background: rgba(255, 255, 255, .1);
+    border-color: #C6AE87;
+}
+/* Chrome tự điền email/mật khẩu: giữ tông tối thay vì nền xanh nhạt */
+main.login-page .input:-webkit-autofill{
+    -webkit-text-fill-color: #FFFFFF;
+    -webkit-box-shadow: 0 0 0 100px #23221F inset;
+    caret-color: #FFFFFF;
+    transition: background-color 9999s;
+}
+main.login-page .auth-row{
+    color: rgba(255, 255, 255, .8);
+}
+main.login-page .auth-row a,
+main.login-page .auth-note a{
+    color: #FFFFFF;
+}
+main.login-page .auth-row input{
+    accent-color: #D9BE8B;
+}
+main.login-page .error-text{
+    color: #F4B4A6;
+}
+main.login-page .btn-full{
+    height: 58px;
     margin-top: 8px;
-    transition: transform .25s ease, background-color .25s ease;
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #202020;
+    letter-spacing: .16em;
+    transition: background-color .35s ease, border-color .35s ease;
 }
-.login-page .btn-full:hover{
-    transform: translateY(-2px);
+main.login-page .btn-full:hover{
+    background: #D9BE8B;
+    border-color: #D9BE8B;
 }
-@keyframes login-orbit{
-    to{ transform: translate(-24px, 18px) rotate(12deg); }
+/* "hoặc" giữa hai đường kẻ (không dùng nền trắng che đường kẻ như trang khác) */
+main.login-page .auth-or{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 28px 0;
+    border: 0;
+}
+main.login-page .auth-or::before,
+main.login-page .auth-or::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, .25);
+}
+main.login-page .auth-or span{
+    position: static;
+    padding: 0;
+    background: none;
+    color: rgba(255, 255, 255, .6);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+main.login-page .auth-note{
+    color: rgba(255, 255, 255, .7);
 }
 
 /* Đăng ký / quên mật khẩu: ảnh chỉ làm nền, không tạo ô giả nút. */
@@ -223,40 +317,28 @@
 }
 
 @media (max-width: 1024px){
-    .login-page{
+    main.login-page{
         grid-template-columns: 1fr;
-        padding-top: 28px;
+        gap: 40px;
+        padding: 56px 40px 72px;
     }
     .login-showcase{
-        min-height: 430px;
-    }
-    .login-showcase-copy{
-        bottom: 74px;
+        gap: 28px;
     }
     .login-showcase-copy h2{
-        font-size: clamp(40px, 7vw, 58px);
+        font-size: clamp(42px, 7vw, 60px);
     }
-    .login-page .auth-box{
-        width: calc(100% - 48px);
-        max-width: 620px;
-        margin: -38px auto 0;
-        padding: 48px;
+    main.login-page .auth-box{
+        max-width: 560px;
     }
 }
 
 @media (max-width: 600px){
-    .login-page{
-        padding-right: 20px;
-        padding-left: 20px;
+    main.login-page{
+        padding: 36px 20px 56px;
     }
-    .login-showcase{
-        min-height: 390px;
-        padding: 28px;
-    }
-    .login-showcase-copy{
-        right: 34px;
-        bottom: 66px;
-        left: 34px;
+    .login-showcase-top{
+        display: none;
     }
     .login-showcase-copy h2{
         font-size: 38px;
@@ -264,15 +346,19 @@
     .login-showcase-copy > p:last-child{
         display: none;
     }
-    .login-page .auth-box{
-        width: calc(100% - 24px);
-        margin-top: -26px;
-        padding: 38px 24px;
+    main.login-page .auth-box{
+        padding: 40px 24px 32px;
+    }
+    main.login-page .auth-box h1{
+        font-size: 40px;
     }
 }
 
 @media (prefers-reduced-motion: reduce){
-    .login-showcase::before{
+    main.login-page::before,
+    .login-showcase,
+    main.login-page .auth-box,
+    main.login-page .auth-box::before{
         animation: none;
     }
 }

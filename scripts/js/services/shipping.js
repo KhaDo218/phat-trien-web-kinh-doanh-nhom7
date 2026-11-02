@@ -184,7 +184,7 @@ function getPaymentPlanText(order){
     return "";
 }
 
-// Dòng tóm tắt tiền của đơn: "Đã trả 16.700.000 ₫ · Còn thu 38.750.000 ₫"
+// Dòng tóm tắt tiền của đơn: "Đã trả 16.700.000 ₫, còn thu 38.750.000 ₫"
 function getPaymentStatusText(order){
     if(order.status == "Cancelled"){
         if(Number(order.refund_amount) > 0) return "Hoàn tiền " + formatVND(order.refund_amount);
@@ -193,7 +193,7 @@ function getPaymentStatusText(order){
     if(order.paid_amount == null) return "";
     if(Number(order.amount_due) <= 0) return "Đã thu đủ " + formatVND(order.total_amount);
     if(Number(order.paid_amount) <= 0) return "Thu " + formatVND(order.amount_due) + " khi giao";
-    return "Đã trả " + formatVND(order.paid_amount) + " · Còn thu " + formatVND(order.amount_due);
+    return "Đã trả " + formatVND(order.paid_amount) + ", còn thu " + formatVND(order.amount_due);
 }
 
 // Kiểm tra số thẻ bằng thuật toán Luhn (thẻ thật luôn thỏa điều kiện này)

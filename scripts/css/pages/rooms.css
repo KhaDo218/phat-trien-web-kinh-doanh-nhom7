@@ -6,89 +6,173 @@
    thẻ phòng nằm trong css/components/room.css; file này chỉ viết phần riêng của trang.
    ===================================================================== */
 
+/* ----- Banner: tiêu đề trên nền sáng + dải lát ảnh 7 phong cách ----- */
 .rooms-heading{
-    position:relative;
-    display:flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 24px;
-    width:100vw;
-    max-width:none;
-    min-height:460px;
-    margin:4px calc(50% - 50vw) 28px;
-    padding:58px max(56px,calc((100vw - 1640px) / 2 + 70px));
-    overflow:hidden;
-    background:
-        linear-gradient(90deg,rgba(18,19,16,.9) 0%,rgba(18,19,16,.72) 42%,rgba(18,19,16,.12) 75%),
-        url("../../../assets/rooms/traditional/room-traditional-4257341-01.jpg") center 62% / cover no-repeat;
-    color:#fff;
-    box-shadow:0 30px 80px rgba(28,25,20,.2);
+    margin: 24px 0 48px;
 }
-.rooms-heading::before{
-    content:"";
-    position:absolute;
-    inset:20px;
-    border:1px solid rgba(232,211,171,.28);
-    pointer-events:none;
-}
-.rooms-heading::after{
-    content:"CURATED ROOMS / 2026";
-    position:absolute;
-    top:50%;
-    right:30px;
-    color:rgba(255,255,255,.72);
-    font-size:10px;
-    font-weight:600;
-    letter-spacing:.22em;
-    writing-mode:vertical-rl;
-    transform:translateY(-50%);
-}
-.rooms-heading > div{
-    position:relative;
-    z-index:1;
-    max-width:680px;
+.rooms-heading-top{
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    align-items: end;
+    gap: 64px;
+    margin-bottom: 44px;
+    animation: roomsIn .9s ease both;
 }
 .rooms-heading .overline{
-    margin-bottom:16px;
-    color:#d8bb80;
-    font-weight:600;
-    letter-spacing:.18em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+    color: #9A7440;
+    font-weight: 500;
+    letter-spacing: .2em;
+}
+.rooms-heading .overline::before{
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: #9A7440;
 }
 .rooms-heading .headline-page{
-    color:#fff;
-    font-size:clamp(64px,6vw,96px);
-    line-height:.92;
-    letter-spacing:-.035em;
+    color: #202020;
+    font-size: clamp(56px, 6vw, 96px);
+    line-height: 1;
+    letter-spacing: -.025em;
+}
+.rooms-heading-side{
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
 }
 .rooms-heading .lead{
-    max-width:560px;
-    margin-top:26px;
-    padding-left:22px;
-    border-left:1px solid rgba(216,187,128,.72);
-    color:rgba(255,255,255,.76);
-    font-size:16px;
-    line-height:28px;
+    flex: 1;
+    margin: 0;
+    color: #686868;
+    font-size: 15px;
+    line-height: 1.75;
 }
 .rooms-count{
-    position:relative;
-    z-index:1;
     flex-shrink: 0;
-    min-width:125px;
-    padding:18px 0 0;
-    border-top:1px solid rgba(255,255,255,.46);
-    color:rgba(255,255,255,.7);
-    font-size:12px;
-    letter-spacing:.1em;
-    text-transform:uppercase;
+    min-width: 110px;
+    padding-left: 28px;
+    border-left: 1px solid #DADAD7;
+    color: #686868;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
 }
 .rooms-count b{
-    display:block;
-    margin-bottom:4px;
-    color:#fff;
-    font-family:var(--font-display);
-    font-size:46px;
-    font-weight:500;
-    line-height:1;
+    display: block;
+    margin-bottom: 6px;
+    color: #202020;
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+/* Dải lát ảnh: lát được rê chuột / đang lọc mở rộng ra, ảnh hiện đủ màu và tên phong cách */
+.rooms-slices{
+    display: flex;
+    gap: 6px;
+    height: clamp(320px, 34vw, 460px);
+    animation: roomsIn .9s .15s ease both;
+}
+.rooms-slice{
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    background-color: #EEEEEC;
+    background-position: center;
+    background-size: cover;
+    color: #FFFFFF;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    filter: saturate(.55) brightness(.92);
+    transition: flex .8s cubic-bezier(.22, .61, .36, 1), filter .6s ease;
+}
+/* lớp tối ở đáy để chữ trắng dễ đọc */
+.rooms-slice::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 15, 13, .7) 0%, rgba(15, 15, 13, .05) 55%, rgba(15, 15, 13, .15) 100%);
+    pointer-events: none;
+}
+.rooms-slice:hover, .rooms-slice:focus-visible, .rooms-slice.active{
+    flex: 3.4;
+    filter: none;
+    outline: none;
+}
+.rooms-slice > span{
+    position: absolute;
+    z-index: 1;
+}
+.rooms-slice-no{
+    top: 18px;
+    left: 18px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(255, 255, 255, .85);
+}
+/* tên dọc khi lát đang hẹp */
+.rooms-slice-vname{
+    bottom: 22px;
+    left: 50%;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: translateX(-50%) rotate(180deg);
+    transition: opacity .4s ease;
+}
+/* tên ngang + số phòng khi lát mở rộng */
+.rooms-slice-info{
+    right: 24px;
+    bottom: 22px;
+    left: 24px;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .8);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .4s ease, transform .5s ease;
+}
+.rooms-slice-info b{
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #FFFFFF;
+}
+.rooms-slice:hover .rooms-slice-vname,
+.rooms-slice:focus-visible .rooms-slice-vname,
+.rooms-slice.active .rooms-slice-vname{
+    opacity: 0;
+}
+.rooms-slice:hover .rooms-slice-info,
+.rooms-slice:focus-visible .rooms-slice-info,
+.rooms-slice.active .rooms-slice-info{
+    opacity: 1;
+    transform: none;
+    transition-delay: .2s;
+}
+@keyframes roomsIn{
+    from{ opacity: 0; transform: translateY(20px); }
+    to{ opacity: 1; transform: none; }
 }
 
 .rooms-filter{
@@ -173,36 +257,20 @@
 }
 
 @media (max-width: 1024px){
-    .rooms-heading{min-height:460px;padding:48px 40px}
-    .rooms-heading .headline-page{font-size:72px}
+    .rooms-heading-top{grid-template-columns:1fr;gap:28px}
     .rooms-grid.grid-3{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 @media (max-width: 768px){
-    .rooms-heading{
-        display:flex;
-        min-height:560px;
-        padding:42px 32px;
-        background-position:62% center;
-        flex-direction:column;
-        align-items:flex-start;
-        justify-content:flex-end;
-    }
-    .rooms-heading::before{inset:12px}
-    .rooms-heading::after{right:20px}
-    .rooms-heading .headline-page{font-size:54px}
-    .rooms-heading .lead{margin-top:18px;font-size:14px;line-height:23px}
-    .rooms-count{
-        min-width:100px;
-        margin-top:16px;
-        padding-top:10px;
-    }
-    .rooms-count b{
-        display:inline;
-        margin-right:6px;
-        font-size:30px;
-    }
+    .rooms-heading .headline-page{font-size:52px}
+    .rooms-heading-side{flex-direction:column;align-items:flex-start;gap:20px}
+    .rooms-count{padding-left:0;border-left:0}
+    .rooms-count b{display:inline;margin-right:8px;font-size:34px}
+    .rooms-slices{height:300px;gap:4px}
+    .rooms-slice:hover, .rooms-slice.active{flex:4}
+    .rooms-slice-vname{font-size:9.5px;letter-spacing:.14em}
+    .rooms-slice-info b{font-size:24px}
     .rooms-filter{
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -228,4 +296,8 @@
     .rooms-grid.grid-3{
         grid-template-columns: 1fr;
     }
+}
+@media (prefers-reduced-motion: reduce){
+    .rooms-heading-top, .rooms-slices{animation:none}
+    .rooms-slice, .rooms-slice-info, .rooms-slice-vname{transition:none}
 }
