@@ -473,7 +473,7 @@ function showMoreOther(){
 }
 
 // Gợi ý theo quy tắc (UC3.5): cùng phong cách, còn hàng, chưa có trong phòng,
-// ưu tiên danh mục mà phòng chưa có món nào; mỗi danh mục 1 món, tối đa 4 món.
+// ưu tiên danh mục phòng chưa có; bổ sung món cùng danh mục nếu còn chỗ, tối đa 4 món.
 function showSuggestions(){
     var style = getStyleOfRoom(room);
     var trongPhong = room.product_ids || [];
@@ -500,7 +500,7 @@ function showSuggestions(){
 
     var chon = [];
     var danhMucDaChon = [];
-    // lượt 1: danh mục phòng chưa có; lượt 2: danh mục bất kỳ (khác các món đã chọn)
+    // Ưu tiên danh mục phòng chưa có, sau đó danh mục mới, cuối cùng bổ sung cùng danh mục.
     for(var luot = 1; luot <= 2; luot++){
         for(var i = 0; i < ungVien.length && chon.length < 4; i++){
             var sp = ungVien[i];
@@ -512,10 +512,17 @@ function showSuggestions(){
             danhMucDaChon.push(sp.category_id);
         }
     }
+    for(var i = 0; i < ungVien.length && chon.length < 4; i++){
+        if(chon.indexOf(ungVien[i]) < 0)
+            chon.push(ungVien[i]);
+    }
+
+    var suggestSection = document.getElementById("suggestSection");
     if(chon.length == 0){
-        document.getElementById("suggestSection").className = "rd-section hidden";
+        suggestSection.className = "rd-section hidden";
         return;
     }
+    suggestSection.className = "rd-section";
     document.getElementById("suggestNote").innerHTML = "Những món cùng phong cách " + roomEscape(style.name)
         + " thuộc nhóm mà căn phòng chưa có, giúp không gian đầy đủ và hài hòa hơn.";
     var list = document.getElementById("suggestProducts");

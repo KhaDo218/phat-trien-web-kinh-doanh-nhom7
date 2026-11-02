@@ -60,6 +60,17 @@
 .badge-3d{
     background: #202020;
     color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    padding: 4px 7px;
+    font-size: 10px;
+    line-height: 1.2;
+}
+.badge-3d .material-symbols-outlined{
+    font-size: 13px;
+    line-height: 1;
 }
 .btn-wishlist{
     position: absolute;
@@ -166,4 +177,50 @@
 .product-card .product-card-img > a > img{
     object-fit: contain;
     padding: 10px;
+}
+
+/* ----- Số sao đánh giá trên thẻ (Bảo Duy) -----
+   5 ngôi sao xám, lớp sao màu vàng phủ lên theo % điểm: --rating 4.5 -> phủ 90% */
+.product-card-rating{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 18px;
+    margin: -2px 0 10px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #686868;
+}
+.product-card-rating .stars{
+    position: relative;
+    display: inline-block;
+    color: #DADAD7;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 1;
+    white-space: nowrap;
+}
+.product-card-rating .stars::before{
+    content: "★★★★★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(var(--rating) / 5 * 100%);
+    overflow: hidden;
+    color: #B8862F;
+}
+.product-card-rating .rating-text b{
+    color: #202020;
+    font-weight: 600;
+}
+.product-card-rating.no-rating{
+    opacity: 0.75;
+}
+.product-card-rating .sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }

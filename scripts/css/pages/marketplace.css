@@ -411,13 +411,6 @@
     .market-visual{
         padding-left: 40px;
     }
-    .market-layout{
-        flex-direction: column;
-    }
-    .market-sidebar{
-        width: 100%;
-        position: static;
-    }
     .market-steps{
         grid-template-columns: repeat(2, 1fr);
     }

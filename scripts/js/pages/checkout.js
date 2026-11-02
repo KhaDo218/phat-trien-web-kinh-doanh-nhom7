@@ -10,7 +10,7 @@
 var appliedCoupon = null;       // mã giảm giá đang áp dụng (null = chưa có)
 
 // Gọi sau khi loadData() nạp xong dữ liệu
-function initPage(){
+async function initPage(){
     if(requireLogin() == false)
         return;
     renderHeader("");
@@ -29,10 +29,18 @@ function initPage(){
         return;
     }
 
+    try {
+        await loadWardsData();
+    } catch(error) {
+        console.error("Không thể tải danh sách Phường/Xã:", error);
+        alert("Không tải được danh sách Phường/Xã. Vui lòng tải lại trang và thử lại.");
+        return;
+    }
+
     fillUserInfo();
     renderHouseTypes();
     showSummaryItems();
-    onAddressChange();
+    onAddressChange(true);
 }
 
 // Điền sẵn thông tin người đang đăng nhập (địa chỉ đã lưu ở lần mua trước / trang Tài khoản)
@@ -50,7 +58,7 @@ function fillUserInfo(){
     document.getElementById("txtPhone").value = user.phone || "";
     document.getElementById("txtEmail").value = user.email || "";
     document.getElementById("cboProvince").innerHTML = getProvinceOptions(tinh);
-    document.getElementById("txtWard").value = user.default_ward || "";
+    renderWardOptions(document.getElementById("txtWard"), tinh, user.default_ward || "");
     document.getElementById("txtStreet").value = user.default_street || "";
 }
 
@@ -86,7 +94,10 @@ function showHouseHint(){
 }
 
 // Đổi Tỉnh/Thành -> tính lại phí giao, tổng tiền, hình thức thanh toán
-function onAddressChange(){
+function onAddressChange(preserveWard){
+    var wardSelect = document.getElementById("txtWard");
+    var selectedWard = preserveWard ? wardSelect.value : "";
+    renderWardOptions(wardSelect, document.getElementById("cboProvince").value, selectedWard);
     var coDoLon = hasBulkyItem(getCart());
     document.getElementById("reqHouseType").className = coDoLon ? "req" : "req hidden";
     showHouseHint();

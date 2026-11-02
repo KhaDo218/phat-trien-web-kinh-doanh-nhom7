@@ -13,6 +13,10 @@
 .filter-sidebar{
     width: 280px;
     flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 .filter-panel{
     padding: 24px;
@@ -54,7 +58,10 @@
     margin-bottom: 24px;
 }
 .filter-group-last{
-    margin-bottom: 0;
+    margin-bottom: 20px;
+}
+.filter-apply-button{
+    margin-top: 4px;
 }
 .filter-group-title{
     font-size: 11px;
@@ -303,6 +310,10 @@
     }
     .filter-panel.open{
         display: block;
+    }
+    .filter-apply-button{
+        position: sticky;
+        bottom: 0;
     }
 }
 @media (max-width: 600px){

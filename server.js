@@ -33,7 +33,14 @@ function loadEnv() {
 loadEnv();
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
+// API key của DeepSeek (OpenAI-compatible); đặt trong file .env
+const GEMINI_API_KEY = process.env.DEEPSEEK_API_KEY || '';
+const DEEPSEEK_BASE_URL = (process.env.DEEPSEEK_BASE_URL || 'https://api-cdn.deploy.com/api/v1').replace(/\/+$/, '');
+const DEEPSEEK_MODEL = process.env.DEEPSEEK_MODEL || 'deepseek-ai/deepseek-v4.1-flash-1017';
+// Agent tái sử dụng kết nối TCP/ TLS (keepAlive): các câu hỏi sau không phải bắt tay lại
+const httpsAgent = new https.Agent({ keepAlive: true, maxSockets: 4 });
+// Chỉ số biến thể reasoning đang dùng (0 = tắt suy nghĩ; tăng nếu API chặn 400)
+let reasoningIndex = 0;
 
 // Rate Limiting: 30 requests / 60 seconds / IP
 const rateLimits = new Map();
@@ -197,7 +204,7 @@ function extractBudget(query) {
 }
 
 function searchProducts(query, maxItems = 5) {
-    const qNorm = normalizeVi(query);
+    let qNorm = normalizeVi(query);
     const tokens = qNorm.split(/\s+/).filter(t => !STOPWORDS.has(t) && t.length >= 2);
     const budget = extractBudget(query);
     const isAskingUsed = ['do cu', 'cu', 'secondhand', 'used', 'marketplace'].some(k => qNorm.includes(k));
@@ -214,7 +221,7 @@ function searchProducts(query, maxItems = 5) {
         }
     }
 
-    const scored = [];
+    let scored = [];
     for (const p of PRODUCTS) {
         if (p.is_active === false) continue;
         const price = p.price || 0;
@@ -313,21 +320,82 @@ function formatVnd(val) {
     }
 }
 
+// Phí giao từ shipping_methods.json (nạp 1 lần, dùng cho bộ chặn bịa số liệu)
+const SHIPPING_FEES = [];
+(function loadShippingFees() {
+    try {
+        const shipFile = path.join(__dirname, 'data', 'json', 'shipping_methods.json');
+        if (fs.existsSync(shipFile)) {
+            const methods = JSON.parse(fs.readFileSync(shipFile, 'utf8'));
+            for (const m of methods) {
+                for (const k of ['fee_city', 'fee_province', 'fee_near', 'fee_far']) {
+                    if (m[k]) SHIPPING_FEES.push(Number(m[k]));
+                }
+            }
+        }
+    } catch (e) {
+        console.error('Lỗi đọc shipping_methods.json:', e);
+    }
+})();
+
+// Chặn AI bịa số liệu: mọi số tiền trong reply phải nằm trong dữ liệu thật
+function sanitizeReply(reply, relevantProducts) {
+    if (!reply) return reply;
+
+    // Dữ liệu thật = TẤT CẢ 971 sản phẩm trong kho (không chỉ candidates),
+    // để AI có thể gợi ý món thay thế mà không bị bộ chặn cắt nhầm
+    const dung = new Set();
+    for (const p of (PRODUCTS || [])) {
+        dung.add(Math.round(Number(p.price)));
+        if (p.original_price) dung.add(Math.round(Number(p.original_price)));
+    }
+    for (const phi of SHIPPING_FEES) dung.add(phi);
+
+    // Tách cụm tiền: "3.250.000 ₫", "5 triệu", "800k", "2tr"...
+    // Chỉ xét số có đơn vị tiền (tránh bắt nhầm năm 2026, kích thước 1200 mm...)
+    const cacTien = reply.match(/(\d[\d.,]*)\s*(₫|đ|vnd|VND|triệu|tr\b|k\b)/g) || [];
+    for (const cum of cacTien) {
+        const m = cum.match(/(\d[\d.,]*)\s*(₫|đ|vnd|VND|triệu|tr\b|k\b)/);
+        if (!m) continue;
+        const chuoiSo = m[1].replace(/[.,]/g, '');
+        if (!/^\d+$/.test(chuoiSo)) continue;
+        let giaTri = Number(chuoiSo);
+        if (m[2] === 'triệu' || m[2] === 'tr') giaTri *= 1000000;
+        else if (m[2] === 'k') giaTri *= 1000;
+        // Bỏ qua số nhỏ < 1000 (số lượng, %, số thứ tự)
+        if (giaTri < 1000) continue;
+        // Số làm tròn lớn (bội của 100.000, vd 2.000.000 / 5.000.000) là ngân sách khách/AI
+        // có thể nói — không phải giá bịa, nên cho qua để AI tư vấn thay thế được
+        if (giaTri % 100000 === 0) continue;
+        if (!dung.has(giaTri)) {
+            return 'Mình vừa nhận câu trả lời từ trợ lý AI nhưng chưa khớp số liệu trong kho, '
+                 + 'nên dùng câu trả lời chuẩn của RoomCraft. Bạn hỏi cụ thể loại đồ '
+                 + '(vd: "sofa dưới 10 triệu") để mình tra dữ liệu thật nhé!';
+        }
+    }
+
+    // Link sản phẩm phải tồn tại (trên toàn kho)
+    const cacMa = reply.match(/product-detail\.html\?id=([a-z0-9-]+)/g) || [];
+    const idsHopLe = new Set((PRODUCTS || []).map(p => String(p.id)));
+    for (const cum of cacMa) {
+        const ma = cum.split('id=')[1];
+        if (!idsHopLe.has(ma)) {
+            return 'Câu trả lời AI có liên kết sản phẩm không có trong kho, mình dùng dữ liệu thật thay thế. '
+                 + 'Bạn hỏi cụ thể loại đồ để mình tra nhé!';
+        }
+    }
+    return reply;
+}
+
 function formatProductContext(products) {
     if (!products || !products.length) return 'Không tìm thấy sản phẩm nào trong kho đáp ứng trực tiếp yêu cầu này.';
+    // 1 dòng mỗi sản phẩm (tiết kiệm token, AI nhanh hơn nhiều so với bản 13 dòng)
     return products.map(p => {
         const cat = CATEGORIES[p.category_id] || 'Nội thất';
         const styles = (p.style_ids || [p.style_id]).map(id => STYLES[id]).filter(Boolean).join(', ') || 'Hiện đại';
         const isUsed = p.product_type === 'USED';
         const stock = p.stock_quantity > 0 ? 'Còn hàng' : (isUsed ? 'Đã bán' : 'Hết hàng');
-        return `- Mã: ${p.id}
-  Tên: ${p.name}
-  Giá: ${formatVnd(p.price)}${p.original_price ? ' (Giá gốc: ' + formatVnd(p.original_price) + ')' : ''}
-  Danh mục: ${cat} | Phong cách: ${styles}
-  Chất liệu: ${p.material || 'Gỗ'} | Màu: ${p.color || 'Tiêu chuẩn'} | Kích thước: ${p.dimensions || 'Theo tiêu chuẩn'}
-  Tình trạng kho: ${stock} | Loại: ${isUsed ? 'Đồ cũ tuyển chọn (' + (p.condition_grade || 'Good') + ', đã dùng ' + (p.usage_time || '') + ')' : 'Sản phẩm mới'}
-  Xem chi tiết: product-detail.html?id=${p.id}
-  Mô tả: ${(p.description || '').substring(0, 200)}`;
+        return `- ${p.id} | ${p.name} | ${formatVnd(p.price)} | ${cat} | ${styles} | ${p.material || 'Gỗ'} | ${p.color || 'Tiêu chuẩn'} | ${stock}${isUsed ? ' (đồ cũ ' + (p.condition_grade || 'Good') + ')' : ''} | product-detail.html?id=${p.id}`;
     }).join('\n');
 }
 
@@ -350,6 +418,8 @@ Quy tắc bắt buộc:
 13. Ghi nhớ ngữ cảnh cuộc hội thoại để hiểu các câu hỏi tiếp theo như "còn mẫu khác không?" hoặc "cái nào rẻ hơn?".
 14. Không tự tạo liên kết sản phẩm không tồn tại. Nếu giới thiệu sản phẩm có trong dữ liệu, có thể kèm mã hoặc link product-detail.html?id=<mã>.
 15. Nếu khách hỏi một sản phẩm không có trong dữ liệu, trả lời ngắn gọn và có thể đề xuất sản phẩm tương tự nếu tìm được.
+16. Nếu dữ liệu có ghi chú [YÊU CẦU GỐC CHƯA CÓ TRONG KHO — ĐÃ NỚI: ...], hãy nói thật với khách là yêu cầu gốc chưa có sản phẩm, sau đó tư vấn hướng thay thế hợp lý (đổi màu, đổi chất liệu, nới ngân sách, đổi kích thước) và chỉ giới thiệu sản phẩm có trong danh sách được cấp.
+17. Khi tư vấn thay thế, không tự thêm sản phẩm ngoài danh sách; nếu không có sản phẩm phù hợp để gợi ý thì chỉ nêu hướng thay thế và hỏi lại khách.
 AI tuyệt đối không được tự bịa tên sản phẩm, giá bán, tồn kho, chất liệu hoặc chương trình khuyến mãi.
 
 Ví dụ câu trả lời mẫu chuẩn mực:
@@ -409,78 +479,107 @@ function generateFallbackResponse(message, products) {
     return 'Hiện mình chưa tìm thấy sản phẩm phù hợp với yêu cầu này trong danh mục RoomCraft. Bạn muốn tham khảo thêm danh mục hoặc mức giá khác không?';
 }
 
-function callGemini(message, history, productContext, relevantProducts = []) {
+// Gọi DeepSeek (chuẩn OpenAI chat.completions).
+// Vì sao trước đây "lúc được lúc không":
+//  - max_tokens 300 dùng chung cho phần "suy nghĩ" (reasoning) và câu trả lời -> model nghĩ dài
+//    là hết token, content rỗng -> báo lỗi. Nay tắt suy nghĩ (reasoning_effort: none), tăng max_tokens.
+//  - Mạng/ máy chủ AI chập chờn 1 lần là hỏng câu đó -> nay thử lại 1 lần (lỗi mạng, hết giờ, 429, 5xx).
+const REASONING_VARIANTS = [
+    { reasoning_effort: 'none' },
+    { reasoning_effort: 'low' },
+    {}
+];
+const AI_TIMEOUT_MS = 30000;   // mỗi lần gọi; chatbot.js chờ tối đa 65 giây cho 2 lần
+
+function postDeepSeek(payloadObj, apiKey) {
     return new Promise((resolve) => {
-        const apiKey = process.env.GEMINI_API_KEY || '';
-        if (!apiKey) {
-            return resolve({
-                reply: generateFallbackResponse(message, relevantProducts),
-                hasError: false
-            });
-        }
-
-        const contents = [];
-        const fullInstruction = `${SYSTEM_PROMPT}\n\nDỮ LIỆU SẢN PHẨM LIÊN QUAN TRONG KHO ROOMCRAFT:\n${productContext}`;
-
-        const recentHistory = (history || []).slice(-6);
-        for (const h of recentHistory) {
-            const role = h.role === 'user' ? 'user' : 'model';
-            const text = h.content || (h.parts && h.parts[0] && h.parts[0].text) || '';
-            if (text) contents.push({ role, parts: [{ text }] });
-        }
-
-        contents.push({ role: 'user', parts: [{ text: `${fullInstruction}\n\n[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: ${message}` }] });
-
-        const payload = JSON.stringify({
-            contents,
-            generationConfig: { temperature: 0.5, maxOutputTokens: 600 }
-        });
-
+        const payload = JSON.stringify(payloadObj);
+        const apiUrl = new URL(DEEPSEEK_BASE_URL + '/chat/completions');
+        const batDau = Date.now();
         const req = https.request({
-            hostname: 'generativelanguage.googleapis.com',
-            path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+            hostname: apiUrl.hostname,
+            port: apiUrl.port || 443,
+            path: apiUrl.pathname + apiUrl.search,
             method: 'POST',
+            agent: httpsAgent,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + apiKey,
                 'Content-Length': Buffer.byteLength(payload)
             },
-            timeout: 12000
+            timeout: AI_TIMEOUT_MS
         }, (res) => {
             let data = '';
             res.on('data', chunk => data += chunk);
-            res.on('end', () => {
-                try {
-                    const parsed = JSON.parse(data);
-                    const candidates = parsed.candidates || [];
-                    if (candidates.length && candidates[0].content && candidates[0].content.parts) {
-                        return resolve({ reply: candidates[0].content.parts[0].text.trim() });
-                    }
-                } catch {}
-                resolve({
-                    error: 'API_RESPONSE_ERROR',
-                    reply: 'Hiện tại hệ thống AI đang tạm thời gián đoạn kết nối. Bạn vui lòng thử lại sau giây lát hoặc liên hệ hotline 1900 6868 nhé!'
-                });
-            });
+            res.on('end', () => resolve({ status: res.statusCode, body: data, ms: Date.now() - batDau }));
+            res.on('error', () => resolve({ status: 0, body: '', error: 'NETWORK_ERROR', ms: Date.now() - batDau }));
         });
-
-        req.on('error', () => {
-            resolve({
-                error: 'NETWORK_ERROR',
-                reply: 'Hiện tại hệ thống AI đang tạm thời gián đoạn kết nối. Bạn vui lòng thử lại sau giây lát hoặc liên hệ hotline 1900 6868 nhé!'
-            });
-        });
-
-        req.on('timeout', () => {
-            req.destroy();
-            resolve({
-                error: 'TIMEOUT',
-                reply: 'Hết thời gian kết nối AI. Bạn vui lòng thử lại sau giây lát nhé!'
-            });
-        });
-
+        req.on('error', (e) => resolve({ status: 0, body: '', error: 'NETWORK_ERROR', detail: e.code, ms: Date.now() - batDau }));
+        req.on('timeout', () => { req.destroy(); resolve({ status: 0, body: '', error: 'TIMEOUT', ms: Date.now() - batDau }); });
         req.write(payload);
         req.end();
     });
+}
+
+async function callGemini(message, history, productContext, relevantProducts = []) {
+    const apiKey = process.env.DEEPSEEK_API_KEY || '';
+    if (!apiKey) {
+        return { reply: generateFallbackResponse(message, relevantProducts), hasError: false };
+    }
+
+    // system + lịch sử ngắn + câu hỏi hiện tại
+    const messages = [{
+        role: 'system',
+        content: `${SYSTEM_PROMPT}\n\nDỮ LIỆU SẢN PHẨM LIÊN QUAN TRONG KHO ROOMCRAFT:\n${productContext}`
+    }];
+    for (const h of (history || []).slice(-4)) {
+        const role = h.role === 'user' ? 'user' : 'assistant';
+        let text = h.content || (h.parts && h.parts[0] && h.parts[0].text) || '';
+        if (text.length > 300) text = text.substring(0, 300);
+        if (text) messages.push({ role, content: text });
+    }
+    messages.push({ role: 'user', content: `[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: ${message}` });
+
+    let loiCuoi = 'API_RESPONSE_ERROR';
+    for (let lan = 1; lan <= 2; lan++) {
+        const payload = Object.assign({
+            model: DEEPSEEK_MODEL,
+            messages,
+            temperature: 0.4,
+            max_tokens: 800
+        }, REASONING_VARIANTS[reasoningIndex] || {});
+
+        const kq = await postDeepSeek(payload, apiKey);
+        let parsed = null;
+        try { parsed = JSON.parse(kq.body); } catch (e) { parsed = null; }
+        const choice = parsed && parsed.choices && parsed.choices[0];
+        const content = choice && choice.message && choice.message.content;
+
+        if (kq.status === 200 && content && content.trim()) {
+            console.log(`[DeepSeek] OK ${kq.ms}ms (lần ${lan}, finish=${choice.finish_reason})`);
+            return { reply: content.trim() };
+        }
+
+        // Ghi log ngắn để biết vì sao lỗi (không in API key)
+        console.error(`[DeepSeek] Lỗi lần ${lan}: status=${kq.status} ${kq.error || ''} ${kq.detail || ''} ${kq.ms}ms`
+            + (choice ? ` finish=${choice.finish_reason}` : '') + ` ${String(kq.body).substring(0, 160)}`);
+
+        // 400: API không nhận tham số reasoning hiện tại -> đổi biến thể rồi thử lại
+        if (kq.status === 400 && reasoningIndex < REASONING_VARIANTS.length - 1) {
+            reasoningIndex++;
+            lan--;               // đổi tham số không tính là 1 lần thử
+            continue;
+        }
+        if (kq.status === 401 || kq.status === 405) { loiCuoi = 'API_KEY_OR_BALANCE'; break; }   // sai key / hết tiền: thử lại vô ích
+        loiCuoi = kq.error || ('HTTP_' + kq.status);
+        // Hết token vì model vẫn "suy nghĩ" -> chuyển biến thể kế tiếp cho lần sau
+        if (choice && choice.finish_reason === 'length' && reasoningIndex < REASONING_VARIANTS.length - 1) reasoningIndex++;
+        if (lan < 2) await new Promise(r => setTimeout(r, 800));
+    }
+    return {
+        error: loiCuoi,
+        reply: 'Hiện tại trợ lý AI đang bận. Bạn vui lòng thử lại sau giây lát nhé!'
+    };
 }
 
 const MIME_TYPES = {
@@ -512,7 +611,7 @@ const server = http.createServer(async (req, res) => {
     // Health check
     if (pathname === '/api/health') {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        return res.end(JSON.stringify({ status: 'ok', hasApiKey: Boolean(process.env.GEMINI_API_KEY) }));
+        return res.end(JSON.stringify({ status: 'ok', hasApiKey: Boolean(process.env.DEEPSEEK_API_KEY), provider: 'deepseek', model: DEEPSEEK_MODEL }));
     }
 
     // Chat endpoint
@@ -533,26 +632,36 @@ const server = http.createServer(async (req, res) => {
                 const data = JSON.parse(body);
                 const message = (data.message || '').trim();
                 const history = data.history || [];
+                const candidates = data.candidates || [];
 
                 if (!message) {
                     res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
                     return res.end(JSON.stringify({ error: 'EMPTY_MESSAGE' }));
                 }
 
-                // 1. RAG Search
+                // 1. RAG Search (ưu tiên ứng viên client gửi: localStorage có thể mới hơn JSON)
                 const faq = matchFaq(message);
-                const relevantProds = searchProducts(message, 5);
+                const relaxed = data.relaxed || [];
+                let relevantProds = searchProducts(message, 5);
+                if (candidates.length) relevantProds = candidates;
                 let prodContext = formatProductContext(relevantProds);
+                // Phase C: báo cho AI biết yêu cầu gốc chưa có, đã nới điều kiện nào
+                if (relaxed.length) {
+                    prodContext += `\n\n[YÊU CẦU GỐC CHƯA CÓ TRONG KHO — ĐÃ NỚI: ${relaxed.join(', ')}]`;
+                }
                 if (faq) {
                     prodContext += `\n\n[THÔNG TIN CHÍNH SÁCH / GIẢI ĐÁP PHÙ HỢP TỪ ROOMCRAFT]:\nChủ đề: ${faq.topic}\nNội dung: ${faq.answer}`;
                 }
 
-                // 2. Call Gemini API
+                // 2. Call AI (DeepSeek)
                 const aiResult = await callGemini(message, history, prodContext, relevantProds);
+
+                // 3. Chặn AI bịa số liệu
+                const replyText = sanitizeReply(String(aiResult.reply || ''), relevantProds);
 
                 res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
                 res.end(JSON.stringify({
-                    reply: aiResult.reply,
+                    reply: replyText,
                     hasError: Boolean(aiResult.error),
                     matchedCount: relevantProds.length
                 }));
@@ -581,4 +690,5 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
     console.log(`[*] RoomCraft Node.js Server đang chạy tại http://localhost:${PORT}`);
     console.log(`[*] API Endpoint: http://localhost:${PORT}/api/chat`);
+    console.log(`[*] AI Provider: DeepSeek (${DEEPSEEK_MODEL}) - ${process.env.DEEPSEEK_API_KEY ? 'Đã cấu hình API key trong .env' : 'CHƯA CÓ (dùng câu trả lời nội bộ từ dữ liệu)'}`);
 });

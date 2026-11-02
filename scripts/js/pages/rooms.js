@@ -1,11 +1,17 @@
 /* =====================================================================
    ROOMCRAFT - Không gian mẫu (rooms.html)
    Người phụ trách: Bảo Duy
-   Việc: danh sách phòng, lọc theo phong cách (rooms.html?style=glam), sắp xếp.
+   Việc: danh sách phòng, lọc theo phong cách (rooms.html?style=glam), sắp xếp, phân trang 12 phòng/trang.
+   Địa chỉ trang lưu đủ bộ lọc: rooms.html?style=glam&sort=name&page=2 (bấm F5 hoặc gửi link vẫn giữ nguyên).
+   Đổi phong cách / cách sắp xếp thì quay về trang 1.
    Thẻ phòng: createRoomCard() trong components/room-card.js
+   Nút phân trang: renderFilterPagination() trong components/catalog-filter.js (giống trang Sản phẩm),
+   bấm nút sẽ gọi goToFilterPage(trang) ở file này.
    ===================================================================== */
 
+var ROOMS_PAGE_SIZE = 12;
 var currentStyle = "";     // slug phong cách đang lọc, "" = tất cả
+var currentPage = 1;
 
 // Gọi sau khi loadData() nạp xong dữ liệu
 function initPage(){
@@ -15,9 +21,38 @@ function initPage(){
     currentStyle = getParam("style");
     if(findStyleBySlug(currentStyle) == null)
         currentStyle = "";
+    var sort = getParam("sort");
+    if(sort == "most" || sort == "name")
+        document.getElementById("cboSort").value = sort;
+    currentPage = parseInt(getParam("page"), 10);
+    if(isNaN(currentPage) || currentPage < 1)
+        currentPage = 1;
     showStyleFilter();
     showStyleSlices();
     showRooms();
+}
+
+// Ghi bộ lọc + trang hiện tại lên địa chỉ trang (không tải lại trang)
+function updateRoomsUrl(){
+    var thamSo = [];
+    if(currentStyle != "")
+        thamSo.push("style=" + currentStyle);
+    var sort = document.getElementById("cboSort").value;
+    if(sort != "featured")
+        thamSo.push("sort=" + sort);
+    if(currentPage > 1)
+        thamSo.push("page=" + currentPage);
+    var url = "rooms.html";
+    if(thamSo.length > 0)
+        url = url + "?" + thamSo.join("&");
+    window.history.replaceState(null, "", url);
+}
+
+// Nút phân trang (catalog-filter.js) gọi hàm này
+function goToFilterPage(trang){
+    currentPage = trang;
+    showRooms();
+    document.getElementById("styleFilter").scrollIntoView({ behavior: "smooth" });
 }
 
 function findStyleBySlug(slug){
@@ -68,15 +103,12 @@ function showStyleSlices(){
 
 function filterStyle(slug){
     currentStyle = slug;
-    // cập nhật URL để bấm F5 hoặc gửi link vẫn giữ bộ lọc
-    var url = "rooms.html";
-    if(slug != "")
-        url = url + "?style=" + slug;
-    window.history.replaceState(null, "", url);
+    currentPage = 1;           // đổi phong cách thì về trang 1
     showRooms();
 }
 
 function changeOption(){
+    currentPage = 1;           // đổi cách sắp xếp thì về trang 1
     showRooms();
 }
 
@@ -139,6 +171,13 @@ function showRooms(){
 
     document.getElementById("roomCount").innerHTML = "<b>" + ketQua.length + "</b> không gian";
 
+    // phân trang: trang vượt quá số trang (vd. sửa tay ?page=99) thì về trang cuối
+    var soTrang = Math.max(1, Math.ceil(ketQua.length / ROOMS_PAGE_SIZE));
+    if(currentPage > soTrang)
+        currentPage = soTrang;
+    updateRoomsUrl();
+    renderFilterPagination("roomPagination", currentPage, soTrang);
+
     var list = document.getElementById("roomList");
     list.innerHTML = "";
     if(ketQua.length == 0){
@@ -147,7 +186,9 @@ function showRooms(){
                        + "<button type='button' class='btn btn-outline' onclick='clearFilter()'>Xem tất cả không gian</button></div>";
         return;
     }
-    for(var i = 0; i < ketQua.length; i++)
+    var batDau = (currentPage - 1) * ROOMS_PAGE_SIZE;
+    var ketThuc = Math.min(batDau + ROOMS_PAGE_SIZE, ketQua.length);
+    for(var i = batDau; i < ketThuc; i++)
         list.appendChild(createRoomCard(ketQua[i]));
 }
 

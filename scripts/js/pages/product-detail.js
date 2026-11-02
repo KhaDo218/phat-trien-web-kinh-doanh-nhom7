@@ -62,6 +62,8 @@ function renderProductDetails(p){
     // 3. Tiêu đề & giá
     document.getElementById("lblProductName").textContent = p.name;
     document.getElementById("lblPrice").textContent = formatVND(p.price);
+    renderStockInformation(p);
+    renderShippingInformation(p);
 
     var oldPriceElem = document.getElementById("lblOldPrice");
     var saleBadge = document.getElementById("lblSalePercent");
@@ -93,11 +95,11 @@ function renderProductDetails(p){
         document.getElementById("lblConditionNote").textContent = p.condition_note || "Đã kiểm định đầy đủ kết cấu";
 
         var stockLbl = document.getElementById("lblUsedStock");
-        if(p.stock_quantity === 0){
+        if(Number(p.stock_quantity) <= 0){
             stockLbl.textContent = "Đã bán (Hết hàng)";
             stockLbl.style.color = "#8C3B2D";
         } else {
-            stockLbl.textContent = "Còn duy nhất 1 món trong kho";
+            stockLbl.textContent = "Còn " + Number(p.stock_quantity) + " sản phẩm trong kho";
             stockLbl.style.color = "#2C6B3F";
         }
     } else {
@@ -157,6 +159,75 @@ function appendBreadcrumbSeparator(container){
     container.appendChild(separator);
 }
 
+function renderStockInformation(product){
+    var quantity = Number(product.stock_quantity) || 0;
+    var quantityLabel = document.getElementById("lblStockQuantity");
+    var warningLabel = document.getElementById("lblStockWarning");
+
+    if(quantity <= 0){
+        quantityLabel.textContent = "Hết hàng";
+        warningLabel.classList.add("hidden");
+        quantityLabel.className = "detail-stock-out";
+        return;
+    }
+
+    quantityLabel.textContent = "Còn " + quantity + " sản phẩm";
+    quantityLabel.className = "detail-stock-available";
+    if(quantity <= 5){
+        warningLabel.textContent = "Sắp hết hàng";
+        warningLabel.classList.remove("hidden");
+    } else {
+        warningLabel.textContent = "";
+        warningLabel.classList.add("hidden");
+    }
+}
+
+function renderShippingInformation(product){
+    var methods = getTable("shipping_methods");
+    var productIsBulky = isBulkyProduct(product);
+    var shippingMethod = null;
+    for(var i = 0; i < methods.length; i++){
+        if(methods[i].is_active == false) continue;
+        if(productIsBulky && methods[i].kind == "BULKY"){
+            shippingMethod = methods[i];
+            break;
+        }
+        if(!productIsBulky && methods[i].kind == "PARCEL" && !methods[i].city_only){
+            shippingMethod = methods[i];
+            break;
+        }
+    }
+
+    var feeLabel = document.getElementById("lblShippingFee");
+    if(shippingMethod){
+        var fees = [
+            calcShippingFee(shippingMethod, "city", Number(product.price) || 0),
+            calcShippingFee(shippingMethod, "near", Number(product.price) || 0),
+            calcShippingFee(shippingMethod, "far", Number(product.price) || 0)
+        ];
+        var minFee = Math.min.apply(null, fees);
+        var maxFee = Math.max.apply(null, fees);
+        feeLabel.textContent = minFee == maxFee
+            ? formatVND(minFee)
+            : formatVND(minFee) + " – " + formatVND(maxFee) + " tùy khu vực";
+    } else {
+        feeLabel.textContent = "Chưa có thông tin";
+    }
+
+    var startDate = new Date();
+    var endDate = new Date();
+    startDate.setDate(startDate.getDate() + 2);
+    endDate.setDate(endDate.getDate() + 4);
+    document.getElementById("lblDeliveryDates").textContent =
+        formatDeliveryDate(startDate) + " – " + formatDeliveryDate(endDate);
+}
+
+function formatDeliveryDate(date){
+    var day = String(date.getDate()).padStart(2, "0");
+    var month = String(date.getMonth() + 1).padStart(2, "0");
+    return day + "/" + month + "/" + date.getFullYear();
+}
+
 function renderMediaGallery(p){
     var images = p.images || [];
     var imgMain = document.getElementById("imgMain");
@@ -188,28 +259,42 @@ function renderMediaGallery(p){
 
     // Mô hình 3D nếu có
     var switcher = document.getElementById("divMediaSwitcher");
+    var btn3D = document.getElementById("btnShow3D");
     var viewerContainer = document.getElementById("divModelViewer");
-    if(p.model_3d_url){
+    var modelUrl = typeof p.model_3d_url === "string" ? p.model_3d_url.trim() : "";
+    if(modelUrl){
+        btn3D.classList.remove("hidden");
         switcher.classList.remove("hidden");
         viewerContainer.innerHTML = "";
         var modelViewer = document.createElement("model-viewer");
-        modelViewer.setAttribute("src", asset(p.model_3d_url));
+        var loadingLabel = document.createElement("div");
+        loadingLabel.className = "detail-3d-loading";
+        loadingLabel.textContent = "Đang tải mô hình 3D...";
+        modelViewer.setAttribute("src", asset(modelUrl));
         modelViewer.setAttribute("camera-controls", "");
         modelViewer.setAttribute("auto-rotate", "");
         modelViewer.setAttribute("shadow-intensity", "1");
         modelViewer.setAttribute("ar", "");
-        modelViewer.style.width = "100%";
-        modelViewer.style.height = "100%";
-        modelViewer.style.minHeight = "480px";
-        modelViewer.style.background = "#EEEEEC";
+        modelViewer.addEventListener("load", function(){
+            loadingLabel.classList.add("hidden");
+        }, { once: true });
+        modelViewer.addEventListener("error", function(){
+            loadingLabel.textContent = "Không thể tải mô hình 3D.";
+            loadingLabel.classList.add("detail-3d-error");
+        }, { once: true });
+        viewerContainer.appendChild(loadingLabel);
         viewerContainer.appendChild(modelViewer);
     } else {
+        btn3D.classList.add("hidden");
         switcher.classList.add("hidden");
         viewerContainer.innerHTML = "";
     }
 }
 
 function switchMediaMode(mode){
+    if(mode === "3d" && (!currentProduct || typeof currentProduct.model_3d_url !== "string" || currentProduct.model_3d_url.trim() === "")){
+        mode = "photo";
+    }
     activeMediaMode = mode;
     var imgMain = document.getElementById("imgMain");
     var viewerBox = document.getElementById("divModelViewer");
@@ -232,8 +317,9 @@ function switchMediaMode(mode){
 function setupCartActions(p){
     var btnAdd = document.getElementById("btnAddToCart");
     var qtyInp = document.getElementById("txtQuantity");
+    var stockQuantity = Number(p.stock_quantity) || 0;
 
-    if(p.stock_quantity === 0){
+    if(stockQuantity <= 0){
         btnAdd.disabled = true;
         btnAdd.className = "btn btn-light btn-full";
         btnAdd.innerHTML = "<span class='material-symbols-outlined'>block</span> " + (p.product_type === "USED" ? "Đã bán" : "Hết hàng");
@@ -244,13 +330,13 @@ function setupCartActions(p){
         btnAdd.className = "btn btn-full";
         btnAdd.innerHTML = "<span class='material-symbols-outlined'>shopping_bag</span> Thêm vào giỏ hàng";
         qtyInp.disabled = false;
-        qtyInp.max = p.stock_quantity;
+        qtyInp.max = stockQuantity;
         qtyInp.value = 1;
     }
 }
 
 function handleAddToCart(){
-    if(!currentProduct || currentProduct.stock_quantity === 0)
+    if(!currentProduct || Number(currentProduct.stock_quantity) <= 0)
         return;
 
     var qty = Number(document.getElementById("txtQuantity").value);
@@ -295,14 +381,16 @@ function renderProductRecommendations(product){
     var products = getNewProducts();
     var completeCandidates = [];
     var similar = [];
+    var sameCategoryInStock = [];
 
     for(var i = 0; i < products.length; i++){
         var candidate = products[i];
-        if(candidate.id == product.id)
+        if(candidate.id == product.id || !isRecommendationProductAvailable(candidate))
             continue;
-        if(candidate.category_id == product.category_id)
+        if(candidate.category_id == product.category_id){
             similar.push(candidate);
-        else {
+            sameCategoryInStock.push(candidate);
+        } else {
             var score = 0;
             if(productsShareStyle(product, candidate))
                 score += 2;
@@ -324,19 +412,47 @@ function renderProductRecommendations(product){
         return 0;
     });
 
+    var completeProducts = [];
+    for(var i = 0; i < completeCandidates.length && completeProducts.length < 4; i++)
+        completeProducts.push(completeCandidates[i].product);
+    appendRecommendationFallbacks(completeProducts, sameCategoryInStock, 4);
+
     var completeGrid = document.getElementById("completeRoomProducts");
     completeGrid.innerHTML = "";
-    for(var i = 0; i < completeCandidates.length && i < 4; i++)
-        completeGrid.appendChild(createProductCard(completeCandidates[i].product));
-    if(completeCandidates.length == 0)
-        document.getElementById("completeRoomEmpty").classList.remove("hidden");
+    renderRecommendationCards(completeGrid, completeProducts, "completeRoomSection", "completeRoomEmpty");
 
     var similarGrid = document.getElementById("similarProducts");
     similarGrid.innerHTML = "";
-    for(var i = 0; i < similar.length && i < 4; i++)
-        similarGrid.appendChild(createProductCard(similar[i]));
-    if(similar.length == 0)
-        document.getElementById("similarProductsEmpty").classList.remove("hidden");
+    renderRecommendationCards(similarGrid, similar, "similarProductsSection", "similarProductsEmpty");
+}
+
+function isRecommendationProductAvailable(product){
+    return product.is_active != false && Number(product.stock_quantity) > 0;
+}
+
+function appendRecommendationFallbacks(selected, fallbackProducts, limit){
+    for(var i = 0; i < fallbackProducts.length && selected.length < limit; i++){
+        var product = fallbackProducts[i];
+        var alreadySelected = selected.some(function(item){
+            return item.id == product.id;
+        });
+        if(!alreadySelected)
+            selected.push(product);
+    }
+}
+
+function renderRecommendationCards(grid, products, sectionId, emptyId){
+    var section = document.getElementById(sectionId);
+    var emptyMessage = document.getElementById(emptyId);
+    emptyMessage.classList.add("hidden");
+    if(products.length == 0){
+        section.classList.add("hidden");
+        return;
+    }
+
+    section.classList.remove("hidden");
+    for(var i = 0; i < products.length && i < 4; i++)
+        grid.appendChild(createProductCard(products[i]));
 }
 
 function productsShareStyle(first, second){

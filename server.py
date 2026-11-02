@@ -4,7 +4,7 @@ ROOMCRAFT - AI Chatbot Backend Server (Python Standard Library)
 Khởi chạy: python server.py
 Cổng mặc định: 3000 (truy cập http://localhost:3000)
 Tác dụng:
-  1. Bảo vệ Gemini API Key ở backend (đọc từ file .env hoặc biến môi trường).
+  1. Bảo vệ API key của DeepSeek ở backend (đọc từ file .env hoặc biến môi trường).
   2. Cung cấp API POST /api/chat cho Chatbot RoomCraft với cơ chế RAG.
   3. Hỗ trợ CORS để chạy song song với Live Server (port 5500).
   4. Phục vụ file tĩnh (static files) của website.
@@ -49,9 +49,13 @@ def load_env():
 
 load_env()
 
-# Lấy Gemini API Key
+# Lấy API key của trợ lý AI (DeepSeek, OpenAI-compatible)
 def get_gemini_api_key():
-    return os.environ.get("GEMINI_API_KEY", "").strip()
+    return os.environ.get("DEEPSEEK_API_KEY", "").strip()
+
+# Cấu hình DeepSeek (chuẩn OpenAI chat.completions)
+DEEPSEEK_BASE_URL = os.environ.get("DEEPSEEK_BASE_URL", "https://api-cdn.deploy.com/api/v1").rstrip("/")
+DEEPSEEK_MODEL = os.environ.get("DEEPSEEK_MODEL", "deepseek-ai/deepseek-v4.1-flash-1017")
 
 # Bộ nhớ giới hạn lượt gọi (Rate Limiting): tối đa 30 request/phút/IP
 rate_limit_cache = {}
@@ -354,13 +358,90 @@ def format_vnd(amount):
     except Exception:
         return str(amount) + " ₫"
 
-# Định dạng context sản phẩm gửi cho AI
+# Chặn AI bịa số liệu: mọi số tiền trong reply phải nằm trong dữ liệu thật
+# (giá sản phẩm liên quan, phí giao, mã giảm giá). Sai thì dùng câu dự phòng.
+def sanitize_reply(reply, relevant_prods):
+    if not reply:
+        return reply
+
+    # Dữ liệu thật = toàn bộ sản phẩm trong kho (giống server.js), không chỉ vài món ứng viên
+    dung = set()
+    for p in (PRODUCTS or []) + list(relevant_prods or []):
+        if p.get("price"):
+            dung.add(int(p["price"]))
+        if p.get("original_price"):
+            dung.add(int(p["original_price"]))
+    for m in SHIPPING_METHODS_FEES:
+        dung.add(m)
+
+    # Tách các cụm tiền: "3.250.000 ₫", "5 triệu", "800k", "2tr"...
+    # Chỉ xét số có đơn vị tiền (tránh bắt nhầm năm, kích thước)
+    cac_tien = re.findall(r"(\d[\d.,]*)\s*(₫|đ|vnd|VND|triệu|tr\b|k\b)", reply)
+    for so, don_vi in cac_tien:
+        chuoi_so = so.replace(".", "").replace(",", "")
+        if not chuoi_so.isdigit():
+            continue
+        gia_tri = int(chuoi_so)
+        if don_vi in ("triệu", "tr"):
+            gia_tri *= 1000000
+        elif don_vi == "k":
+            gia_tri *= 1000
+        # Bỏ qua số nhỏ < 1000 (số thứ tự, số lượng, %)
+        if gia_tri < 1000:
+            continue
+        # Số tròn trăm nghìn là ngân sách khách/ AI nêu, không phải giá bịa
+        if gia_tri % 100000 == 0:
+            continue
+        if gia_tri not in dung:
+            return ("Mình vừa nhận câu trả lời từ trợ lý AI nhưng chưa khớp số liệu trong kho, "
+                    "nên dùng câu trả lời chuẩn của RoomCraft. Bạn hỏi cụ thể loại đồ "
+                    "(vd: \"sofa dưới 10 triệu\") để mình tra dữ liệu thật nhé!")
+
+    # Link sản phẩm phải tồn tại
+    cac_ma = re.findall(r"product-detail\.html\?id=([a-z0-9-]+)", reply)
+    ids_hop_le = {str(p.get("id")) for p in (PRODUCTS or []) + list(relevant_prods or [])}
+    for ma in cac_ma:
+        if ma not in ids_hop_le:
+            return ("Câu trả lời AI có liên kết sản phẩm không có trong kho, mình dùng dữ liệu thật thay thế. "
+                    "Bạn hỏi cụ thể loại đồ để mình tra nhé!")
+
+    return reply
+
+# Phí giao từ shipping_methods.json (nạp 1 lần)
+SHIPPING_METHODS_FEES = []
+
+def load_shipping_fees():
+    global SHIPPING_METHODS_FEES
+    ship_file = os.path.join(os.path.dirname(__file__), "data", "json", "shipping_methods.json")
+    if os.path.exists(ship_file):
+        try:
+            with open(ship_file, "r", encoding="utf-8") as f:
+                methods = json.load(f)
+            for m in methods:
+                for k in ("fee_city", "fee_province", "fee_near", "fee_far"):
+                    if m.get(k):
+                        SHIPPING_METHODS_FEES.append(int(m[k]))
+        except Exception as e:
+            print("Lỗi đọc shipping_methods.json:", e)
+
+load_shipping_fees()
+
+# Định dạng context sản phẩm gửi cho AI (chấp nhận cả brief ngắn từ client)
 def format_product_context(products):
     if not products:
         return "Không tìm thấy sản phẩm nào trong kho đáp ứng trực tiếp yêu cầu này."
 
     lines = []
     for p in products:
+        # 1 dòng mỗi sản phẩm (tiết kiệm token, AI trả lời nhanh hơn hẳn)
+        if "category_id" not in p and p.get("name"):
+            lines.append(
+                f"- {p.get('id')} | {p.get('name')} | {format_vnd(p.get('price', 0))}"
+                f" | {p.get('material', 'Chưa rõ')} | {p.get('color', 'Chưa rõ')}"
+                f" | Tồn: {p.get('stock', 0)}"
+            )
+            continue
+
         cat_name = CATEGORIES.get(p.get("category_id"), "Nội thất")
         style_ids = p.get("style_ids", []) or [p.get("style_id")]
         style_names = [STYLES.get(sid, "") for sid in style_ids if sid in STYLES]
@@ -370,18 +451,13 @@ def format_product_context(products):
         stock = p.get("stock_quantity", 0)
         stock_str = "Còn hàng" if stock > 0 else ("Đã bán" if is_used else "Hết hàng")
 
-        line = (
-            f"- Mã: {p.get('id')}\n"
-            f"  Tên: {p.get('name')}\n"
-            f"  Giá: {format_vnd(p.get('price', 0))}"
-            f" (Giá gốc: {format_vnd(p.get('original_price', 0))})\n" if p.get('original_price') else "\n"
-            f"  Danh mục: {cat_name} | Phong cách: {style_str}\n"
-            f"  Chất liệu: {p.get('material', 'Chưa rõ')} | Màu: {p.get('color', 'Chưa rõ')} | Kích thước: {p.get('dimensions', 'Theo tiêu chuẩn')}\n"
-            f"  Tình trạng kho: {stock_str} | Loại: {'Đồ cũ tuyển chọn (' + str(p.get('condition_grade', 'Good')) + ', đã dùng ' + str(p.get('usage_time', '')) + ')' if is_used else 'Sản phẩm mới 100%'}\n"
-            f"  Xem chi tiết: product-detail.html?id={p.get('id')}\n"
-            f"  Mô tả: {p.get('description', '')[:200]}"
+        lines.append(
+            f"- {p.get('id')} | {p.get('name')} | {format_vnd(p.get('price', 0))}"
+            f" | {cat_name} | {style_str} | {p.get('material', 'Chưa rõ')}"
+            f" | {p.get('color', 'Chưa rõ')} | {stock_str}"
+            f"{' (đồ cũ ' + str(p.get('condition_grade', 'Good')) + ')' if is_used else ''}"
+            f" | product-detail.html?id={p.get('id')}"
         )
-        lines.append(line)
     return "\n".join(lines)
 
 # SYSTEM PROMPT THEO ĐÚNG 15 QUY TẮC CỦA ĐỀ BÀI
@@ -404,6 +480,8 @@ Quy tắc bắt buộc:
 13. Ghi nhớ ngữ cảnh cuộc hội thoại để hiểu các câu hỏi tiếp theo như "còn mẫu khác không?" hoặc "cái nào rẻ hơn?".
 14. Không tự tạo liên kết sản phẩm không tồn tại. Nếu giới thiệu sản phẩm có trong dữ liệu, có thể kèm mã hoặc link product-detail.html?id=<mã>.
 15. Nếu khách hỏi một sản phẩm không có trong dữ liệu, trả lời ngắn gọn và có thể đề xuất sản phẩm tương tự nếu tìm được.
+16. Nếu dữ liệu có ghi chú [YÊU CẦU GỐC CHƯA CÓ TRONG KHO — ĐÃ NỚI: ...], hãy nói thật với khách là yêu cầu gốc chưa có sản phẩm, sau đó tư vấn hướng thay thế hợp lý (đổi màu, đổi chất liệu, nới ngân sách, đổi kích thước) và chỉ giới thiệu sản phẩm có trong danh sách được cấp.
+17. Khi tư vấn thay thế, không tự thêm sản phẩm ngoài danh sách; nếu không có sản phẩm phù hợp để gợi ý thì chỉ nêu hướng thay thế và hỏi lại khách.
 AI tuyệt đối không được tự bịa tên sản phẩm, giá bán, tồn kho, chất liệu hoặc chương trình khuyến mãi.
 
 Ví dụ câu trả lời mẫu chuẩn mực:
@@ -462,7 +540,7 @@ def generate_fallback_response(message, products):
         return "Hiện mình chưa tìm thấy sản phẩm màu này trong danh mục RoomCraft. Bạn muốn tham khảo những màu khác hoặc mẫu mã khác không?"
     return "Hiện mình chưa tìm thấy sản phẩm phù hợp với yêu cầu này trong danh mục RoomCraft. Bạn muốn tham khảo thêm danh mục hoặc mức giá khác không?"
 
-# Gọi Gemini API từ backend
+# Gọi API trợ lý AI DeepSeek (chuẩn OpenAI chat.completions)
 def call_gemini(message, history, product_context, relevant_prods=None):
     api_key = get_gemini_api_key()
     if not api_key:
@@ -473,67 +551,63 @@ def call_gemini(message, history, product_context, relevant_prods=None):
             "isLocalFallback": True
         }
 
-    # Xây dựng lịch sử hội thoại chuẩn Gemini contents format
-    contents = []
+    # Lịch sử hội thoại chuẩn OpenAI messages format
+    messages = [{"role": "system", "content": SYSTEM_PROMPT + "\n\nDỮ LIỆU SẢN PHẨM LIÊN QUAN TRONG KHO ROOMCRAFT:\n" + product_context}]
 
-    # System instruction kết hợp context sản phẩm
-    full_instruction = (
-        SYSTEM_PROMPT
-        + "\n\nDỮ LIỆU SẢN PHẨM LIÊN QUAN TRONG KHO ROOMCRAFT:\n"
-        + product_context
-    )
-
-    # Thêm các tin nhắn lịch sử (tối đa 6 tin gần nhất để giữ context)
-    recent_history = history[-6:] if history else []
+    recent_history = history[-3:] if history else []
     for h in recent_history:
-        role = "user" if h.get("role") == "user" else "model"
-        text = h.get("content", "") or h.get("parts", [{}])[0].get("text", "")
+        role = h.get("role", "user")
+        if role == "model":
+            role = "assistant"
+        text = h.get("content", "") or (h.get("parts", [{}])[0].get("text", "") if h.get("parts") else "")
+        if len(text) > 200:
+            text = text[:200]  # cắt lịch sử ngắn lại
         if text:
-            contents.append({"role": role, "parts": [{"text": text}]})
+            messages.append({"role": role, "content": text})
 
-    # Thêm câu hỏi hiện tại kèm bối cảnh
-    user_prompt = f"{full_instruction}\n\n[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: {message}"
-    contents.append({"role": "user", "parts": [{"text": user_prompt}]})
+    messages.append({"role": "user", "content": f"[CÂU HỎI HIỆN TẠI CỦA KHÁCH HÀNG]: {message}"})
 
-    # Thử gọi gemini-2.5-flash trước, nếu lỗi thì thử gemini-1.5-flash
-    models = ["gemini-2.5-flash", "gemini-1.5-flash"]
-    last_error = ""
-
-    for model_name in models:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
-        payload = {
-            "contents": contents,
-            "generationConfig": {
-                "temperature": 0.5,
-                "maxOutputTokens": 600
-            }
-        }
-        data_bytes = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(url, data=data_bytes, headers={"Content-Type": "application/json"})
-
+    # Tắt "suy nghĩ" (reasoning_effort none) + max_tokens 800: trước đây max_tokens 300 bị phần
+    # suy nghĩ ăn hết nên content rỗng -> lúc được lúc không. Lỗi mạng/ 429/ 5xx thì thử lại 1 lần.
+    variants = [{"reasoning_effort": "none"}, {"reasoning_effort": "low"}, {}]
+    url = DEEPSEEK_BASE_URL + "/chat/completions"
+    vi_tri = 0
+    lan = 1
+    while lan <= 2:
+        payload = {"model": DEEPSEEK_MODEL, "messages": messages, "temperature": 0.4, "max_tokens": 800}
+        payload.update(variants[vi_tri])
+        req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + api_key
+        })
         try:
-            with urllib.request.urlopen(req, timeout=12) as response:
-                res_body = response.read().decode("utf-8")
-                res_json = json.loads(res_body)
-                candidates = res_json.get("candidates", [])
-                if candidates:
-                    parts = candidates[0].get("content", {}).get("parts", [])
-                    if parts:
-                        text = parts[0].get("text", "").strip()
-                        return {"reply": text, "model": model_name}
+            with urllib.request.urlopen(req, timeout=30) as response:
+                res_json = json.loads(response.read().decode("utf-8"))
+                choices = res_json.get("choices") or []
+                text = ((choices[0].get("message") or {}).get("content") or "").strip() if choices else ""
+                if text:
+                    return {"reply": text, "model": DEEPSEEK_MODEL}
+                finish = choices[0].get("finish_reason") if choices else None
+                print(f"[!] DeepSeek trả nội dung rỗng (finish={finish}), lần {lan}")
+                if finish == "length" and vi_tri < len(variants) - 1:
+                    vi_tri += 1
         except urllib.error.HTTPError as e:
-            err_body = e.read().decode("utf-8", errors="ignore")
-            last_error = f"HTTP {e.code}: {err_body}"
-            print(f"[!] Lỗi gọi {model_name}: {last_error}")
-            continue
+            err_body = e.read().decode("utf-8", errors="ignore")[:160]
+            print(f"[!] Lỗi gọi DeepSeek lần {lan}: HTTP {e.code}: {err_body}")
+            if e.code == 400 and vi_tri < len(variants) - 1:
+                vi_tri += 1
+                continue          # đổi tham số không tính là 1 lần thử
+            if e.code in (401, 405):
+                break             # sai key / hết tiền: thử lại vô ích
         except Exception as e:
-            last_error = str(e)
-            print(f"[!] Lỗi kết nối {model_name}: {last_error}")
-            continue
+            print(f"[!] Lỗi kết nối DeepSeek lần {lan}: {e}")
+        lan += 1
+        if lan <= 2:
+            time.sleep(0.8)
 
     return {
         "error": "API_CALL_FAILED",
-        "reply": "Hiện tại hệ thống AI đang tạm thời gián đoạn kết nối. Bạn vui lòng thử lại sau giây lát hoặc liên hệ hotline 1900 6868 nhé!"
+        "reply": "Hiện tại trợ lý AI đang bận. Bạn vui lòng thử lại sau giây lát nhé!"
     }
 
 # HTTP Handler
@@ -597,6 +671,8 @@ class RoomCraftHandler(http.server.SimpleHTTPRequestHandler):
 
             message = (data.get("message") or "").strip()
             history = data.get("history") or []
+            candidates = data.get("candidates") or []
+            relaxed = data.get("relaxed") or []
 
             if not message:
                 self.send_response(400)
@@ -608,19 +684,27 @@ class RoomCraftHandler(http.server.SimpleHTTPRequestHandler):
             # 1. RAG: Tìm kiếm sản phẩm liên quan và chính sách từ FAQs
             faq = match_faq(message)
             relevant_prods = search_products(message, max_items=5)
+            # Ưu tiên ứng viên client gửi (localStorage có thể mới hơn file JSON)
+            if candidates:
+                relevant_prods = candidates
             prod_context = format_product_context(relevant_prods)
+            # Phase C: báo cho AI biết yêu cầu gốc chưa có, đã nới điều kiện nào
+            if relaxed:
+                prod_context += f"\n\n[YÊU CẦU GỐC CHƯA CÓ TRONG KHO — ĐÃ NỚI: {', '.join(relaxed)}]"
             if faq:
                 prod_context += f"\n\n[THÔNG TIN CHÍNH SÁCH / GIẢI ĐÁP PHÙ HỢP TỪ ROOMCRAFT]:\nChủ đề: {faq.get('topic')}\nNội dung: {faq.get('answer')}"
 
-            # 2. Gọi Gemini AI với system prompt chuẩn và context
+            # 2. Gọi AI (DeepSeek) với system prompt chuẩn và context
             gemini_res = call_gemini(message, history, prod_context, relevant_prods)
 
-            # 3. Trả về cho client
+            # 3. Chặn AI bịa số liệu: giá trong reply phải có trong dữ liệu thật
+            reply_text = sanitize_reply(gemini_res.get("reply", ""), relevant_prods)
+
+            # 4. Trả về cho client
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.end_headers()
 
-            reply_text = gemini_res.get("reply", "")
             response_data = {
                 "reply": reply_text,
                 "hasError": bool(gemini_res.get("error")),
@@ -639,7 +723,8 @@ def run():
         print(f"[*] RoomCraft Backend Server đang chạy tại http://localhost:{PORT}")
         print(f"[*] API Endpoint: http://localhost:{PORT}/api/chat")
         has_key = bool(get_gemini_api_key())
-        print(f"[*] Gemini API Key: {'Đã cấu hình trong .env' if has_key else 'CHƯA CÓ (sẽ dùng tin nhắn hướng dẫn)'}")
+        print(f"[*] AI Provider: DeepSeek ({DEEPSEEK_MODEL}) - "
+              f"{'Đã cấu hình API key trong .env' if has_key else 'CHƯA CÓ (dùng câu trả lời nội bộ từ dữ liệu)'}")
         print("=" * 60)
         try:
             httpd.serve_forever()
