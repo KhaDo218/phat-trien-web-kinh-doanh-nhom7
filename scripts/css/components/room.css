@@ -121,9 +121,7 @@
     inset: 3px;
     border: 1px solid rgba(255, 255, 255, 0.75);
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.16);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.22);
     animation: hotspotPulse 3s ease-in-out infinite;
     transition: background-color 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
     pointer-events: none;

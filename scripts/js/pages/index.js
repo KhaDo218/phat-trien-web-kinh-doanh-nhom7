@@ -159,7 +159,14 @@ function initPointlight(){
     var section = document.getElementById("pointlight");
     if(!section)
         return;
-    var litImage = section.querySelector(".pointlight-lit");
+    var dark = section.querySelector(".pointlight-dark");
+    var glow = section.querySelector(".pointlight-glow");
+    var stage = section.querySelector(".pointlight-stage");
+    var copy = section.querySelector(".pointlight-copy");
+    var size = { w: section.offsetWidth, h: section.offsetHeight };
+    window.addEventListener("resize", function(){
+        size = { w: section.offsetWidth, h: section.offsetHeight };
+    });
     if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
         return;
 
@@ -188,13 +195,13 @@ function initPointlight(){
         now.x += (target.x - now.x) * 0.08;
         now.y += (target.y - now.y) * 0.08;
 
-        // Toạ độ mask tính theo khung ảnh sáng (khung ảnh lớn hơn section 5% mỗi phía)
-        var s = section.getBoundingClientRect();
-        var img = litImage.getBoundingClientRect();
-        section.style.setProperty("--x", (s.left + now.x * s.width - img.left) + "px");
-        section.style.setProperty("--y", (s.top + now.y * s.height - img.top) + "px");
-        section.style.setProperty("--tx", ((now.x - 0.5) * 2).toFixed(3));
-        section.style.setProperty("--ty", ((now.y - 0.5) * 2).toFixed(3));
+        // Dời tâm lớp tối (rộng gấp 3 khung) tới vị trí đèn; chỉ đổi transform nên card đồ họa tự xử lý
+        var dich = "translate(" + (now.x * size.w - 1.5 * size.w).toFixed(1) + "px," + (now.y * size.h - 1.5 * size.h).toFixed(1) + "px)";
+        dark.style.transform = dich;
+        glow.style.transform = dich;
+        var tx = (now.x - 0.5) * 2, ty = (now.y - 0.5) * 2;
+        stage.style.transform = "rotateY(" + (tx * 5).toFixed(2) + "deg) rotateX(" + (ty * -4).toFixed(2) + "deg) scale(1.02)";
+        copy.style.transform = "translate3d(" + (tx * -18).toFixed(1) + "px," + (ty * -12).toFixed(1) + "px,0)";
         window.requestAnimationFrame(frame);
     }
 
@@ -264,7 +271,7 @@ function initPanorama(){
     var loaded = false, running = false, lastTime = 0;
 
     function resize(){
-        var tiLe = Math.min(window.devicePixelRatio || 1, 1.5);
+        var tiLe = Math.min(window.devicePixelRatio || 1, 1);    // vẽ theo điểm ảnh CSS cho nhẹ
         canvas.width = Math.round(canvas.clientWidth * tiLe);
         canvas.height = Math.round(canvas.clientHeight * tiLe);
         gl.viewport(0, 0, canvas.width, canvas.height);
@@ -365,7 +372,8 @@ function initPanorama(){
     function loadImage(){
         var img = new Image();
         img.onload = function(){
-            var toiDa = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+            // ảnh 8192px chiếm ~100MB bộ nhớ đồ họa; 4096px vẫn đủ nét cho màn hình thường
+            var toiDa = Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE), 4096);
             var nguon = img;
             if(img.width > toiDa){
                 nguon = document.createElement("canvas");

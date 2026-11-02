@@ -71,10 +71,11 @@
         <!-- ===== 2. Pointlight: căn phòng trong bóng tối, đèn chạy theo con trỏ (index.js: initPointlight) ===== -->
         <section class="pointlight" id="pointlight" aria-label="Không gian trong ánh sáng">
             <div class="pointlight-stage">
-                <img class="pointlight-img pointlight-dark" src="../assets/rooms/glam/room-glam-4192177-01.jpg" alt="" aria-hidden="true">
-                <img class="pointlight-img pointlight-lit" src="../assets/rooms/glam/room-glam-4192177-01.jpg" alt="Phòng làm việc phong cách Glam">
-                <span class="pointlight-glow" aria-hidden="true"></span>
+                <img class="pointlight-img" src="../assets/rooms/glam/room-glam-4192177-01.jpg" alt="Phòng làm việc phong cách Glam">
             </div>
+            <!-- Lớp tối có "lỗ" sáng ở giữa + quầng sáng ấm: chỉ dịch chuyển bằng transform theo con trỏ -->
+            <span class="pointlight-dark" aria-hidden="true"></span>
+            <span class="pointlight-glow" aria-hidden="true"></span>
             <div class="pointlight-copy">
                 <p class="overline">Rê chuột để thắp sáng</p>
                 <h2>Ánh sáng<br>kể chuyện không gian</h2>

@@ -12,7 +12,7 @@
 
 /* ===== Trang đăng nhập: ảnh căn phòng tràn màn hình + khung kính mờ (glassmorphism) =====
    - main.login-page tràn hết chiều ngang, ::before là ảnh nền (zoom chậm), ::after là lớp tối
-   - .auth-box là tấm kính: nền trắng trong suốt + backdrop-filter làm nhòe ảnh phía sau */
+   - .auth-box là tấm kính khói tối (không dùng backdrop-filter vì ảnh nền đang chuyển động, làm mờ sẽ gây giật) */
 main.login-page{
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(440px, 560px);
@@ -110,13 +110,11 @@ main.login-page .auth-box{
     overflow: hidden;
     color: #FFFFFF;
     /* kính khói tối: vẫn thấy ảnh nhòe phía sau nhưng tông màu tách hẳn khỏi ảnh */
-    background: linear-gradient(160deg, rgba(24, 23, 21, .82) 0%, rgba(14, 14, 13, .74) 100%);
+    background: linear-gradient(160deg, rgba(24, 23, 21, .9) 0%, rgba(14, 14, 13, .84) 100%);
     border: 1px solid rgba(255, 255, 255, .14);
     border-top: 2px solid #C6AE87;
     border-radius: 2px;
     box-shadow: 0 40px 100px rgba(0, 0, 0, .55);
-    -webkit-backdrop-filter: blur(26px) saturate(120%);
-    backdrop-filter: blur(26px) saturate(120%);
     animation: login-rise .9s .15s ease both;
 }
 /* vệt sáng lướt qua mặt kính một lần khi mở trang */
