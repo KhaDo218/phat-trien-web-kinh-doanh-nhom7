@@ -46,16 +46,16 @@
             <nav class="brand-marquee" aria-label="Khám phá nhanh RoomCraft">
                 <div class="brand-marquee-track">
                     <div class="brand-marquee-group">
-                        <a href="products.html"><span>Nội thất tuyển chọn</span></a><i></i>
-                        <a href="rooms.html"><span>Không gian truyền cảm hứng</span></a><i></i>
-                        <a href="products.html"><span>Trải nghiệm sản phẩm 3D</span></a><i></i>
-                        <a href="#ve-roomcraft"><span>Thiết kế cho mọi không gian</span></a><i></i>
+                        <a href="products.html"><span>Nội thất tuyển chọn</span></a>
+                        <a href="rooms.html"><span>Không gian truyền cảm hứng</span></a>
+                        <a href="products.html"><span>Trải nghiệm sản phẩm 3D</span></a>
+                        <a href="#ve-roomcraft"><span>Thiết kế cho mọi không gian</span></a>
                     </div>
                     <div class="brand-marquee-group" aria-hidden="true">
-                        <a href="products.html" tabindex="-1"><span>Nội thất tuyển chọn</span></a><i></i>
-                        <a href="rooms.html" tabindex="-1"><span>Không gian truyền cảm hứng</span></a><i></i>
-                        <a href="products.html" tabindex="-1"><span>Trải nghiệm sản phẩm 3D</span></a><i></i>
-                        <a href="#ve-roomcraft" tabindex="-1"><span>Thiết kế cho mọi không gian</span></a><i></i>
+                        <a href="products.html" tabindex="-1"><span>Nội thất tuyển chọn</span></a>
+                        <a href="rooms.html" tabindex="-1"><span>Không gian truyền cảm hứng</span></a>
+                        <a href="products.html" tabindex="-1"><span>Trải nghiệm sản phẩm 3D</span></a>
+                        <a href="#ve-roomcraft" tabindex="-1"><span>Thiết kế cho mọi không gian</span></a>
                     </div>
                 </div>
             </nav>
@@ -68,17 +68,18 @@
             </div>
         </section>
 
-        <!-- ===== 2. Không gian được tuyển chọn (JS đổ dữ liệu từ rc_rooms) ===== -->
-        <section class="section">
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <p class="overline">Bộ sưu tập không gian</p>
-                        <h2 class="headline-section">Không gian được tuyển chọn</h2>
-                    </div>
-                    <a class="btn-link" href="rooms.html">Xem tất cả không gian <span class="material-symbols-outlined">arrow_forward</span></a>
-                </div>
-                <div class="grid-3" id="roomList"></div>
+        <!-- ===== 2. Pointlight: căn phòng trong bóng tối, đèn chạy theo con trỏ (index.js: initPointlight) ===== -->
+        <section class="pointlight" id="pointlight" aria-label="Không gian trong ánh sáng">
+            <div class="pointlight-stage">
+                <img class="pointlight-img" src="../assets/rooms/glam/room-glam-4192177-01.jpg" alt="Phòng làm việc phong cách Glam">
+            </div>
+            <!-- Lớp tối có "lỗ" sáng ở giữa + quầng sáng ấm: chỉ dịch chuyển bằng transform theo con trỏ -->
+            <span class="pointlight-dark" aria-hidden="true"></span>
+            <span class="pointlight-glow" aria-hidden="true"></span>
+            <div class="pointlight-copy">
+                <p class="overline">Rê chuột để thắp sáng</p>
+                <h2>Ánh sáng<br>kể chuyện không gian</h2>
+                <a class="btn btn-outline" href="rooms.html">Khám phá không gian</a>
             </div>
         </section>
 
@@ -88,8 +89,9 @@
                 <div class="str-layout">
                     <div class="str-intro">
                         <p class="overline">Tính năng tương tác</p>
-                        <h2 class="headline-section">Trải nghiệm Shop the Room</h2>
+                        <h2 class="headline-section str-title"><span>Trải nghiệm</span><em>Shop the Room</em></h2>
                         <p class="text-secondary section-sub">Từ ảnh một căn phòng đẹp đến món đồ trong giỏ hàng chỉ với vài lần bấm.</p>
+                        <a class="str-cta" href="rooms.html">Khám phá phòng mẫu <span class="material-symbols-outlined">arrow_forward</span></a>
                     </div>
                     <div class="str-demo">
                         <div class="str-stage" id="demoStage">
@@ -142,6 +144,30 @@
             </div>
         </section>
 
+        <!-- ===== 4b. Tham quan 360°: kéo để xoay quanh căn phòng (index.js: initPanorama) =====
+             Ảnh 360°: "Hotel Room" của Greg Zaal, Poly Haven, giấy phép CC0 -->
+        <section class="pano" id="pano" aria-label="Tham quan phòng 360 độ"
+                 data-src="../assets/rooms/360/hotel-room-360.jpg">
+            <canvas class="pano-canvas" id="panoCanvas"></canvas>
+            <div class="pano-shade" aria-hidden="true"></div>
+
+            <div class="container pano-ui">
+                <div class="pano-head">
+                    <p class="overline">Tham quan 360°</p>
+                    <h2>Bước vào<br><em>không gian</em></h2>
+                </div>
+
+                <div class="pano-foot">
+                    <p class="pano-hint" id="panoHint"><span class="material-symbols-outlined">360</span><span>Kéo để nhìn quanh<span class="pano-hint-more"> căn phòng</span></span></p>
+                    <div class="pano-zoom">
+                        <button type="button" id="panoZoomIn" aria-label="Phóng to"><span class="material-symbols-outlined">add</span></button>
+                        <button type="button" id="panoZoomOut" aria-label="Thu nhỏ"><span class="material-symbols-outlined">remove</span></button>
+                    </div>
+                    <p class="pano-credit">Ảnh 360° từ Poly Haven (CC0)</p>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== 5. Phong cách (JS đổ dữ liệu từ rc_styles) ===== -->
         <section class="section section-grey">
             <div class="container">
@@ -155,30 +181,45 @@
             </div>
         </section>
 
-        <!-- ===== 6. Về RoomCraft ===== -->
-        <section class="section" id="ve-roomcraft">
-            <div class="container about">
-                <div class="about-text">
-                    <p class="overline">Triết lý thiết kế</p>
-                    <h2 class="headline-page">Nghệ thuật sắp đặt không gian sống</h2>
-                    <p class="about-lead">RoomCraft bắt đầu từ một không gian sống hoàn chỉnh, nơi từng món nội thất được lựa chọn để cùng kể một câu chuyện về phong cách, màu sắc và cảm xúc.</p>
-                    <p class="text-secondary">Khám phá căn phòng bạn yêu thích, chạm vào từng sản phẩm để xem thông tin thực tế, quan sát mô hình 3D từ mọi góc và lựa chọn món đồ phù hợp cho chính ngôi nhà của bạn.</p>
-                    <div class="about-points">
-                        <div data-step="01">
-                            <p class="overline">Bắt đầu từ cảm hứng</p>
-                            <p>Thay vì ghép từng món đồ rời rạc, bạn bắt đầu bằng một tổng thể đã được tuyển chọn và phối hợp hài hòa.</p>
-                        </div>
-                        <div data-step="02">
-                            <p class="overline">Hiểu rõ trước khi chọn</p>
-                            <p>Thông tin chi tiết và mô hình 3D giúp bạn cảm nhận kích thước, chất liệu và đường nét trước khi quyết định.</p>
-                        </div>
+        <!-- ===== 6. Về RoomCraft: khung ghim toàn màn hình, cuộn để "tua" qua các góc của một căn phòng (index.js: initAboutScrub) ===== -->
+        <section class="about-scrub" id="ve-roomcraft" aria-label="Về RoomCraft">
+            <div class="about-sticky">
+                <!-- Ảnh các góc của phòng mẫu, JS đổ vào từ room.images -->
+                <div class="about-frames" id="aboutFrames"></div>
+                <div class="about-shade" aria-hidden="true"></div>
+
+                <div class="container about-layer">
+                    <div class="about-head">
+                        <p class="overline">Triết lý thiết kế</p>
+                        <h2 class="about-title">
+                            <span class="about-line"><span>Nghệ thuật sắp đặt</span></span>
+                            <span class="about-line"><span>không gian sống</span></span>
+                        </h2>
                     </div>
-                </div>
-                <div class="about-image">
-                    <img id="aboutImage" src="" alt="Không gian mẫu của RoomCraft">
-                    <div class="about-caption card">
-                        <p class="overline">Không gian mẫu</p>
-                        <p class="title-product" id="aboutCaption"></p>
+
+                    <div class="about-foot">
+                        <!-- Hàng phong cách (giống hàng logo thương hiệu), JS đổ từ rc_styles -->
+                        <ul class="about-styles" id="aboutStyles"></ul>
+
+                        <div class="about-meter" aria-hidden="true">
+                            <span class="about-count"><b id="aboutFrameNo">01</b> / <span id="aboutFrameTotal">03</span></span>
+                            <span class="about-bar"><span></span></span>
+                        </div>
+
+                        <div class="about-note">
+                            <p class="about-lead">RoomCraft bắt đầu từ một không gian sống hoàn chỉnh, nơi từng món nội thất được lựa chọn để cùng kể một câu chuyện về phong cách, màu sắc và cảm xúc.</p>
+                            <div class="about-points">
+                                <div data-step="01">
+                                    <p class="overline">Bắt đầu từ cảm hứng</p>
+                                    <p>Thay vì ghép từng món đồ rời rạc, bạn bắt đầu bằng một tổng thể đã được tuyển chọn và phối hợp hài hòa.</p>
+                                </div>
+                                <div data-step="02">
+                                    <p class="overline">Hiểu rõ trước khi chọn</p>
+                                    <p>Thông tin chi tiết và mô hình 3D giúp bạn cảm nhận kích thước, chất liệu và đường nét trước khi quyết định.</p>
+                                </div>
+                            </div>
+                            <p class="about-caption"><span class="overline">Không gian mẫu</span> <span id="aboutCaption"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>

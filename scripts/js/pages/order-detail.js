@@ -78,11 +78,11 @@ function showOrder(){
     // Cột phải: giao hàng + tiền
     html += "<aside class='card detail-side'>";
     html += "  <p class='overline'>Người nhận</p>";
-    html += "  <p>" + safeText(o.shipping_name) + " · " + safeText(o.shipping_phone) + "</p>";
+    html += "  <p>" + safeText(o.shipping_name) + ", " + safeText(o.shipping_phone) + "</p>";
     html += "  <p class='overline'>Địa chỉ giao hàng</p>";
     html += "  <p>" + safeText(o.shipping_address) + "</p>";
     if(o.house_type || o.shipping_note)
-        html += "  <p class='text-secondary'>" + safeText([o.house_type, o.shipping_note].filter(function(x){ return x; }).join(" · ")) + "</p>";
+        html += "  <p class='text-secondary'>" + safeText([o.house_type, o.shipping_note].filter(function(x){ return x; }).join(", ")) + "</p>";
     var ship = findById("shipping_methods", o.shipping_method_id);
     if(ship != null){
         html += "  <p class='overline'>Giao hàng</p>";
@@ -90,7 +90,7 @@ function showOrder(){
     }
     html += "  <p class='overline'>Thanh toán</p>";
     html += "  <p>" + getPaymentText(o.payment_method) + (o.card_last4 ? " ···· " + safeText(o.card_last4) : "") + "</p>";
-    html += "  <p class='text-secondary' style='margin-bottom:16px'>" + safeText(getPaymentPlanText(o)) + (getPaymentStatusText(o) ? " · " + getPaymentStatusText(o) : "") + "</p>";
+    html += "  <p class='text-secondary' style='margin-bottom:16px'>" + safeText(getPaymentPlanText(o)) + (getPaymentStatusText(o) ? " (" + getPaymentStatusText(o) + ")" : "") + "</p>";
     html += "  <div class='sum-row'><span>Tạm tính</span><span>" + formatVND(o.subtotal) + "</span></div>";
     html += "  <div class='sum-row'><span>Phí vận chuyển</span><span>" + formatVND(o.shipping_fee) + "</span></div>";
     html += "  <div class='sum-row'><span>Giảm giá</span><span>- " + formatVND(o.discount_amount) + "</span></div>";

@@ -15,7 +15,7 @@ function renderFooter(){
     html += "    <div class='about'>";
     html += "      <a class='logo' href='" + goc + "index.html'>ROOMCRAFT</a>";
     html += "      <p>Nền tảng thương mại điện tử nội thất lấy không gian sống làm trung tâm.</p>";
-    html += "      <p class='overline'>Kiến trúc • Thủ công • Sưu tầm</p>";
+    html += "      <p class='overline'>Kiến trúc, thủ công và sưu tầm</p>";
     html += "    </div>";
     html += "    <div class='columns'>";
     html += "      <div>";
@@ -39,7 +39,7 @@ function renderFooter(){
     html += "  </div>";
     html += "  <div class='footer-bottom'>";
     html += "    <span>© " + new Date().getFullYear() + " ROOMCRAFT. All rights reserved.</span>";
-    html += "    <span>Hà Nội • TP. Hồ Chí Minh • Đà Nẵng</span>";
+    html += "    <span>Hà Nội, TP. Hồ Chí Minh, Đà Nẵng</span>";
     html += "  </div>";
     html += "</div>";
     document.getElementById("footer").innerHTML = html;

@@ -23,6 +23,8 @@
    ===================================================================== */
 
 @import url(fonts.css);         /* font chữ + icon để sẵn trong repo (assets/fonts), demo không cần mạng */
+/* chỉ kiểu chữ nghiêng của Cormorant (tiêu đề in nghiêng) lấy từ Google Fonts; mất mạng thì trình duyệt tự nghiêng chữ thường */
+@import url(https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&subset=vietnamese&display=swap);
 @import url(components/chatbot.css);
 
 :root{
@@ -519,13 +521,14 @@ main.subpage .empty .empty-copy{
     z-index: 50;
     background: #F7F7F5;
     border-bottom: 1px solid #DADAD7;
+    transition: background-color .45s ease, border-color .45s ease;
 }
 #header .header-top{
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 32px;
-    height: 64px;
+    height: 72px;
 }
 #header .logo, #footer .logo{
     font-family: var(--font-display);
@@ -533,6 +536,12 @@ main.subpage .empty .empty-copy{
     font-weight: 600;
     letter-spacing: 0.08em;
     line-height: 1;
+}
+/* Logo header: chữ mảnh hơn, giãn rộng */
+#header .logo{
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
 }
 #header .search{
     position: relative;
@@ -550,12 +559,14 @@ main.subpage .empty .empty-copy{
     width: 100%;
     height: 40px;
     padding: 0 16px 0 40px;
-    background: #FFFFFF;
+    background: transparent;
     border: 1px solid #DADAD7;
     font-size: 13px;
     outline: none;
+    transition: border-color .45s ease, background-color .45s ease;
 }
 #header .search input:focus{
+    background: #FFFFFF;
     border-color: #202020;
 }
 #header .icons{
@@ -594,27 +605,40 @@ main.subpage .empty .empty-copy{
 #header .menu{
     display: flex;
     justify-content: center;
-    gap: 48px;
-    padding-bottom: 12px;
+    gap: 56px;
+    padding-bottom: 14px;
 }
+/* Menu: chữ in hoa giãn rộng, gạch chân trượt ra khi rê chuột */
 #header .menu a{
+    position: relative;
     display:inline-flex;
     align-items:center;
     min-height:28px;
     padding: 3px 0;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 11px;
+    font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.075em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: #686868;
-    border-bottom: 1px solid transparent;
+    transition: color .45s ease;
+}
+#header .menu a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform .45s ease;
 }
 #header .menu a:hover, #header .menu a.active{
     color: #202020;
-    font-size: 12px;
-    font-weight: 400;
-    border-bottom-color: #202020;
+}
+#header .menu a:hover::after, #header .menu a.active::after{
+    transform: scaleX(1);
 }
 
 /* ---------- 8. Footer (do components/footer.js tạo ra) ---------- */
@@ -893,14 +917,16 @@ main.subpage .empty .empty-copy{
     #header .icons{
         gap: 2px;
     }
+    /* Menu cuộn ngang: căn trái để mục đầu không bị cắt */
     #header .menu{
         justify-content: space-between;   /* 4 mục chia đều, không bị cắt chữ trên điện thoại */
         gap: 12px;
         overflow-x: auto;
+        scrollbar-width: none;
     }
     #header .menu a{
-        font-size: 11px;
-        letter-spacing: 0.03em;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
         white-space: nowrap;
     }
     #footer .footer-top, #footer .columns, #footer .footer-bottom{

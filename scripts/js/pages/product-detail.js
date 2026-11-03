@@ -48,7 +48,7 @@ function renderProductDetails(p){
     var brandCatLbl = document.getElementById("lblBrandCat");
     var catObj = findById("categories", p.category_id);
     var cName = catObj ? catObj.name : "Nội thất";
-    brandCatLbl.textContent = (p.brand || "RoomCraft").toUpperCase() + " • " + cName.toUpperCase();
+    brandCatLbl.textContent = (p.brand || "RoomCraft").toUpperCase() + " / " + cName.toUpperCase();
 
     var typeBadge = document.getElementById("lblProductTypeBadge");
     if(p.product_type === "USED"){
@@ -484,7 +484,7 @@ function renderProductReviews(product){
     if(visibleReviews.length == 0)
         summary.textContent = "Chưa có đánh giá.";
     else
-        summary.textContent = (totalRating / visibleReviews.length).toFixed(1) + " / 5 · " + visibleReviews.length + " đánh giá";
+        summary.textContent = (totalRating / visibleReviews.length).toFixed(1) + "/5 (" + visibleReviews.length + " đánh giá)";
 
     var reviewList = document.getElementById("productReviewList");
     reviewList.innerHTML = "";

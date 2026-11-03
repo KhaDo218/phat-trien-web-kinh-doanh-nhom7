@@ -235,7 +235,7 @@ function openHotspot(viTri){
     html += "<div class='rd-popup-main'>";
     html += "  <a class='rd-popup-img' href='" + link + "'><img src='" + asset(sp.images[0]) + "' alt='" + roomEscape(sp.name) + "'></a>";
     html += "  <div class='rd-popup-info'>";
-    html += "    <p class='overline'>" + roomEscape(sp.brand || "") + (danhMuc != null ? " · " + roomEscape(danhMuc.name) : "") + "</p>";
+    html += "    <p class='overline'>" + roomEscape(sp.brand || "") + (danhMuc != null ? " / " + roomEscape(danhMuc.name) : "") + "</p>";
     html += "    <h3 class='title-product' id='popupName'><a href='" + link + "'>" + roomEscape(sp.name) + "</a></h3>";
     html += "    <p class='rd-popup-price'><span class='price'>" + formatVND(sp.price) + "</span>";
     if(sp.original_price != null && Number(sp.original_price) > Number(sp.price))

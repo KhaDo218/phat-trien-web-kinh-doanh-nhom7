@@ -25,14 +25,20 @@
         <main class="container">
             <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span id="crumbStyle">Không gian mẫu</span></div>
 
-            <div class="rooms-heading">
-                <div>
-                    <p class="overline">Bộ sưu tập không gian</p>
-                    <h1 class="headline-page" id="pageTitle">Không gian mẫu</h1>
-                    <p class="lead" id="pageLead">Bắt đầu từ cảm hứng thay vì từ danh mục: chạm vào từng món trong những căn phòng đã được bày sẵn, xoay mô hình 3D để nhìn rõ mọi góc và mang cả không gian ấy về nhà chỉ trong vài bước.</p>
+            <!-- Banner: tiêu đề + dải lát ảnh 7 phong cách (rooms.js: showStyleSlices). Bấm lát nào thì lọc theo phong cách đó -->
+            <section class="rooms-heading">
+                <div class="rooms-heading-top">
+                    <div class="rooms-heading-title">
+                        <p class="overline">Bộ sưu tập không gian</p>
+                        <h1 class="headline-page" id="pageTitle">Không gian mẫu</h1>
+                    </div>
+                    <div class="rooms-heading-side">
+                        <p class="lead" id="pageLead">Bắt đầu từ cảm hứng thay vì từ danh mục: chạm vào từng món trong những căn phòng đã được bày sẵn, xoay mô hình 3D để nhìn rõ mọi góc và mang cả không gian ấy về nhà chỉ trong vài bước.</p>
+                        <p class="rooms-count" id="roomCount"></p>
+                    </div>
                 </div>
-                <p class="rooms-count" id="roomCount"></p>
-            </div>
+                <div class="rooms-slices" id="styleSlices" role="group" aria-label="Chọn phong cách bằng ảnh"></div>
+            </section>
 
             <!-- Lọc theo phong cách (UC3.1 - A1) -->
             <div class="rooms-filter" role="group" aria-label="Lọc theo phong cách" id="styleFilter"></div>

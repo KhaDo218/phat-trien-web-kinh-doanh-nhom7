@@ -11,26 +11,48 @@ body > .stats-band > .container{
     padding-right: 32px;
     padding-left: 32px;
 }
-#roomList{
-    gap: 32px;
-}
 
 /* ----- 1. Banner ----- */
+/* Header trong suốt nằm trên video; cuộn xuống (index.js thêm .home-header-visible) thì có nền đặc */
 body > #header{
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    transform: translateY(-105%);
-    opacity: 0;
-    box-shadow: 0 8px 30px rgba(32, 32, 32, 0.1);
-    transition: transform 0.45s ease, opacity 0.35s ease;
-    pointer-events: none;
+    background: transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+}
+body > #header:not(.home-header-visible) .logo,
+body > #header:not(.home-header-visible) .icons a,
+body > #header:not(.home-header-visible) .user-name,
+body > #header:not(.home-header-visible) .menu a,
+body > #header:not(.home-header-visible) .menu a:hover,
+body > #header:not(.home-header-visible) .menu a.active{
+    color: #FFFFFF;
+}
+body > #header:not(.home-header-visible) .menu a{
+    opacity: 0.82;
+}
+body > #header:not(.home-header-visible) .menu a:hover{
+    opacity: 1;
+}
+body > #header:not(.home-header-visible) .search span{
+    color: rgba(255, 255, 255, 0.7);
+}
+body > #header:not(.home-header-visible) .search input{
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #FFFFFF;
+}
+body > #header:not(.home-header-visible) .search input::placeholder{
+    color: rgba(255, 255, 255, 0.7);
+}
+body > #header:not(.home-header-visible) .cart-count{
+    background: #FFFFFF;
+    color: #202020;
 }
 body > #header.home-header-visible{
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+    background: #F7F7F5;
+    border-bottom-color: #DADAD7;
 }
 #hero{
     display: flex;
@@ -110,8 +132,7 @@ body > #header.home-header-visible{
     left: 0;
     z-index: 3;
     overflow: hidden;
-    background: rgba(20, 20, 19, 0.92);
-    backdrop-filter: blur(10px);
+    background: rgba(20, 20, 19, 0.94);
     color: #FFFFFF;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid #202020;
@@ -131,8 +152,8 @@ body > #header.home-header-visible{
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    gap: 30px;
-    padding: 15px 15px;
+    gap: 72px;
+    padding: 15px 36px;
 }
 .brand-marquee-group span{
     font-size: 11px;
@@ -166,13 +187,6 @@ body > #header.home-header-visible{
 .brand-marquee-group a:focus-visible span::after{
     transform: scaleX(1);
     transform-origin: left;
-}
-.brand-marquee-group i{
-    width: 4px;
-    height: 4px;
-    background: #FFFFFF;
-    border-radius: 50%;
-    opacity: 0.65;
 }
 @keyframes roomcraft-marquee{
     to{ transform: translateX(-50%); }
@@ -350,16 +364,69 @@ body > #header.home-header-visible{
     z-index: 3;
     padding-right: 42px;
 }
-.str-intro .headline-section{
-    max-width: 340px;
-    margin: 14px 0 18px;
-    font-size: clamp(42px, 4vw, 64px);
-    line-height: 0.96;
-    letter-spacing: -0.035em;
+/* Dòng chữ nhỏ có gạch ngang dẫn trước */
+.str-intro .overline{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #9A7440;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+.str-intro .overline::before{
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: #9A7440;
+}
+/* Tiêu đề hai tầng: "Trải nghiệm" nhỏ ở trên, "Shop the Room" lớn in nghiêng màu đồng */
+.str-intro .str-title{
+    max-width: 360px;
+    margin: 22px 0 26px;
+    font-size: clamp(46px, 4.4vw, 70px);
+    line-height: 1.08;            /* đủ thoáng để dấu tiếng Việt không đè nhau */
+    letter-spacing: -0.02em;
+}
+.str-title span{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.56em;
+    letter-spacing: 0;
+    color: #383838;
+}
+.str-title em{
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    color: #8A6A3E;
 }
 .str-intro .section-sub{
-    max-width: 330px;
-    line-height: 1.65;
+    max-width: 300px;
+    margin-bottom: 30px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(32, 32, 32, 0.14);
+    font-size: 15px;
+    line-height: 1.75;
+}
+.str-cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #202020;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: gap 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+.str-cta .material-symbols-outlined{
+    font-size: 16px;
+}
+.str-cta:hover{
+    gap: 14px;
+    color: #8A6A3E;
+    border-color: #8A6A3E;
 }
 .str-demo{
     position: relative;
@@ -590,186 +657,200 @@ body > #header.home-header-visible{
     font-size: 16px;
 }
 
-/* ----- 6. Về RoomCraft ----- */
-#ve-roomcraft{
+/* ----- 6. Về RoomCraft: "tua" căn phòng theo thanh cuộn -----
+   Section cao 280vh, bên trong là khung .about-sticky ghim kín màn hình.
+   index.js (initAboutScrub) tính tiến độ cuộn rồi đặt các biến:
+     --p      0 -> 1   tiến độ cả đoạn (ảnh lùi từ cận cảnh ra toàn cảnh, sáng dần)
+     --head   0 -> 1   tiêu đề trượt lên
+     --foot   0 -> 1   phần chữ dưới đáy hiện ra
+   và độ mờ (opacity) của từng ảnh để chuyển góc chụp mượt như tua video. */
+.about-scrub{
+    --p: 0;
+    --head: 0;
+    --foot: 0;
     position: relative;
+    height: 280vh;
+    background: #0F0F0D;
+    color: #FFFFFF;
+}
+.about-sticky{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
     overflow: hidden;
-    background:
-        radial-gradient(circle at 10% 15%, rgba(164, 133, 91, 0.2), transparent 30%),
-        radial-gradient(circle at 82% 78%, rgba(118, 125, 82, 0.18), transparent 28%),
-        #191916;
-    color: #F7F4ED;
 }
-#ve-roomcraft::before{
-    content: "ROOMCRAFT";
+.about-frames, .about-shade{
     position: absolute;
-    left: -12px;
-    bottom: -48px;
-    color: rgba(255, 255, 255, 0.035);
-    font-family: var(--font-display);
-    font-size: clamp(110px, 16vw, 290px);
-    line-height: 0.72;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    pointer-events: none;
+    inset: 0;
 }
-#ve-roomcraft::after{
+.about-frames img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(calc(1.42 - var(--p) * 0.42));
+    transform-origin: 50% 58%;
+    will-change: transform, opacity;
+}
+.about-frames img:first-child{
+    opacity: 1;
+}
+/* lớp tối: đậm lúc đầu cho tiêu đề nổi, nhạt dần khi cuộn; mép trên và dưới luôn tối để đọc chữ */
+.about-shade{
+    background:
+        linear-gradient(to bottom, rgba(10, 10, 9, 0.75) 0%, rgba(10, 10, 9, 0) 38%, rgba(10, 10, 9, 0) 52%, rgba(10, 10, 9, 0.88) 100%);
+}
+/* lớp tối phủ đều, nhạt dần khi cuộn: đổi opacity thay vì đổi màu nền */
+.about-shade::after{
     content: "";
     position: absolute;
-    top: 8%;
-    right: 2%;
-    width: 340px;
-    height: 340px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    box-shadow: 0 0 0 52px rgba(255, 255, 255, 0.02), 0 0 0 104px rgba(255, 255, 255, 0.012);
-    pointer-events: none;
+    inset: 0;
+    background: #0A0A09;
+    opacity: calc(0.62 - var(--p) * 0.42);
+    will-change: opacity;
 }
-#ve-roomcraft .about{
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
-    gap: clamp(56px, 7vw, 124px);
-    align-items: center;
+.about-layer{
     position: relative;
-    z-index: 1;
-    max-width: 1600px;
-    padding-top: 38px;
-    padding-bottom: 38px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-top: 150px;
+    padding-bottom: 48px;
 }
-#ve-roomcraft .about-text{
-    position: relative;
-    z-index: 3;
+
+/* Tiêu đề: từng dòng trượt lên từ sau một mặt nạ */
+.about-head .overline{
+    margin-bottom: 20px;
+    color: #C6AE87;
+    opacity: var(--head);
 }
-#ve-roomcraft .headline-page{
-    max-width: 700px;
-    margin: 14px 0 26px;
-    color: #FFFFFF;
-    font-size: clamp(44px, 4.5vw, 68px);
-    line-height: 1.02;
+.about-title{
+    font-family: var(--font-display);
+    font-size: clamp(52px, 7vw, 112px);
+    font-weight: 400;
+    line-height: 0.98;
     letter-spacing: -0.025em;
 }
-#ve-roomcraft .overline{
-    color: #C6AE87;
-    font-weight: 600;
+.about-line{
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
 }
-#ve-roomcraft .about-lead{
-    max-width: 680px;
-    margin-bottom: 18px;
-    color: #F0ECE3;
-    font-size: 18px;
-    line-height: 29px;
+.about-line > span{
+    display: inline-block;
+    transform: translateY(calc((1 - var(--head)) * 105%));
 }
-#ve-roomcraft .about-text > .text-secondary{
-    max-width: 650px;
-    color: rgba(255, 255, 255, 0.58);
-    font-size: 15px;
-    line-height: 25px;
+.about-line:nth-child(2) > span{
+    transform: translateY(calc((1 - var(--head)) * 140%));
 }
-#ve-roomcraft .about-points{
+
+/* Đáy: phong cách bên trái, bộ đếm ở giữa, chữ nhỏ bên phải */
+.about-foot{
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) auto minmax(300px, 400px);
+    align-items: end;
+    gap: 48px;
+    opacity: var(--foot);
+    transform: translateY(calc((1 - var(--foot)) * 30px));
+}
+.about-styles{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 34px;
+}
+.about-styles a{
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.4s ease;
+}
+.about-styles a:hover{
+    color: #FFFFFF;
+}
+.about-meter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.55);
+}
+.about-count b{
+    font-weight: 500;
+    color: #FFFFFF;
+}
+.about-bar{
+    position: relative;
+    width: 120px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+.about-bar span{
+    position: absolute;
+    inset: 0;
+    background: #C6AE87;
+    transform: scaleX(var(--p));
+    transform-origin: left;
+}
+.about-note{
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+}
+.about-lead{
+    margin-bottom: 22px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+}
+.about-points{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-top: 38px;
-    padding-top: 0;
-    border-top: 0;
-    font-size: 14px;
-    line-height: 22px;
+    gap: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
-#ve-roomcraft .about-points > div{
-    position: relative;
-    min-height: 156px;
-    padding: 34px 24px 24px;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    background: rgba(255, 255, 255, 0.055);
-    backdrop-filter: blur(12px);
-    transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
-}
-#ve-roomcraft .about-points > div::before{
+.about-points > div::before{
     content: attr(data-step);
-    position: absolute;
-    top: -21px;
-    left: 22px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(255, 255, 255, 0.24);
-    border-radius: 50%;
-    background: #C6AE87;
-    color: #191916;
+    display: block;
+    margin-bottom: 6px;
     font-family: var(--font-display);
-    font-size: 17px;
-    font-weight: 600;
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
-    transition: transform 0.35s ease, background-color 0.35s ease;
-}
-#ve-roomcraft .about-points > div:nth-child(2){
-    transform: translateY(22px);
-}
-#ve-roomcraft .about-points > div:hover{
-    transform: translateY(-7px);
-    border-color: rgba(198, 174, 135, 0.7);
-    background: rgba(255, 255, 255, 0.09);
-}
-#ve-roomcraft .about-points > div:hover::before{
-    transform: translateY(-4px) rotate(-7deg);
-    background: #E0C99F;
-}
-#ve-roomcraft .about-points .overline{
-    margin-bottom: 10px;
+    font-size: 20px;
     color: #C6AE87;
 }
-#ve-roomcraft .about-image{
-    position: relative;
-    padding: 28px 0 44px 32px;
-    perspective: 1400px;
+.about-points .overline{
+    margin-bottom: 6px;
+    color: #FFFFFF;
+    font-size: 10px;
 }
-#ve-roomcraft .about-image::before{
-    content: "";
-    position: absolute;
-    inset: 0 34px 12px 0;
-    border: 1px solid rgba(198, 174, 135, 0.5);
-    transform: translate(18px, 14px) rotate(-2deg);
-    pointer-events: none;
+.about-points p:not(.overline){
+    font-size: 12px;
+    line-height: 1.6;
 }
-#ve-roomcraft .about-image img{
-    width: 100%;
-    height: min(74vh, 760px);
-    min-height: 580px;
-    object-fit: cover;
-    box-shadow: 0 38px 70px rgba(0, 0, 0, 0.42);
-    transform: rotateY(-5deg) rotateX(1.5deg);
-    transform-origin: left center;
-    transition: transform 0.8s cubic-bezier(.2,.8,.2,1), filter 0.8s ease;
-    filter: saturate(0.82) contrast(1.04);
+.about-caption{
+    margin-top: 22px;
+    font-size: 13px;
 }
-#ve-roomcraft .about-image:hover img{
-    transform: rotateY(0) rotateX(0) scale(1.012);
-    filter: saturate(1) contrast(1);
+.about-caption .overline{
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
 }
-#ve-roomcraft .about-caption{
-    position: absolute;
-    left: -26px;
-    bottom: 12px;
-    width: min(330px, 65%);
-    max-width: none;
-    padding: 24px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(247, 244, 237, 0.92);
-    color: #202020;
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(14px);
+.about-caption a{
+    color: #FFFFFF;
+    font-family: var(--font-display);
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    transition: border-color 0.4s ease;
 }
-#ve-roomcraft .about-caption .overline{
-    color: #74634D;
-}
-#ve-roomcraft .about-caption a{
-    display: inline-block;
-    transition: transform 0.25s ease;
-}
-#ve-roomcraft .about-caption a:hover{
-    transform: translateX(5px);
+.about-caption a:hover{
+    border-bottom-color: #FFFFFF;
 }
 
 @media (max-width: 1024px){
@@ -813,16 +894,6 @@ body > #header.home-header-visible{
     .style-tile:nth-child(7){
         grid-column: span 2;
     }
-    #ve-roomcraft .about{
-        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-        gap: 44px;
-    }
-    #ve-roomcraft .headline-page{
-        font-size: clamp(42px, 5.5vw, 62px);
-    }
-    #ve-roomcraft .about-image img{
-        min-height: 520px;
-    }
 }
 @media (max-width: 768px){
     body > .section > .container,
@@ -843,8 +914,8 @@ body > #header.home-header-visible{
         margin-bottom: 12px;
     }
     .brand-marquee-group{
-        gap: 20px;
-        padding: 13px 10px;
+        gap: 48px;
+        padding: 13px 24px;
     }
     .featured-track{
         grid-auto-columns: 82%;
@@ -916,29 +987,6 @@ body > #header.home-header-visible{
         font-size: 20px;
         line-height: 26px;
     }
-    #ve-roomcraft .about{
-        grid-template-columns: 1fr;
-        gap: 42px;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    #ve-roomcraft .about-points{
-        grid-template-columns: 1fr;
-    }
-    #ve-roomcraft .about-points > div:nth-child(2){
-        transform: none;
-    }
-    #ve-roomcraft .about-image{
-        padding: 16px 0 40px 12px;
-    }
-    #ve-roomcraft .about-image img{
-        height: 68vh;
-        min-height: 460px;
-        transform: none;
-    }
-    #ve-roomcraft .about-caption{
-        left: 16px;
-    }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -952,5 +1000,338 @@ body > #header.home-header-visible{
     }
     .featured-track{
         scroll-behavior: auto;
+    }
+}
+
+/* ----- 2. Pointlight: phòng chìm trong bóng tối, vùng sáng chạy theo con trỏ -----
+   Hai lớp cùng một ảnh: lớp dưới tối, lớp trên sáng nhưng chỉ lộ ra trong vòng tròn
+   quanh con trỏ (mask-image). Cả khung ảnh nghiêng nhẹ theo chuột, chữ trôi ngược
+   chiều -> cảm giác 3D. JS (index.js: initPointlight) chỉ cập nhật các biến --x, --y, --tx, --ty. */
+.pointlight{
+    --x: 50%;
+    --y: 55%;
+    --tx: 0;
+    --ty: 0;
+    --r: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    min-height: 620px;
+    overflow: hidden;
+    background: #0B0B0A;
+    color: #FFFFFF;
+    perspective: 1400px;
+}
+.pointlight-stage{
+    position: absolute;
+    inset: -5%;
+    transform: rotateY(calc(var(--tx) * 5deg)) rotateX(calc(var(--ty) * -4deg)) scale(1.02);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+.pointlight-img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    filter: contrast(1.06);
+}
+/* Lớp tối và quầng sáng rộng gấp 3 khung, tâm là vùng sáng; JS chỉ đổi transform nên không phải vẽ lại ảnh */
+.pointlight-dark, .pointlight-glow{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    pointer-events: none;
+    will-change: transform;
+    transform: translate(-33.33%, -30%);
+}
+.pointlight-dark{
+    background: radial-gradient(circle var(--r) at 50% 50%, rgba(9, 9, 8, 0) 0%, rgba(9, 9, 8, .45) 45%, rgba(9, 9, 8, .86) 100%);
+}
+.pointlight-glow{
+    background: radial-gradient(circle calc(var(--r) * 1.5) at 50% 50%, rgba(255, 214, 160, .14), rgba(255, 214, 160, 0) 70%);
+}
+/* tối dần ở mép khung */
+.pointlight::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+}
+.pointlight-copy{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transform: translate3d(calc(var(--tx) * -18px), calc(var(--ty) * -12px), 0);
+    pointer-events: none;
+}
+.pointlight-copy .overline{
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.24em;
+}
+.pointlight-copy h2{
+    margin-bottom: 36px;
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6.5vw, 104px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
+}
+.pointlight-copy .btn{
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.7);
+    pointer-events: auto;
+}
+.pointlight-copy .btn:hover{
+    background: #FFFFFF;
+    color: #202020;
+}
+@media (max-width: 768px){
+    .pointlight{
+        --r: 190px;
+        height: 80vh;
+        min-height: 520px;
+    }
+}
+/* Giảm chuyển động: hiện sẵn ảnh sáng, không nghiêng */
+@media (prefers-reduced-motion: reduce){
+    .pointlight-stage, .pointlight-copy{
+        transform: none;
+    }
+    .pointlight-dark, .pointlight-glow{
+        display: none;
+    }
+    .pointlight-img{
+        filter: brightness(0.55);
+    }
+}
+
+/* ----- 6. Về RoomCraft: màn hình nhỏ và giảm chuyển động ----- */
+@media (max-width: 1024px){
+    .about-foot{
+        grid-template-columns: 1fr minmax(280px, 360px);
+    }
+    .about-meter{
+        display: none;
+    }
+}
+@media (max-width: 768px){
+    .about-scrub{
+        height: 240vh;
+    }
+    .about-layer{
+        padding-top: 130px;
+        padding-bottom: 28px;
+    }
+    .about-foot{
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .about-styles{
+        display: none;
+    }
+    .about-title{
+        font-size: 40px;
+        line-height: 1.05;
+    }
+    .about-points{
+        gap: 16px;
+    }
+}
+/* Giảm chuyển động: không ghim, hiện sẵn ảnh toàn cảnh và toàn bộ chữ */
+@media (prefers-reduced-motion: reduce){
+    .about-scrub{
+        --p: 1;
+        --head: 1;
+        --foot: 1;
+        height: auto;
+    }
+    .about-sticky{
+        position: relative;
+        min-height: 100vh;
+    }
+}
+
+/* ----- 4b. Tham quan 360°: canvas WebGL vẽ ảnh toàn cảnh, kéo để xoay (index.js: initPanorama) ----- */
+.pano{
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+    background: #11110F;
+    color: #FFFFFF;
+    cursor: grab;
+    touch-action: pan-y;          /* vuốt ngang để xoay, vuốt dọc vẫn cuộn trang */
+    user-select: none;
+}
+.pano.dragging{
+    cursor: grabbing;
+}
+.pano-canvas{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+.pano.ready .pano-canvas{
+    opacity: 1;
+}
+/* Trình duyệt không có WebGL: ảnh trượt ngang chậm thay cho xoay 360° */
+.pano.no-webgl{
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    animation: panoSlide 120s linear infinite;
+    cursor: default;
+}
+@keyframes panoSlide{
+    to{ background-position-x: -200vh; }
+}
+/* tối nhẹ ở mép trên và dưới để chữ dễ đọc */
+.pano-shade{
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(10, 10, 9, .6) 0%, rgba(10, 10, 9, .25) 30%, rgba(10, 10, 9, 0) 50%),
+        linear-gradient(to bottom, rgba(10, 10, 9, .55) 0%, rgba(10, 10, 9, 0) 30%, rgba(10, 10, 9, 0) 70%, rgba(10, 10, 9, .6) 100%);
+    pointer-events: none;
+}
+.pano-ui{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-top: 150px;
+    padding-bottom: 40px;
+    pointer-events: none;         /* để chuột kéo xuyên qua lớp chữ xuống canvas */
+}
+.pano-head .overline{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    color: #D9BE8B;
+    letter-spacing: .22em;
+}
+.pano-head .overline::before{
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: #D9BE8B;
+}
+.pano-head h2{
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5.6vw, 92px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.02em;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, .35);
+}
+.pano-head h2 em{
+    font-style: italic;
+    color: #E6D3AE;
+}
+.pano-foot{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+}
+.pano-hint{
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 999px;
+    background: rgba(15, 15, 13, .55);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    transition: opacity .6s ease;
+}
+.pano-hint .material-symbols-outlined{
+    font-size: 20px;
+}
+.pano-hint.hide{
+    opacity: 0;
+}
+.pano-zoom{
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    display: flex;
+    gap: 8px;
+    pointer-events: auto;
+}
+.pano-zoom button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50%;
+    background: rgba(15, 15, 13, .55);
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color .3s ease, color .3s ease;
+}
+.pano-zoom button:hover{
+    background: #FFFFFF;
+    color: #202020;
+}
+.pano-credit{
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    margin-right: 84px;           /* chừa chỗ cho nút chatbot ở góc phải */
+    color: rgba(255, 255, 255, .45);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+@media (max-width: 768px){
+    .pano{
+        height: 80vh;
+    }
+    .pano-ui{
+        padding-top: 120px;
+        padding-bottom: 24px;
+    }
+    .pano-foot{
+        grid-template-columns: auto 1fr;
+    }
+    .pano-hint{
+        grid-column: 2;
+        justify-self: start;
+        padding: 10px 16px;
+        font-size: 10px;
+        letter-spacing: .1em;
+        white-space: nowrap;
+    }
+    .pano-hint-more{
+        display: none;
+    }
+    .pano-zoom{
+        grid-column: 1;
+    }
+    .pano-credit{
+        display: none;
     }
 }

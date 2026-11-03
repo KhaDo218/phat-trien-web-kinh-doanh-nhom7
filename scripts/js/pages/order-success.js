@@ -36,10 +36,10 @@ function showSuccess(){
     html += "<div class='success-info'>";
     html += "  <div class='info-row'><span>Mã đơn hàng</span><span>#" + order.id + "</span></div>";
     html += "  <div class='info-row'><span>Ngày đặt</span><span>" + formatDate(order.created_at) + "</span></div>";
-    html += "  <div class='info-row'><span>Người nhận</span><span>" + safeText(order.shipping_name) + " · " + safeText(order.shipping_phone) + "</span></div>";
+    html += "  <div class='info-row'><span>Người nhận</span><span>" + safeText(order.shipping_name) + ", " + safeText(order.shipping_phone) + "</span></div>";
     html += "  <div class='info-row'><span>Giao đến</span><span>" + safeText(order.shipping_address) + "</span></div>";
     if(ship != null)
-        html += "  <div class='info-row'><span>Giao hàng</span><span>" + safeText(ship.name) + " · dự kiến " + getDeliveryRange(ship) + "</span></div>";
+        html += "  <div class='info-row'><span>Giao hàng</span><span>" + safeText(ship.name) + ", dự kiến " + getDeliveryRange(ship) + "</span></div>";
     html += "  <div class='info-row'><span>Thanh toán</span><span>" + getPaymentText(order.payment_method) + (order.card_last4 ? " ···· " + safeText(order.card_last4) : "") + "</span></div>";
     html += "  <div class='info-row'><span>Tổng đơn hàng</span><span class='price'>" + formatVND(order.total_amount) + "</span></div>";
     if(order.paid_amount != null){

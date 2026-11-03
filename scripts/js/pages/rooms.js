@@ -28,6 +28,7 @@ function initPage(){
     if(isNaN(currentPage) || currentPage < 1)
         currentPage = 1;
     showStyleFilter();
+    showStyleSlices();
     showRooms();
 }
 
@@ -74,6 +75,32 @@ function showStyleFilter(){
     document.getElementById("styleFilter").innerHTML = html;
 }
 
+// Dải lát ảnh ở banner: mỗi phong cách một lát (ảnh phòng đầu tiên của phong cách đó)
+function showStyleSlices(){
+    var styles = getTable("styles");
+    var rooms = sortRoomsForDisplay(getTable("rooms"));
+    var html = "";
+    for(var i = 0; i < styles.length; i++){
+        var anh = "";
+        var soPhong = 0;
+        for(var j = 0; j < rooms.length; j++){
+            if(rooms[j].style_id != styles[i].id)
+                continue;
+            soPhong = soPhong + 1;
+            if(anh == "")
+                anh = rooms[j].image_url;
+        }
+        var so = i + 1 < 10 ? "0" + (i + 1) : i + 1;
+        html += "<button type='button' class='rooms-slice' data-style='" + styles[i].slug + "' onclick=\"filterStyle('" + styles[i].slug + "')\""
+              + " style=\"background-image:url('" + asset(anh) + "')\" aria-label='Phong cách " + roomEscape(styles[i].name) + "'>"
+              + "<span class='rooms-slice-no'>" + so + "</span>"
+              + "<span class='rooms-slice-vname'>" + roomEscape(styles[i].name) + "</span>"
+              + "<span class='rooms-slice-info'><b>" + roomEscape(styles[i].name) + "</b>" + soPhong + " không gian</span>"
+              + "</button>";
+    }
+    document.getElementById("styleSlices").innerHTML = html;
+}
+
 function filterStyle(slug){
     currentStyle = slug;
     currentPage = 1;           // đổi phong cách thì về trang 1
@@ -97,6 +124,11 @@ function showRooms(){
     var chipDangChon = document.getElementById(style == null ? "chip-all" : "chip-" + style.slug);
     chipDangChon.className = "chip active";
     chipDangChon.setAttribute("aria-pressed", "true");
+
+    // lát ảnh của phong cách đang lọc giữ trạng thái mở rộng
+    var slices = document.getElementById("styleSlices").getElementsByTagName("button");
+    for(var i = 0; i < slices.length; i++)
+        slices[i].classList.toggle("active", style != null && slices[i].getAttribute("data-style") == style.slug);
 
     // tiêu đề theo phong cách
     if(style == null){

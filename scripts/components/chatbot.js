@@ -37,7 +37,7 @@ function renderChatbot(){
           + "      <div class='rc-chat-avatar'><span class='material-symbols-outlined'>support_agent</span></div>"
           + "      <div>"
           + "        <h4 class='rc-chat-title'>Trợ lý ảo RoomCraft</h4>"
-          + "        <p class='rc-chat-status'><span class='rc-status-dot'></span>Trực tuyến • Sẵn sàng hỗ trợ</p>"
+          + "        <p class='rc-chat-status'><span class='rc-status-dot'></span>Đang trực tuyến</p>"
           + "      </div>"
           + "    </div>"
           + "    <div style='display:flex;gap:4px;align-items:center;'>"
