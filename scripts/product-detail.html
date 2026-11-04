@@ -191,21 +191,26 @@
                             <p class="overline">Trải nghiệm khách hàng</p>
                             <h2 class="headline-section">Đánh giá sản phẩm</h2>
                         </div>
-                        <p class="text-secondary" id="reviewSummary">Chưa có đánh giá.</p>
+                        <div class="review-summary text-secondary" id="reviewSummary">Chưa có đánh giá.</div>
                     </div>
                     <div class="review-form-card card">
                         <h3 class="title-product">Chia sẻ trải nghiệm của bạn</h3>
                         <p class="text-secondary" id="reviewEligibility"></p>
                         <form id="frmProductReview" class="hidden" onsubmit="return submitProductReview(event)">
+                            <!-- Chọn số sao: bấm vào ngôi sao (product-detail.js: initStarPicker), giá trị lưu ở ô ẩn cboReviewRating -->
                             <div class="form-group">
-                                <label for="cboReviewRating">Số sao</label>
-                                <select class="input" id="cboReviewRating" required>
-                                    <option value="5">5 sao - Rất hài lòng</option>
-                                    <option value="4">4 sao - Hài lòng</option>
-                                    <option value="3">3 sao - Bình thường</option>
-                                    <option value="2">2 sao - Chưa hài lòng</option>
-                                    <option value="1">1 sao - Không hài lòng</option>
-                                </select>
+                                <label id="lblReviewRating">Bạn chấm sản phẩm mấy sao?</label>
+                                <div class="star-picker-row">
+                                    <div class="star-picker" id="starPicker" role="radiogroup" aria-labelledby="lblReviewRating">
+                                        <button type="button" role="radio" aria-checked="false" data-v="1" aria-label="1 sao">★</button>
+                                        <button type="button" role="radio" aria-checked="false" data-v="2" aria-label="2 sao">★</button>
+                                        <button type="button" role="radio" aria-checked="false" data-v="3" aria-label="3 sao">★</button>
+                                        <button type="button" role="radio" aria-checked="false" data-v="4" aria-label="4 sao">★</button>
+                                        <button type="button" role="radio" aria-checked="false" data-v="5" aria-label="5 sao">★</button>
+                                    </div>
+                                    <span class="star-picker-text" id="starPickerText">Chọn số sao</span>
+                                </div>
+                                <input type="hidden" id="cboReviewRating" value="">
                             </div>
                             <div class="form-group">
                                 <label for="txtReviewComment">Nhận xét</label>

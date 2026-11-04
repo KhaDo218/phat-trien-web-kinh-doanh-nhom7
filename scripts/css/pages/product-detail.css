@@ -364,8 +364,107 @@
     gap:16px;
 }
 .product-review-rating{
+    display:flex;
+    align-items:center;
+    gap:10px;
     margin:8px 0;
+    font-size:12px;
+    color:#686868;
+}
+
+/* Sao: lớp xám bên dưới, lớp vàng bên trên cắt theo % điểm */
+.stars{
+    position:relative;
+    display:inline-block;
+    font-size:16px;
+    line-height:1;
+    letter-spacing:2px;
+    white-space:nowrap;
+}
+.stars-base{color:#DAD5CB}
+.stars-fill{
+    position:absolute;
+    top:0;
+    left:0;
+    overflow:hidden;
+    color:#B08D57;
+}
+
+/* Tổng quan đánh giá ở đầu mục */
+.review-summary{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+.review-score{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+}
+.review-score b{
+    font-family:var(--font-display);
+    font-size:48px;
+    font-weight:400;
+    line-height:1;
     color:#202020;
+}
+.review-score > span:last-child{font-size:12px}
+.review-bars{
+    display:grid;
+    gap:4px;
+    width:220px;
+    list-style:none;
+}
+.review-bars li{
+    display:grid;
+    grid-template-columns:26px 1fr 22px;
+    align-items:center;
+    gap:8px;
+    font-size:11px;
+}
+.review-bars li span:last-child{text-align:right}
+.review-bars i{
+    height:5px;
+    border-radius:3px;
+    background:#E7E3DB;
+    overflow:hidden;
+}
+.review-bars em{
+    display:block;
+    height:100%;
+    background:#B08D57;
+}
+
+/* Ô chọn sao trong form */
+.star-picker-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+.star-picker{display:flex}
+.star-picker button{
+    padding:0 3px;
+    border:0;
+    background:none;
+    font-size:32px;
+    line-height:1;
+    color:#DAD5CB;
+    cursor:pointer;
+    transition:color .2s ease, transform .2s ease;
+}
+.star-picker button.on{color:#B08D57}
+.star-picker button.hover{color:#C9A66B}
+.star-picker:hover button:not(.hover){color:#DAD5CB}
+.star-picker button:hover{transform:scale(1.15)}
+.star-picker button:focus-visible{
+    outline:2px solid #B08D57;
+    outline-offset:2px;
+    border-radius:4px;
+}
+.star-picker-text{
+    font-size:13px;
+    color:#686868;
 }
 
 /* Responsive */
@@ -416,6 +515,9 @@
     .detail-related-section .section-head .text-secondary{text-align:left}
     .review-form-card{padding:20px}
     .product-review-heading{flex-direction:column;gap:4px}
+    .review-summary{gap:20px}
+    .review-bars{width:180px}
+    .star-picker button{font-size:28px}
     .detail-shipping{padding:14px 16px}
 }
 @media(max-width:460px){

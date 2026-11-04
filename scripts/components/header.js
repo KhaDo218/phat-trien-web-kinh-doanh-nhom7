@@ -11,7 +11,7 @@ var MENU_ITEMS = [
     { ma: "san-pham",   ten: "Sản phẩm",       trang: "products.html" },
     { ma: "khong-gian", ten: "Không gian mẫu", trang: "rooms.html" },
     { ma: "do-cu",      ten: "Đồ cũ",          trang: "marketplace.html" },
-    { ma: "gioi-thieu", ten: "Về RoomCraft",   trang: "index.html#ve-roomcraft" }
+    { ma: "gioi-thieu", ten: "Về RoomCraft",   trang: "about.html" }
 ];
 
 function renderHeader(mucDangMo){

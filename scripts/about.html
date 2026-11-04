@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>Về RoomCraft - Trọn một không gian, vẹn một phong cách</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            @import url(css/base.css);
+            @import url(css/pages/about.css);
+        </style>
+        <script src="js/core/utils.js"></script>
+        <script src="js/core/store.js"></script>
+        <script src="js/core/auth.js"></script>
+        <script src="components/header.js"></script>
+        <script src="components/footer.js"></script>
+        <script src="components/chatbot.js"></script>
+        <script src="js/pages/about.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+
+        <!-- ===== 1. Mở đầu ===== -->
+        <section class="ab-hero">
+            <div class="container ab-hero-grid">
+                <div class="ab-hero-copy">
+                    <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span><span>Về RoomCraft</span></div>
+                    <p class="overline">Về RoomCraft</p>
+                    <h1 class="ab-hero-title">Nghệ thuật sắp đặt <em>không gian sống</em></h1>
+                    <p class="ab-hero-lead">Chúng tôi bắt đầu từ cả căn phòng, không phải từng món đồ.</p>
+                </div>
+                <figure class="ab-hero-visual">
+                    <img src="../assets/rooms/traditional/room-traditional-4240421-01.jpg" alt="Phòng ngủ phong cách Traditional của RoomCraft">
+                </figure>
+            </div>
+        </section>
+
+        <!-- ===== 2. Cách chúng tôi làm: 4 tấm ảnh dọc, rê chuột (hoặc chạm) để mở rộng ===== -->
+        <section class="ab-process">
+            <div class="container">
+                <div class="ab-process-head">
+                    <p class="overline">Cách chúng tôi làm</p>
+                    <h2>Bốn bước, <em>một căn phòng</em></h2>
+                </div>
+                <ol class="ab-panels" id="abPanels">
+                    <li class="active" tabindex="0">
+                        <img src="../assets/rooms/coastal/room-coastal-4173476-01.jpg" alt="" loading="lazy">
+                        <div class="ab-panel-text">
+                            <span class="ab-num">I</span>
+                            <h3>Cảm hứng</h3>
+                            <p>Mỗi căn phòng bắt đầu từ một phong cách sống.</p>
+                        </div>
+                    </li>
+                    <li tabindex="0">
+                        <img src="../assets/rooms/bohemian/room-bohemian-4236536-01.jpg" alt="" loading="lazy">
+                        <div class="ab-panel-text">
+                            <span class="ab-num">II</span>
+                            <h3>Phối hợp</h3>
+                            <p>Màu, chất liệu và tỉ lệ được chọn cùng nhau.</p>
+                        </div>
+                    </li>
+                    <li class="ab-panel-object" tabindex="0">
+                        <img src="../assets/products/bohemian/board-4236536/product-bohemian-henning-wood-and-leather-accent-chair-01-01.jpg" alt="" loading="lazy">
+                        <div class="ab-panel-text">
+                            <span class="ab-num">III</span>
+                            <h3>Xem trước</h3>
+                            <p>Xoay mô hình 3D, nhìn rõ từng đường nét.</p>
+                        </div>
+                    </li>
+                    <li tabindex="0">
+                        <img src="../assets/rooms/scandinavian/room-scandinavian-4226900-01.jpg" alt="" loading="lazy">
+                        <div class="ab-panel-text">
+                            <span class="ab-num">IV</span>
+                            <h3>Trọn vẹn</h3>
+                            <p>Giao tận nơi, đúng như bạn hình dung.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ===== 3. Lời hứa: ảnh tràn màn hình + một câu ===== -->
+        <section class="ab-promise">
+            <img class="ab-promise-bg" src="../assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg" alt="" loading="lazy">
+            <div class="container ab-promise-inner">
+                <blockquote>
+                    <p>Chúng tôi không bán một chiếc ghế, mà là <em>buổi chiều</em> bạn ngồi trên chiếc ghế ấy.</p>
+                </blockquote>
+                <p class="ab-figures">
+                    <span><b id="abRooms">49</b> không gian</span>
+                    <span><b id="abStyles">7</b> phong cách</span>
+                    <span><b id="abProducts">900+</b> sản phẩm</span>
+                </p>
+                <a class="ab-link" href="rooms.html">Khám phá không gian mẫu <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </section>
+
+        <div id="footer"></div>
+
+        <script>
+            loadData(initPage);
+        </script>
+    </body>
+</html>

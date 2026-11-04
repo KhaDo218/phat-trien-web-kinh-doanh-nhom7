@@ -37,6 +37,36 @@ function renderFooter(){
     html += "      </div>";
     html += "    </div>";
     html += "  </div>";
+    // Monogram RoomCraft giữa cuối trang: chữ R và C (nét Cormorant Garamond, kéo cao) lồng vào nhau,
+    // đứng trong một ô cửa vòm nét đôi như một căn phòng thu nhỏ, phía trên treo chiếc đèn vàng đồng.
+    // Chỗ R và C giao nhau có một đường cắt mảnh (mask) nên đặt trên nền màu nào cũng được.
+    var MONO_R = "M48.24 100Q46.79 100 43.41 93.95Q40.02 87.9 35.24 76.51Q30.45 65.13 24.56 49.36L32.29 45.54Q40.12 64.81 45.68 76.35Q51.24 87.9 55.54 92.99Q59.84 98.09 63.81 98.09Q64 98.09 64 99.04Q64 100 63.81 100Q57.72 100 53.9 100Q50.08 100 48.24 100ZM26.3 0Q34.71 0 39.3 5.49Q43.89 10.99 43.89 20.54Q43.89 29.62 40.75 36.78Q37.61 43.95 32.63 47.93Q27.65 51.91 21.95 51.91Q20.79 51.91 19.43 51.83Q18.08 51.75 17.02 51.59V87.1Q17.02 91.72 17.5 94.11Q17.98 96.5 19.58 97.29Q21.17 98.09 24.27 98.09Q24.56 98.09 24.56 99.04Q24.56 100 24.27 100Q21.85 100 18.85 99.84Q15.85 99.68 12.28 99.68Q8.89 99.68 5.8 99.84Q2.71 100 0.29 100Q0 100 0 99.04Q0 98.09 0.29 98.09Q3.48 98.09 5.03 97.29Q6.57 96.5 7.15 94.11Q7.73 91.72 7.73 87.1V13.38Q7.73 8.76 7.2 6.45Q6.67 4.14 5.12 3.26Q3.58 2.39 0.39 2.39Q0.19 2.39 0.19 1.43Q0.19 0.48 0.39 0.48Q2.8 0.48 5.85 0.72Q8.89 0.96 12.28 0.96Q15.37 0.96 19.24 0.48Q23.11 0 26.3 0ZM34.32 26.11Q34.32 16.88 33.02 11.86Q31.71 6.85 29.39 4.94Q27.07 3.03 23.98 3.03Q20.21 3.03 18.61 5.33Q17.02 7.64 17.02 13.69V47.29Q18.37 47.61 19.92 47.77Q21.46 47.93 22.62 47.93Q29.1 47.93 31.71 42.6Q34.32 37.26 34.32 26.11Z";
+    var MONO_C = "M78.02 4Q81.6 4 84.92 4.52Q88.25 5.04 91.16 6Q94.07 6.96 96.42 8.59Q97.24 9.19 97.5 9.78Q97.75 10.37 97.85 12L99.08 31.56Q99.08 32 98.57 32.15Q98.06 32.3 97.85 31.7Q95.2 19.7 89.98 13.26Q84.77 6.81 76.9 6.81Q69.34 6.81 63.51 12.22Q57.68 17.63 54.41 27.63Q51.14 37.63 51.14 51.41Q51.14 61.48 53.13 69.93Q55.13 78.37 58.76 84.44Q62.39 90.52 67.19 93.85Q71.99 97.19 77.72 97.19Q85.38 97.19 90.29 91.41Q95.2 85.63 98.88 73.33Q98.98 72.89 99.49 73.04Q100 73.19 100 73.48L98.67 91.11Q98.57 92.89 98.31 93.41Q98.06 93.93 97.24 94.52Q92.23 97.48 87.43 98.74Q82.62 100 77.61 100Q66.68 100 58.19 94Q49.71 88 44.86 77.11Q40 66.22 40 52.15Q40 41.48 42.86 32.59Q45.72 23.7 50.89 17.33Q56.05 10.96 63 7.48Q69.95 4 78.02 4Z";
+    html += "  <a class='footer-monogram' href='" + goc + "index.html' aria-label='RoomCraft - Trang chủ'>";
+    html += "    <svg viewBox='-16 -2 172 176' aria-hidden='true'>";
+    html += "      <mask id='rcKnock' maskUnits='userSpaceOnUse' x='-20' y='-20' width='200' height='220'>";
+    html += "        <rect x='-20' y='-20' width='200' height='220' fill='#fff'/>";
+    html += "        <path transform='translate(29 84) scale(0.82)' d='" + MONO_C + "' fill='#000' stroke='#000' stroke-width='3.2' stroke-linejoin='round'/>";
+    html += "      </mask>";
+    // ô cửa vòm nét đôi + sàn
+    html += "      <g fill='none' stroke='currentColor'>";
+    html += "        <path d='M0 170V70A70 70 0 0 1 140 70V170' stroke-width='1.1'/>";
+    html += "        <path d='M5 170V70A65 65 0 0 1 135 70V170' stroke-width='0.45'/>";
+    html += "        <path d='M-14 170H154' stroke-width='0.6'/>";
+    html += "      </g>";
+    // đèn thả
+    html += "      <g class='mono-lamp' fill='#B08D57'>";
+    html += "        <path d='M70 5V33' stroke='#B08D57' stroke-width='0.6'/>";
+    html += "        <path d='M60.5 42a9.5 9.5 0 0 1 19 0z'/>";
+    html += "        <circle cx='70' cy='45' r='1.7'/>";
+    html += "      </g>";
+    // chữ RC
+    html += "      <g fill='currentColor' stroke='currentColor' stroke-width='0.5' stroke-linejoin='round'>";
+    html += "        <g mask='url(#rcKnock)'><path transform='translate(29 84) scale(0.82)' d='" + MONO_R + "'/></g>";
+    html += "        <path transform='translate(29 84) scale(0.82)' d='" + MONO_C + "'/>";
+    html += "      </g>";
+    html += "    </svg>";
+    html += "  </a>";
     html += "  <div class='footer-bottom'>";
     html += "    <span>© " + new Date().getFullYear() + " ROOMCRAFT. All rights reserved.</span>";
     html += "    <span>Hà Nội, TP. Hồ Chí Minh, Đà Nẵng</span>";

@@ -18,6 +18,7 @@ function initPage(){
     showFeaturedProducts();
     showStyles();
     showAbout();
+    showBrandStory();
     initHomeMotion();
 }
 
@@ -125,10 +126,10 @@ function initHomeMotion(){
     initHeroVideoTrim();
     initFeaturedCarousel();
     initPointlight();
-    initPanorama();
     initAboutScrub();
+    initBrandStory();
 
-    var revealItems = document.querySelectorAll(".section-head, .room-card, .str-demo, .str-steps > li, .style-tile");
+    var revealItems = document.querySelectorAll(".section-head, .room-card, .str-demo, .str-steps > li, .style-tile, .bs-intro > *, .bs-tabs");
     for(var i = 0; i < revealItems.length; i++){
         revealItems[i].classList.add("home-reveal");
         revealItems[i].style.setProperty("--reveal-delay", (i % 4) * 70 + "ms");
@@ -220,222 +221,6 @@ function initPointlight(){
     }
     else
         setRunning(true);
-}
-
-// ----- Tham quan 360°: vẽ ảnh toàn cảnh (equirectangular, tỉ lệ 2:1) bằng WebGL -----
-// Mỗi điểm ảnh trên màn hình tính ra một hướng nhìn, đổi hướng đó thành kinh độ / vĩ độ
-// rồi lấy màu tương ứng trên ảnh toàn cảnh. Kéo chuột đổi hướng nhìn (yaw: quay trái phải, pitch: ngước lên xuống).
-var PANO_VERTEX = "attribute vec2 aPos; varying vec2 vPos;"
-    + "void main(){ vPos = aPos; gl_Position = vec4(aPos, 0.0, 1.0); }";
-var PANO_FRAGMENT = "precision highp float;"
-    + "uniform sampler2D uTex; uniform vec2 uView; uniform float uTanHalf; uniform float uAspect; varying vec2 vPos;"
-    + "void main(){"
-    + "  vec3 d = normalize(vec3(vPos.x * uTanHalf * uAspect, vPos.y * uTanHalf, -1.0));"
-    + "  float cp = cos(uView.y), sp = sin(uView.y);"
-    + "  d = vec3(d.x, d.y * cp - d.z * sp, d.y * sp + d.z * cp);"
-    + "  float cy = cos(uView.x), sy = sin(uView.x);"
-    + "  d = vec3(d.x * cy + d.z * sy, d.y, -d.x * sy + d.z * cy);"
-    + "  float lon = atan(d.x, -d.z);"
-    + "  float lat = asin(clamp(d.y, -1.0, 1.0));"
-    + "  gl_FragColor = texture2D(uTex, vec2(lon / 6.2831853 + 0.5, 0.5 - lat / 3.1415927));"
-    + "}";
-
-function initPanorama(){
-    var section = document.getElementById("pano");
-    if(!section)
-        return;
-    var canvas = document.getElementById("panoCanvas");
-    var hint = document.getElementById("panoHint");
-    var src = section.getAttribute("data-src");
-    var gl = canvas.getContext("webgl", { antialias: false }) || canvas.getContext("experimental-webgl");
-
-    // Không có WebGL: dùng ảnh làm nền trượt ngang (xem .pano.no-webgl trong index.css)
-    if(!gl){
-        section.classList.add("no-webgl");
-        section.style.backgroundImage = "url('" + src + "')";
-        return;
-    }
-
-    var program = createPanoProgram(gl);
-    var uView = gl.getUniformLocation(program, "uView");
-    var uTanHalf = gl.getUniformLocation(program, "uTanHalf");
-    var uAspect = gl.getUniformLocation(program, "uAspect");
-
-    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var view = { yaw: -1.35, pitch: 0, fov: 75 };   // hướng nhìn (radian; bắt đầu quay về phía ghế và giường) và góc nhìn (độ)
-    var target = { fov: 75 };
-    var hover = { x: 0, y: 0, sx: 0, sy: 0 };          // nghiêng nhẹ theo con trỏ khi chỉ rê chuột
-    var drag = null;
-    var velocity = 0;                                  // quán tính sau khi thả chuột
-    var lastTouch = 0;                                 // thời điểm người xem chạm lần cuối
-    var loaded = false, running = false, lastTime = 0;
-
-    function resize(){
-        var tiLe = Math.min(window.devicePixelRatio || 1, 1);    // vẽ theo điểm ảnh CSS cho nhẹ
-        canvas.width = Math.round(canvas.clientWidth * tiLe);
-        canvas.height = Math.round(canvas.clientHeight * tiLe);
-        gl.viewport(0, 0, canvas.width, canvas.height);
-    }
-
-    function frame(time){
-        if(!running)
-            return;
-        var dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
-        lastTime = time;
-
-        if(drag == null){
-            view.yaw += velocity;
-            velocity *= 0.92;
-            // để yên 2.5 giây thì phòng tự xoay chậm
-            if(!reduceMotion && time - lastTouch > 2500)
-                view.yaw += dt * 0.06;
-        }
-        hover.sx += (hover.x - hover.sx) * 0.06;
-        hover.sy += (hover.y - hover.sy) * 0.06;
-        view.fov += (target.fov - view.fov) * 0.12;
-
-        var pitch = Math.max(-1.2, Math.min(1.2, view.pitch + hover.sy * 0.12));
-        gl.uniform2f(uView, view.yaw - hover.sx * 0.3, pitch);
-        gl.uniform1f(uTanHalf, Math.tan(view.fov * Math.PI / 360));
-        gl.uniform1f(uAspect, canvas.width / canvas.height);
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-        window.requestAnimationFrame(frame);
-    }
-
-    function setRunning(on){
-        if(on && !running && loaded){
-            running = true;
-            lastTime = 0;
-            resize();
-            window.requestAnimationFrame(frame);
-        }
-        else if(!on)
-            running = false;
-    }
-
-    // Kéo để xoay: kéo sang phải thì nội dung trôi sang phải (giống Google Street View)
-    section.addEventListener("pointerdown", function(e){
-        if(e.target.closest && e.target.closest("button"))
-            return;
-        drag = { x: e.clientX, y: e.clientY, id: e.pointerId };
-        velocity = 0;
-        lastTouch = performance.now();
-        section.classList.add("dragging");
-        section.setPointerCapture(e.pointerId);
-        hint.classList.add("hide");
-    });
-    section.addEventListener("pointermove", function(e){
-        var r = section.getBoundingClientRect();
-        if(drag == null){
-            if(e.pointerType == "mouse"){
-                hover.x = (e.clientX - r.left) / r.width * 2 - 1;
-                hover.y = (e.clientY - r.top) / r.height * 2 - 1;
-            }
-            return;
-        }
-        var heSo = (view.fov * Math.PI / 180) / r.height;    // số radian ứng với 1px kéo
-        var dx = (e.clientX - drag.x) * heSo;
-        view.yaw += dx;
-        view.pitch = Math.max(-1.2, Math.min(1.2, view.pitch + (e.clientY - drag.y) * heSo));
-        velocity = dx;
-        drag.x = e.clientX;
-        drag.y = e.clientY;
-        lastTouch = performance.now();
-    });
-    function endDrag(){
-        drag = null;
-        section.classList.remove("dragging");
-        lastTouch = performance.now();
-    }
-    section.addEventListener("pointerup", endDrag);
-    section.addEventListener("pointercancel", endDrag);
-    section.addEventListener("pointerleave", function(){
-        hover.x = 0;
-        hover.y = 0;
-    });
-
-    // Nút phóng to / thu nhỏ (không dùng con lăn chuột để khỏi chặn cuộn trang)
-    document.getElementById("panoZoomIn").addEventListener("click", function(){
-        target.fov = Math.max(40, target.fov - 12);
-        lastTouch = performance.now();
-    });
-    document.getElementById("panoZoomOut").addEventListener("click", function(){
-        target.fov = Math.min(95, target.fov + 12);
-        lastTouch = performance.now();
-    });
-    window.addEventListener("resize", function(){
-        if(running)
-            resize();
-    });
-
-    // Tải ảnh (~3MB) khi người xem cuộn gần tới section; ảnh lớn hơn khả năng card đồ họa thì thu nhỏ trước
-    function loadImage(){
-        var img = new Image();
-        img.onload = function(){
-            // ảnh 8192px chiếm ~100MB bộ nhớ đồ họa; 4096px vẫn đủ nét cho màn hình thường
-            var toiDa = Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE), 4096);
-            var nguon = img;
-            if(img.width > toiDa){
-                nguon = document.createElement("canvas");
-                nguon.width = toiDa;
-                nguon.height = toiDa / 2;
-                nguon.getContext("2d").drawImage(img, 0, 0, nguon.width, nguon.height);
-            }
-            var tex = gl.createTexture();
-            gl.bindTexture(gl.TEXTURE_2D, tex);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, nguon);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-            loaded = true;
-            section.classList.add("ready");
-            setRunning(isVisible);
-        };
-        img.src = src;
-    }
-
-    var isVisible = false;
-    if("IntersectionObserver" in window){
-        var daTai = false;
-        new IntersectionObserver(function(entries){
-            if(entries[0].isIntersecting && !daTai){
-                daTai = true;
-                loadImage();
-            }
-        }, { rootMargin: "600px 0px" }).observe(section);
-        new IntersectionObserver(function(entries){
-            isVisible = entries[0].isIntersecting;
-            setRunning(isVisible);
-        }).observe(section);
-    }
-    else{
-        isVisible = true;
-        loadImage();
-    }
-}
-
-// Biên dịch shader và tạo hình chữ nhật phủ kín canvas
-function createPanoProgram(gl){
-    function shader(loai, ma){
-        var s = gl.createShader(loai);
-        gl.shaderSource(s, ma);
-        gl.compileShader(s);
-        return s;
-    }
-    var program = gl.createProgram();
-    gl.attachShader(program, shader(gl.VERTEX_SHADER, PANO_VERTEX));
-    gl.attachShader(program, shader(gl.FRAGMENT_SHADER, PANO_FRAGMENT));
-    gl.linkProgram(program);
-    gl.useProgram(program);
-
-    var buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-    var aPos = gl.getAttribLocation(program, "aPos");
-    gl.enableVertexAttribArray(aPos);
-    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-    return program;
 }
 
 // Bỏ qua 2 giây đầu và 2 giây cuối khi phát video hero.
@@ -669,6 +454,158 @@ function showAbout(){
     for(var j = 0; j < styles.length; j++)
         list += "<li><a href='rooms.html?style=" + styles[j].slug + "'>" + roomEscape(styles[j].name) + "</a></li>";
     document.getElementById("aboutStyles").innerHTML = list;
+}
+
+// ----- Câu chuyện thương hiệu: khung so sánh "ý tưởng / hoàn thiện" + thẻ phối màu, kiểu phòng, món nổi bật -----
+// Kiểu phòng, diện tích gợi ý và bảng màu chọn tay theo ảnh từng phòng; số món, chất liệu chủ đạo và món nổi bật lấy từ dữ liệu.
+var BRAND_STORY_ROOMS = [
+    { id: "room-mid-century-modern-4229562", kieu: "Phòng khách", dienTich: 24,
+      mau: [["#5B5E3C", "Xanh ô liu"], ["#E8E0D0", "Kem sữa"], ["#B4673F", "Đất nung"], ["#6B4A33", "Gỗ óc chó"]] },
+    { id: "room-scandinavian-4226900", kieu: "Phòng ngủ", dienTich: 18,
+      mau: [["#2F3A57", "Xanh navy"], ["#EDE7DC", "Vải lanh"], ["#7A7652", "Rêu nhạt"], ["#C99A55", "Hổ phách"]] },
+    { id: "room-coastal-4173476", kieu: "Phòng ăn", dienTich: 20,
+      mau: [["#B2552C", "Gỉ sét"], ["#2F3B3A", "Xanh rêu đậm"], ["#B8915E", "Gỗ sồi"], ["#F1EEE8", "Trắng ngà"]] },
+    { id: "room-bohemian-4236536", kieu: "Phòng sinh hoạt", dienTich: 28,
+      mau: [["#A4532F", "Đất nung"], ["#4F6B2A", "Xanh lá"], ["#B8934A", "Đồng thau"], ["#E8E0D0", "Kem"]] }
+];
+
+function showBrandStory(){
+    var tabs = document.getElementById("bsTabs");
+    if(!tabs)
+        return;
+    var html = "";
+    for(var i = 0; i < BRAND_STORY_ROOMS.length; i++){
+        var room = findById("rooms", BRAND_STORY_ROOMS[i].id);
+        var style = room ? findById("styles", room.style_id) : null;
+        html += "<button type='button' role='tab' data-i='" + i + "'>" + BRAND_STORY_ROOMS[i].kieu
+              + (style ? "<small>" + roomEscape(style.name) + "</small>" : "") + "</button>";
+    }
+    tabs.innerHTML = html;
+    tabs.onclick = function(e){
+        var nut = e.target.closest("button");
+        if(nut)
+            selectBrandRoom(parseInt(nut.getAttribute("data-i"), 10));
+    };
+
+    selectBrandRoom(0);
+}
+
+function selectBrandRoom(i){
+    var cfg = BRAND_STORY_ROOMS[i];
+    var room = cfg ? findById("rooms", cfg.id) : null;
+    if(room == null)
+        return;
+    var style = findById("styles", room.style_id);
+    var nuts = document.querySelectorAll("#bsTabs button");
+    for(var k = 0; k < nuts.length; k++){
+        nuts[k].classList.toggle("active", k == i);
+        nuts[k].setAttribute("aria-selected", k == i ? "true" : "false");
+    }
+
+    // hiệu ứng chuyển phòng: thẻ kính và ảnh mờ đi rồi hiện lại
+    var stage = document.querySelector(".bs-stage");
+    stage.classList.remove("is-switching");
+    void stage.offsetWidth;
+    stage.classList.add("is-switching");
+
+    var anh = asset(room.image_url);
+    document.getElementById("bsAfter").src = anh;
+    document.getElementById("bsAfter").alt = room.name;
+    document.getElementById("bsBefore").src = anh;
+
+    // Bảng màu: bấm vào ô màu để xem tên
+    var sw = "";
+    for(var m = 0; m < cfg.mau.length; m++)
+        sw += "<li><button type='button' style='background:" + cfg.mau[m][0] + "' data-ten='" + cfg.mau[m][1] + "<small>" + cfg.mau[m][0] + "</small>"
+            + "' aria-label='" + cfg.mau[m][1] + "'" + (m == 0 ? " class='active'" : "") + "></button></li>";
+    var swatches = document.getElementById("bsSwatches");
+    swatches.innerHTML = sw;
+    document.getElementById("bsSwatchName").innerHTML = cfg.mau[0][1] + "<small>" + cfg.mau[0][0] + "</small>";
+    swatches.onclick = function(e){
+        var o = e.target.closest("button");
+        if(!o)
+            return;
+        var all = swatches.querySelectorAll("button");
+        for(var n = 0; n < all.length; n++)
+            all[n].classList.toggle("active", all[n] == o);
+        document.getElementById("bsSwatchName").innerHTML = o.getAttribute("data-ten");
+    };
+
+    // Món trong phòng: chất liệu xuất hiện nhiều nhất + món nội thất giá cao nhất
+    var dem = {};
+    var noiBat = null;
+    var ids = room.product_ids || [];
+    for(var p = 0; p < ids.length; p++){
+        var sp = findById("products", ids[p]);
+        if(sp == null)
+            continue;
+        if(sp.material_group)
+            dem[sp.material_group] = (dem[sp.material_group] || 0) + 1;
+        if(sp.parent_category_id == 1 && sp.images && sp.images.length > 0 && (noiBat == null || sp.price > noiBat.price))
+            noiBat = sp;
+    }
+    var chatLieu = "";
+    for(var key in dem)
+        if(chatLieu == "" || dem[key] > dem[chatLieu])
+            chatLieu = key;
+    document.getElementById("bsMaterial").innerHTML = chatLieu || "Tự nhiên";
+
+    document.getElementById("bsRoomType").innerHTML = cfg.kieu + (style ? "<span>" + roomEscape(style.name) + "</span>" : "");
+    document.getElementById("bsArea").innerHTML = "~" + cfg.dienTich;
+    document.getElementById("bsItems").innerHTML = ids.length;
+
+    var pick = document.getElementById("bsPick");
+    if(noiBat){
+        pick.style.display = "";
+        pick.href = "product-detail.html?id=" + encodeURIComponent(noiBat.id);
+        document.getElementById("bsPickImg").src = asset(noiBat.images[0]);
+        document.getElementById("bsPickImg").alt = noiBat.name;
+        document.getElementById("bsPickName").innerHTML = roomEscape(noiBat.name);
+        document.getElementById("bsPickPrice").innerHTML = formatVND(noiBat.price);
+    }
+    else
+        pick.style.display = "none";
+
+    document.getElementById("bsDesc").innerHTML = roomEscape(room.description || "");
+    document.getElementById("bsRoomLink").href = "room-detail.html?id=" + encodeURIComponent(room.id);
+}
+
+// Thanh kéo so sánh: input range nằm phủ trên ảnh (kéo chuột, chạm và phím mũi tên đều được).
+// Lần đầu cuộn tới, thanh tự lướt qua lại một lần để người xem biết có thể kéo.
+function initBrandStory(){
+    var box = document.getElementById("bsCompare");
+    var range = document.getElementById("bsRange");
+    if(!box || !range)
+        return;
+    function setSplit(v){
+        box.style.setProperty("--split", v + "%");
+    }
+    range.addEventListener("input", function(){
+        setSplit(range.value);
+    });
+
+    if(!("IntersectionObserver" in window) || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches))
+        return;
+    var daChay = false;
+    var obs = new IntersectionObserver(function(entries){
+        if(!entries[0].isIntersecting || daChay)
+            return;
+        daChay = true;
+        obs.disconnect();
+        var batDau = null;
+        function buoc(t){
+            if(batDau == null)
+                batDau = t;
+            var x = Math.min(1, (t - batDau) / 2400);
+            var v = x >= 1 ? 50 : 50 + Math.sin(x * Math.PI * 2) * 26;
+            range.value = v;
+            setSplit(v.toFixed(2));
+            if(x < 1)
+                requestAnimationFrame(buoc);
+        }
+        requestAnimationFrame(buoc);
+    }, { threshold: 0.5 });
+    obs.observe(box);
 }
 
 // Cuộn qua section Về RoomCraft: ảnh lùi dần từ cận cảnh ra toàn cảnh và chuyển qua từng góc chụp,
