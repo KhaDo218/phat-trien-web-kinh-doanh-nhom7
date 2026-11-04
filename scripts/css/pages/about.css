@@ -1,0 +1,345 @@
+/* =====================================================================
+   ROOMCRAFT - Trang Về RoomCraft (about.html)
+   Ít chữ, để hình kể chuyện: mở đầu + 4 tấm ảnh quy trình + lời hứa trên ảnh tràn màn hình.
+   ===================================================================== */
+
+/* ----- 1. Mở đầu ----- */
+.ab-hero{
+    padding: 40px 0 120px;
+    background: #F3EFE8;
+}
+.ab-hero-grid{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    align-items: end;
+    gap: 80px;
+}
+.ab-hero-copy .breadcrumb{
+    margin-bottom: 120px;
+}
+.ab-hero-copy .overline{
+    margin-bottom: 24px;
+    color: #8C7350;
+}
+.ab-hero-title{
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6.4vw, 104px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+}
+.ab-hero-title em, .ab-process-head em, .ab-promise em{
+    font-style: italic;
+    color: #8C7350;
+}
+.ab-hero-lead{
+    margin-top: 32px;
+    padding-top: 22px;
+    max-width: 380px;
+    border-top: 1px solid rgba(26, 26, 23, 0.15);
+    font-size: 15px;
+    line-height: 1.7;
+    color: #6F6A62;
+}
+.ab-hero-visual{
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    border-radius: 999px 999px 0 0;
+    overflow: hidden;
+}
+.ab-hero-visual img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ----- 2. Cách chúng tôi làm ----- */
+.ab-process{
+    padding: 130px 0 140px;
+    background: #FBFAF7;
+}
+.ab-process-head{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 48px;
+}
+.ab-process-head .overline{
+    color: #8C7350;
+}
+.ab-process-head h2{
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 60px);
+    font-weight: 400;
+    line-height: 1;
+}
+/* 4 tấm ảnh dọc: tấm đang chọn rộng ra, các tấm khác thu hẹp */
+.ab-panels{
+    display: flex;
+    gap: 14px;
+    height: 560px;
+    list-style: none;
+}
+.ab-panels li{
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #E9E4DA;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: none;
+    transition: flex 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ab-panels li.active{
+    flex: 2.6;
+}
+.ab-panels li:focus-visible{
+    box-shadow: 0 0 0 2px #FBFAF7, 0 0 0 4px #8C7350;
+}
+.ab-panels img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ab-panels li.active img{
+    transform: scale(1.04);
+}
+/* tấm sản phẩm: ảnh chụp studio nền xám nhạt phủ kín tấm, chữ màu tối */
+.ab-panel-object{
+    background: #E4E3E0 !important;
+    color: #1A1A17 !important;
+}
+.ab-panel-object img{
+    object-position: 50% 35%;
+}
+.ab-panel-object::after{
+    content: "";
+    position: absolute;
+    inset: 55% 0 0;
+    background: linear-gradient(to top, rgba(232, 231, 228, 0.96) 30%, rgba(232, 231, 228, 0));
+    pointer-events: none;
+}
+/* lớp tối dưới chân để đọc chữ (không áp cho tấm sản phẩm) */
+.ab-panels li:not(.ab-panel-object)::after{
+    content: "";
+    position: absolute;
+    inset: 40% 0 0;
+    background: linear-gradient(to top, rgba(15, 13, 10, 0.72), rgba(15, 13, 10, 0));
+    pointer-events: none;
+}
+.ab-panel-text{
+    position: absolute;
+    left: 26px;
+    right: 26px;
+    bottom: 26px;
+    z-index: 1;
+}
+.ab-num{
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+    opacity: 0.8;
+}
+.ab-panel-text h3{
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.05;
+    white-space: nowrap;
+}
+.ab-panel-text p{
+    max-width: 260px;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.5s ease, max-height 0.6s ease, margin-top 0.6s ease;
+}
+.ab-panels li.active .ab-panel-text p{
+    max-height: 60px;
+    margin-top: 10px;
+    opacity: 0.88;
+    transition-delay: 0.25s;
+}
+
+/* ----- 3. Lời hứa ----- */
+.ab-promise{
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: 88vh;
+    padding: 120px 0;
+    overflow: hidden;
+    background: #14130F;
+    color: #FFFFFF;
+    text-align: center;
+}
+.ab-promise-bg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.42;
+}
+.ab-promise::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(20, 19, 15, 0.35), rgba(20, 19, 15, 0.85) 80%);
+}
+.ab-promise-inner{
+    position: relative;
+    z-index: 1;
+}
+.ab-promise blockquote p{
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.4vw, 64px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+.ab-promise em{
+    color: #D8C29C;
+}
+.ab-figures{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 56px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+.ab-figures span{
+    padding: 0 28px;
+}
+.ab-figures span + span{
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+.ab-figures b{
+    margin-right: 6px;
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+.ab-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 48px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    transition: border-color 0.3s ease, gap 0.3s ease;
+}
+.ab-link .material-symbols-outlined{
+    font-size: 18px;
+}
+.ab-link:hover{
+    gap: 16px;
+    border-bottom-color: #FFFFFF;
+}
+
+/* Hiện dần khi cuộn */
+.ab-reveal{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ab-reveal.is-visible{
+    opacity: 1;
+    transform: none;
+}
+
+/* ----- Màn hình nhỏ ----- */
+@media (max-width: 1024px){
+    .ab-hero-grid{
+        gap: 40px;
+    }
+    .ab-hero-copy .breadcrumb{
+        margin-bottom: 60px;
+    }
+    .ab-panels{
+        height: 480px;
+    }
+    .ab-panel-text h3{
+        font-size: 24px;
+    }
+}
+@media (max-width: 768px){
+    .ab-hero{
+        padding-bottom: 70px;
+    }
+    .ab-hero-grid{
+        grid-template-columns: 1fr;
+    }
+    .ab-hero-visual{
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .ab-process{
+        padding: 80px 0 90px;
+    }
+    .ab-process-head{
+        display: block;
+    }
+    .ab-process-head h2{
+        margin-top: 12px;
+    }
+    /* điện thoại: 4 tấm xếp dọc, tấm nào cũng hiện câu mô tả */
+    .ab-panels{
+        flex-direction: column;
+        height: auto;
+    }
+    .ab-panels li, .ab-panels li.active{
+        flex: none;
+        height: 300px;
+    }
+    .ab-panels li .ab-panel-text p{
+        max-height: 60px;
+        margin-top: 8px;
+        opacity: 0.88;
+    }
+    .ab-panels li.active img{
+        transform: none;
+    }
+    .ab-promise{
+        min-height: 0;
+        padding: 100px 0;
+    }
+    .ab-figures{
+        flex-direction: column;
+        gap: 14px;
+    }
+    .ab-figures span + span{
+        border-left: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce){
+    .ab-reveal{
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .ab-panels li, .ab-panels img, .ab-panel-text p{
+        transition: none;
+    }
+}

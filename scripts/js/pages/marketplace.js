@@ -31,6 +31,41 @@ function initPage(){
     currentPage = Number(getParam("page")) || 1;
     updateConditionChipsUI();
     renderMarketplace();
+    showMarketHero();
+}
+
+// Banner: đổ ảnh + nhãn giá cho 3 ô trưng bày và hàng ảnh tròn "mới về"
+function showMarketHero(){
+    var used = getUsedProducts();
+    var tiles = document.querySelectorAll(".mg-tile");
+    for(var i = 0; i < tiles.length; i++){
+        var sp = findById("products", tiles[i].getAttribute("data-id"));
+        if(sp == null){
+            tiles[i].style.display = "none";
+            continue;
+        }
+        tiles[i].href = "product-detail.html?id=" + encodeURIComponent(sp.id);
+        var img = tiles[i].querySelector("img");
+        img.src = asset(sp.images[0]);
+        img.alt = sp.name;
+        var giam = sp.original_price ? Math.round((1 - sp.price / sp.original_price) * 100) : 0;
+        tiles[i].querySelector(".mg-tag").innerHTML =
+              "<span class='mg-name'>" + sp.name.replace(/\s*\(.*\)\s*/, "") + "</span>"
+            + "<span class='mg-price'>" + formatVND(sp.price)
+            + (giam > 0 ? " <s>" + formatVND(sp.original_price) + "</s> <em>-" + giam + "%</em>" : "") + "</span>";
+    }
+
+    // 4 món mới nhất (không trùng 3 món ở trên)
+    var html = "";
+    var dem = 0;
+    for(var j = used.length - 1; j >= 0 && dem < 4; j--){
+        if(["used-018", "used-004", "used-003"].indexOf(used[j].id) >= 0 || !used[j].images || !used[j].images.length)
+            continue;
+        html += "<img src='" + asset(used[j].images[0]) + "' alt=''>";
+        dem++;
+    }
+    document.getElementById("mfThumbs").innerHTML = html;
+    document.getElementById("mfCount").innerHTML = used.length;
 }
 
 function getUsedProducts(){

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <title>RoomCraft - Nội thất cho không gian của bạn</title>
+        <title>RoomCraft - Trọn một không gian, vẹn một phong cách</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
@@ -144,30 +144,6 @@
             </div>
         </section>
 
-        <!-- ===== 4b. Tham quan 360°: kéo để xoay quanh căn phòng (index.js: initPanorama) =====
-             Ảnh 360°: "Hotel Room" của Greg Zaal, Poly Haven, giấy phép CC0 -->
-        <section class="pano" id="pano" aria-label="Tham quan phòng 360 độ"
-                 data-src="../assets/rooms/360/hotel-room-360.jpg">
-            <canvas class="pano-canvas" id="panoCanvas"></canvas>
-            <div class="pano-shade" aria-hidden="true"></div>
-
-            <div class="container pano-ui">
-                <div class="pano-head">
-                    <p class="overline">Tham quan 360°</p>
-                    <h2>Bước vào<br><em>không gian</em></h2>
-                </div>
-
-                <div class="pano-foot">
-                    <p class="pano-hint" id="panoHint"><span class="material-symbols-outlined">360</span><span>Kéo để nhìn quanh<span class="pano-hint-more"> căn phòng</span></span></p>
-                    <div class="pano-zoom">
-                        <button type="button" id="panoZoomIn" aria-label="Phóng to"><span class="material-symbols-outlined">add</span></button>
-                        <button type="button" id="panoZoomOut" aria-label="Thu nhỏ"><span class="material-symbols-outlined">remove</span></button>
-                    </div>
-                    <p class="pano-credit">Ảnh 360° từ Poly Haven (CC0)</p>
-                </div>
-            </div>
-        </section>
-
         <!-- ===== 5. Phong cách (JS đổ dữ liệu từ rc_styles) ===== -->
         <section class="section section-grey">
             <div class="container">
@@ -222,6 +198,64 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ===== 6b. Câu chuyện thương hiệu: từ ý tưởng đến căn phòng hoàn chỉnh (index.js: showBrandStory, initBrandStory) ===== -->
+        <section class="brand-story" id="brandStory" aria-label="Câu chuyện thương hiệu RoomCraft">
+            <div class="container">
+                <header class="bs-intro">
+                    <p class="overline">Câu chuyện thương hiệu</p>
+                    <h2 class="bs-title">Từ một ý tưởng, đến <em>căn phòng</em> bạn muốn trở về</h2>
+                    <p class="bs-lead">RoomCraft ra đời từ một câu hỏi đơn giản: vì sao mua nội thất lại bắt đầu từ từng món đồ rời rạc, mà không phải từ cảm giác của cả căn phòng? Chúng tôi dựng sẵn những không gian hoàn chỉnh, phối màu, chọn chất liệu, để bạn chỉ việc chọn nơi mình thuộc về.</p>
+                </header>
+
+                <!-- Chọn kiểu phòng -->
+                <div class="bs-tabs" id="bsTabs" role="tablist" aria-label="Chọn kiểu phòng"></div>
+
+                <!-- Khung trình diễn: kéo thanh giữa để so sánh bản phác thảo và căn phòng hoàn thiện -->
+                <div class="bs-stage">
+                    <div class="bs-compare" id="bsCompare" style="--split: 50%">
+                        <img class="bs-img bs-img-after" id="bsAfter" src="" alt="">
+                        <img class="bs-img bs-img-before" id="bsBefore" src="" alt="" aria-hidden="true">
+                        <span class="bs-label bs-label-before">Ý tưởng</span>
+                        <span class="bs-label bs-label-after">Hoàn thiện</span>
+                        <div class="bs-handle" aria-hidden="true"><span></span></div>
+                        <input class="bs-range" id="bsRange" type="range" min="0" max="100" value="50" aria-label="Kéo để so sánh bản phác thảo và căn phòng hoàn thiện">
+                    </div>
+
+                    <!-- Thẻ kính: bảng phối màu -->
+                    <div class="bs-card bs-palette">
+                        <div class="bs-card-head"><span class="overline">Bảng phối màu</span><span class="material-symbols-outlined">palette</span></div>
+                        <ul class="bs-swatches" id="bsSwatches"></ul>
+                        <p class="bs-swatch-name" id="bsSwatchName"></p>
+                        <p class="bs-material"><span class="material-symbols-outlined">texture</span> Chất liệu chủ đạo: <b id="bsMaterial"></b></p>
+                    </div>
+
+                    <!-- Thẻ kính: kiểu phòng + diện tích -->
+                    <div class="bs-card bs-room">
+                        <div class="bs-card-head"><span class="overline">Kiểu phòng</span><span class="material-symbols-outlined">meeting_room</span></div>
+                        <p class="bs-room-type" id="bsRoomType"></p>
+                        <div class="bs-room-meta">
+                            <div><b id="bsArea"></b><span>m² gợi ý</span></div>
+                            <div><b id="bsItems"></b><span>món phối sẵn</span></div>
+                        </div>
+                        <div class="bs-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+
+                    <!-- Thẻ kính: món nổi bật trong phòng -->
+                    <a class="bs-card bs-pick" id="bsPick" href="#">
+                        <img id="bsPickImg" src="" alt="">
+                        <div>
+                            <span class="overline">Món nổi bật</span>
+                            <p class="bs-pick-name" id="bsPickName"></p>
+                            <p class="bs-pick-price" id="bsPickPrice"></p>
+                        </div>
+                        <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </div>
+                <p class="bs-caption"><span id="bsDesc"></span> <a id="bsRoomLink" href="#">Xem căn phòng</a></p>
+
             </div>
         </section>
 

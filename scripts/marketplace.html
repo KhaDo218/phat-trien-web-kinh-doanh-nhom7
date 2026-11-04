@@ -33,26 +33,33 @@
             <a href="index.html">Trang chủ</a><span>/</span>Đồ cũ tuyển chọn
         </div>
 
-        <!-- Banner trang Đồ cũ: chữ bên trái, ảnh phòng + thẻ món độc bản + con dấu kiểm định bên phải -->
+        <!-- Banner trang Đồ cũ: chữ + món mới về bên trái, cụm ảnh trưng bày có nhãn giá + con dấu bên phải -->
         <section class="market-header">
             <div class="market-copy">
                 <p class="overline">Curated Marketplace</p>
                 <h1 class="headline-page">Đồ cũ<br><em>tuyển chọn</em></h1>
                 <p class="lead">
-                    Bộ sưu tập nội thất secondhand độc bản, tuyển chọn kỹ lưỡng theo các phong cách thiết kế đặc trưng.
-                    Mỗi sản phẩm đều được kiểm định chất lượng, mô tả chân thực và tiết kiệm đến 65% so với giá gốc.
+                    Nội thất secondhand độc bản, được kiểm định từng món và mô tả chân thực.
+                    Mỗi món chỉ có một, tiết kiệm đến 65% so với giá gốc.
                 </p>
-                <a class="market-cta" href="#marketList">Xem các món đang có <span class="material-symbols-outlined">arrow_downward</span></a>
+                <div class="market-actions">
+                    <a class="market-cta" href="#marketList">Xem các món đang có <span class="material-symbols-outlined">arrow_downward</span></a>
+                    <!-- Mới về: ảnh tròn nhỏ của vài món + số món đang có (marketplace.js: showMarketHero) -->
+                    <div class="market-fresh">
+                        <div class="market-fresh-thumbs" id="mfThumbs"></div>
+                        <p><b id="mfCount">0</b> món đang có<span>Cập nhật mỗi tuần</span></p>
+                    </div>
+                </div>
             </div>
 
-            <div class="market-visual" aria-hidden="true">
-                <img class="market-room" src="../assets/rooms/mid-century-modern/room-mid-century-modern-4229562-01.jpg" alt="">
-                <figure class="market-piece">
-                    <img src="../assets/marketplace/used-004-01.jpg" alt="">
-                    <figcaption><span>Độc bản</span>Ghế bành Julius</figcaption>
-                </figure>
+            <!-- Cụm ảnh kiểu phòng trưng bày: tủ vòm cao + 2 món đặt trên nền màu dịu, mỗi món có nhãn giá
+                 (ảnh, tên, giá lấy từ dữ liệu trong marketplace.js: showMarketHero) -->
+            <div class="market-gallery">
+                <a class="mg-tile mg-tall" data-id="used-018"><img src="" alt=""><span class="mg-tag"></span></a>
+                <a class="mg-tile mg-a" data-id="used-004"><img src="" alt=""><span class="mg-tag"></span></a>
+                <a class="mg-tile mg-b" data-id="used-003"><img src="" alt=""><span class="mg-tag"></span></a>
                 <!-- Con dấu tròn: chữ chạy theo đường tròn, xoay chậm -->
-                <svg class="market-seal" viewBox="0 0 120 120">
+                <svg class="market-seal" viewBox="0 0 120 120" aria-hidden="true">
                     <defs><path id="sealPath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
                     <circle cx="60" cy="60" r="57" />
                     <text><textPath href="#sealPath" textLength="272" lengthAdjust="spacing">KIỂM ĐỊNH 100% / ĐỘC BẢN / SỐNG XANH /</textPath></text>

@@ -481,10 +481,16 @@ function renderProductReviews(product){
     }
 
     var summary = document.getElementById("reviewSummary");
+    var demSao = [0, 0, 0, 0, 0, 0];
+    for(var d = 0; d < visibleReviews.length; d++){
+        var r = Math.round(Number(visibleReviews[d].rating));
+        if(r >= 1 && r <= 5)
+            demSao[r]++;
+    }
     if(visibleReviews.length == 0)
         summary.textContent = "Chưa có đánh giá.";
     else
-        summary.textContent = (totalRating / visibleReviews.length).toFixed(1) + "/5 (" + visibleReviews.length + " đánh giá)";
+        summary.innerHTML = buildReviewSummary(totalRating / visibleReviews.length, visibleReviews.length, demSao);
 
     var reviewList = document.getElementById("productReviewList");
     reviewList.innerHTML = "";
@@ -514,10 +520,7 @@ function createProductReview(review){
     var rating = document.createElement("p");
     rating.className = "product-review-rating";
     var stars = Number(review.rating);
-    var starText = "";
-    for(var i = 0; i < Math.max(0, Math.min(5, stars)); i++)
-        starText += "★";
-    rating.textContent = starText + " (" + stars + "/5)";
+    rating.innerHTML = starsHtml(stars) + "<span>" + stars + "/5 · " + RATING_LABELS[Math.round(stars)] + "</span>";
     card.appendChild(rating);
 
     var comment = document.createElement("p");
@@ -553,6 +556,7 @@ function updateReviewEligibility(product){
     if(hasDeliveredProduct){
         message.textContent = "Bạn đã nhận sản phẩm này, hãy chia sẻ cảm nhận của bạn.";
         form.classList.remove("hidden");
+        initStarPicker();
     } else {
         message.textContent = "Đánh giá sẽ khả dụng sau khi bạn nhận được sản phẩm.";
     }
@@ -563,6 +567,10 @@ function submitProductReview(event){
     var user = getCurrentUser();
     if(user == null || currentProduct == null){
         alert("Vui lòng đăng nhập để gửi đánh giá.");
+        return false;
+    }
+    if(document.getElementById("cboReviewRating").value == ""){
+        alert("Vui lòng chọn số sao cho sản phẩm.");
         return false;
     }
     var comment = document.getElementById("txtReviewComment").value.trim();
@@ -576,7 +584,78 @@ function submitProductReview(event){
         return false;
     }
     document.getElementById("frmProductReview").reset();
+    setStarRating(0);
     renderProductReviews(currentProduct);
     alert("Cảm ơn bạn đã đánh giá sản phẩm.");
     return false;
+}
+
+// ----- Sao đánh giá -----
+var RATING_LABELS = ["", "Không hài lòng", "Chưa hài lòng", "Bình thường", "Hài lòng", "Tuyệt vời"];
+
+// HTML 5 ngôi sao: sao vàng cho phần đã chấm, sao xám cho phần còn lại (hỗ trợ nửa sao cho điểm trung bình)
+function starsHtml(diem){
+    var phanTram = Math.max(0, Math.min(5, Number(diem))) / 5 * 100;
+    return "<span class='stars' aria-label='" + Number(diem).toFixed(1) + " trên 5 sao'>"
+        + "<span class='stars-base'>★★★★★</span>"
+        + "<span class='stars-fill' style='width:" + phanTram.toFixed(1) + "%'>★★★★★</span></span>";
+}
+
+// Khối tổng quan: điểm trung bình lớn + sao + số đánh giá, bên cạnh là thanh tỉ lệ 5 -> 1 sao
+function buildReviewSummary(diemTB, tong, demSao){
+    var html = "<div class='review-score'><b>" + diemTB.toFixed(1) + "</b>" + starsHtml(diemTB)
+        + "<span>" + tong + " đánh giá</span></div><ul class='review-bars'>";
+    for(var s = 5; s >= 1; s--){
+        var pt = tong ? demSao[s] / tong * 100 : 0;
+        html += "<li><span>" + s + "★</span><i><em style='width:" + pt.toFixed(1) + "%'></em></i><span>" + demSao[s] + "</span></li>";
+    }
+    return html + "</ul>";
+}
+
+// Đặt số sao đang chọn (0 = chưa chọn)
+function setStarRating(soSao){
+    var picker = document.getElementById("starPicker");
+    if(!picker)
+        return;
+    document.getElementById("cboReviewRating").value = soSao > 0 ? soSao : "";
+    picker.setAttribute("data-value", soSao);
+    var nuts = picker.querySelectorAll("button");
+    for(var i = 0; i < nuts.length; i++){
+        var v = Number(nuts[i].getAttribute("data-v"));
+        nuts[i].classList.toggle("on", v <= soSao);
+        nuts[i].setAttribute("aria-checked", v == soSao ? "true" : "false");
+    }
+    document.getElementById("starPickerText").textContent = soSao > 0 ? soSao + " sao · " + RATING_LABELS[soSao] : "Chọn số sao";
+}
+
+// Rê chuột: xem trước số sao; bấm: chọn; phím mũi tên trái/phải: đổi số sao
+function initStarPicker(){
+    var picker = document.getElementById("starPicker");
+    if(!picker || picker.getAttribute("data-ready"))
+        return;
+    picker.setAttribute("data-ready", "1");
+    var nuts = picker.querySelectorAll("button");
+    var text = document.getElementById("starPickerText");
+    function xemTruoc(soSao){
+        for(var i = 0; i < nuts.length; i++)
+            nuts[i].classList.toggle("hover", Number(nuts[i].getAttribute("data-v")) <= soSao);
+        text.textContent = soSao > 0 ? soSao + " sao · " + RATING_LABELS[soSao]
+            : (Number(picker.getAttribute("data-value")) > 0 ? picker.getAttribute("data-value") + " sao · " + RATING_LABELS[Number(picker.getAttribute("data-value"))] : "Chọn số sao");
+    }
+    for(var i = 0; i < nuts.length; i++){
+        nuts[i].addEventListener("mouseenter", function(){ xemTruoc(Number(this.getAttribute("data-v"))); });
+        nuts[i].addEventListener("click", function(){ setStarRating(Number(this.getAttribute("data-v"))); });
+    }
+    picker.addEventListener("mouseleave", function(){ xemTruoc(0); });
+    picker.addEventListener("keydown", function(e){
+        var hienTai = Number(picker.getAttribute("data-value")) || 0;
+        if(e.key == "ArrowRight" || e.key == "ArrowUp"){
+            setStarRating(Math.min(5, hienTai + 1));
+            e.preventDefault();
+        }
+        else if(e.key == "ArrowLeft" || e.key == "ArrowDown"){
+            setStarRating(Math.max(1, hienTai - 1));
+            e.preventDefault();
+        }
+    });
 }

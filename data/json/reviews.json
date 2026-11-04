@@ -978,5 +978,965 @@
     "review_image_url": null,
     "is_hidden": false,
     "created_at": "2026-10-27T08:44:56"
+  },
+  {
+    "id": 99,
+    "product_id": "product-farmhouse-black-boucle-throw-pillow-cover-18-x18-13",
+    "user_id": 124,
+    "rating": 4,
+    "comment": "Vỏ gối cotton bouclé dày dặn, đường may đều và kín, khóa kéo giấu khéo nên nhìn rất sang. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-16T16:22:57"
+  },
+  {
+    "id": 100,
+    "product_id": "product-farmhouse-tuck-green-linen-throw-pillow-cover-20-x20-07",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Gối màu xanh rêu ngoài đời còn đẹp hơn ảnh, chất vải lanh châu Âu sờ rất mềm tay. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-12T07:01:31"
+  },
+  {
+    "id": 101,
+    "product_id": "product-bohemian-xbase-pillow-23x23-feather-insert-10",
+    "user_id": 122,
+    "rating": 4,
+    "comment": "Ruột gối căng phồng, ôm hay tựa lưng đều êm, vải cotton không bị xù sau vài lần giặt. Chất lượng tốt, giá hơi nhỉnh nhưng xứng đáng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-15T16:03:50"
+  },
+  {
+    "id": 102,
+    "product_id": "product-farmhouse-battery-operated-led-wall-mounted-picture-light-01",
+    "user_id": 122,
+    "rating": 5,
+    "comment": "Lắp đặt đơn giản, có hướng dẫn rõ ràng, mình tự làm trong khoảng 15 phút. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-17T22:46:50"
+  },
+  {
+    "id": 103,
+    "product_id": "product-bohemian-bayside-seed-stitch-throw-blanket-44-x-56-ivory-01",
+    "user_id": 114,
+    "rating": 4,
+    "comment": "Chăn 100% cotton mềm, màu trắng ngà nhẹ nhàng, đắp ngủ trưa hay vắt trên sofa đều đẹp. Màu sắc thực tế giống ảnh trên web gần như 100%, không có gì để chê. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-29T18:11:37"
+  },
+  {
+    "id": 104,
+    "product_id": "product-farmhouse-chinese-peony-gold-lee-jofa-12-x-16-butterfly-flange-backord-05",
+    "user_id": 139,
+    "rating": 4,
+    "comment": "Chất vải in hoa mát, không bí, nằm đọc sách cả buổi chiều vẫn thấy dễ chịu. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Hàng đẹp, mình chỉ mong có thêm vài lựa chọn màu nữa.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-27T14:48:46"
+  },
+  {
+    "id": 105,
+    "product_id": "product-coastal-otto-vase-small-19",
+    "user_id": 109,
+    "rating": 5,
+    "comment": "Dáng bình tối giản nhưng có chiều sâu, đúng chất đồ decor mình thích. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-05-28T17:31:41"
+  },
+  {
+    "id": 106,
+    "product_id": "product-traditional-loloi-not-named-rust-ivory-22-x-22-cover-w-poly-pillow-04",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Ruột gối căng phồng, ôm hay tựa lưng đều êm, vải cotton không bị xù sau vài lần giặt. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-12T04:54:03"
+  },
+  {
+    "id": 107,
+    "product_id": "product-scandinavian-matte-black-1-room-darkening-curtain-rod-90-144-02",
+    "user_id": 119,
+    "rating": 4,
+    "comment": "Chất kim loại chắc chắn, màu đen nhám đúng mô tả, lắp lên nhìn cửa sổ gọn gàng hẳn. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-11T11:48:28"
+  },
+  {
+    "id": 108,
+    "product_id": "product-glam-modern-transparent-bubble-glass-and-metal-table-lamp-brushed-01",
+    "user_id": 119,
+    "rating": 5,
+    "comment": "Lắp đặt đơn giản, có hướng dẫn rõ ràng, mình tự làm trong khoảng 15 phút. Màu sắc thực tế giống ảnh trên web gần như 100%, không có gì để chê. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-13T12:36:28"
+  },
+  {
+    "id": 109,
+    "product_id": "product-coastal-emmett-bronze-taper-candle-holder-14-5-01",
+    "user_id": 136,
+    "rating": 4,
+    "comment": "Cầm lên thấy chắc tay, bề mặt nhôm phủ màu đồng cổ mịn, không có vết lỗi nào. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-07T14:25:26"
+  },
+  {
+    "id": 110,
+    "product_id": "product-traditional-wood-bowl-15",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Cầm lên thấy chắc tay, bề mặt gỗ teak mịn, không có vết lỗi nào. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Chất lượng tốt, giá hơi nhỉnh nhưng xứng đáng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-17T06:45:14"
+  },
+  {
+    "id": 111,
+    "product_id": "product-traditional-green-chinoiserie-column-vase-01",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Mình cắm hoa tươi để trên bàn ăn, bình đứng vững, không bị rỉ nước. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-20T01:15:14"
+  },
+  {
+    "id": 112,
+    "product_id": "product-glam-tucson-geometric-gray-area-rug-01",
+    "user_id": 135,
+    "rating": 5,
+    "comment": "Thảm dày, màu xám lên rất đẹp, trải phòng khách là ấm áp ngay. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-22T16:26:09"
+  },
+  {
+    "id": 113,
+    "product_id": "product-farmhouse-brayden-arch-metal-mirror-02",
+    "user_id": 119,
+    "rating": 5,
+    "comment": "Kích thước đúng như mô tả, treo phía trên sofa vừa khít bức tường. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-25T04:57:41"
+  },
+  {
+    "id": 114,
+    "product_id": "product-coastal-arcas-vase-medium-06",
+    "user_id": 101,
+    "rating": 5,
+    "comment": "Mình cắm hoa tươi để trên bàn ăn, bình đứng vững, không bị rỉ nước. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-29T05:22:43"
+  },
+  {
+    "id": 115,
+    "product_id": "product-farmhouse-indigo-blue-european-flax-certified-linen-window-curtain-pan-04",
+    "user_id": 135,
+    "rating": 5,
+    "comment": "Hàng hoàn thiện kỹ, ốc vít đi kèm đầy đủ, treo lên thẳng và êm. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-05T14:48:30"
+  },
+  {
+    "id": 116,
+    "product_id": "product-scandinavian-white-marble-knot-9-sculpture-06",
+    "user_id": 125,
+    "rating": 4,
+    "comment": "Đúng kiểu món đồ nhỏ làm góc phòng xinh hẳn lên, chất đá cẩm thạch nhìn rất có giá. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-01T13:15:48"
+  },
+  {
+    "id": 117,
+    "product_id": "product-glam-icon-wood-3-piece-11x14-black-gallery-wall-frame-set-04",
+    "user_id": 101,
+    "rating": 5,
+    "comment": "Màu đen dịu mắt, hợp với tường trắng và đồ gỗ trong nhà mình. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-03T14:56:34"
+  },
+  {
+    "id": 118,
+    "product_id": "product-farmhouse-interlock-throw-pillow-05",
+    "user_id": 125,
+    "rating": 5,
+    "comment": "Gối màu đen ngoài đời còn đẹp hơn ảnh, chất cotton sờ rất mềm tay. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-06T17:18:06"
+  },
+  {
+    "id": 119,
+    "product_id": "product-bohemian-white-ruffle-11-small-bowl-01",
+    "user_id": 125,
+    "rating": 4,
+    "comment": "Mình dùng để trang trí bàn trà, nhìn tổng thể gọn gàng và có gu hơn hẳn. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Chất lượng tốt, giá hơi nhỉnh nhưng xứng đáng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-04T14:00:06"
+  },
+  {
+    "id": 120,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 106,
+    "rating": 4,
+    "comment": "Màu kem trầm ấm, đặt lên sofa là cả phòng khách có điểm nhấn liền. Màu sắc thực tế giống ảnh trên web gần như 100%, không có gì để chê. Trừ một sao vì giao hơi lâu một chút, còn lại đều rất ổn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-06-29T15:22:33"
+  },
+  {
+    "id": 121,
+    "product_id": "product-coastal-artesia-natural-rattan-bowl-with-handles-16",
+    "user_id": 137,
+    "rating": 5,
+    "comment": "Cầm lên thấy chắc tay, bề mặt mây đan tay mịn, không có vết lỗi nào. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-06T13:10:35"
+  },
+  {
+    "id": 122,
+    "product_id": "product-glam-slant-light-grey-tall-indoor-outdoor-planter-13",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Mình cắm hoa tươi để trên bàn ăn, bình đứng vững, không bị rỉ nước. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-04T08:39:27"
+  },
+  {
+    "id": 123,
+    "product_id": "product-scandinavian-the-citizenry-veta-pillow-22-x-22-ivory-06",
+    "user_id": 115,
+    "rating": 5,
+    "comment": "Màu trắng ngà trầm ấm, đặt lên sofa là cả phòng khách có điểm nhấn liền. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-08T19:38:59"
+  },
+  {
+    "id": 124,
+    "product_id": "product-scandinavian-the-citizenry-hansa-vase-set-of-2-black-09",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Bình đen dáng rất đẹp, chất gốm sứ hoàn thiện kỹ, cắm vài cành khô thôi đã đủ xinh. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-11T22:36:07"
+  },
+  {
+    "id": 125,
+    "product_id": "product-traditional-quinn-30-wide-6-light-chandelier-old-bronze-02",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Thiết kế rất có gu, đặt ở góc phòng ngủ là thành điểm nhấn luôn. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-13T16:46:20"
+  },
+  {
+    "id": 126,
+    "product_id": "product-glam-carefree-40-x30-natural-raw-wood-frame-matted-15",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Treo ở phòng khách nhìn sang hẳn, bố cục và màu sắc rất có nghệ thuật. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-18T07:33:31"
+  },
+  {
+    "id": 127,
+    "product_id": "product-scandinavian-the-citizenry-hansa-vase-matte-black-07",
+    "user_id": 136,
+    "rating": 4,
+    "comment": "Bình đen nhám dáng rất đẹp, chất gốm sứ hoàn thiện kỹ, cắm vài cành khô thôi đã đủ xinh. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Hàng đẹp, mình chỉ mong có thêm vài lựa chọn màu nữa.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-24T12:54:51"
+  },
+  {
+    "id": 128,
+    "product_id": "product-scandinavian-olive-linen-throw-pillow-20-x-20-10",
+    "user_id": 133,
+    "rating": 4,
+    "comment": "Ruột gối căng phồng, ôm hay tựa lưng đều êm, vải polyester pha lanh không bị xù sau vài lần giặt. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-22T09:02:35"
+  },
+  {
+    "id": 129,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Họa tiết và màu kem đúng y như hình, không bị lệch tông chút nào. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Hàng đẹp, mình chỉ mong có thêm vài lựa chọn màu nữa.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-01T01:26:05"
+  },
+  {
+    "id": 130,
+    "product_id": "product-farmhouse-edwina-eda-001-18-l-x-18-w-pillow-cover-04",
+    "user_id": 112,
+    "rating": 5,
+    "comment": "Họa tiết và màu kem đúng y như hình, không bị lệch tông chút nào. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-30T15:40:26"
+  },
+  {
+    "id": 131,
+    "product_id": "product-glam-carefree-40-x30-natural-raw-wood-frame-matted-15",
+    "user_id": 134,
+    "rating": 4,
+    "comment": "Ngoài đời còn đẹp hơn ảnh, chi tiết in rõ, không bị nhòe màu. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-01T17:34:53"
+  },
+  {
+    "id": 132,
+    "product_id": "product-coastal-emmett-bronze-taper-candle-holder-14-5-01",
+    "user_id": 134,
+    "rating": 5,
+    "comment": "Màu đồng cổ sang và tinh tế, đặt trên kệ tivi ai ghé nhà cũng hỏi mua ở đâu. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-07-31T18:44:53"
+  },
+  {
+    "id": 133,
+    "product_id": "product-mid-century-modern-bryani-100-solid-wood-32-wide-kitchen-pantry-cabinet-with-so-04",
+    "user_id": 140,
+    "rating": 4,
+    "comment": "Tủ gỗ chắc chắn, màu xanh cổ vịt rất độc đáo, đặt trong bếp nhìn sang hẳn. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-05T04:05:42"
+  },
+  {
+    "id": 134,
+    "product_id": "product-coastal-agatha-table-lamp-01",
+    "user_id": 140,
+    "rating": 5,
+    "comment": "Đèn chắc chắn, dây điện gọn, công tắc nhạy, dùng mấy tuần rồi vẫn rất ổn. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-08T18:24:42"
+  },
+  {
+    "id": 135,
+    "product_id": "product-bohemian-bobby-vase-small-07",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Màu xanh rêu nhẹ nhàng, đặt cạnh cửa sổ có nắng chiếu vào nhìn rất thơ. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-06T11:49:55"
+  },
+  {
+    "id": 136,
+    "product_id": "product-farmhouse-paulson-65-floor-lamp-01",
+    "user_id": 103,
+    "rating": 5,
+    "comment": "Chất gỗ hoàn thiện đẹp, màu nâu đồng sang, bật hay tắt đều là món decor xịn. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-16T14:37:20"
+  },
+  {
+    "id": 137,
+    "product_id": "product-glam-94-l-x-24-w-acoustic-wood-wall-paneling-3d-slat-wood-wall-pa-10",
+    "user_id": 124,
+    "rating": 5,
+    "comment": "Mình dùng để trang trí bàn trà, nhìn tổng thể gọn gàng và có gu hơn hẳn. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-11T17:49:24"
+  },
+  {
+    "id": 138,
+    "product_id": "product-coastal-casta-vase-blue-03",
+    "user_id": 110,
+    "rating": 4,
+    "comment": "Màu xanh dương nhạt nhẹ nhàng, đặt cạnh cửa sổ có nắng chiếu vào nhìn rất thơ. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Chất lượng tốt, giá hơi nhỉnh nhưng xứng đáng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-19T11:22:58"
+  },
+  {
+    "id": 139,
+    "product_id": "product-glam-interlock-xl-lumbar-pillow-02",
+    "user_id": 110,
+    "rating": 4,
+    "comment": "Mình mua để phối với sofa màu trung tính, gối đen lên vào rất hài hòa. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-21T10:07:58"
+  },
+  {
+    "id": 140,
+    "product_id": "product-scandinavian-level-43-leather-bench-bella-black-02",
+    "user_id": 136,
+    "rating": 5,
+    "comment": "Ghế ngồi êm, chất da bò hoàn thiện đẹp, khung vững không ọp ẹp. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-21T21:19:11"
+  },
+  {
+    "id": 141,
+    "product_id": "product-bohemian-pjs0008-natural-13-x-21-cover-w-poly-01",
+    "user_id": 129,
+    "rating": 4,
+    "comment": "Chất 100% cotton mát, không bí, nằm đọc sách cả buổi chiều vẫn thấy dễ chịu. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-20T10:48:46"
+  },
+  {
+    "id": 142,
+    "product_id": "product-traditional-pbr0015-natural-charcoal-pillow-11",
+    "user_id": 136,
+    "rating": 5,
+    "comment": "Vỏ gối cotton dày dặn, đường may đều và kín, khóa kéo giấu khéo nên nhìn rất sang. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-20T17:00:33"
+  },
+  {
+    "id": 143,
+    "product_id": "product-traditional-loloi-not-named-rust-ivory-22-x-22-cover-w-poly-pillow-04",
+    "user_id": 140,
+    "rating": 4,
+    "comment": "Chất cotton mát, không bí, nằm đọc sách cả buổi chiều vẫn thấy dễ chịu. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-21T13:53:31"
+  },
+  {
+    "id": 144,
+    "product_id": "product-bohemian-strange-landscape-by-rose-beck-framed-wall-art-basic-white-1-02",
+    "user_id": 134,
+    "rating": 5,
+    "comment": "Tranh in sắc nét, màu hồng đất lên rất đẹp, khung giấy in chắc chắn. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-28T07:13:17"
+  },
+  {
+    "id": 145,
+    "product_id": "product-bohemian-emberley-limited-edition-fine-art-print-01",
+    "user_id": 107,
+    "rating": 5,
+    "comment": "Tranh in sắc nét, màu vàng nghệ lên rất đẹp, khung giấy in mỹ thuật chắc chắn. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-25T20:57:22"
+  },
+  {
+    "id": 146,
+    "product_id": "product-bohemian-schauer-glass-05",
+    "user_id": 108,
+    "rating": 4,
+    "comment": "Món đồ nhỏ nhưng có sức hút lạ, chất thủy tinh hoàn thiện rất tỉ mỉ. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Hàng đẹp, mình chỉ mong có thêm vài lựa chọn màu nữa.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-04T15:55:09"
+  },
+  {
+    "id": 147,
+    "product_id": "product-farmhouse-jensen-black-metal-semi-flushmount-light-55-03",
+    "user_id": 108,
+    "rating": 4,
+    "comment": "Ánh sáng dịu không chói mắt, đọc sách hay làm việc buổi tối đều thoải mái. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-04T14:04:09"
+  },
+  {
+    "id": 148,
+    "product_id": "product-traditional-wood-bowl-15",
+    "user_id": 134,
+    "rating": 5,
+    "comment": "Đúng kiểu món đồ nhỏ làm góc phòng xinh hẳn lên, chất gỗ teak nhìn rất có giá. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-08-30T01:21:09"
+  },
+  {
+    "id": 149,
+    "product_id": "product-bohemian-pjs0008-natural-13-x-21-cover-w-poly-01",
+    "user_id": 114,
+    "rating": 4,
+    "comment": "Họa tiết và màu kem đúng y như hình, không bị lệch tông chút nào. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-07T23:15:30"
+  },
+  {
+    "id": 150,
+    "product_id": "product-glam-marram-ribbed-white-indoor-planter-large-05",
+    "user_id": 130,
+    "rating": 5,
+    "comment": "Kích cỡ vừa phải, để trên kệ sách hay bàn console đều hợp. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-02T23:34:21"
+  },
+  {
+    "id": 151,
+    "product_id": "product-scandinavian-reeded-bowl-08",
+    "user_id": 117,
+    "rating": 5,
+    "comment": "Cầm lên thấy chắc tay, bề mặt gốm đá mịn, không có vết lỗi nào. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-10T06:51:12"
+  },
+  {
+    "id": 152,
+    "product_id": "product-scandinavian-olive-linen-throw-pillow-20-x-20-10",
+    "user_id": 140,
+    "rating": 5,
+    "comment": "Mình mua để phối với sofa màu trung tính, gối xanh ô liu lên vào rất hài hòa. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-09T15:20:40"
+  },
+  {
+    "id": 153,
+    "product_id": "product-mid-century-modern-boveda-stone-table-lamp-32-01",
+    "user_id": 139,
+    "rating": 5,
+    "comment": "Lắp đặt đơn giản, có hướng dẫn rõ ràng, mình tự làm trong khoảng 15 phút. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-14T13:44:09"
+  },
+  {
+    "id": 154,
+    "product_id": "product-farmhouse-phek-hand-loomed-tribal-mauve-cream-pillow-cover-16-x24-lumb-02",
+    "user_id": 139,
+    "rating": 5,
+    "comment": "Mình mua để phối với sofa màu trung tính, gối hồng đất lên vào rất hài hòa. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-16T15:31:09"
+  },
+  {
+    "id": 155,
+    "product_id": "product-glam-26-x-16-textured-lumbar-throw-pillow-beige-w-insert-01",
+    "user_id": 124,
+    "rating": 5,
+    "comment": "Gối màu be ngoài đời còn đẹp hơn ảnh, chất cotton sờ rất mềm tay. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-11T08:59:48"
+  },
+  {
+    "id": 156,
+    "product_id": "product-coastal-camden-handmade-rattan-decorative-bowl-1-03",
+    "user_id": 117,
+    "rating": 5,
+    "comment": "Màu trắng sang và tinh tế, đặt trên kệ tivi ai ghé nhà cũng hỏi mua ở đâu. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-09T20:46:24"
+  },
+  {
+    "id": 157,
+    "product_id": "product-glam-ortice-round-black-resin-indoor-outdoor-large-planter-26-h-06",
+    "user_id": 134,
+    "rating": 5,
+    "comment": "Kích cỡ vừa phải, để trên kệ sách hay bàn console đều hợp. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-17T19:45:20"
+  },
+  {
+    "id": 158,
+    "product_id": "product-bohemian-rectangle-no-pattern-cotton-table-runner-03",
+    "user_id": 129,
+    "rating": 5,
+    "comment": "Màu xanh navy sang và tinh tế, đặt trên kệ tivi ai ghé nhà cũng hỏi mua ở đâu. Màu sắc thực tế giống ảnh trên web gần như 100%, không có gì để chê. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-19T17:36:55"
+  },
+  {
+    "id": 159,
+    "product_id": "product-scandinavian-studio-vase-14",
+    "user_id": 137,
+    "rating": 5,
+    "comment": "Mình cắm hoa tươi để trên bàn ăn, bình đứng vững, không bị rỉ nước. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-18T16:53:14"
+  },
+  {
+    "id": 160,
+    "product_id": "product-coastal-daphne-upholstered-chair-04",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Ghế ngồi êm, chất vải chenille kháng khuẩn hoàn thiện đẹp, khung vững không ọp ẹp. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-17T21:37:06"
+  },
+  {
+    "id": 161,
+    "product_id": "product-scandinavian-atura-black-taper-candle-holder-small-05",
+    "user_id": 132,
+    "rating": 5,
+    "comment": "Mình dùng để trang trí bàn trà, nhìn tổng thể gọn gàng và có gu hơn hẳn. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-21T10:40:07"
+  },
+  {
+    "id": 162,
+    "product_id": "product-coastal-gracie-oaks-terracotta-jute-vase-18",
+    "user_id": 137,
+    "rating": 5,
+    "comment": "Bình cam đất nung dáng rất đẹp, chất đất nung hoàn thiện kỹ, cắm vài cành khô thôi đã đủ xinh. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-21T17:41:02"
+  },
+  {
+    "id": 163,
+    "product_id": "product-traditional-symi-brown-and-smoked-lavender-embroidered-linen-throw-pillo-15",
+    "user_id": 133,
+    "rating": 5,
+    "comment": "Chất vải lanh thêu mát, không bí, nằm đọc sách cả buổi chiều vẫn thấy dễ chịu. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-25T03:58:20"
+  },
+  {
+    "id": 164,
+    "product_id": "product-farmhouse-brushed-black-triple-4x6-picture-frame-07",
+    "user_id": 127,
+    "rating": 4,
+    "comment": "Tranh in sắc nét, màu đen lên rất đẹp, khung kim loại chắc chắn. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-02T12:39:52"
+  },
+  {
+    "id": 165,
+    "product_id": "product-scandinavian-fyre-hand-carved-white-tile-wall-art-decor-24-02",
+    "user_id": 132,
+    "rating": 5,
+    "comment": "Tranh in sắc nét, màu trắng lên rất đẹp, khung đá chắc chắn. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-29T08:57:06"
+  },
+  {
+    "id": 166,
+    "product_id": "product-scandinavian-medium-black-marble-box-02",
+    "user_id": 103,
+    "rating": 5,
+    "comment": "Kích thước vừa vặn, màu đen dễ phối với nhiều phong cách khác nhau. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-30T11:48:25"
+  },
+  {
+    "id": 167,
+    "product_id": "product-bohemian-vesper-brown-and-tobacco-linen-lumbar-pillow-with-down-alter-08",
+    "user_id": 128,
+    "rating": 5,
+    "comment": "Gối màu nâu thuốc lá ngoài đời còn đẹp hơn ảnh, chất lanh sờ rất mềm tay. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-29T22:09:14"
+  },
+  {
+    "id": 168,
+    "product_id": "product-glam-gray-abstract-mountain-minimalist-artwork-framed-prints-post-06",
+    "user_id": 128,
+    "rating": 5,
+    "comment": "Màu xám xanh dịu mắt, hợp với tường trắng và đồ gỗ trong nhà mình. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-28T20:21:14"
+  },
+  {
+    "id": 169,
+    "product_id": "product-mid-century-modern-atmospheric-9-piece-picture-frame-painting-print-set-03",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Khung hoàn thiện kỹ, góc ghép khít, mặt sau có sẵn móc treo rất tiện. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-04T05:22:11"
+  },
+  {
+    "id": 170,
+    "product_id": "product-coastal-emmett-bronze-taper-candle-holder-14-5-01",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Món đồ nhỏ nhưng có sức hút lạ, chất nhôm phủ màu đồng cổ hoàn thiện rất tỉ mỉ. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-09-30T07:30:11"
+  },
+  {
+    "id": 171,
+    "product_id": "product-mid-century-modern-boucle-and-leather-pillow-knoll-natural-04",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Gối màu kem ngoài đời còn đẹp hơn ảnh, chất vải bouclé sờ rất mềm tay. Hàng về đúng hẹn, kiểm tra kỹ thì không có trầy xước hay lỗi nào. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-07T00:16:19"
+  },
+  {
+    "id": 172,
+    "product_id": "product-traditional-the-south-by-dan-hobday-art-04",
+    "user_id": 140,
+    "rating": 5,
+    "comment": "Tranh in sắc nét, màu be lên rất đẹp, khung giấy in satin chắc chắn. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-10T01:10:59"
+  },
+  {
+    "id": 173,
+    "product_id": "product-farmhouse-kharaa-khr-005-18-l-x-18-w-pillow-cover-10",
+    "user_id": 124,
+    "rating": 5,
+    "comment": "Ruột gối căng phồng, ôm hay tựa lưng đều êm, vải acrylic không bị xù sau vài lần giặt. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-08T07:28:15"
+  },
+  {
+    "id": 174,
+    "product_id": "product-coastal-encore-counter-stool-natural-03",
+    "user_id": 139,
+    "rating": 5,
+    "comment": "Ghế chắc chắn, chất gỗ rất tự nhiên, ngồi ăn hay làm việc đều thoải mái. Mình xem mô hình 3D trên web trước khi đặt nên nhận hàng đúng y như hình dung. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-06T17:21:38"
+  },
+  {
+    "id": 175,
+    "product_id": "product-traditional-antiqued-brass-log-holder-01",
+    "user_id": 107,
+    "rating": 4,
+    "comment": "Màu đồng thau cổ sang và tinh tế, đặt trên kệ tivi ai ghé nhà cũng hỏi mua ở đâu. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Hàng đẹp, mình chỉ mong có thêm vài lựa chọn màu nữa.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-20T08:25:22"
+  },
+  {
+    "id": 176,
+    "product_id": "product-bohemian-outdoor-rattan-side-table-02",
+    "user_id": 131,
+    "rating": 5,
+    "comment": "Bàn phụ mây đan đan kỹ, nhẹ dễ di chuyển, để ngoài ban công rất hợp. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-17T17:08:51"
+  },
+  {
+    "id": 177,
+    "product_id": "product-traditional-pal0024-black-white-13-x-35-cover-w-down-09",
+    "user_id": 117,
+    "rating": 5,
+    "comment": "Ruột gối căng phồng, ôm hay tựa lưng đều êm, vải polyester không bị xù sau vài lần giặt. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-17T00:16:49"
+  },
+  {
+    "id": 178,
+    "product_id": "product-glam-outdoor-14-x-20-lumbar-pillow-lavender-million-flowers-14-x--02",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Mình mua để phối với sofa màu trung tính, gối nhiều màu họa tiết hoa lên vào rất hài hòa. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Chất lượng tốt, giá hơi nhỉnh nhưng xứng đáng.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-14T12:02:07"
+  },
+  {
+    "id": 179,
+    "product_id": "product-traditional-janis-table-lamp-02",
+    "user_id": 108,
+    "rating": 5,
+    "comment": "Thiết kế rất có gu, đặt ở góc phòng ngủ là thành điểm nhấn luôn. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-21T23:30:54"
+  },
+  {
+    "id": 180,
+    "product_id": "product-farmhouse-woven-cotton-slub-lumbar-pillow-with-applique-fringe-and-tas-05",
+    "user_id": 134,
+    "rating": 5,
+    "comment": "Họa tiết và màu xám đúng y như hình, không bị lệch tông chút nào. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-17T11:31:06"
+  },
+  {
+    "id": 181,
+    "product_id": "product-bohemian-decorative-paulownia-wood-tray-with-handles-02",
+    "user_id": 138,
+    "rating": 5,
+    "comment": "Đúng kiểu món đồ nhỏ làm góc phòng xinh hẳn lên, chất gỗ paulownia nhìn rất có giá. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-16T17:18:52"
+  },
+  {
+    "id": 182,
+    "product_id": "product-traditional-hudson-valley-lighting-montpelier-chandelier-03",
+    "user_id": 138,
+    "rating": 4,
+    "comment": "Thiết kế rất có gu, đặt ở góc phòng ngủ là thành điểm nhấn luôn. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-15T19:59:52"
+  },
+  {
+    "id": 183,
+    "product_id": "product-scandinavian-the-citizenry-contigo-lumbar-pillow-12-x-48-sand-01",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Họa tiết và màu màu cát đúng y như hình, không bị lệch tông chút nào. Màu sắc thực tế giống ảnh trên web gần như 100%, không có gì để chê. Rất hài lòng, chắc chắn sẽ quay lại mua thêm!",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-21T10:01:17"
+  },
+  {
+    "id": 184,
+    "product_id": "product-bohemian-lush-velvet-pillow-cover-20-x20-golden-oak-05",
+    "user_id": 127,
+    "rating": 5,
+    "comment": "Mình mua để phối với sofa màu trung tính, gối vàng nghệ lên vào rất hài hòa. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-16T06:15:44"
+  },
+  {
+    "id": 185,
+    "product_id": "product-farmhouse-edwina-eda-001-18-l-x-18-w-pillow-cover-04",
+    "user_id": 127,
+    "rating": 4,
+    "comment": "Gối màu kem ngoài đời còn đẹp hơn ảnh, chất 100% cotton sờ rất mềm tay. Màu sắc thực tế giống ảnh trên web gần như 100%, không có gì để chê. Nhìn chung rất hài lòng, sẽ ủng hộ shop tiếp.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-15T08:41:44"
+  },
+  {
+    "id": 186,
+    "product_id": "product-bohemian-lock-grip-rug-pad-9-x-12-rectangle-03",
+    "user_id": 103,
+    "rating": 5,
+    "comment": "Chất nhựa PVC bền, không bị trượt, hút bụi dễ, nhà có trẻ nhỏ dùng rất yên tâm. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-20T16:44:40"
+  },
+  {
+    "id": 187,
+    "product_id": "product-farmhouse-gia-ii-screen-printed-wall-art-in-brass-frame-18-x24-03",
+    "user_id": 120,
+    "rating": 5,
+    "comment": "Treo ở phòng khách nhìn sang hẳn, bố cục và màu sắc rất có nghệ thuật. Phối cùng mấy món trong bộ không gian mẫu của RoomCraft thì hợp nhau vô cùng. Cho 5 sao không cần suy nghĩ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-23T07:46:32"
+  },
+  {
+    "id": 188,
+    "product_id": "product-scandinavian-arren-black-5-light-linear-pendant-with-round-silver-glass-s-01",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Ánh sáng dịu không chói mắt, đọc sách hay làm việc buổi tối đều thoải mái. Giá hợp lý so với chất lượng nhận được, thấy rất đáng tiền. Hộp ngoài hơi móp nhẹ nhưng sản phẩm bên trong vẫn nguyên vẹn.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-25T17:52:18"
+  },
+  {
+    "id": 189,
+    "product_id": "product-scandinavian-sculptural-marble-decorative-objects-set-of-2-04",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Cầm lên thấy chắc tay, bề mặt đá cẩm thạch mịn, không có vết lỗi nào. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-19T15:01:18"
+  },
+  {
+    "id": 190,
+    "product_id": "product-bohemian-xbase-pillow-23x23-feather-insert-10",
+    "user_id": 115,
+    "rating": 5,
+    "comment": "Mình mua để phối với sofa màu trung tính, gối trắng ngà lên vào rất hài hòa. Hộp đựng đẹp, có thiệp cảm ơn viết tay, cảm giác như được tặng quà. Mua lần đầu mà ưng quá, đang ngắm thêm vài món khác.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-18T14:05:22"
+  },
+  {
+    "id": 191,
+    "product_id": "product-farmhouse-november-roses-floral-wall-art-01",
+    "user_id": 136,
+    "rating": 5,
+    "comment": "Kích thước đúng như mô tả, treo phía trên sofa vừa khít bức tường. Tuyệt vời, đúng chất lượng mình mong đợi.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-28T07:15:53"
+  },
+  {
+    "id": 192,
+    "product_id": "product-bohemian-minka-textured-pot-11",
+    "user_id": 123,
+    "rating": 4,
+    "comment": "Dáng bình tối giản nhưng có chiều sâu, đúng chất đồ decor mình thích. Giao hàng nhanh hơn dự kiến, shipper thân thiện, còn gọi báo trước khi tới. Hàng đẹp, mình chỉ mong có thêm vài lựa chọn màu nữa.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-24T12:19:34"
+  },
+  {
+    "id": 193,
+    "product_id": "product-farmhouse-decorative-round-terra-cotta-vase-with-floral-pattern-with-d-05",
+    "user_id": 133,
+    "rating": 5,
+    "comment": "Kích cỡ vừa phải, để trên kệ sách hay bàn console đều hợp. Nhân viên tư vấn nhiệt tình, chỉ mình cách phối màu với đồ đang có trong nhà. Sẽ giới thiệu RoomCraft cho bạn bè đang sửa nhà.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-24T08:51:08"
+  },
+  {
+    "id": 194,
+    "product_id": "product-mid-century-modern-blue-and-orange-minimalistic-symphony-i-minimalism-canvas-ar-03",
+    "user_id": 123,
+    "rating": 5,
+    "comment": "Ngoài đời còn đẹp hơn ảnh, chi tiết in rõ, không bị nhòe màu. Đóng gói cực kỳ cẩn thận, nhiều lớp chống sốc nên hàng tới nơi nguyên vẹn. Đã mua thêm một món nữa để tặng mẹ.",
+    "review_image_url": null,
+    "is_hidden": false,
+    "created_at": "2026-10-29T23:34:59"
   }
 ]
