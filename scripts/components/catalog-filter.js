@@ -218,9 +218,40 @@ function renderFilterPanel(containerId, dsGoc, htmlRieng){
     // Còn hàng
     html += "<div class='filter-group filter-group-last'><label class='checkbox-label'>";
     html += "<input type='checkbox' id='chkFilterInStock'><span>Chỉ hiện sản phẩm còn hàng</span></label></div>";
-    html += "<button type='button' class='btn btn-outline btn-full filter-apply-button' onclick='applyFilterPanel()'>Áp dụng bộ lọc</button>";
+    // Chọn hay bỏ tiêu chí nào là lọc lại ngay, không cần nút Áp dụng
+    html += "<button type='button' class='filter-live-count' aria-live='polite' onclick='xemKetQuaLoc()'></button>";
 
     document.getElementById(containerId).innerHTML = html;
+    ganLocNgay(containerId);
+}
+
+/* ---------------- Lọc ngay khi đổi tiêu chí ---------------- */
+
+// Đợi 150ms để khi khách bấm liên tiếp nhiều ô thì chỉ lọc một lần
+var filterChangeTimer = null;
+function scheduleFilterChange(){
+    clearTimeout(filterChangeTimer);
+    filterChangeTimer = setTimeout(function(){ if(typeof onFilterChange == "function") onFilterChange(); }, 150);
+}
+
+// Gắn một lần cho khung lọc: mọi ô chọn bên trong đổi giá trị thì lọc lại;
+// dòng cuối khung luôn hiện số kết quả đang lọc được (để trên điện thoại khung đang mở vẫn thấy)
+function ganLocNgay(containerId){
+    var khung = document.getElementById(containerId);
+    if(khung.getAttribute("data-loc-ngay")) return;
+    khung.setAttribute("data-loc-ngay", "1");
+    khung.addEventListener("change", function(e){
+        var o = e.target;
+        if(o && (o.tagName == "INPUT" || o.tagName == "SELECT") && o.id != "txtFilterSearch") scheduleFilterChange();
+    });
+    var nguon = document.getElementById("productCount") || document.getElementById("lblResultCount");
+    if(!nguon || !window.MutationObserver) return;
+    var chep = function(){
+        var dich = khung.querySelector(".filter-live-count");
+        if(dich) dich.textContent = nguon.textContent;
+    };
+    new MutationObserver(chep).observe(nguon, { childList: true, characterData: true, subtree: true });
+    chep();
 }
 
 function demTheoGia(ds, khoang){
@@ -512,6 +543,14 @@ var filterSearchTimer = null;
 function onFilterSearchInput(){
     clearTimeout(filterSearchTimer);
     filterSearchTimer = setTimeout(function(){ onFilterChange(); }, 300);
+}
+
+// Điện thoại: bấm dòng số kết quả ở đáy khung lọc để đóng khung và xem danh sách
+function xemKetQuaLoc(){
+    if(!window.matchMedia("(max-width: 900px)").matches) return;
+    document.getElementById("filterPanel").classList.remove("open");
+    var nguon = document.getElementById("productCount") || document.getElementById("lblResultCount");
+    if(nguon) nguon.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 // Điện thoại: bấm nút "Bộ lọc" để mở / đóng khung lọc

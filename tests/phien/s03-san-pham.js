@@ -69,7 +69,7 @@ async function ganMoBoLoc(p) {
 }
 
 phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, async (t) => {
-    // Màn hẹp: bộ lọc thu gọn sau nút "Bộ lọc" và tự đóng sau khi Áp dụng → bấm mở như người dùng thật trước khi thao tác
+    // Màn hẹp: bộ lọc thu gọn sau nút "Bộ lọc" → bấm mở như người dùng thật trước khi thao tác
     const moGoc = t.mo.bind(t);
     t.mo = async (...a) => ganMoBoLoc(await moGoc(...a));
 
@@ -101,14 +101,14 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-01: Lọc theo mức giá "Dưới 1 triệu"
     await t.tc({
         ma: 'TC-S03-01', trang: 'products.html', chucNang: 'Bộ lọc - Mức giá Dưới 1 triệu',
-        tienDieuKien: 'Mở trang Sản phẩm, chưa lọc gì', cacBuoc: '1. Mở products.html 2. Chọn radio "Dưới 1 triệu" 3. Bấm Áp dụng bộ lọc',
+        tienDieuKien: 'Mở trang Sản phẩm, chưa lọc gì', cacBuoc: '1. Mở products.html 2. Chọn radio "Dưới 1 triệu"',
         duLieu: 'price=0-1000000', mongDoi: 'Số sản phẩm hiển thị bằng số sản phẩm mới có giá < 1.000.000', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
         await p.waitForTimeout(800);
         const mong = await demMoi(p, { price: '0-1000000' });
         await p.check("input[name='radPrice'][value='0-1000000']");
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -119,14 +119,14 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-02: Lọc theo mức giá "Trên 15 triệu"
     await t.tc({
         ma: 'TC-S03-02', trang: 'products.html', chucNang: 'Bộ lọc - Mức giá Trên 15 triệu',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn radio "Trên 15 triệu" 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn radio "Trên 15 triệu"',
         duLieu: 'price=15000000-999999999', mongDoi: 'Số sản phẩm khớp số sản phẩm mới có giá >= 15.000.000', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
         await p.waitForTimeout(800);
         const mong = await demMoi(p, { price: '15000000-999999999' });
         await p.check("input[name='radPrice'][value='15000000-999999999']");
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -135,7 +135,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-03: Lọc theo danh mục cha (bao gồm danh mục con)
     await t.tc({
         ma: 'TC-S03-03', trang: 'products.html', chucNang: 'Bộ lọc - Danh mục cha gồm cả danh mục con',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn danh mục cha đầu tiên 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn danh mục cha đầu tiên',
         duLieu: 'category=<id danh mục cha>', mongDoi: 'Số sản phẩm bằng tổng sản phẩm thuộc danh mục cha + các danh mục con', mucDoNeuLoi: 'Nghiêm trọng'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
@@ -147,7 +147,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
         });
         const mong = await demMoi(p, { category: catId });
         await p.selectOption('#cboFilterCategory', catId);
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong + ' (danh mục ' + catId + ')');
@@ -156,7 +156,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-04: Lọc theo danh mục con
     await t.tc({
         ma: 'TC-S03-04', trang: 'products.html', chucNang: 'Bộ lọc - Danh mục con',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn một danh mục con 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn một danh mục con',
         duLieu: 'category=<id danh mục con>', mongDoi: 'Số sản phẩm bằng số sản phẩm mới thuộc đúng danh mục con đó', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
@@ -168,7 +168,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
         });
         const mong = await demMoi(p, { category: catId });
         await p.selectOption('#cboFilterCategory', catId);
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -177,14 +177,14 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-05: Lọc theo chất liệu
     await t.tc({
         ma: 'TC-S03-05', trang: 'products.html', chucNang: 'Bộ lọc - Chất liệu',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Tick chất liệu "Gỗ" 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Tick chất liệu "Gỗ"',
         duLieu: 'material=Gỗ', mongDoi: 'Số sản phẩm bằng số sản phẩm mới có nhóm chất liệu Gỗ', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
         await p.waitForTimeout(800);
         const mong = await demMoi(p, { material: 'Gỗ' });
         await p.check("#divFilterMaterial input[value='Gỗ']");
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -193,14 +193,14 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-06: Lọc theo màu sắc
     await t.tc({
         ma: 'TC-S03-06', trang: 'products.html', chucNang: 'Bộ lọc - Màu sắc',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Tick màu "Đen" 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Tick màu "Đen"',
         duLieu: 'color=Đen', mongDoi: 'Số sản phẩm bằng số sản phẩm mới có nhóm màu Đen', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
         await p.waitForTimeout(800);
         const mong = await demMoi(p, { color: 'Đen' });
         await p.check("#divFilterColor input[value='Đen']");
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -209,7 +209,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-07: Lọc theo thương hiệu
     await t.tc({
         ma: 'TC-S03-07', trang: 'products.html', chucNang: 'Bộ lọc - Thương hiệu',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn thương hiệu đầu tiên trong dropdown 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Chọn thương hiệu đầu tiên trong dropdown',
         duLieu: 'brand=<thương hiệu>', mongDoi: 'Số sản phẩm bằng số sản phẩm mới của đúng thương hiệu đó', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
@@ -221,7 +221,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
         });
         const mong = await demMoi(p, { brand: brand });
         await p.selectOption('#cboFilterBrand', brand);
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong + ' (brand ' + brand + ')');
@@ -230,14 +230,14 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-08: Chỉ còn hàng
     await t.tc({
         ma: 'TC-S03-08', trang: 'products.html', chucNang: 'Bộ lọc - Chỉ hiện sản phẩm còn hàng',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Tick "Chỉ hiện sản phẩm còn hàng" 3. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Mở products.html 2. Tick "Chỉ hiện sản phẩm còn hàng"',
         duLieu: 'stock=1', mongDoi: 'Số sản phẩm bằng số sản phẩm mới có stock_quantity > 0', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
         await p.waitForTimeout(800);
         const mong = await demMoi(p, { inStock: true });
         await p.check('#chkFilterInStock');
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -246,7 +246,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
     // TC-S03-09: Kết hợp nhiều bộ lọc
     await t.tc({
         ma: 'TC-S03-09', trang: 'products.html', chucNang: 'Bộ lọc - Kết hợp danh mục + chất liệu + còn hàng',
-        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Chọn danh mục cha 2. Tick chất liệu Gỗ 3. Tick còn hàng 4. Áp dụng',
+        tienDieuKien: 'Mở trang Sản phẩm', cacBuoc: '1. Chọn danh mục cha 2. Tick chất liệu Gỗ 3. Tick còn hàng',
         duLieu: 'category + material=Gỗ + stock=1', mongDoi: 'Số sản phẩm khớp giao của cả 3 điều kiện', mucDoNeuLoi: 'Nghiêm trọng'
     }, async (kq) => {
         const p = await t.mo('products.html', { vaiTro: 'khach', moi: true });
@@ -260,7 +260,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
         await p.selectOption('#cboFilterCategory', catId);
         await p.check("#divFilterMaterial input[value='Gỗ']");
         await p.check('#chkFilterInStock');
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const chu = await t.chu('#productCount');
         kq.dat(chu == 'Tìm thấy ' + mong + ' sản phẩm', 'Hiển thị: "' + chu + '", mong đợi ' + mong);
@@ -380,7 +380,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
         await p.waitForTimeout(800);
         const mong = await demMoi(p, { material: 'Gỗ' });
         await p.check("#divFilterMaterial input[value='Gỗ']");
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         kq.dat(/material=/.test(p.url()), 'URL sau lọc: ' + p.url());
         await p.reload();
@@ -691,7 +691,7 @@ phien({ ma: 's03', ten: 'Sản phẩm, Chi tiết sản phẩm, Yêu thích' }, 
         const tong = await p.evaluate(() => getNewProducts().length);
         await p.check("#divFilterMaterial input[value='Gỗ']");
         await p.check('#chkFilterInStock');
-        await p.click("button.filter-apply-button");
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         await p.click("button:has-text('Đặt lại')");
         await p.waitForTimeout(500);

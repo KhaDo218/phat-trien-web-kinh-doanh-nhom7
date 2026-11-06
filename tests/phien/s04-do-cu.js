@@ -69,7 +69,7 @@ async function ganMoBoLoc(p) {
 }
 
 phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
-    // Màn hẹp: bộ lọc thu gọn sau nút "Bộ lọc" và tự đóng sau khi Áp dụng → bấm mở như người dùng thật trước khi thao tác
+    // Màn hẹp: bộ lọc thu gọn sau nút "Bộ lọc" → bấm mở như người dùng thật trước khi thao tác
     const moGoc = t.mo.bind(t);
     t.mo = async (...a) => ganMoBoLoc(await moGoc(...a));
 
@@ -93,14 +93,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-02', trang: 'marketplace.html', chucNang: 'Lọc tình trạng - Like New',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Bấm chip "Like New (>95%)" 2. Bấm Áp dụng bộ lọc',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Bấm chip "Like New (>95%)"',
         duLieu: 'Tình trạng: Like New', mongDoi: 'Chỉ hiện các món có condition_grade="Like New"; số đếm khớp dữ liệu', mucDoNeuLoi: 'Nghiêm trọng'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const soLikeNew = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && x.condition_grade === 'Like New').length;
         await p.click('#filterGradeChips button[data-value="Like New"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soLikeNew + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soLikeNew + ')');
@@ -112,14 +112,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-03', trang: 'marketplace.html', chucNang: 'Lọc tình trạng - Good',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Bấm chip "Good (85-95%)" 2. Áp dụng',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Bấm chip "Good (85-95%)"',
         duLieu: 'Tình trạng: Good', mongDoi: 'Chỉ hiện món condition_grade="Good"', mucDoNeuLoi: 'Nghiêm trọng'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const soGood = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && x.condition_grade === 'Good').length;
         await p.click('#filterGradeChips button[data-value="Good"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soGood + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soGood + ')');
@@ -127,14 +127,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-04', trang: 'marketplace.html', chucNang: 'Lọc tình trạng - Fair',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Bấm chip "Fair (>70%)" 2. Áp dụng',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Bấm chip "Fair (>70%)"',
         duLieu: 'Tình trạng: Fair', mongDoi: 'Chỉ hiện món condition_grade="Fair"', mucDoNeuLoi: 'Nghiêm trọng'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const soFair = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && x.condition_grade === 'Fair').length;
         await p.click('#filterGradeChips button[data-value="Fair"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soFair + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soFair + ')');
@@ -142,14 +142,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-05', trang: 'marketplace.html', chucNang: 'Lọc tình trạng - Tất cả',
-        tienDieuKien: 'Đang lọc Fair', cacBuoc: '1. Bấm chip "Tất cả" 2. Áp dụng',
+        tienDieuKien: 'Đang lọc Fair', cacBuoc: '1. Bấm chip "Tất cả"',
         duLieu: 'Tình trạng: (tất cả)', mongDoi: 'Hiện lại toàn bộ đồ cũ, nhãn đếm = tổng số đồ cũ', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const tong = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false).length;
         await p.click('#filterGradeChips button[data-value=""]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + tong + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + tong + ')');
@@ -161,14 +161,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-06', trang: 'marketplace.html', chucNang: 'Lọc giá - Dưới 1 triệu',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn radio "Dưới 1 triệu" 2. Áp dụng',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn radio "Dưới 1 triệu"',
         duLieu: 'Giá: 0-1000000', mongDoi: 'Chỉ hiện món có price < 1000000', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const soMon = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && Number(x.price) >= 0 && Number(x.price) < 1000000).length;
         await p.check('input[name="radPrice"][value="0-1000000"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soMon + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soMon + ')');
@@ -176,14 +176,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-07', trang: 'marketplace.html', chucNang: 'Lọc giá - Từ 1 đến 3 triệu',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn radio "Từ 1 – 3 triệu" 2. Áp dụng',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn radio "Từ 1 – 3 triệu"',
         duLieu: 'Giá: 1000000-3000000', mongDoi: 'Chỉ hiện món có 1000000 <= price < 3000000', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const soMon = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && Number(x.price) >= 1000000 && Number(x.price) < 3000000).length;
         await p.check('input[name="radPrice"][value="1000000-3000000"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soMon + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soMon + ')');
@@ -191,7 +191,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-08', trang: 'marketplace.html', chucNang: 'Lọc giá - Trên 15 triệu',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn radio "Trên 15 triệu" 2. Áp dụng',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn radio "Trên 15 triệu"',
         duLieu: 'Giá: 15000000-999999999', mongDoi: 'Chỉ hiện món có price >= 15000000; nếu không có món nào trong khoảng thì radio không hiện và không lọc gì', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = t.trang;
@@ -207,7 +207,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         kq.dat(coRadio, 'Có món >15tr nên radio "Trên 15 triệu" phải hiện: ' + coRadio);
         if (coRadio) {
             await radio.check();
-            await p.click('.filter-apply-button');
+            await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
             await p.waitForTimeout(500);
             const nhan = await t.chu('#lblResultCount');
             kq.dat(nhan === 'Tìm thấy ' + soMon + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soMon + ')');
@@ -286,7 +286,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-12', trang: 'marketplace.html', chucNang: 'Kết hợp lọc tình trạng + giá',
-        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn Like New 2. Chọn giá Dưới 1 triệu 3. Áp dụng',
+        tienDieuKien: 'Đang ở trang Đồ cũ', cacBuoc: '1. Chọn Like New 2. Chọn giá Dưới 1 triệu',
         duLieu: 'Like New + 0-1000000', mongDoi: 'Chỉ hiện món thoả cả 2 điều kiện', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = t.trang;
@@ -294,7 +294,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         const soMon = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && x.condition_grade === 'Like New' && Number(x.price) >= 0 && Number(x.price) < 1000000).length;
         await p.click('#filterGradeChips button[data-value="Like New"]');
         await p.check('input[name="radPrice"][value="0-1000000"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soMon + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soMon + ')');
@@ -346,7 +346,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         // (2) Lọc theo tên món để chắc chắn thẻ món đó nằm trong kết quả
         await p.fill('#txtFilterSearch', mucTieu.name);
         await p.waitForTimeout(700);
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         // (3) Kiểm tra thẻ có data-id khớp mucTieu.id (không chỉ hasText tên)
         const the = p.locator('#usedProductsGrid .product-card[data-id="' + mucTieu.id + '"]');
@@ -435,7 +435,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         await p.reload();
         await p.waitForTimeout(800);
         await p.check('input[name="radPrice"][value="1000000-3000000"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const the = p.locator('#usedProductsGrid .product-card').filter({ hasText: mucTieu.name });
         kq.dat(await the.count() > 0, 'Món giá 1.000.000 có trong khoảng 1-3 triệu: ' + (await the.count() > 0));
@@ -455,7 +455,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         await p.reload();
         await p.waitForTimeout(800);
         await p.check('input[name="radPrice"][value="0-1000000"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const the = p.locator('#usedProductsGrid .product-card').filter({ hasText: mucTieu.name });
         kq.dat(await the.count() === 0, 'Món giá 1.000.001 không thuộc "Dưới 1 triệu": ' + (await the.count() === 0));
@@ -475,7 +475,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         await p.reload();
         await p.waitForTimeout(800);
         await p.check('input[name="radPrice"][value="3000000-6000000"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const the = p.locator('#usedProductsGrid .product-card').filter({ hasText: mucTieu.name });
         kq.dat(await the.count() > 0, 'Món giá 3.000.000 thuộc khoảng 3-6 triệu: ' + (await the.count() > 0));
@@ -564,14 +564,14 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-26', trang: 'marketplace.html', chucNang: 'Mobile - lọc tình trạng hoạt động',
-        tienDieuKien: 'Màn hình mobile, khung lọc đang mở', cacBuoc: '1. Bấm chip Like New 2. Áp dụng',
+        tienDieuKien: 'Màn hình mobile, khung lọc đang mở', cacBuoc: '1. Bấm chip Like New',
         duLieu: 'manHinh=mobile, Like New', mongDoi: 'Lọc đúng số món Like New', mucDoNeuLoi: 'Trung bình', manHinh: 'mobile'
     }, async (kq) => {
         const p = t.trang;
         const tatCa = await t.bang('products');
         const soLikeNew = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false && x.condition_grade === 'Like New').length;
         await p.click('#filterGradeChips button[data-value="Like New"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const nhan = await t.chu('#lblResultCount');
         kq.dat(nhan === 'Tìm thấy ' + soLikeNew + ' món đồ cũ tuyển chọn', 'Nhãn đếm: "' + nhan + '" (mong đợi ' + soLikeNew + ')');
@@ -616,7 +616,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
 
     await t.tc({
         ma: 'TC-S04-28', trang: 'marketplace.html', chucNang: 'Lọc chỉ còn hàng - loại món đã bán',
-        tienDieuKien: 'Có món USED hết hàng', cacBuoc: '1. Tạo 1 món USED hết hàng 2. Tick "Chỉ hiện sản phẩm còn hàng" 3. Áp dụng',
+        tienDieuKien: 'Có món USED hết hàng', cacBuoc: '1. Tạo 1 món USED hết hàng 2. Tick "Chỉ hiện sản phẩm còn hàng"',
         duLieu: 'stock_quantity=0', mongDoi: 'Món hết hàng không xuất hiện trong kết quả', mucDoNeuLoi: 'Trung bình'
     }, async (kq) => {
         const p = await t.mo('marketplace.html', { vaiTro: 'khach', moi: true });
@@ -630,7 +630,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         await p.reload();
         await p.waitForTimeout(800);
         await p.check('#chkFilterInStock');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const the = p.locator('#usedProductsGrid .product-card').filter({ hasText: mucTieu.name });
         kq.dat(await the.count() === 0, 'Món hết hàng bị ẩn khi tick "Chỉ còn hàng": ' + (await the.count() === 0));
@@ -647,7 +647,7 @@ phien({ ma: 's04', ten: 'Đồ cũ' }, async (t) => {
         const tatCa = await t.bang('products');
         const tong = tatCa.filter(x => x.product_type === 'USED' && x.is_active !== false).length;
         await p.click('#filterGradeChips button[data-value="Like New"]');
-        await p.click('.filter-apply-button');
+        await p.waitForTimeout(400); // lọc ngay khi đổi tiêu chí
         await p.waitForTimeout(500);
         const tags = await t.chu('#divActiveTags');
         kq.dat(/Tình trạng: Like New/.test(tags), 'Có nhãn "Tình trạng: Like New": ' + /Tình trạng: Like New/.test(tags));
