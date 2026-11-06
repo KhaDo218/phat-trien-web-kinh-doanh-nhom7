@@ -92,6 +92,7 @@ function taoHtmlTinhTrang(){
 function setConditionFilter(grade){
     draftCondition = grade;
     updateConditionChipsUI();
+    scheduleFilterChange();
 }
 
 function updateConditionChipsUI(){
