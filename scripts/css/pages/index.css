@@ -217,6 +217,22 @@ body > #header.home-header-visible{
     font-size: 40px;
     line-height: 44px;
 }
+/* Cột được co nhỏ hơn nội dung (tránh tràn ngang); điện thoại hiện 2 cột cho dễ đọc */
+.stats{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 600px){
+    .stats{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .stats li{
+        padding: 20px 16px;
+    }
+    .stats li:nth-child(odd){
+        border-left: none;
+        padding-left: 0;
+    }
+}
 
 .section-sub{
     max-width: 520px;
@@ -225,6 +241,9 @@ body > #header.home-header-visible{
 
 /* ----- Slider sản phẩm nổi bật ----- */
 .featured-track{
+    /* Làm khung tham chiếu cho ảnh định vị tuyệt đối trong thẻ sản phẩm (ảnh phụ khi rê chuột),
+       để chúng bị cắt trong slider thay vì kéo giãn cả trang (lỗi cuộn ngang trên Chrome/Safari) */
+    position: relative;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc((100% - 72px) / 4);

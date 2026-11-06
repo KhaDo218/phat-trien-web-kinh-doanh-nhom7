@@ -1,0 +1,10 @@
+{
+  "name": "roomcraft-kiem-thu",
+  "private": true,
+  "description": "Kiểm thử tự động RoomCraft (chỉ dùng trên máy, không đưa lên GitHub)",
+  "dependencies": {
+    "axe-core": "^4.10.2",
+    "exceljs": "^4.4.0",
+    "playwright": "1.48.2"
+  }
+}

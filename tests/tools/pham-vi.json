@@ -1,0 +1,198 @@
+{
+ "s01": {
+  "file": "s01-tai-khoan",
+  "ten": "Tài khoản",
+  "nguon": [
+   "login.html",
+   "js/pages/login.js",
+   "register.html",
+   "js/pages/register.js",
+   "forgot-password.html",
+   "js/pages/forgot-password.js",
+   "account.html",
+   "js/pages/account.js",
+   "js/core/auth.js"
+  ],
+  "mau": [
+   "users"
+  ]
+ },
+ "s02": {
+  "file": "s02-phong",
+  "ten": "Trang chủ, Không gian mẫu, Chi tiết phòng",
+  "nguon": [
+   "rooms.html",
+   "js/pages/rooms.js",
+   "room-detail.html",
+   "js/pages/room-detail.js",
+   "components/room-card.js"
+  ],
+  "mau": [
+   "rooms",
+   "room_hotspots",
+   "styles"
+  ]
+ },
+ "s03": {
+  "file": "s03-san-pham",
+  "ten": "Sản phẩm, Chi tiết sản phẩm, Yêu thích",
+  "nguon": [
+   "products.html",
+   "js/pages/products.js",
+   "components/catalog-filter.js",
+   "product-detail.html",
+   "js/pages/product-detail.js",
+   "wishlist.html",
+   "js/pages/wishlist.js",
+   "js/services/products.js"
+  ],
+  "mau": [
+   "products",
+   "categories"
+  ]
+ },
+ "s04": {
+  "file": "s04-do-cu",
+  "ten": "Đồ cũ",
+  "nguon": [
+   "marketplace.html",
+   "js/pages/marketplace.js",
+   "components/catalog-filter.js",
+   "components/product-card.js"
+  ],
+  "mau": [
+   "used_products"
+  ],
+  "them": "Danh sách đồ cũ đẩy món hết hàng xuống cuối và phân trang: muốn kiểm món đã bán thì chọn món có sẵn stock_quantity=0 hoặc lọc/đi tới trang chứa nó. Nút thêm giỏ: xem components/product-card.js."
+ },
+ "s05": {
+  "file": "s05-gio-thanh-toan",
+  "ten": "Giỏ hàng & Thanh toán",
+  "nguon": [
+   "cart.html",
+   "js/pages/cart.js",
+   "js/services/cart.js",
+   "checkout.html",
+   "js/pages/checkout.js",
+   "js/services/shipping.js",
+   "js/services/orders.js",
+   "order-success.html"
+  ],
+  "mau": [
+   "products",
+   "coupons",
+   "shipping_methods"
+  ],
+  "them": "checkout.html tự chuyển về cart.html khi giỏ trống (checkout.js dòng 14-28). Đúng cách: mở 1 trang bất kỳ (vd cart.html, vaiTro user, moi:true), gọi addToCart(...) qua evaluate, RỒI p.goto(url checkout.html) (không dùng reload). Nên viết 1 hàm dùng chung moThanhToan(dsSanPham) ở đầu file."
+ },
+ "s06": {
+  "file": "s06-don-hang",
+  "ten": "Đơn hàng & Đánh giá",
+  "nguon": [
+   "orders.html",
+   "js/pages/orders.js",
+   "order-detail.html",
+   "js/pages/order-detail.js",
+   "js/services/orders.js"
+  ],
+  "mau": [
+   "orders",
+   "reviews"
+  ],
+  "them": "Trang orders.html/order-detail.html KHÔNG nạp cart.js nên không có addToCart/clearCart; muốn tạo đơn để test thì dựng bản ghi đơn bằng getTable('orders')/saveTable trên trang đó, hoặc mở cart.html/checkout.html trước. Hủy đơn qua giao diện: nút hủy ở order-detail.html (confirm do khung tự bấm OK). GIAO DIỆN MỚI: chọn số sao bằng 5 ngôi sao bấm chọn trong .star-picker[data-i='<chỉ số món>'] (xem order-detail.js khoảng dòng 135-180), KHÔNG còn ô select -> không dùng selectOption; bấm ngôi sao thứ N trong .star-picker rồi mới bấm Gửi đánh giá. Chưa chọn sao thì báo 'Vui lòng chọn số sao cho sản phẩm!'."
+ },
+ "s07": {
+  "file": "s07-admin-danh-muc",
+  "ten": "Admin sản phẩm, danh mục, phòng, đồ cũ",
+  "nguon": [
+   "admin/products.html",
+   "js/pages/admin-products.js",
+   "admin/categories.html",
+   "js/pages/admin-categories.js",
+   "admin/marketplace.html",
+   "js/pages/admin-marketplace.js",
+   "admin/rooms.html",
+   "js/pages/admin-rooms.js"
+  ],
+  "mau": [
+   "products",
+   "categories",
+   "rooms",
+   "room_hotspots"
+  ],
+  "them": "Tên trường THẬT: rooms {id, style_id, name, image_url, description, images[], product_ids[]}; room_hotspots {room_id, image_url, product_id, position_x, position_y}. Không có main_image/pos_x/pos_y."
+ },
+ "s08": {
+  "file": "s08-admin-don-hang",
+  "ten": "Admin đơn hàng, Dashboard, người dùng, đánh giá",
+  "nguon": [
+   "admin/orders.html",
+   "js/pages/admin-orders.js",
+   "admin/users.html",
+   "js/pages/admin-users.js",
+   "admin/reviews.html",
+   "js/pages/admin-reviews.js",
+   "js/services/orders.js"
+  ],
+  "mau": [
+   "orders",
+   "users"
+  ],
+  "them": "Dashboard: admin/index.html dùng js/pages/admin-index.js (không gửi kèm vì dài); đọc số liệu bằng t.chu() trên các thẻ số liệu. Đổi trạng thái đơn ở admin/orders.html; confirm do khung tự bấm OK. Ô tìm kiếm đơn khớp chuỗi con của id/tên khách -> tìm '15' sẽ ra cả 150, 151...; kiểm 'có dòng chứa đúng mã' chứ không phải 'chỉ 1 dòng'."
+ },
+ "s09": {
+  "file": "s09-chatbot",
+  "ten": "Chatbot",
+  "nguon": [
+   "components/chatbot.js"
+  ],
+  "mau": [
+   "chatbot_faqs"
+  ],
+  "cat": 45000,
+  "them": "Lịch sử chat lưu bằng saveObject('rc_chat_history') nên KHÓA THẬT trong localStorage là 'rc_rc_chat_history' (store.js thêm tiền tố rc_). Lịch sử chỉ được vẽ lại khi MỞ khung chat (toggleChatbot -> chatVeLaiLuu). Trang chủ có lỗi cuộn ngang riêng (đã ghi nhận ở s10) -> test mobile của chatbot không kiểm cuộn ngang trang chủ, chỉ kiểm khung chat nằm trong màn hình (getBoundingClientRect của #rcChatBox)."
+ },
+ "s10": {
+  "file": "s10-phi-chuc-nang",
+  "ten": "Phi chức năng",
+  "nguon": [
+   "js/core/store.js",
+   "js/core/auth.js"
+  ],
+  "mau": [],
+  "them": "Khách chưa đăng nhập ĐƯỢC dùng giỏ hàng (giỏ 'guest', gộp vào tài khoản khi đăng nhập) -> cart.html KHÔNG chặn khách; chỉ checkout/account/orders/wishlist/admin mới phải chặn. Khung chặn Internet nên 'Failed to load resource: net::ERR_FAILED' là do môi trường, không tính là lỗi console. addToCart chỉ có trên trang nạp js/services/cart.js (cart.html, checkout.html, products.html...)."
+ },
+ "s11": {
+  "file": "s11-nghiep-vu",
+  "ten": "Nghiệp vụ thực tế (E2E)",
+  "nguon": [
+   "js/services/cart.js",
+   "js/services/orders.js",
+   "js/services/shipping.js",
+   "js/pages/checkout.js",
+   "js/pages/admin-orders.js",
+   "js/pages/order-detail.js",
+   "js/core/auth.js"
+  ],
+  "mau": [
+   "products",
+   "coupons",
+   "orders"
+  ],
+  "them": "Kịch bản đầu-cuối nhiều vai trò: dùng t.mo(..., {vaiTro:'user'|'admin'}) chuyển vai trò trong CÙNG ngữ cảnh (không moi:true giữa các bước của 1 kịch bản). 2 tab cùng lúc: const p2 = await t.trang.context().newPage(); await p2.goto(t.trang.url()). Tạo đơn nhanh: mở checkout.html sau khi addToCart (checkout tự về cart.html nếu giỏ trống) hoặc gọi createOrder(...) trên trang checkout.html. Đổi trạng thái đơn bằng updateOrderStatus(id, 'Packing'|'Shipping'|'Delivered') trên trang admin hoặc qua giao diện admin/orders.html. Dashboard: admin/index.html, đọc t.chu(). Khách được dùng giỏ khi chưa đăng nhập. Mỗi kịch bản là 1 test case, kiểm cả dữ liệu bằng t.bang()."
+ },
+ "s12": {
+  "file": "s12-audit",
+  "ten": "Audit chất lượng",
+  "nguon": [
+   "js/core/auth.js",
+   "js/core/store.js",
+   "js/core/utils.js",
+   "js/pages/login.js"
+  ],
+  "mau": [
+   "users"
+  ],
+  "them": "Bảo mật: session lưu ở localStorage 'rc_session' (xem auth.js saveSession/getSession/isAdmin). XSS: chèn '<img src=x onerror=window.__xss=1>' rồi kiểm window.__xss không được đặt. Khả năng tiếp cận: KHÔNG có Internet; nạp axe-core bằng await p.addScriptTag({ path: require.resolve('axe-core') }) rồi const r = await p.evaluate(() => axe.run()); đếm r.violations theo impact (critical/serious). Hiệu năng: performance.getEntriesByType('navigation')[0] (loadEventEnd), tổng transferSize/encodedBodySize của performance.getEntriesByType('resource'), ảnh > 500KB. SEO: document.title, meta[name=description], số h1, document.documentElement.lang. Toàn vẹn dữ liệu: t.bang('products'/'orders'). Link hỏng: thu thập a[href] nội bộ ở trang chủ và vài trang, fetch HEAD/GET kiểm 200. Mỗi hạng mục 1 test case; mongDoi theo chuẩn (vd. 0 vi phạm critical, tải trang < 3s, mỗi trang có title riêng)."
+ }
+}

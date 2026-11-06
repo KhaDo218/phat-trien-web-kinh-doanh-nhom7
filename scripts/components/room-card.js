@@ -143,6 +143,7 @@ function createRoomCard(room, soThuTu){
     img.src = asset(room.image_url);
     img.alt = room.name;
     img.loading = "lazy";
+    img.decoding = "async";
     khungAnh.appendChild(img);
 
     var nhan = "<span class='badge'>" + roomEscape(style.name) + "</span>";

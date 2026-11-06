@@ -31,6 +31,7 @@ function createProductCard(product){
     img.src = imgSrc;
     img.alt = product.name;
     img.loading = "lazy";
+    img.decoding = "async";
     linkImg.appendChild(img);
     imgBox.appendChild(linkImg);
 

@@ -105,6 +105,7 @@ function chatXoaLuu(){
     var container = document.getElementById("rcChatMessages");
     if(!container) return;
     // Xóa hết tin nhắn rồi vẽ lại lời chào
+    chatDaVeLaiLuu = false;   // cho phép vẽ lại lịch sử (đang trống)
     container.innerHTML = "";
     var chao = document.createElement("div");
     chao.className = "rc-msg rc-msg-bot";
@@ -115,10 +116,14 @@ function chatXoaLuu(){
     container.appendChild(chao);
 }
 
-// Vẽ lại lịch sử đã lưu khi mở chat (chỉ khi khung còn trống)
+// Vẽ lại lịch sử đã lưu khi mở chat (chỉ khi chưa có hội thoại thật)
+var chatDaVeLaiLuu = false;   // cờ: đã vẽ lại lịch sử -> không vẽ trùng
 function chatVeLaiLuu(){
     var container = document.getElementById("rcChatMessages");
-    if(!container || container.children.length > 1) return;   // đã có tin -> không vẽ
+    if(!container || chatDaVeLaiLuu) return;
+    // Chỉ coi là "đã có hội thoại" khi có tin ngoài lời chào ban đầu
+    if(container.querySelectorAll(".rc-msg").length > 1) return;
+    chatDaVeLaiLuu = true;
     var ds = chatDocLuu();
     for(var i = 0; i < ds.length; i++){
         var sp = [];
@@ -483,7 +488,10 @@ function chatDungTuThat(){
         "phi", "hang", "giao", "lap", "dat", "gia", "bao", "nhieu", "the", "nao",
         "truong", "chuong", "dich", "vu", "khuyen", "kich", "chinh", "sach",
         "hoi", "muon", "can", "tim", "mua", "xem", "co", "khong", "gi", "vay",
-        "minh", "ban", "shop", "o", "dau", "ra", "sao", "vao", "nhu", "sau"];
+        "minh", "ban", "shop", "o", "dau", "ra", "sao", "vao", "nhu", "sau",
+        // Từ chỉ ngân sách: không bảo vệ thì "duoi" bị sửa thành "duoc" và mất điều kiện giá
+        "duoi", "tren", "hon", "trieu", "nghin", "ngan", "khoang", "toi", "da", "qua",
+        "nho", "lon", "thieu", "tam", "dong", "vnd", "den", "tu"];
     for(var i2 = 0; i2 < tuThuong.length; i2++) them(tuThuong[i2]);
     // Từ đã có trong từ điển sản phẩm cũng phải được bảo vệ
     var tuDien = chatDungTuDien();
@@ -634,10 +642,26 @@ function chatParseBudget(qn){
         kq.max = chatToVnd(m[3], m[4]);
         return kq;
     }
+    // Số đầy đủ có ngăn nghìn (10.000.001 / 10,000,000) hoặc số trơn >= 1000, kèm/không kèm đ/đồng/vnd
+    // Chỉ nhận khi đi sau từ chỉ ngân sách để tránh nhầm kích thước (cm) hay số lượng
+    // Xét số đầy đủ TRƯỚC dạng "10 triệu", nếu không "10.000.001" bị đọc thành "10.000" (= 10 đồng).
+    // Bỏ qua khi sau số vẫn còn đơn vị (vd. "1.500 k") để nhánh dưới xử lý.
+    // normalizeText đã đổi dấu chấm thành khoảng trắng ("10.000.001" -> "10 000 001") nên nhận cả khoảng trắng
+    var soTien = "(\\d{1,3}(?:[., ]\\d{3})+|\\d{4,})\\s*(?:d|dong|vnd)?(?!\\s*(?:trieu|tr|k|nghin))";
+    m = s.match(new RegExp("(?:duoi|toi da|khong qua|nho hon)\\s*" + soTien));
+    if(m){
+        kq.max = parseInt(m[1].replace(/[., ]/g, ""), 10);
+        return kq;
+    }
     // "dưới 10 triệu" / "tối đa 5tr" / "nhỏ hơn 800k"
-    m = s.match(/(?:duoi|toi da|khong qua|nho hon)\s*(\d+(?:[.,]\d+)?)\s*(trieu|tr|k|nghin)?/);
+    m = s.match(new RegExp("(?:duoi|toi da|khong qua|nho hon)\\s*(\\d+(?:[.,]\\d+)?)\\s*(trieu|tr|k|nghin)?"));
     if(m){
         kq.max = chatToVnd(m[1], m[2] || "");
+        return kq;
+    }
+    m = s.match(new RegExp("(?:tren|hon|toi thieu|lon hon)\\s*" + soTien));
+    if(m){
+        kq.min = parseInt(m[1].replace(/[., ]/g, ""), 10);
         return kq;
     }
     // "trên 20 triệu" / "hơn 5tr"
@@ -652,6 +676,13 @@ function chatParseBudget(qn){
         var giua = chatToVnd(m[1], m[2]);
         kq.min = Math.round(giua * 0.8);
         kq.max = Math.round(giua * 1.15);
+        return kq;
+    }
+    m = s.match(new RegExp("(?:khoang|tam|co tam|ngan sach|gia)\\s*" + soTien));
+    if(m){
+        var giua2 = parseInt(m[1].replace(/[.,]/g, ""), 10);
+        kq.min = Math.round(giua2 * 0.8);
+        kq.max = Math.round(giua2 * 1.15);
         return kq;
     }
     // Chỉ ghi "15 triệu" -> coi là mức trần

@@ -998,7 +998,7 @@ function drawMonthlyOrderStatusChart(){
     });
 }
 
-// ---------- Sắp hết hàng: sản phẩm mới đang bán còn từ 1 đến 3 món, món bán chạy xếp trước ----------
+// ---------- Sắp hết hàng: sản phẩm mới đang bán còn 0 đến 3 món, hết hàng (0) xếp trước, món bán chạy xếp trước ----------
 function showLowStock(){
     var products = getTable("products");
     var daBan = getSoldMap();
@@ -1007,17 +1007,23 @@ function showLowStock(){
         var p = products[i];
         if(p.product_type == "USED" || p.is_active == false)
             continue;
-        if(p.stock_quantity > 0 && p.stock_quantity <= 3)
+        if(p.stock_quantity >= 0 && p.stock_quantity <= 3)
             ds.push(p);
     }
     ds.sort(function(a, b){
-        return (daBan[b.id] || 0) - (daBan[a.id] || 0) || a.stock_quantity - b.stock_quantity;
+        return a.stock_quantity - b.stock_quantity || (daBan[b.id] || 0) - (daBan[a.id] || 0);
     });
-    document.getElementById("lblLowStock").innerHTML = "(" + ds.length + " sản phẩm còn ≤ 3 món)";
+    var soHet = 0, soSapHet = 0;
+    for(var k = 0; k < ds.length; k++){
+        if(ds[k].stock_quantity == 0) soHet++;
+        else soSapHet++;
+    }
+    document.getElementById("lblLowStock").innerHTML = "(" + soHet + " hết hàng, " + soSapHet + " sắp hết)";
     var html = "";
     for(var j = 0; j < ds.length && j < 8; j++){
         var anh = (ds[j].images && ds[j].images.length > 0) ? "<img src='" + asset(ds[j].images[0]) + "' alt=''>" : "";
-        html += "<tr><td>" + anh + "</td><td>" + safeText(ds[j].name) + "</td><td><span class='badge badge-out'>Còn " + ds[j].stock_quantity + "</span></td><td>" + (daBan[ds[j].id] || 0) + "</td></tr>";
+        var nhan = ds[j].stock_quantity == 0 ? "Hết hàng" : ("Còn " + ds[j].stock_quantity);
+        html += "<tr><td>" + anh + "</td><td>" + safeText(ds[j].name) + "</td><td><span class='badge badge-out'>" + nhan + "</span></td><td>" + (daBan[ds[j].id] || 0) + "</td></tr>";
     }
     if(html == "")
         html = "<tr><td colspan='4' class='empty'>Không có sản phẩm nào sắp hết hàng.</td></tr>";

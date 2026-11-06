@@ -206,6 +206,11 @@ function cancelOrder(orderId){
     }
     if(order == null)
         return "Không tìm thấy đơn hàng!";
+    // Chỉ chủ đơn hoặc Admin được hủy
+    var nguoiDung = getCurrentUser();
+    var laChuDon = nguoiDung && order.user_id != null && order.user_id == nguoiDung.id;
+    if(laChuDon == false && isAdmin() == false)
+        return "Bạn không có quyền hủy đơn hàng này!";
     if(canCancelOrder(order) == false)
         return "Đơn hàng đang ở trạng thái \"" + getStatusText(order.status) + "\" nên không thể hủy!";
 

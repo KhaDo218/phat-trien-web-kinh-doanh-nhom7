@@ -105,6 +105,13 @@
     height: 40px;
 }
 
+/* ----- Khung cuộn ngang cho bảng (dùng chung mọi trang admin) ----- */
+.table-wrap{
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 /* ----- Bảng dữ liệu: <table class="table"><thead>...</thead><tbody id="tbXxx"></tbody></table> ----- */
 .table{
     width: 100%;
@@ -201,8 +208,6 @@
         padding: 24px 16px;
     }
     .table{
-        display: block;
-        overflow-x: auto;
         white-space: nowrap;
     }
     .table td, .table th{
