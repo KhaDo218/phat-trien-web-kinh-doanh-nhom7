@@ -1,58 +1,54 @@
-# Kiểm thử tự động RoomCraft – hướng dẫn cài 1 lần
+# Kiểm thử tự động RoomCraft – hướng dẫn chạy
 
-Thư mục `tests/`. Không đưa lên GitHub: `cau-hinh.json` (URL ghi được vào Sheet), `.env` (API key), `node_modules/`, `anh/`, `ket-qua*/` (đã có trong .gitignore). Báo cáo cuối để nộp nằm ở `BAO-CAO-NOP/`.
+Bộ kiểm thử dùng Node.js + Playwright, chạy website RoomCraft trên trình duyệt thật, ghi kết quả từng test case kèm ảnh minh chứng.
 
-## 1. Cài (gõ trong terminal VS Code, làm 1 lần)
+Không đưa lên GitHub (đã có trong `.gitignore`): `node_modules/`, `anh/`, `ket-qua*/`, `cau-hinh.json`.
+
+## 1. Cài đặt (làm 1 lần)
 ```
 cd tests
-npm install   (cài playwright + exceljs)
+npm install
 npx playwright install chromium
 ```
-(tải khoảng 150 MB trình duyệt Chromium dùng riêng cho test)
+Muốn chạy thêm Firefox / Safari (WebKit): `npx playwright install firefox webkit`.
 
-## 2. Cho kết quả tự ghi vào Google Sheet (làm 1 lần, 5 phút)
-1. Mở Google Sheet của nhóm → **Tiện ích mở rộng → Apps Script**.
-2. Xóa code mẫu, dán toàn bộ nội dung file `apps-script.gs` → bấm Lưu.
-3. **Triển khai → Tùy chọn triển khai mới → Loại: Ứng dụng web**
-   - Thực thi dưới dạng: **Tôi**
-   - Ai có quyền truy cập: **Bất kỳ ai**
-   - Bấm Triển khai, cấp quyền, **chép URL** (dạng `https://script.google.com/macros/s/.../exec`).
-4. Tạo file `cau-hinh.json` trong thư mục này:
+## 2. Ghi kết quả vào Google Sheet (không bắt buộc)
+1. Mở Google Sheet của nhóm → **Tiện ích mở rộng → Apps Script**, dán nội dung `apps-script.gs`, lưu.
+2. **Triển khai → Tùy chọn triển khai mới → Ứng dụng web** (Thực thi: Tôi; Quyền truy cập: Bất kỳ ai) → chép URL.
+3. Tạo `cau-hinh.json` trong thư mục `tests/`:
    ```json
    { "sheetWebAppUrl": "DÁN_URL_VÀO_ĐÂY" }
    ```
-   Không có file này thì kết quả vẫn nằm trong `ket-qua/<phiên>.tsv` để dán tay (bấm ô A trống đầu tiên trong tab Test case → Ctrl+V).
+Không có file này thì kết quả vẫn nằm trong `ket-qua/` để dán tay.
 
-## 3. Chạy
+## 3. Chạy một phiên
 ```
 node phien/s00-khoi-dong.js      # luôn chạy đầu tiên sau khi pull code mới
-node phien/s01-tai-khoan.js
+node phien/s05-gio-thanh-toan.js
 ```
 Kết quả:
-- Màn hình in ĐẠT / KHÔNG ĐẠT từng test case
-- `ket-qua/s01.md` tóm tắt + lỗi Console + file 404
-- `ket-qua/s01.tsv` đúng 15 cột tab "Test case"
-- `anh/TC-S01-03.jpg` ảnh minh chứng (ảnh lỗi có đuôi `_loi.jpg`): có dải chú thích Mã TC / Đạt-Không đạt / mong đợi / thực tế, hiện lại nội dung alert, khoanh đỏ phần tử vừa thao tác (đổi bằng `kq.danhDau('#id')`, tắt bằng `kq.danhDau(null)`)
-- `ket-qua/TONG-HOP.xlsx` gộp mọi phiên đã chạy: tab Tổng quan, Test case (ảnh nằm trong ô), Lỗi phát hiện, Console & 404
-- Có `cau-hinh.json` → tự gửi lên Google Sheet: ảnh nhỏ chèn trong ô cột L, ảnh gốc lưu ở Drive (thư mục *RoomCraft - Minh chung kiem thu*), cột P là link
-- Lỗi Excel "EBUSY" = đang mở file TONG-HOP.xlsx → đóng Excel rồi chạy `node lib/xuat-excel.js`
+- Màn hình in ĐẠT / KHÔNG ĐẠT từng test case.
+- `ket-qua/<phiên>.md`: tóm tắt, lỗi Console, file 404.
+- `ket-qua/<phiên>.tsv`: đúng các cột của tab "Test case".
+- `anh/<Mã TC>.jpg`: ảnh minh chứng (ảnh lỗi có đuôi `_loi.jpg`), có dải chú thích mã TC, kết quả mong đợi và thực tế.
+- `ket-qua/TONG-HOP.xlsx`: gộp mọi phiên đã chạy (Tổng quan, Test case, Lỗi phát hiện, Console & 404).
 
-## 4. Ghi chú
-- Khung test tự mở web (cổng 5599), **không cần bật Live Server**.
-- Mặc định **chặn mọi kết nối Internet** (CDN, Google, AI) → đồng thời kiểm tra web chạy được khi mất mạng.
-- Mỗi lần chạy dùng dữ liệu sạch từ `data/json` (không ảnh hưởng dữ liệu trên Chrome của bạn).
+## 4. Chạy trên nhiều trình duyệt / thiết bị
+```
+node tools/chay-cau-hinh.js iphone --song-song 2 [--phien s03,s04]
+```
+Cấu hình: `edge`, `chrome`, `firefox`, `webkit`, `iphone`, `android` (Pixel 7), `ipad`. Kết quả nằm ở `ket-qua/<đợt>/<cấu hình>/` (đặt đợt bằng biến `QA_DOT`, ví dụ `QA_DOT=d3`). Thêm `QA_KHONG_GUI=1` để không gửi Sheet.
 
-## 5. Giao phiên cho AI và chốt kết quả (bổ sung 03/11/2026)
-- `node tools/giao-phien.mjs s05` : DeepSeek viết file phiên theo `tools/pham-vi.json` + `tools/api-khung.md` → chạy → tự sửa lỗi script → phân loại test KHÔNG ĐẠT (`ket-qua/s05-phan-loai.md`). Thêm `--chi-chay` để không viết lại.
-- Mọi test KHÔNG ĐẠT phải được người xác minh, ghi vào `ket-qua/DUYET-LOI.md` (Mã TC | Kết luận | Mức độ | Ghi chú).
-- `node tools/chot-ket-qua.js --gui` : áp mức độ đã duyệt → xuất `TONG-HOP.xlsx` → gửi cả 11 phiên kèm ảnh lên Google Sheet.
-- Báo cáo: `ket-qua/BAO-CAO-KIEM-THU.md` → `python tools/md-sang-docx.py ket-qua/BAO-CAO-KIEM-THU.md ket-qua/BAO-CAO-KIEM-THU.docx`.
-- Kiểm thử hồi quy sau khi sửa lỗi: chạy lại s00, s08, s09, s10 rồi `node tools/chot-ket-qua.js --gui`.
+## 5. Chốt kết quả
+- Mọi test KHÔNG ĐẠT được thành viên xác minh (đọc mã nguồn, tái hiện) và ghi vào `ket-qua/DUYET-LOI.md` (Mã TC | Kết luận | Mức độ | Ghi chú).
+- `node tools/chot-ket-qua.js --gui`: áp kết luận đã duyệt, xuất `TONG-HOP.xlsx`, gửi lên Google Sheet.
+- Test case thuộc giới hạn đã biết / rủi ro được chấp nhận được khai trong `tools/chap-nhan.js` (dữ liệu gốc giữ "Không đạt", khi tổng hợp không tính vào mẫu số).
+- Gửi lại kết quả đã có: `node tools/gui-lai.js`, `node tools/gui-tat-ca.js`.
 
-## 6. Đợt 2–3: đa trình duyệt, xác nhận sửa lỗi (bổ sung 06/11/2026)
-- Cấu hình: edge, chrome, firefox, webkit, iphone, android (Pixel 7), ipad. Edge từ bản 156 được mở qua CDP (`moEdge()` trong `lib/khung-test.js`); đổi đường dẫn bằng biến `QA_EDGE_EXE` nếu cần.
-- Chạy 1 cấu hình: `QA_DOT=d3 node tools/chay-cau-hinh.js iphone --song-song 2 [--phien s03,s04]` → `ket-qua/d3/<cấu hình>/`. Thêm `QA_KHONG_GUI=1` để không gửi Sheet.
-- Tổng hợp đợt 3 (so với đợt 2), gửi tab Đ3-*, viết báo cáo đợt 3: `node tools/dot3.js` (`--bo-gui` để không gửi).
-- Báo cáo tổng kết 4 phase + tab "Tổng kết kiểm thử": `node tools/bao-cao-tong.js`.
-- Test case thuộc giới hạn đã biết / rủi ro được chấp nhận: `tools/chap-nhan.js` (dữ liệu gốc giữ nguyên, khi tổng hợp không tính vào mẫu số).
-- Chỉ chạy một tiến trình gửi Google Sheet tại một thời điểm.
+## 6. Ghi chú
+- Khung test tự mở web ở cổng 5599, **không cần Live Server**.
+- Mặc định **chặn kết nối Internet** → đồng thời kiểm tra web chạy được khi mất mạng; phiên cần mạng đặt `choMang: true`.
+- Mỗi lần chạy dùng dữ liệu sạch từ `data/json`, không ảnh hưởng dữ liệu trên trình duyệt cá nhân.
+- Edge bản mới được mở qua CDP (`moEdge()` trong `lib/khung-test.js`); đổi đường dẫn bằng biến `QA_EDGE_EXE` nếu cần.
+- Checklist kiểm tra trên điện thoại thật: `tools/checklist-may-that.md`.
+- Tài liệu khung test (các hàm `t.mo`, `t.tc`, `kq.dat`…): `tools/api-khung.md`; phạm vi từng phiên: `tools/pham-vi.json`.
