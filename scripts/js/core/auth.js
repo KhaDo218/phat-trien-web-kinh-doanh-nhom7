@@ -164,8 +164,13 @@ function isLoggedIn(){
 }
 
 function isAdmin(){
-    var session = getSession();
-    return session != null && session.role == "Admin" && getCurrentUser() != null;
+    // Không tin session.role: quyền lấy từ bản ghi người dùng thật trong bảng users
+    var user = getCurrentUser();
+    if(user == null)
+        return false;
+    // Tra tên quyền qua bảng roles (giống hàm login), không đoán theo số role_id
+    var role = findById("roles", user.role_id);
+    return role != null && role.name == "Admin";
 }
 
 // Chưa đăng nhập -> chuyển sang trang đăng nhập, đăng nhập xong quay lại trang cũ

@@ -114,6 +114,7 @@ function showFeaturedProducts(){
             altImage.src = asset(chon[i].images[1]);
             altImage.alt = "";
             altImage.loading = "lazy";
+            altImage.decoding = "async";
             imageLink.appendChild(altImage);
         }
         list.appendChild(card);
@@ -424,7 +425,7 @@ function showStyles(){
         o.className = "style-tile";
         o.href = "rooms.html?style=" + styles[i].slug;
         o.title = styles[i].description;
-        o.innerHTML = "<img src='" + asset(anh) + "' alt='Phong cách " + roomEscape(styles[i].name) + "' loading='lazy'>"
+        o.innerHTML = "<img src='" + asset(anh) + "' alt='Phong cách " + roomEscape(styles[i].name) + "' loading='lazy' decoding='async'>"
                     + "<span class='style-info'>"
                     + "  <span class='title-product'>" + roomEscape(styles[i].name) + "</span>"
                     + "  <span class='style-count'>" + soPhong + " không gian <span class='material-symbols-outlined'>arrow_forward</span></span>"
@@ -443,7 +444,7 @@ function showAbout(){
     var anh = (room.images && room.images.length > 0) ? room.images : [room.image_url];
     var html = "";
     for(var i = 0; i < anh.length; i++)
-        html += "<img src='" + asset(anh[i]) + "' alt='" + (i == 0 ? roomEscape(room.name) : "") + "'" + (i > 0 ? " loading='lazy'" : "") + ">";
+        html += "<img src='" + asset(anh[i]) + "' alt='" + (i == 0 ? roomEscape(room.name) : "") + "'" + (i > 0 ? " loading='lazy' decoding='async'" : "") + ">";
     document.getElementById("aboutFrames").innerHTML = html;
     document.getElementById("aboutFrameTotal").innerHTML = anh.length < 10 ? "0" + anh.length : anh.length;
     document.getElementById("aboutCaption").innerHTML = "<a href='room-detail.html?id=" + encodeURIComponent(room.id) + "'>"

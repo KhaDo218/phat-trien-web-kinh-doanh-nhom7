@@ -4,6 +4,7 @@
         <title>RoomCraft - Trọn một không gian, vẹn một phong cách</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="RoomCraft - Trọn một không gian, vẹn một phong cách. Khám phá nội thất đẹp, không gian mẫu truyền cảm hứng và đồ cũ tuyển chọn cho tổ ấm của bạn.">
         <style type="text/css">
             @import url(css/base.css);
             @import url(css/components/product-card.css);
@@ -71,7 +72,7 @@
         <!-- ===== 2. Pointlight: căn phòng trong bóng tối, đèn chạy theo con trỏ (index.js: initPointlight) ===== -->
         <section class="pointlight" id="pointlight" aria-label="Không gian trong ánh sáng">
             <div class="pointlight-stage">
-                <img class="pointlight-img" src="../assets/rooms/glam/room-glam-4192177-01.jpg" alt="Phòng làm việc phong cách Glam">
+                <img class="pointlight-img" src="../assets/rooms/glam/room-glam-4192177-01.jpg" alt="Phòng làm việc phong cách Glam" loading="lazy" decoding="async">
             </div>
             <!-- Lớp tối có "lỗ" sáng ở giữa + quầng sáng ấm: chỉ dịch chuyển bằng transform theo con trỏ -->
             <span class="pointlight-dark" aria-hidden="true"></span>
@@ -95,7 +96,7 @@
                     </div>
                     <div class="str-demo">
                         <div class="str-stage" id="demoStage">
-                            <img id="demoImage" src="" alt="">
+                            <img id="demoImage" src="" alt="" loading="lazy" decoding="async">
                         </div>
                     </div>
                     <ol class="str-steps">
@@ -216,8 +217,8 @@
                 <!-- Khung trình diễn: kéo thanh giữa để so sánh bản phác thảo và căn phòng hoàn thiện -->
                 <div class="bs-stage">
                     <div class="bs-compare" id="bsCompare" style="--split: 50%">
-                        <img class="bs-img bs-img-after" id="bsAfter" src="" alt="">
-                        <img class="bs-img bs-img-before" id="bsBefore" src="" alt="" aria-hidden="true">
+                        <img class="bs-img bs-img-after" id="bsAfter" src="" alt="" loading="lazy" decoding="async">
+                        <img class="bs-img bs-img-before" id="bsBefore" src="" alt="" aria-hidden="true" loading="lazy" decoding="async">
                         <span class="bs-label bs-label-before">Ý tưởng</span>
                         <span class="bs-label bs-label-after">Hoàn thiện</span>
                         <div class="bs-handle" aria-hidden="true"><span></span></div>
@@ -245,7 +246,7 @@
 
                     <!-- Thẻ kính: món nổi bật trong phòng -->
                     <a class="bs-card bs-pick" id="bsPick" href="#">
-                        <img id="bsPickImg" src="" alt="">
+                        <img id="bsPickImg" src="" alt="" loading="lazy" decoding="async">
                         <div>
                             <span class="overline">Món nổi bật</span>
                             <p class="bs-pick-name" id="bsPickName"></p>
