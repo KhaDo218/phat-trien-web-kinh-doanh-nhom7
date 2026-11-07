@@ -581,7 +581,10 @@ function initBrandStory(){
     function setSplit(v){
         box.style.setProperty("--split", v + "%");
     }
+    // Khách đã tự kéo thì dừng hiệu ứng mở màn, không giật thanh khỏi tay khách
+    var khachDaKeo = false;
     range.addEventListener("input", function(){
+        khachDaKeo = true;
         setSplit(range.value);
     });
 
@@ -595,6 +598,8 @@ function initBrandStory(){
         obs.disconnect();
         var batDau = null;
         function buoc(t){
+            if(khachDaKeo)
+                return;
             if(batDau == null)
                 batDau = t;
             var x = Math.min(1, (t - batDau) / 2400);
